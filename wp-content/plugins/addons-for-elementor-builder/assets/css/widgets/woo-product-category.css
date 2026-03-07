@@ -1,0 +1,162 @@
+:root {
+    --afebp-woo-cat-columns: 3;
+    --afebp-woo-cat-min-width: 200px;
+    --afebp-woo-cat-nav-color: currentColor;
+    --afebp-woo-cat-dot-color: currentColor;
+}
+/* Grid responsive behavior */
+/* Grid Layout - Fixed to prevent horizontal overflow */
+.afebp-woo-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--afebp-woo-cat-columns, 3), minmax(0, 1fr));
+    gap: var(--afebp-woo-cat-gap, 20px);
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+    .afebp-woo-cat-grid {
+        grid-template-columns: repeat(var(--afebp-woo-cat-columns-tablet, var(--afebp-woo-cat-columns, 3)), minmax(0, 1fr));
+    }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 767px) {
+    .afebp-woo-cat-grid {
+        grid-template-columns: repeat(var(--afebp-woo-cat-columns-mobile, var(--afebp-woo-cat-columns-tablet, var(--afebp-woo-cat-columns, 3))), minmax(0, 1fr));
+    }
+}
+
+
+
+.afebp-woo-cat-item {
+    text-align: center;
+}
+
+.afebp-woo-cat-image img,
+.afebp-woo-cat-image .afebp-woo-cat-placeholder {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+.afebp-woo-cat-item.elementor-grid-item h3.afebp-woo-cat-title {
+    margin: 10px 0 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.afebp-woo-cat-desc {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Carousel */
+.afebp-woo-cat-swiper {
+    overflow: hidden;
+}
+
+.afebp-woo-cat-swiper .swiper-button-next,
+.afebp-woo-cat-swiper .swiper-button-prev {
+    color: var(--afebp-woo-cat-nav-color);
+}
+
+.afebp-woo-cat-swiper .swiper-pagination-bullet {
+    background: var(--afebp-woo-cat-dot-color);
+    opacity: 0.6;
+}
+
+.afebp-woo-cat-swiper .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Masonry fallback */
+.afebp-woo-cat-grid[data-grid-type="masonry"] {
+    display: block;
+}
+
+.afebp-woo-cat-grid[data-grid-type="masonry"] .afebp-woo-cat-item {
+    margin-bottom: var(--afebp-woo-cat-gap);
+}
+/* Carousel Container */
+.afebp-woo-cat-swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Swiper Wrapper */
+.afebp-woo-cat-swiper .swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Swiper Slide */
+.afebp-woo-cat-swiper .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+/* Navigation Arrows */
+.afebp-woo-cat-swiper .swiper-button-next,
+.afebp-woo-cat-swiper .swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    margin-top: -22px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.afebp-woo-cat-swiper .swiper-button-next {
+    right: 10px;
+}
+
+.afebp-woo-cat-swiper .swiper-button-prev {
+    left: 10px;
+}
+
+/* Pagination */
+.afebp-woo-cat-swiper .swiper-pagination {
+    position: absolute;
+    text-align: center;
+    transition: .3s opacity;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.afebp-woo-cat-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #000;
+    opacity: 0.2;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.afebp-woo-cat-swiper .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #000;
+}

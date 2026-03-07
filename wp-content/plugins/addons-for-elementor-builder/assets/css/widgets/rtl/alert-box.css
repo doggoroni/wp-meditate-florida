@@ -1,0 +1,9 @@
+.afeb-alert-box {
+    padding-left: 55px !important;
+    padding-right: 17px !important;
+}
+
+.afeb-alert-box .close-alert-box {
+    left: 10px !important;
+    right: auto !important;
+}

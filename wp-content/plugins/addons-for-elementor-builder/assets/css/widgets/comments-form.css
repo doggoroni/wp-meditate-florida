@@ -1,0 +1,196 @@
+.afeb-comments-list,
+.afeb-comments-list ul.children {
+	list-style: none;
+	margin: 0;
+	padding: 0
+}
+
+.afeb-comment-content,
+.afeb-comment-meta,
+.afeb-comment-reply {
+	margin-left: calc(60px + 20px)
+}
+
+.afeb-comments-list ul.children {
+	padding-left: 24px
+}
+
+.afeb-post-comment {
+	border: 1px solid #e8e8e8;
+	border-radius: 8px;
+	margin-bottom: 50px;
+	padding: 20px
+}
+
+.afeb-comment-reply a,
+.bypostauthor .afeb-post-comment {
+	background-color: #efefef;
+	border-radius: 8px
+}
+
+.afeb-comment-metadata::after,
+.afeb-post-comment::after {
+	clear: both;
+	content: "";
+	display: block;
+	height: 0;
+	width: 0
+}
+
+.afeb-comment-avatar {
+	border-radius: 50%;
+	float: left;
+	overflow: hidden
+}
+
+.afeb-comment-avatar img {
+	margin: 0 !important;
+	position: static !important
+}
+
+.afeb-comment-author {
+	font-size: 15px;
+	margin-bottom: 2px
+}
+
+.afeb-comment-author a {
+	color: #333;
+	text-decoration: none;
+	transition-duration: .1s
+}
+
+.afeb-comment-metadata {
+	color: #9b9b9b;
+	font-family: "Open Sans", Sans-serif;
+	font-size: 12px;
+	margin-bottom: 5px
+}
+
+.afeb-comment-content {
+	color: #666;
+	font-family: "Open Sans", Sans-serif;
+	font-size: 14px;
+	font-weight: 400
+}
+
+.afeb-comment-content a {
+	color: #5936c6
+}
+
+.afeb-comment-reply {
+	text-align: right
+}
+
+.afeb-comment-reply a {
+	color: #5936c6;
+	border-style: none;
+	font-size: 13px;
+	margin: 0;
+	padding: 5px 10px;
+	transition-duration: .6s
+}
+
+ul.children .afeb-comment-reply a {
+	background-color: transparent
+}
+
+.afeb-comment-metadata>* {
+	display: inline-block
+}
+
+.afeb-comment-form {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column
+}
+
+.afeb-comment-form .comment-notes {
+	display: none
+}
+
+.afeb-comment-form-text {
+	display: block;
+	margin-bottom: 10px;
+	width: 100%
+}
+
+.afeb-comment-form-fields {
+	-webkit-box-ordinal-group: 0;
+	order: -1;
+	width: 60%
+}
+
+.afeb-comment-form-author,
+.afeb-comment-form-email,
+.afeb-comment-form-url {
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 100%
+}
+
+.afeb-comment-reply-title {
+	color: #222;
+	font-size: 17px;
+	font-weight: 500;
+	letter-spacing: .5;
+	margin-bottom: 20px;
+	margin-top: 85px;
+	text-align: left
+}
+
+.afeb-comment-form label,
+.afeb-comment-form-fields label {
+	display: block;
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 10px;
+	margin-left: 10px
+}
+
+.afeb-comment-form-author input,
+.afeb-comment-form-email input,
+.afeb-comment-form-text textarea,
+.afeb-comment-form-url input {
+	background-color: #fff;
+	border: 1px solid #dbdbdb;
+	color: #666;
+	border-radius: 8px;
+	display: block;
+	margin-bottom: 10px;
+	transition-duration: .6s;
+	padding: 10px 0 10px 10px;
+	width: 100%
+}
+
+.afeb-comment-form-author input,
+.afeb-comment-form-email input {
+	margin-bottom: 10px;
+	margin-right: 10px
+}
+
+.afeb-comment-form-url input {
+	margin-bottom: 10px
+}
+
+.afeb-submit-comment {
+	background-color: #5936c6;
+	border-radius: 8px;
+	color: #fff;
+	display: block;
+	cursor: pointer;
+	font-size: 15px;
+	letter-spacing: .5;
+	margin-top: 20px;
+	padding: 12px 45px;
+	text-align: center;
+	transition-duration: .7;
+	width: 100%
+}
+
+.afeb-comments-list .comment-respond {
+	margin-bottom: 30px
+}

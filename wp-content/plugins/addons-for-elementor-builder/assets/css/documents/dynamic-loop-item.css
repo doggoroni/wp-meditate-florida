@@ -1,0 +1,35 @@
+.afeb-template-dynamic-loop-item {
+    align-items: center;
+    display: flex;
+    background-image: url('../..//img/transparent.jpg') !important;
+    background-repeat: repeat;
+    justify-content: center;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999
+}
+
+.afeb-template-dynamic-loop-item-inner {
+    position: relative
+}
+
+.afeb-dynamic-loop-item-container {
+    background-color: #fff;
+    box-shadow: 2px 8px 23px 3px rgba(0, 0, 0, .2);
+    display: flex;
+    height: auto;
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: auto;
+    padding: 0;
+    position: relative;
+    width: 650px
+}
+
+.afeb-dynamic-loop-item-container-inner {
+    padding: 20px;
+    width: 100%
+}

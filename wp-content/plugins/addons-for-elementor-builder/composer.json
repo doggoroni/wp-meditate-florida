@@ -1,0 +1,20 @@
+{
+    "name": "webilia/addons-for-elementor-builder",
+    "description": "Just one plugin instead of a lot",
+    "type": "project",
+    "license": "GPL v2 or later",
+    "authors": [
+        {
+            "name": "Webilia Inc.",
+            "email": "info@webilia.com"
+        }
+    ],
+    "config": {
+        "platform-check": false
+    },
+    "autoload": {
+        "psr-4": {
+            "AFEB\\": "app"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+/* Product Content Widget Styling */
+.afeb-product-content {
+    display: block;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: inherit;
+}
+
+/* Respect Elementor alignment setting */
+.elementor-widget-afeb_product_content[data-elementor-align="left"] .afeb-product-content {
+    text-align: left;
+}
+.elementor-widget-afeb_product_content[data-elementor-align="center"] .afeb-product-content {
+    text-align: center;
+}
+.elementor-widget-afeb_product_content[data-elementor-align="right"] .afeb-product-content {
+    text-align: right;
+}
+
+/* Ensure images inside product description are responsive */
+.afeb-product-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Basic spacing */
+.afeb-product-content p {
+    margin-bottom: 1em;
+}
+.afeb-product-content ul,
+.afeb-product-content ol {
+    margin: 0 0 1em 1.5em;
+}

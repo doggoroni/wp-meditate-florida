@@ -1,0 +1,241 @@
+:root {
+  --listdomer-body-bg: #e8f1ff; /* Main Body Background Color */
+  --listdomer-main-font-m: "Poppins", Arial, monospace; /* Main Font Family */
+  --listdomer-main-font-color: #7e8086;
+
+  /* Archive Post Title Font */
+  --listdomer-archive-post-title-font: Poppins, Arial, sans-serif; /* Archive Post Title Font Family */
+  --listdomer-archive-post-title-font-size: 21px; /* Archive Post Title Font Size */
+  --listdomer-archive-post-title-font-weight: 600; /* Archive Post Title Font Weight */
+  --listdomer-archive-post-title-font-style: normal; /* Archive Post Title Font Style */
+  --listdomer-archive-post-title-text-align: left; /* Archive Post Title Text align */
+  --listdomer-archive-post-title-line-height: 44px; /* Archive Post Title Line Height */
+  --listdomer-archive-post-title-color: #000; /* Archive Post Title Color */
+  --listdomer-archive-post-title-decoration: none; /* Archive Post Title Decoration */
+
+  /* H1 Font */
+  --listdomer-h1-font: Poppins, Arial, sans-serif; /* H1 Font Family */
+  --listdomer-h1-font-size: 32px; /* H1 Font Size */
+  --listdomer-h1-font-weight: 700; /* H1 Font Style */
+  --listdomer-h1-line-height: 40px; /* H1 Line Height */
+  --listdomer-h1-color: #000; /* H1 Color */
+
+  /* H2 Font */
+  --listdomer-h2-font: Poppins, Arial, sans-serif; /* H2 Font Family */
+  --listdomer-h2-font-size: 28px; /* H2 Font Size */
+  --listdomer-h2-font-weight: 600; /* H2 Font Style */
+  --listdomer-h2-line-height: 36px; /* H2 Line Height */
+  --listdomer-h2-color: #000; /* H2 Color */
+
+  /* H3 Font */
+  --listdomer-h3-font: Poppins, Arial, sans-serif; /* H3 Font Family */
+  --listdomer-h3-font-size: 24px; /* H3 Font Size */
+  --listdomer-h3-font-weight: 500; /* H3 Font Style */
+  --listdomer-h3-line-height: 32px; /* H3 Line Height */
+  --listdomer-h3-color: #000; /* H3 Color */
+
+  /* H4 Font */
+  --listdomer-h4-font: Poppins, Arial, sans-serif; /* H4 Font Family */
+  --listdomer-h4-font-size: 20px; /* H4 Font Size */
+  --listdomer-h4-font-weight: 500; /* H4 Font Style */
+  --listdomer-h4-line-height: 28px; /* H4 Line Height */
+  --listdomer-h4-color: #000; /* H4 Color */
+
+  /* H5 Font */
+  --listdomer-h5-font: Poppins, Arial, sans-serif; /* H5 Font Family */
+  --listdomer-h5-font-size: 18px; /* H5 Font Size */
+  --listdomer-h5-font-weight: 400; /* H5 Font Style */
+  --listdomer-h5-line-height: 26px; /* H5 Line Height */
+  --listdomer-h5-color: #000; /* H5 Color */
+
+  /* H6 Font */
+  --listdomer-h6-font: Poppins, Arial, sans-serif; /* H6 Font Family */
+  --listdomer-h6-font-size: 16px; /* H6 Font Size */
+  --listdomer-h6-font-weight: 400; /* H6 Font Style */
+  --listdomer-h6-line-height: 24px; /* H6 Line Height */
+  --listdomer-h6-color: #000; /* H6 Color */
+
+  --listdomer-main-gbg1: #33c6ff; /* Main Gradient Background Color 1 */
+  --listdomer-main-gbg2: #306be6; /* Main Gradient Background Color 2 */
+
+  --listdomer-header-bg: #ffffff; /* Header Background Color */
+  --listdomer-header-tc: #000000; /* Header Text Color */
+  --listdomer-header-hc: #0ab0fe; /* Header hover Color */
+  --listdomer-header-ac: #0ab0fe; /* Header active Color */
+
+  --listdomer-content-c: #66686b; /* Main Content Color */
+  --listdomer-content-ac: #8d919c; /* Main Content A Tag Color */
+  --listdomer-content-acc: #3a3b40; /* Main Content Active Color */
+
+  --listdomer-single-page-title-color: #000000;
+  --listdomer-single-page-title-font-family: Poppins;
+  --listdomer-single-page-title-font-size: 54px;
+  --listdomer-single-page-title-font-weight: 700;
+  --listdomer-single-page-title-font-style: normal;
+  --listdomer-single-page-title-line-height: 62px;
+  --listdomer-single-page-title-text-align: left;
+
+  --listdomer-single-page-content-color: #66686b;
+  --listdomer-single-page-content-font-family: Poppins;
+  --listdomer-single-page-content-font-size: 14px;
+  --listdomer-single-page-content-font-weight: 400;
+  --listdomer-single-page-content-font-style: normal;
+  --listdomer-single-page-content-line-height: 32px;
+  --listdomer-single-page-content-text-align: left;
+
+  --listdomer-footer-bg: #1c1c1c; /* Footer Background Color */
+  --listdomer-footer-tc: #ffffff; /* Footer Title Color */
+
+  --listdomer-icons-bg-color: transparent;
+  --listdomer-icons-text-color: #0ab0fe;
+
+  /* Page title */
+  --listdomer-page-title-font-family: Poppins; /* Title Font Family */
+  --listdomer-page-title-font-size: 42px; /* Title Font Size */
+  --listdomer-page-title-font-weight: 600; /* Title Font Style */
+  --listdomer-page-title-font-style: normal; /* Title Font Style */
+  --listdomer-page-title-line-height: 46px; /* Title Line Height */
+  --listdomer-page-title-color: #000; /* Title Text Color */
+  --listdomer-page-title-alignment: center; /* Title Text Alignment */
+
+  --listdomer-page-desc-font-family: Poppins; /* Title Font Family */
+  --listdomer-page-desc-font-size: 21px; /* Title Font Size */
+  --listdomer-page-desc-font-weight: 400; /* Title Font Style */
+  --listdomer-page-desc-font-style: normal; /* Title Font Style */
+  --listdomer-page-desc-line-height: 26px; /* Title Line Height */
+  --listdomer-page-desc-color: #66686b; /* Title Text Color */
+  --listdomer-page-desc-alignment: center; /* Title Text Alignment */
+
+  --listdomer-page-title-bg-color: #e8f1ff; /* Title Background Color */
+  --listdomer-page-title-bg-image: url(''); /* Title Background Image */
+  --listdomer-page-title-bg-position: center center; /* Title Background Position */
+  --listdomer-page-title-bg-repeat: no-repeat; /* Title Background Repeat */
+  --listdomer-page-title-bg-size: cover; /* Title Background Size */
+  --listdomer-page-title-bg-attachment: scroll; /* Title Background Attachment */
+  --listdomer-page-title-border: 0 0 0 0; /* Title Border (e.g., "1px solid #ddd") */
+  --listdomer-page-title-border-style: none; /* Title Border Style */
+  --listdomer-page-title-border-color: #fff; /* Title Border Color */
+  --listdomer-page-title-shape-display: block; /* Title shape */
+  --listdomer-page-title-display: block; /* Title display */
+
+  /* Button Colors */
+  --listdomer-primary-button-bg: #33c6ff; /* Primary Button Background Color */
+  --listdomer-primary-button-bg-2: #306be6; /* Primary Button Background Color 2 */
+  --listdomer-primary-button-text: #fff; /* Primary Button Text Color */
+  --listdomer-primary-button-hover-bg: #29a6e1; /* Primary Button Hover Background Color */
+  --listdomer-primary-button-hover-text: #eee; /* Primary Button Hover Text Color */
+  --listdomer-primary-button-border: 0 0 0 0; /* Primary Button Border */
+  --listdomer-primary-button-border-style: none; /* Primary Button Border Style */
+  --listdomer-primary-button-border-color: transparent; /* Primary Button Border Color */
+  --listdomer-primary-button-border-hover: 0 0 0 0; /* Primary Button Hover Border */
+  --listdomer-primary-button-border-hover-style: none; /* Primary Button Border hover Style */
+  --listdomer-primary-button-border-hover-color: transparent; /* Primary Button Border hover color */
+  --listdomer-primary-button-border-radius: 4px; /* Primary Button Border Radius */
+
+  --listdomer-secondary-button-bg: #33c6ff; /* Secondary Button Background Color */
+  --listdomer-secondary-button-text: #fff; /* Secondary Button Text Color */
+  --listdomer-secondary-button-hover-bg: #29a6e1; /* Secondary Button Hover Background Color */
+  --listdomer-secondary-button-hover-text: #eee; /* Secondary Button Hover Text Color */
+  --listdomer-secondary-button-border: 0 0 0 0; /* Secondary Button Border */
+  --listdomer-secondary-button-border-style: none; /* Secondary Button Border Style */
+  --listdomer-secondary-button-border-color: transparent; /* Secondary Button Border Color */
+  --listdomer-secondary-button-border-hover: 0 0 0 0; /* Secondary Button Hover Border */
+  --listdomer-secondary-button-border-hover-style: none; /* Secondary Button Border hover style */
+  --listdomer-secondary-button-border-hover-color: transparent; /* Secondary Button Border hover Color */
+  --listdomer-secondary-button-border-radius: 4px; /* Secondary Button Border Radius */
+
+  --listdomer-comment-input-bg-color: #ffffff; /* Input Background Color */
+  --listdomer-comment-input-text-color: #a4a8b5; /* Input Text Color */
+  --listdomer-comment-input-border: 0 0 0 0; /* Input Border Color */
+  --listdomer-comment-input-border-color: transparent; /* Input Border Color */
+  --listdomer-comment-input-border-style: none; /* Input Border Color */
+  --listdomer-comment-input-placeholder-text-color: #a4a8b5; /* Placeholder Text Color */
+  --listdomer-comment-input-hover-border: 0 0 0 0; /* Input Focus Border Color */
+  --listdomer-comment-input-hover-border-color: transparent; /* Input Focus Border Color */
+  --listdomer-comment-input-hover-border-style: none; /* Input Focus Border Color */
+  --listdomer-comment-input-radius: 5px; /* Input Border Radius */
+
+  --listdomer-widget-bg-color: #fff; /* Widgets Background Color */
+  --listdomer-widget-border-radius: 5px; /* Widgets Border Radius */
+  --listdomer-widget-title-text-color: #000; /* Widget Title Text Color */
+  --listdomer-widget-title-border-color: #ececec; /* Widget Title Border Color */
+  --listdomer-widget-content-text-color: #8d919c; /* Widget Content Text Color */
+}
+
+.listdomer-color-m-txt{color: #33c6ff !important;}
+.listdomer-color-m-bg{background-color: #33c6ff !important;}
+.listdomer-color-m-brd{border-color: #33c6ff !important;}
+.listdomer-color-s-txt{color: #306be6 !important;}
+.listdomer-color-s-bg{background-color: #306be6 !important;}
+.listdomer-color-s-brd{border-color: #306be6 !important;}
+.listdomer-font-m{font-family: "Poppins", Arial, monospace;}
+
+.lsd-primary-button {
+  background: transparent linear-gradient(105deg, var(--listdomer-primary-button-bg) 0, var(--listdomer-primary-button-bg-2) 100%) 0 0 no-repeat padding-box !important;
+  color: var(--listdomer-primary-button-text) !important;
+  border: var(--listdomer-primary-button-border) !important;
+  border-radius: var(--listdomer-primary-button-border-radius) !important;
+}
+
+.lsd-primary-button:hover {
+  background-color: var(--listdomer-primary-button-hover-bg) !important;
+  color: var(--listdomer-primary-button-hover-text) !important;
+  border: var(--listdomer-primary-button-border-hover) !important;
+}
+
+.lsd-secondary-button {
+  background-color: var(--listdomer-secondary-button-bg);
+  color: var(--listdomer-secondary-button-text);
+  border: var(--listdomer-secondary-button-border);
+  border-radius: var(--listdomer-secondary-button-border-radius);
+}
+
+.lsd-secondary-button:hover {
+  background-color: var(--listdomer-secondary-button-hover-bg);
+  color: var(--listdomer-secondary-button-hover-text);
+  border: var(--listdomer-secondary-button-border-hover);
+}
+
+.listdomer-elementor-header::before, .listdomer-header::before, .page-template-page-full-width-no-sidebar .entry-header::before {
+  display: var(--listdomer-page-title-shape-display);
+}
+.listdomer-elementor-header h1::before, .listdomer-header h1::before, .page-template-page-full-width-no-sidebar .entry-header h1::before {
+  display: var(--listdomer-page-title-shape-display);
+}
+.listdomer-elementor-header h1::after, .listdomer-header h1::after, .page-template-page-full-width-no-sidebar .entry-header h1::after {
+  display: var(--listdomer-page-title-shape-display);
+}
+
+.listdomer-elementor-header::after, .listdomer-header::after, .page-template-page-full-width-no-sidebar .entry-header::after {
+  display: var(--listdomer-page-title-shape-display);
+}
+
+.listdomer-header {
+  font-family: var(--listdomer-page-title-font-family);
+  font-size: var(--listdomer-page-title-font-size);
+  font-weight: var(--listdomer-page-title-font-weight);
+  font-style: var(--listdomer-page-title-font-style);
+  line-height: var(--listdomer-page-title-line-height);
+  color: var(--listdomer-page-title-color);
+  text-align: var(--listdomer-page-title-alignment);
+  background-color: var(--listdomer-page-title-bg-color);
+  background-image: var(--listdomer-page-title-bg-image);
+  background-position: var(--listdomer-page-title-bg-position);
+  background-repeat: var(--listdomer-page-title-bg-repeat);
+  background-size: var(--listdomer-page-title-bg-size);
+  background-attachment: var(--listdomer-page-title-bg-attachment);
+  border: var(--listdomer-page-title-border);
+  border-style: var(--listdomer-page-title-border-style);
+  border-color: var(--listdomer-page-title-border-color);
+  display: var(--listdomer-page-title-display);
+}
+
+.listdomer-header p, .lsd-page-archive-description p {
+  font-family: var(--listdomer-page-desc-font-family);
+  font-size: var(--listdomer-page-desc-font-size);
+  font-weight: var(--listdomer-page-desc-font-weight);
+  font-style: var(--listdomer-page-desc-font-style);
+  line-height: var(--listdomer-page-desc-line-height);
+  color: var(--listdomer-page-desc-color);
+  text-align: var(--listdomer-page-desc-alignment);
+}

@@ -1,0 +1,386 @@
+/**
+ * AFEB Woo Product Image - EA style clone (Fixed + slider/vertical fixes)
+ */
+
+:root {
+    --afeb-thumb-size: 80px; /* Thumbnail width/height */
+    --e-global-color-primary: #ff5e00;
+    --afeb-thumb-gap: 10px;  /* Gap between thumbs */
+    --afeb-thumb-active-border: var(--e-global-color-primary, red);
+    --afeb-main-gap: 10px;   /* Gap between main & thumbs sections */
+}
+
+/* ==== EXISTING YOUR CSS STAYS AS IS ABOVE ==== */
+.afeb-woo-pi .swiper-button-next,
+.afeb-woo-pi .swiper-button-prev {
+    color: var(--e-global-color-primary, #000);
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding: 5px; /* default padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Remove Swiper default pseudo arrows */
+.afeb-woo-pi .swiper-button-next:after,
+.afeb-woo-pi .swiper-button-prev:after {
+    content: none !important;
+}
+
+.afeb-woo-pi .swiper-pagination-bullet {
+    background: var(--e-global-color-primary, #000);
+    opacity: 0.4;
+}
+.afeb-woo-pi .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Thumbnails */
+.afeb-woo-pi-thumbs {
+    display: flex;
+    gap: var(--afeb-thumb-gap);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.afeb-woo-pi-thumbs .swiper-slide {
+    opacity: 0.7;
+    transition: opacity 0.25s ease, border 0.25s ease;
+}
+.afeb-woo-pi-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+}
+/* Column direction only for top/bottom slider layouts */
+.afeb-woo-pi.layout-slider.afeb-thumbs-top,
+.afeb-woo-pi.layout-slider.afeb-thumbs-bottom {
+    flex-direction: column;
+}
+
+/* Ensure left/right thumbs sit beside main image */
+.afeb-woo-pi.layout-slider.afeb-thumbs-left,
+.afeb-woo-pi.layout-slider.afeb-thumbs-right {
+    /* === Contain main slider to prevent overflow & arrow drift in left/right layouts === */
+    .afeb-woo-pi.afeb-thumbs-left .afeb-main-swiper,
+    .afeb-woo-pi.afeb-thumbs-right .afeb-main-swiper {
+        flex: 1 1 auto;      /* allow flexible grow without overhang */
+        min-width: 0;        /* prevents flex child from forcing horizontal overflow */
+        overflow: hidden;    /* clip anything outside slider bounds */
+        position: relative;  /* arrows positioned relative to main slider, not wrapper */
+    }
+
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Allow vertical thumb slides to stack properly */
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs.swiper,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs.swiper {
+    flex-direction: column !important;
+
+}
+/* For vertical Swiper thumbs */
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs.swiper,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs.swiper {
+    height: 100%; /* match main slider height */
+    max-height: 500px; /* or your desired limit */
+    overflow: hidden;
+}
+
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs .swiper-wrapper,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs .swiper-wrapper {
+    flex-direction: column !important;
+}
+
+/* Pagination under main image */
+.afeb-main-swiper .swiper-pagination {
+    position: relative;
+    bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* === Thumbnails vertical mode for left/right === */
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs.swiper,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs.swiper {
+    flex-direction: column;
+    max-width: 100px; /* keep consistent with your original thumb size */
+}
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-featured,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-featured {
+    flex: 1;
+}
+.afeb-woo-pi.afeb-thumbs-left,
+.afeb-woo-pi.afeb-thumbs-right {
+    display: flex;
+    gap: 15px; /* match your original featured/thumb spacing */
+}
+
+/* === Thumbs vertical swiper slides === */
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs .swiper-slide,
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs .swiper-slide {
+    width: auto !important;
+}
+
+.afeb-woo-pi-thumbs .swiper-slide-thumb-active img{
+    border: solid 2px var(--afeb-thumb-active-border)
+}
+
+/* === Active thumbnail highlight === */
+.afeb-woo-pi-thumbs .swiper-slide.thumb-active {
+    outline-offset: 2px;
+    opacity: 1; /* ensure active thumb is clear */
+}
+.afeb-woo-pi-thumbs .swiper-slide {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+.afeb-woo-pi-thumbs .swiper-slide:hover {
+    opacity: 0.8;
+}
+.afeb-woo-pi.layout-slider.afeb-thumbs-right {
+    justify-content: flex-start;
+}
+.afeb-woo-pi.afeb-thumbs-right .afeb-woo-pi-thumbs.swiper {
+    margin-left: var(--afeb-main-gap);
+}
+.afeb-woo-pi.afeb-thumbs-left .afeb-woo-pi-thumbs.swiper {
+    margin-right: var(--afeb-main-gap);
+}
+
+
+/* === Arrow positioning for vertical thumbs === *//* Keep arrows centered over main image */
+.afeb-woo-pi.afeb-thumbs-left .swiper-button-prev,
+.afeb-woo-pi.afeb-thumbs-right .swiper-button-prev {
+    left: 10px;
+    right: auto;
+}
+.afeb-woo-pi.afeb-thumbs-left .swiper-button-next,
+.afeb-woo-pi.afeb-thumbs-right .swiper-button-next {
+    right: 10px;
+    left: auto;
+}
+
+
+/* Keep your existing .swiper-button-prev/.swiper-button-next styles untouched below */
+
+/* Wrapper */
+.afeb-woo-pi {
+    display: flex;
+    gap: var(--afeb-main-gap);
+    width: 100%;
+    position: relative;
+}
+
+/* === Layout variants === */
+.afeb-woo-pi.layout-slider {
+    flex-direction: column;
+}
+
+.afeb-woo-pi.layout-grid .afeb-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--afeb-main-gap);
+}
+
+.afeb-woo-pi.layout-stacked .afeb-stacked {
+    display: flex;
+    flex-direction: column;
+    gap: var(--afeb-main-gap);
+}
+
+/* === Swiper === */
+.afeb-main-swiper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.afeb-main-swiper .swiper-slide {
+    text-align: center;
+}
+.afeb-main-swiper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Swiper navigation arrows */
+.afeb-woo-pi .swiper-button-next,
+.afeb-woo-pi .swiper-button-prev {
+    color: var(--e-global-color-primary, #000);
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.afeb-woo-pi .swiper-button-next:after,
+.afeb-woo-pi .swiper-button-prev:after {
+    font-size: 14px;
+}
+
+/* Swiper pagination dots */
+.afeb-woo-pi .swiper-pagination-bullet {
+    background: var(--e-global-color-primary, #000);
+    opacity: 0.4;
+}
+.afeb-woo-pi .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* === Lightbox (Glightbox) === */
+.afeb-woo-pi a.glightbox {
+    display: block;
+    position: relative;
+}
+.afeb-woo-pi a.glightbox:hover::after {
+    content: "\f002";
+    font-family: 'Font Awesome 5 Free', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* === Thumbnails === */
+.afeb-woo-pi-thumbs {
+    display: flex;
+    gap: var(--afeb-thumb-gap);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.afeb-woo-pi-thumbs img {
+    cursor: pointer;
+    transition: transform 0.25s ease, outline 0.25s ease;
+    object-fit: cover;
+    width: var(--afeb-thumb-size);
+    height: var(--afeb-thumb-size);
+}
+.afeb-woo-pi-thumbs img:hover {
+    transform: scale(1.05);
+}
+.afeb-woo-pi-thumbs img.active {
+    outline-offset: 2px;
+}
+
+/* === Slider layout thumbs: horizontal carousel === */
+.afeb-woo-pi.layout-slider .afeb-woo-pi-thumbs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+}
+.afeb-woo-pi.layout-slider .afeb-woo-pi-thumbs::-webkit-scrollbar {
+    display: none;
+}
+.afeb-woo-pi.layout-slider .afeb-woo-pi-thumbs img {
+    flex: 0 0 auto;
+}
+
+/* === Thumbnail positions === */
+.afeb-thumbs-top {
+    flex-direction: column;
+}
+.afeb-thumbs-top .afeb-woo-pi-thumbs { order: 1; }
+.afeb-thumbs-top .afeb-woo-pi-featured { order: 2; }
+
+.afeb-thumbs-bottom {
+    flex-direction: column;
+}
+.afeb-thumbs-bottom .afeb-woo-pi-featured { order: 1; }
+.afeb-thumbs-bottom .afeb-woo-pi-thumbs { order: 2; }
+
+.afeb-thumbs-left {
+    flex-direction: row;
+    align-items: flex-start;
+}
+.afeb-thumbs-left .afeb-woo-pi-thumbs {
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+    flex: 0 0 auto;
+    min-width: var(--afeb-thumb-size);
+    flex-wrap: nowrap;
+}
+.afeb-thumbs-left .afeb-woo-pi-featured {
+    order: 2;
+    flex: 1 1 auto;
+}
+
+.afeb-thumbs-right {
+    flex-direction: row;
+    align-items: flex-start;
+}
+.afeb-thumbs-right .afeb-woo-pi-thumbs {
+    flex-direction: column;
+    align-items: center;
+    order: 2;
+    flex: 0 0 auto;
+    min-width: var(--afeb-thumb-size);
+    flex-wrap: nowrap;
+}
+.afeb-thumbs-right .afeb-woo-pi-featured {
+    order: 1;
+    flex: 1 1 auto;
+}
+
+/* === Grid images === */
+.afeb-grid a,
+.afeb-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* === Stacked images === */
+.afeb-stacked a,
+.afeb-stacked img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Zoom enabled */
+.afeb-woo-pi.zoom-enabled .afeb-main-swiper img:hover,
+.afeb-woo-pi.zoom-enabled .afeb-grid img:hover,
+.afeb-woo-pi.zoom-enabled .afeb-stacked img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+/* Thumbs swiper for slider mode */
+.afeb-woo-pi.layout-slider .afeb-woo-pi-thumbs.swiper {
+    overflow: hidden;
+}
+.afeb-woo-pi.layout-slider .afeb-woo-pi-thumbs .swiper-slide {
+    width: auto;
+}
+
+/* Square crop for main image */
+.afeb-main-swiper .swiper-slide img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* Square crop for thumbnails */
+.afeb-woo-pi-thumbs .swiper-slide img {
+    width: var(--afeb-thumb-size);
+    height: var(--afeb-thumb-size);
+    object-fit: cover;
+}
+
+/* Active thumbnail highlight */
+.afeb-woo-pi-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.afeb-woo-pi-thumbs .swiper-slide {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}

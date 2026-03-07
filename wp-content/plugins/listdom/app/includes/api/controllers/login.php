@@ -1,0 +1,95 @@
+<?php
+
+class LSD_API_Controllers_Login extends LSD_API_Controller
+{
+    public function perform(WP_REST_Request $request): WP_REST_Response
+    {
+        $vars = $request->get_params();
+
+        $username = isset($vars['username']) ? base64_decode($vars['username']) : null;
+        $password = isset($vars['password']) ? base64_decode($vars['password']) : null;
+
+        // Login
+        $response = wp_signon([
+            'user_login' => $username,
+            'user_password' => $password,
+            'remember' => false,
+        ], is_ssl());
+
+        // Invalid Credentials
+        if (is_wp_error($response)) return $this->response([
+            'data' => new WP_Error('400', $response->get_error_message()),
+            'status' => 400,
+        ]);
+
+        // Trigger Action
+        do_action('lsd_api_user_loggedin', $response->ID, $request);
+
+        // Response
+        return $this->response([
+            'data' => [
+                'success' => 1,
+                'id' => $response->ID,
+                'token' => $this->getUserToken($response->ID),
+            ],
+            'status' => 200,
+        ]);
+    }
+
+    public function key(WP_REST_Request $request): WP_REST_Response
+    {
+        // Response
+        return $this->response([
+            'data' => [
+                'success' => 1,
+                'key' => $this->getLoginKey(get_current_user_id()),
+            ],
+            'status' => 200,
+        ]);
+    }
+
+    public function redirect(WP_REST_Request $request)
+    {
+        // Login Key
+        $key = $request->get_param('key');
+
+        // Search Users
+        $users = get_users([
+            'meta_key' => 'lsd_login',
+            'meta_value' => $key,
+            'number' => 1,
+            'count_total' => false,
+        ]);
+
+        // User
+        $user = reset($users);
+
+        // Not Found!
+        if (!$user || !$user->ID) return $this->response([
+            'data' => new WP_Error('404', esc_html__('User not found!', 'listdom')),
+            'status' => 404,
+        ]);
+
+        if (
+            LSD_User::requires_email_verification()
+            && !LSD_User::is_email_verified($user->ID)
+        ) {
+            return $this->response([
+                'data' => new WP_Error('403', LSD_User::verification_required_message()),
+                'status' => 403,
+            ]);
+        }
+
+        // Login
+        wp_set_current_user($user->ID, $user->user_login);
+        wp_set_auth_cookie($user->ID);
+        do_action('wp_login', $user->user_login, $user);
+
+        // Redirection URL
+        $redirect_url = urldecode($request->get_param('redirect_url'));
+        if (!trim($redirect_url)) $redirect_url = get_home_url();
+
+        wp_safe_redirect($redirect_url);
+        exit;
+    }
+}

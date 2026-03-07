@@ -1,0 +1,610 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Listdomer\n"
+"POT-Creation-Date: 2025-05-11 18:00-0700\n"
+"PO-Revision-Date: 2025-05-11 18:00-0700\n"
+"Last-Translator: Totalery <info@totalery.com>\n"
+"Language-Team: Webilia <info@webilia.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;esc_attr_e;esc_attr_x;_n;_nx\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .sass-cache\n"
+"X-Poedit-SearchPathExcluded-2: assets\n"
+
+#: 404.php:24
+msgid "Not Found Page"
+msgstr ""
+
+#: 404.php:27
+msgid "Oops! Error 404."
+msgstr ""
+
+#: 404.php:33
+msgid "Go to Home"
+msgstr ""
+
+#: comments.php:37
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#: comments.php:45
+#, php-format
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgstr ""
+
+#: comments.php:70
+msgid "Comments are closed."
+msgstr ""
+
+#: header-blank.php:25 header.php:29
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:36
+msgid "Preloader Icon"
+msgstr ""
+
+#: includes/dependencies.php:54
+#, php-format
+msgid ""
+"To use all features of %s theme. You need to install and activate following "
+"plugins."
+msgstr ""
+
+#: includes/dependencies.php:56 includes/dependencies.php:57
+msgid "Listdomer Plugins"
+msgstr ""
+
+#: includes/footers.php:25
+msgid "Footer Type"
+msgstr ""
+
+#: includes/footers.php:28
+msgid "You need listdomer pro version to see all footer types."
+msgstr ""
+
+#: includes/footers.php:38 includes/headers.php:38
+msgid "Type 1"
+msgstr ""
+
+#: includes/footers.php:39 includes/headers.php:39
+msgid "Type 2"
+msgstr ""
+
+#: includes/footers.php:40 includes/headers.php:40
+msgid "Type 3"
+msgstr ""
+
+#: includes/footers.php:41 includes/headers.php:41
+msgid "Type 4"
+msgstr ""
+
+#: includes/footers.php:42 includes/headers.php:42
+msgid "Type 5"
+msgstr ""
+
+#: includes/footers.php:43
+msgid "Tiny"
+msgstr ""
+
+#: includes/footers.php:47 includes/headers.php:46
+msgid "Disabled"
+msgstr ""
+
+#: includes/headers.php:25
+msgid "Header Type"
+msgstr ""
+
+#: includes/headers.php:28
+msgid "You need listdomer pro version to see all header types."
+msgstr ""
+
+#: includes/navs.php:13 partials/headers/header-type2.php:26
+#: partials/headers/header-type3.php:28 partials/headers/header-type4.php:26
+#: partials/headers/header-type5.php:25 partials/headers/header.php:28
+msgid "Primary"
+msgstr ""
+
+#: includes/navs.php:14
+msgid "Sub-footer"
+msgstr ""
+
+#: includes/post.php:74
+msgid ", "
+msgstr ""
+
+#: includes/post.php:78
+#, php-format
+msgid "Posted in %1$s"
+msgstr ""
+
+#: includes/post.php:93
+msgid "Tags:"
+msgstr ""
+
+#: includes/sidebars.php:13
+msgid "Sidebar"
+msgstr ""
+
+#: includes/sidebars.php:15
+msgid "Blog Sidebar"
+msgstr ""
+
+#: includes/sidebars.php:23
+msgid "Footer 1"
+msgstr ""
+
+#: includes/sidebars.php:25 includes/sidebars.php:35 includes/sidebars.php:45
+#: includes/sidebars.php:55
+msgid "Footer Sidebar"
+msgstr ""
+
+#: includes/sidebars.php:33
+msgid "Footer 2"
+msgstr ""
+
+#: includes/sidebars.php:43
+msgid "Footer 3"
+msgstr ""
+
+#: includes/sidebars.php:53
+msgid "Footer 4"
+msgstr ""
+
+#: includes/tgmpa/core.php:327
+msgid "Install Required Plugins"
+msgstr ""
+
+#: includes/tgmpa/core.php:328
+msgid "Install Plugins"
+msgstr ""
+
+#: includes/tgmpa/core.php:330
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: includes/tgmpa/core.php:332
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: includes/tgmpa/core.php:333
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: includes/tgmpa/core.php:385
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: includes/tgmpa/core.php:386 includes/tgmpa/core.php:827
+#: includes/tgmpa/core.php:2533 includes/tgmpa/core.php:3580
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: includes/tgmpa/core.php:387 includes/tgmpa/core.php:3159
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: includes/tgmpa/core.php:388 includes/tgmpa/core.php:2952
+msgid "The following plugin was activated successfully:"
+msgstr ""
+
+#: includes/tgmpa/core.php:390
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#: includes/tgmpa/core.php:392
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#: includes/tgmpa/core.php:394
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: includes/tgmpa/core.php:395
+msgid "Dismiss this notice"
+msgstr ""
+
+#: includes/tgmpa/core.php:396
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: includes/tgmpa/core.php:397
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: includes/tgmpa/core.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: includes/tgmpa/core.php:523
+msgid "Update Required"
+msgstr ""
+
+#: includes/tgmpa/core.php:934
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: includes/tgmpa/core.php:934 includes/tgmpa/core.php:937
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: includes/tgmpa/core.php:937
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: includes/tgmpa/core.php:1982
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: includes/tgmpa/core.php:2273
+msgid "Required"
+msgstr ""
+
+#: includes/tgmpa/core.php:2276
+msgid "Recommended"
+msgstr ""
+
+#: includes/tgmpa/core.php:2292
+msgid "WordPress Repository"
+msgstr ""
+
+#: includes/tgmpa/core.php:2295
+msgid "External Source"
+msgstr ""
+
+#: includes/tgmpa/core.php:2298
+msgid "Pre-Packaged"
+msgstr ""
+
+#: includes/tgmpa/core.php:2315
+msgid "Not Installed"
+msgstr ""
+
+#: includes/tgmpa/core.php:2319
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: includes/tgmpa/core.php:2321
+msgid "Active"
+msgstr ""
+
+#: includes/tgmpa/core.php:2327
+msgid "Required Update not Available"
+msgstr ""
+
+#: includes/tgmpa/core.php:2330
+msgid "Requires Update"
+msgstr ""
+
+#: includes/tgmpa/core.php:2333
+msgid "Update recommended"
+msgstr ""
+
+#: includes/tgmpa/core.php:2342
+#, php-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: includes/tgmpa/core.php:2388
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/tgmpa/core.php:2392
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/tgmpa/core.php:2396
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/tgmpa/core.php:2400
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: includes/tgmpa/core.php:2482
+msgid "unknown"
+msgstr ""
+
+#: includes/tgmpa/core.php:2490
+msgid "Installed version:"
+msgstr ""
+
+#: includes/tgmpa/core.php:2498
+msgid "Minimum required version:"
+msgstr ""
+
+#: includes/tgmpa/core.php:2510
+msgid "Available version:"
+msgstr ""
+
+#: includes/tgmpa/core.php:2533
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: includes/tgmpa/core.php:2547
+msgid "Plugin"
+msgstr ""
+
+#: includes/tgmpa/core.php:2548
+msgid "Source"
+msgstr ""
+
+#: includes/tgmpa/core.php:2549
+msgid "Type"
+msgstr ""
+
+#: includes/tgmpa/core.php:2553
+msgid "Version"
+msgstr ""
+
+#: includes/tgmpa/core.php:2554
+msgid "Status"
+msgstr ""
+
+#: includes/tgmpa/core.php:2603
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#: includes/tgmpa/core.php:2608
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#: includes/tgmpa/core.php:2614
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: includes/tgmpa/core.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: includes/tgmpa/core.php:2717
+msgid "Install"
+msgstr ""
+
+#: includes/tgmpa/core.php:2723
+msgid "Update"
+msgstr ""
+
+#: includes/tgmpa/core.php:2726
+msgid "Activate"
+msgstr ""
+
+#: includes/tgmpa/core.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: includes/tgmpa/core.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: includes/tgmpa/core.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: includes/tgmpa/core.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: includes/tgmpa/core.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: includes/tgmpa/core.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: includes/tgmpa/core.php:3158
+msgid "Plugin activation failed."
+msgstr ""
+
+#: includes/tgmpa/core.php:3498
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/tgmpa/core.php:3501
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: includes/tgmpa/core.php:3503
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: includes/tgmpa/core.php:3507
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: includes/tgmpa/core.php:3509
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: includes/tgmpa/core.php:3510
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: includes/tgmpa/core.php:3512
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/tgmpa/core.php:3515
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: includes/tgmpa/core.php:3517
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: includes/tgmpa/core.php:3518
+msgid "All installations have been completed."
+msgstr ""
+
+#: includes/tgmpa/core.php:3520
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: includes/theme.php:262
+msgid "Previous"
+msgstr ""
+
+#: includes/theme.php:263
+msgid "Next"
+msgstr ""
+
+#: partials/archive/description.php:32 partials/archive/description.php:35
+msgid "Show More"
+msgstr ""
+
+#: partials/archive/description.php:33
+msgid "Show Less"
+msgstr ""
+
+#: partials/content-classic.php:21 partials/content-page-no-header.php:16
+#: partials/content-page.php:18 partials/content.php:53
+msgid "Pages:"
+msgstr ""
+
+#: partials/content-listdom-listing.php:16
+#: partials/content-listdom-listing.php:37 partials/content.php:43
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: partials/content-none.php:12
+msgid "Nothing Found"
+msgstr ""
+
+#: partials/content-none.php:22
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: partials/content-none.php:35
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: partials/content-none.php:42
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: partials/headers/header-type2.php:27 partials/headers/header-type3.php:29
+#: partials/headers/header-type4.php:27 partials/headers/header-type5.php:27
+#: partials/headers/header.php:29
+msgid "Navigation Close"
+msgstr ""
+
+#: partials/headers/header-type2.php:28 partials/headers/header-type3.php:30
+#: partials/headers/header-type4.php:28 partials/headers/header-type5.php:28
+#: partials/headers/header.php:30
+msgid "Close"
+msgstr ""
+
+#: partials/headers/header-type2.php:42 partials/headers/header-type4.php:42
+#: partials/headers/header-type5.php:42 partials/headers/header.php:44
+msgid "Responsive sidebar menu"
+msgstr ""
+
+#: partials/headers/header-type3.php:44
+msgid "Responsive Sidebar Menu"
+msgstr ""
+
+#: partials/sub-footer.php:22
+msgid "Sub Footer "
+msgstr ""
+
+#: partials/sub-footer.php:28
+#, php-format
+msgid "%1$s %2$s %3$s. All rights reserved."
+msgstr ""
+
+#: search.php:24
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: single-listdom-listing.php:28 single.php:35
+msgid "Previous:"
+msgstr ""
+
+#: single-listdom-listing.php:29 single.php:36
+msgid "Next:"
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:26
+msgid "You must be logged in to checkout."
+msgstr ""
+
+#: woocommerce/checkout/form-checkout.php:57
+msgid "Your order"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:27
+msgid "Have a coupon?"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:27
+msgid "Click here to enter your code"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:32
+msgid "If you have a coupon code, please apply it below."
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:35
+msgid "Coupon:"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:36
+msgid "Coupon code"
+msgstr ""
+
+#: woocommerce/checkout/form-coupon.php:40
+msgid "Apply coupon"
+msgstr ""

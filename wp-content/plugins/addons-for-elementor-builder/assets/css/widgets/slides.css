@@ -1,0 +1,102 @@
+.afeb-slides-carousel .slick-slide {
+    margin: 0 !important
+}
+
+.afeb-slides-carousel .afeb-slides-item-bg {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 100%
+}
+
+.afeb-slides-item {
+    overflow: hidden;
+    will-change: transform
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 50px;
+    position: absolute;
+    right: 0;
+    top: 0
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner,
+.afeb-slides-carousel .afeb-slides-item-inner:hover {
+    color: #5936c6;
+    display: flex
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner .elementor-slide-content {
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-heading {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-description {
+    font-size: 17px;
+    line-height: 1.4
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-description:not(:last-child),
+.afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-heading:not(:last-child) {
+    margin-bottom: 30px
+}
+
+.afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-button {
+    display: inline-block
+}
+
+.afeb-slides-v-position-top .afeb-slides-item-inner {
+    align-items: flex-start
+}
+
+.afeb-slides-v-position-bottom .afeb-slides-item-inner {
+    align-items: flex-end
+}
+
+.afeb-slides-v-position-middle .afeb-slides-item-inner {
+    align-items: center
+}
+
+.afeb-slides-h-position-left .afeb-slides-item-inner {
+    justify-content: flex-start
+}
+
+.afeb-slides-h-position-right .afeb-slides-item-inner {
+    justify-content: flex-end
+}
+
+.afeb-slides-h-position-center .afeb-slides-item-inner {
+    justify-content: center
+}
+
+@media (max-width:767px) {
+    .afeb-slides-carousel .afeb-slides-item-inner {
+        padding: 30px
+    }
+
+    .afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-heading {
+        font-size: 23px;
+        line-height: 1;
+        margin-bottom: 15px
+    }
+
+    .afeb-slides-carousel .afeb-slides-item-inner .afeb-slides-item-description {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 15px
+    }
+}

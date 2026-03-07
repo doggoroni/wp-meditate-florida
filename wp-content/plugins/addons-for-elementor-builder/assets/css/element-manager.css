@@ -1,0 +1,15 @@
+[class*=afeb-iconsvg]:before,
+[class^=afeb-iconsvg]:before {
+    background-size: contain;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    content: '';
+    display: inline-block;
+    height: 16px;
+    margin: -2px 0;
+    object-fit: contain;
+    transform: scaleX(-1);
+    width: 16px
+}

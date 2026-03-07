@@ -1,0 +1,299 @@
+<?php
+
+class LSD_Ajax extends LSD_Base
+{
+    public function init()
+    {
+        // Get Map Objects
+        add_action('wp_ajax_lsd_ajax_search', [$this, 'search']);
+        add_action('wp_ajax_nopriv_lsd_ajax_search', [$this, 'search']);
+
+        // AutoSuggest
+        add_action('wp_ajax_lsd_autosuggest', [$this, 'autosuggest']);
+        add_action('wp_ajax_nopriv_lsd_autosuggest', [$this, 'autosuggest']);
+
+        // Hierarchical Dropdowns
+        add_action('wp_ajax_lsd_hierarchical_terms', [$this, 'terms']);
+        add_action('wp_ajax_nopriv_lsd_hierarchical_terms', [$this, 'terms']);
+
+        // Availability by AI
+        add_action('wp_ajax_lsd_ai_availability', [$this, 'availability_ai']);
+
+        // Editor Content by AI
+        add_action('wp_ajax_lsd_ai_content', [$this, 'content_ai']);
+    }
+
+    public function search()
+    {
+        $post = wp_unslash($_POST);
+        $args = isset($post['args']) && is_array($post['args']) ? $post['args'] : [];
+
+        // Get From Request
+        if (!count($args)) $args = $post;
+
+        // Sanitization
+        $args = LSD_Sanitize::deep($args);
+
+        $atts = isset($args['atts']) && is_array($args['atts']) ? $args['atts'] : [];
+
+        // Listdom Shortcode
+        $LSD = new LSD_Shortcodes_Listdom();
+
+        // Skin
+        $skin = isset($atts['lsd_display']['skin'])
+            ? sanitize_text_field($atts['lsd_display']['skin'])
+            : $LSD->get_default_skin();
+
+        $limit = $atts['lsd_display'][$skin]['limit'] ?? 300;
+        $pagination = $atts['lsd_display'][$skin]['pagination'] ?? 'loadmore';
+
+        // Get Skin Object
+        $SKO = $LSD->SKO($skin);
+
+        // Start the skin
+        $SKO->start($atts);
+        $SKO->after_start();
+
+        // Current View
+        $view = isset($post['view']) ? sanitize_text_field($post['view']) : 'grid';
+        $SKO->setField('default_view', $view);
+
+        // Generate the Query
+        $SKO->query();
+
+        // Apply Search
+        $SKO->apply_search($post, 'map');
+
+        // Get Map Objects
+        $archive = new LSD_PTypes_Listing_Archive();
+        $objects = $archive->render_map_objects(
+            $SKO->search(),
+            [
+                'sidebar' => class_exists(LSDPACAM\Base::class),
+                'onclick' => $args['onclick'] ?? 'infowindow',
+            ]
+        );
+
+        // Change the limit
+        $SKO->setLimit();
+
+        // Get Listings
+        $IDs = $SKO->search();
+        $SKO->setField('listings', $IDs);
+
+        $listings = $SKO->listings_html();
+        $total = $SKO->getField('found_listings');
+        $next_page = $SKO->getField('next_page');
+
+        $filters = '';
+        if (method_exists($SKO, 'filters'))
+        {
+            $filters = LSD_Kses::element($SKO->filters());
+        }
+
+        $this->response([
+            'objects' => $objects,
+            'listings' => LSD_Kses::full($listings),
+            'next_page' => $next_page,
+            'count' => count($IDs),
+            'total' => $total,
+            'limit' => $limit,
+            'pagination' => $pagination === 'numeric' ? $SKO->get_pagination() : '',
+            'filters' => $filters,
+        ]);
+    }
+
+    public function autosuggest()
+    {
+        $request = wp_unslash($_REQUEST);
+
+        // Check if security nonce is set
+        if (!isset($request['_wpnonce'])) $this->response(['success' => 0, 'message' => esc_html__('Security nonce is required.', 'listdom')]);
+
+        // Verify that the nonce is valid
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($request['_wpnonce'])), 'lsd_autosuggest')) $this->response(['success' => 0, 'message' => esc_html__('Security nonce is invalid.', 'listdom')]);
+
+        $term = isset($request['term']) ? sanitize_text_field($request['term']) : '';
+        $source = isset($request['source']) ? sanitize_key($request['source']) : '';
+
+        $total = 0;
+        $items = '';
+
+        if ($source === 'users')
+        {
+            $users = get_users([
+                'search' => '*' . $term . '*',
+                'search_columns' => ['user_email', 'display_name'],
+                'number' => 10,
+            ]);
+
+            foreach ($users as $user)
+            {
+                $total++;
+                $items .= '<li data-value="' . esc_attr($user->ID) . '">' . esc_html($user->user_email) . '</li>';
+            }
+        }
+        else if (in_array($source, get_taxonomies()))
+        {
+            $terms = get_terms([
+                'taxonomy' => $source,
+                'name__like' => $term,
+                'hide_empty' => false,
+                'number' => 10,
+            ]);
+
+            if (is_wp_error($terms))
+            {
+                $message = $terms->get_error_message();
+                $this->response([
+                    'success' => 0,
+                    'message' => $message ? esc_html($message) : esc_html__('Unable to fetch taxonomy terms.', 'listdom'),
+                ]);
+                return;
+            }
+
+            foreach ($terms as $term)
+            {
+                $total++;
+                $items .= '<li data-value="' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</li>';
+            }
+        }
+        else if ($source === LSD_Base::PTYPE_SHORTCODE . '-searchable')
+        {
+            $posts = get_posts([
+                'post_type' => LSD_Base::PTYPE_SHORTCODE,
+                's' => $term,
+                'posts_per_page' => -1,
+                'orderby' => 'title',
+                'order' => 'ASC',
+                'post_status' => 'publish',
+            ]);
+
+            $skins = array_keys(LSD_Skins::get_searchable_skins());
+            foreach ($posts as $post)
+            {
+                $display = get_post_meta($post->ID, 'lsd_display', true);
+                $skin = is_array($display) && isset($display['skin']) ? $display['skin'] : '';
+
+                if (!in_array($skin, $skins)) continue;
+
+                $total++;
+                $items .= '<li data-value="' . esc_attr($post->ID) . '">' . esc_html($post->post_title) . '</li>';
+            }
+        }
+        else
+        {
+            $posts = get_posts([
+                'post_type' => $source,
+                's' => $term,
+                'numberposts' => 10,
+                'post_status' => 'publish',
+            ]);
+
+            foreach ($posts as $post)
+            {
+                $total++;
+                $items .= '<li data-value="' . esc_attr($post->ID) . '">' . esc_html($post->post_title) . '</li>';
+            }
+        }
+
+        $this->response([
+            'success' => 1,
+            'total' => $total,
+            'items' => trim($items) ? '<ul class="lsd-autosuggest-items">' . $items . '</ul>' : '',
+        ]);
+    }
+
+    public function terms()
+    {
+        $request = wp_unslash($_REQUEST);
+
+        // Taxonomy
+        $taxonomy = isset($request['taxonomy']) ? sanitize_key($request['taxonomy']) : LSD_Base::TAX_LOCATION;
+
+        $hide_empty = isset($request['hide_empty']) ? absint($request['hide_empty']) : 0;
+        $parent = isset($request['parent']) ? absint($request['parent']) : 0;
+
+        $terms = get_terms([
+            'taxonomy' => $taxonomy,
+            'parent' => $parent,
+            'hide_empty' => $hide_empty,
+            'orderby' => 'name',
+            'order' => 'ASC',
+        ]);
+
+        if (is_wp_error($terms))
+        {
+            $this->response([
+                'success' => 0,
+                'found' => 0,
+                'items' => [],
+                'message' => esc_html($terms->get_error_message()),
+            ]);
+        }
+
+        $items = [];
+        foreach ($terms as $term)
+        {
+            $items[] = [
+                'id' => $term->term_id,
+                'name' => $term->name,
+                'parent' => $term->parent,
+            ];
+        }
+
+        $this->response([
+            'success' => 1,
+            'found' => count($terms) ? 1 : 0,
+            'items' => $items,
+        ]);
+    }
+
+    public function availability_ai()
+    {
+        $post = wp_unslash($_POST);
+        $wpnonce = isset($post['_wpnonce']) ? sanitize_text_field(wp_unslash($post['_wpnonce'])) : '';
+
+        if (!trim($wpnonce)) $this->response(['success' => 0, 'code' => 'NONCE_MISSING']);
+        if (!wp_verify_nonce($wpnonce, 'lsd_ai_availability')) $this->response(['success' => 0, 'code' => 'NONCE_IS_INVALID']);
+
+        // No Access
+        if (!(new LSD_AI())->has_access(LSD_AI::TASK_AVAILABILITY)) $this->response(['success' => 0, 'code' => 'NO_ACCESS']);
+
+        $ai_profile = isset($post['ai_profile']) ? sanitize_text_field($post['ai_profile']) : '';
+        $text = isset($post['text']) ? sanitize_textarea_field($post['text']) : '';
+
+        $ai = (new LSD_AI())->by_profile($ai_profile);
+        $availability = $ai ? $ai->availability($text) : [];
+
+        $this->response([
+            'success' => $ai ? 1 : 0,
+            'availability' => $availability,
+            'message' => $ai ? esc_html__('Availability generated successfully!', 'listdom') : esc_html__('The AI model is not configured. You can configure it in Listdom settings.', 'listdom'),
+        ]);
+    }
+
+    public function content_ai()
+    {
+        $post = wp_unslash($_POST);
+        $wpnonce = isset($post['_wpnonce']) ? sanitize_text_field(wp_unslash($post['_wpnonce'])) : '';
+
+        if (!trim($wpnonce)) $this->response(['success' => 0, 'code' => 'NONCE_MISSING']);
+        if (!wp_verify_nonce($wpnonce, 'lsd_ai_content')) $this->response(['success' => 0, 'code' => 'NONCE_IS_INVALID']);
+
+        // No Access
+        if (!(new LSD_AI())->has_access(LSD_AI::TASK_CONTENT)) $this->response(['success' => 0, 'code' => 'NO_ACCESS']);
+
+        $ai_profile = isset($post['ai_profile']) ? sanitize_text_field($post['ai_profile']) : '';
+        $text = isset($post['text']) ? sanitize_textarea_field($post['text']) : '';
+
+        $ai = (new LSD_AI())->by_profile($ai_profile);
+        $content = $ai ? $ai->content($text) : '';
+
+        $this->response([
+            'success' => $ai ? 1 : 0,
+            'content' => $content,
+            'message' => $ai ? esc_html__('Content generated successfully!', 'listdom') : esc_html__('The AI model is not configured. You can configure it in Listdom settings.', 'listdom'),
+        ]);
+    }
+}

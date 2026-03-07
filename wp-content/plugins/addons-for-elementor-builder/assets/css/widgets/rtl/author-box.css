@@ -1,0 +1,7 @@
+.afeb-author-box-layout-image-left .afeb-author-box {
+    flex-direction: row-reverse
+}
+
+.afeb-author-box-layout-image-right .afeb-author-box {
+    flex-direction: row
+}

@@ -1,0 +1,95 @@
+.afeb-dynamic-grid-carousel-items,
+[class*=afeb-dynamic-grid-irregular-] .afeb-dynamic-grid-carousel-items {
+	gap: var(--afeb-dynamic-grid-carousel-item-gap)
+}
+
+:root {
+	--afeb-dynamic-grid-carousel-item-gap: '2px';
+	--afeb-dynamic-grid-item-column: '3'
+}
+
+.afeb-dynamic-grid-carousel-items {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start
+}
+
+.afeb-dynamic-grid .afeb-dynamic-grid-carousel-items .afeb-dynamic-grid-carousel-item {
+	width: calc((100% - (var(--afeb-dynamic-grid-item-column) - 1) * var(--afeb-dynamic-grid-carousel-item-gap))/ var(--afeb-dynamic-grid-item-column))
+}
+
+.afeb-dynamic-grid-pagination {
+	display: flex;
+	justify-content: center;
+	padding: 10px
+}
+
+[class*=afeb-dynamic-grid-irregular-] .afeb-dynamic-grid-carousel-items .afeb-dynamic-grid-carousel-item>* {
+	height: 100% !important;
+	width: 100% !important
+}
+
+[class*=afeb-dynamic-grid-irregular-] .afeb-dynamic-grid-carousel-items .afeb-dynamic-grid-carousel-item {
+	align-items: unset !important;
+	display: unset !important
+}
+
+.afeb-dynamic-grid-irregular-20-80 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-20-80-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-20-80-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4),
+.afeb-dynamic-grid-irregular-80-20 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-80-20-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-80-20-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3) {
+	flex: 0 1 calc(20% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+.afeb-dynamic-grid-irregular-20-80 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-20-80-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-20-80-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3),
+.afeb-dynamic-grid-irregular-80-20 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-80-20-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-80-20-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4) {
+	flex: 0 1 calc(80% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+.afeb-dynamic-grid-irregular-30-70 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-30-70-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-30-70-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4),
+.afeb-dynamic-grid-irregular-70-30 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-70-30-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-70-30-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3) {
+	flex: 0 1 calc(30% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+.afeb-dynamic-grid-irregular-30-70 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-30-70-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-30-70-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3),
+.afeb-dynamic-grid-irregular-70-30 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-70-30-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-70-30-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4) {
+	flex: 0 1 calc(70% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+.afeb-dynamic-grid-irregular-40-60 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-40-60-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-40-60-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4),
+.afeb-dynamic-grid-irregular-60-40 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-60-40-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-60-40-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3) {
+	flex: 0 1 calc(40% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+.afeb-dynamic-grid-irregular-40-60 .afeb-dynamic-grid-carousel-item:nth-child(2n+2),
+.afeb-dynamic-grid-irregular-40-60-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+2),
+.afeb-dynamic-grid-irregular-40-60-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+3),
+.afeb-dynamic-grid-irregular-60-40 .afeb-dynamic-grid-carousel-item:nth-child(odd),
+.afeb-dynamic-grid-irregular-60-40-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+1),
+.afeb-dynamic-grid-irregular-60-40-alternate .afeb-dynamic-grid-carousel-item:nth-child(4n+4) {
+	flex: 0 1 calc(60% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+}
+
+@media (max-width:768px) {
+	[class*=afeb-dynamic-grid-irregular-] .afeb-dynamic-grid-carousel-items .afeb-dynamic-grid-carousel-item {
+		flex: 1 1 calc(100% - var(--afeb-dynamic-grid-carousel-item-gap)/ 2) !important
+	}
+}

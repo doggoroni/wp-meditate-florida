@@ -1,0 +1,99 @@
+.afeb-slick .slick-slider {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent
+}
+
+.afeb-slick .slick-list {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative
+}
+
+.afeb-slick .slick-list:focus {
+    outline: 0
+}
+
+.afeb-slick .slick-list.dragging {
+    cursor: pointer;
+    cursor: hand
+}
+
+.afeb-slick .slick-slider .slick-list,
+.afeb-slick .slick-slider .slick-track {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+}
+
+.afeb-slick .slick-track {
+    display: block;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: 0
+}
+
+.afeb-slick .slick-track:after,
+.afeb-slick .slick-track:before {
+    content: '';
+    display: table
+}
+
+.afeb-slick .slick-track:after {
+    clear: both
+}
+
+.afeb-slick .slick-loading .slick-slide,
+.afeb-slick .slick-loading .slick-track {
+    visibility: hidden
+}
+
+.afeb-slick .slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px
+}
+
+[dir=rtl] .afeb-slick .slick-slide {
+    float: right
+}
+
+.afeb-slick .slick-initialized .slick-slide,
+.afeb-slick .slick-slide img,
+.afeb-slick.slick-initialized .slick-slide {
+    display: block
+}
+
+.afeb-slick .slick-arrow.slick-hidden,
+.afeb-slick .slick-slide.slick-loading img {
+    display: none
+}
+
+.afeb-slick .slick-slide.dragging img {
+    pointer-events: none
+}
+
+.afeb-slick .slick-vertical .slick-slide {
+    border: 1px solid transparent;
+    display: block;
+    height: auto;
+    opacity: 0;
+    position: fixed;
+    z-index: -99999
+}

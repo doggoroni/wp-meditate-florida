@@ -1,0 +1,471 @@
+.afeb-preloader {
+    align-items: center;
+    background-color: #fff;
+    bottom: 0;
+    display: flex;
+    height: 100%;
+    left: 0;
+    justify-content: center;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999999
+}
+
+.afeb-modern-loader .afeb-bar {
+    animation: 1.2s ease-in-out infinite afeb_modern_bounce_animation;
+    background-color: #5936c6;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0 5px;
+    height: 30px;
+    width: 6px
+}
+
+.afeb-modern-loader .afeb-bar:first-child {
+    animation-delay: 0s
+}
+
+.afeb-modern-loader .afeb-bar:nth-child(2) {
+    animation-delay: .2s
+}
+
+.afeb-modern-loader .afeb-bar:nth-child(3) {
+    animation-delay: .4s
+}
+
+.afeb-modern-loader .afeb-bar:nth-child(4) {
+    animation-delay: .6s
+}
+
+.afeb-modern-loader .afeb-bar:nth-child(5) {
+    animation-delay: .8s
+}
+
+.afeb-whirlwind-loader,
+.afeb-whirlwind-loader:after,
+.afeb-whirlwind-loader:before {
+    border: 2px solid transparent;
+    border-radius: 50%
+}
+
+.afeb-whirlwind-loader {
+    animation: 2s linear infinite afeb_whirlwind_spin_animation;
+    border-top-color: #5936c6;
+    height: 150px;
+    width: 150px
+}
+
+.afeb-whirlwind-loader:before {
+    animation: .7s linear infinite afeb_whirlwind_spin_reverse_animation;
+    border-top-color: #5936c6;
+    bottom: 20px;
+    content: "";
+    left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px
+}
+
+.afeb-whirlwind-loader:after {
+    animation: 1.7s linear infinite afeb_whirlwind_spin_animation;
+    bottom: 30px;
+    border-top-color: #5936c6;
+    content: "";
+    left: 30px;
+    position: absolute;
+    right: 30px;
+    top: 30px
+}
+
+.afeb-speedster-loader {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    width: 100px
+}
+
+.afeb-speedster-loader .afeb-bar {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+}
+
+.afeb-speedster-loader .afeb-bar::before {
+    animation: 2s ease-in-out infinite afeb_speedster_animation;
+    border: none;
+    border-top: 10px solid #5936c6;
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 100%
+}
+
+.afeb-speedster-loader .afeb-bar:first-child {
+    animation-delay: 0s;
+    transform: rotate(0)
+}
+
+.afeb-speedster-loader .afeb-bar:nth-child(2) {
+    animation-delay: .5s;
+    transform: rotate(90deg)
+}
+
+.afeb-speedster-loader .afeb-bar:nth-child(3) {
+    animation-delay: 1s;
+    transform: rotate(180deg)
+}
+
+.afeb-speedster-loader .afeb-bar:nth-child(4) {
+    animation-delay: 1.5s;
+    transform: rotate(270deg)
+}
+
+.afeb-worm-crawl-loader {
+    height: 2em;
+    perspective: 8em;
+    position: relative;
+    width: 11em
+}
+
+.afeb-worm-crawl-loader,
+.afeb-worm-crawl-loader .afeb-circle {
+    transform-style: preserve-3d
+}
+
+.afeb-worm-crawl-loader .afeb-circle {
+    height: 1.5em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(50%) rotateY(90deg);
+    width: 1.5em
+}
+
+.afeb-worm-crawl-loader .afeb-circle,
+.afeb-worm-crawl-loader .afeb-circle:before {
+    animation: 2s .5s infinite afeb_worm_crawl_move_left_animation
+}
+
+.afeb-worm-crawl-loader .afeb-circle:before {
+    background-color: #5936c6;
+    border-radius: 50px;
+    content: "";
+    display: block;
+    height: 100%;
+    opacity: .8;
+    transform: rotateZ(45deg);
+    width: 100%
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(3n+2):before {
+    filter: invert(1)
+}
+
+.afeb-worm-crawl-loader .afeb-circle:first-child {
+    right: 0
+}
+
+.afeb-worm-crawl-loader .afeb-circle:first-child:before {
+    animation-name: afeb_worm_crawl_roll_right_animation_1
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(2) {
+    right: 1em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(2):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_2
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(3) {
+    right: 2em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(3):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_3
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(4) {
+    right: 3em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(4):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_4
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(5) {
+    right: 4em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(5):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_5
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(6) {
+    right: 5em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(6):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_6
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(7) {
+    right: 6em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(7):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_7
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(8) {
+    right: 7em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(8):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_8
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(9) {
+    right: 8em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(9):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_9
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(10) {
+    right: 9em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(10):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_10
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(11) {
+    right: 10em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(11):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_11
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(12) {
+    right: 11em
+}
+
+.afeb-worm-crawl-loader .afeb-circle:nth-child(12):before {
+    animation-name: afeb_worm_crawl_roll_right_animation_12
+}
+
+@keyframes afeb_modern_bounce_animation {
+
+    0%,
+    100% {
+        transform: scaleY(1)
+    }
+
+    50% {
+        transform: scaleY(2)
+    }
+}
+
+@keyframes afeb_whirlwind_spin_animation {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes afeb_whirlwind_spin_reverse_animation {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(-360deg)
+    }
+}
+
+@keyframes afeb_speedster_animation {
+    0% {
+        left: -100%
+    }
+
+    100%,
+    50% {
+        left: 100%
+    }
+}
+
+@keyframes afeb_worm_crawl_move_left_animation {
+    from {
+        transform: translateX(50%) rotateY(90deg)
+    }
+
+    to {
+        transform: translateX(-100%) rotateY(90deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_1 {
+    from {
+        transform: translateZ(0) rotateZ(45deg) rotateX(0)
+    }
+
+    50%,
+    to {
+        transform: translateZ(3em) rotateZ(-45deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_2 {
+
+    4.1666666667%,
+    from {
+        transform: translateZ(0) rotateZ(56.25deg) rotateX(0)
+    }
+
+    54.1666666667%,
+    to {
+        transform: translateZ(3em) rotateZ(-33.75deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_3 {
+
+    8.3333333333%,
+    from {
+        transform: translateZ(0) rotateZ(67.5deg) rotateX(0)
+    }
+
+    58.3333333333%,
+    to {
+        transform: translateZ(3em) rotateZ(-22.5deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_4 {
+
+    12.5%,
+    from {
+        transform: translateZ(0) rotateZ(78.75deg) rotateX(0)
+    }
+
+    62.5%,
+    to {
+        transform: translateZ(3em) rotateZ(-11.25deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_5 {
+
+    16.6666666667%,
+    from {
+        transform: translateZ(0) rotateZ(90deg) rotateX(0)
+    }
+
+    66.6666666667%,
+    to {
+        transform: translateZ(3em) rotateZ(0) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_6 {
+
+    20.8333333333%,
+    from {
+        transform: translateZ(0) rotateZ(101.25deg) rotateX(0)
+    }
+
+    70.8333333333%,
+    to {
+        transform: translateZ(3em) rotateZ(11.25deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_7 {
+
+    25%,
+    from {
+        transform: translateZ(0) rotateZ(112.5deg) rotateX(0)
+    }
+
+    75%,
+    to {
+        transform: translateZ(3em) rotateZ(22.5deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_8 {
+
+    29.1666666667%,
+    from {
+        transform: translateZ(0) rotateZ(123.75deg) rotateX(0)
+    }
+
+    79.1666666667%,
+    to {
+        transform: translateZ(3em) rotateZ(33.75deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_9 {
+
+    33.3333333333%,
+    from {
+        transform: translateZ(0) rotateZ(135deg) rotateX(0)
+    }
+
+    83.3333333333%,
+    to {
+        transform: translateZ(3em) rotateZ(45deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_10 {
+
+    37.5%,
+    from {
+        transform: translateZ(0) rotateZ(146.25deg) rotateX(0)
+    }
+
+    87.5%,
+    to {
+        transform: translateZ(3em) rotateZ(56.25deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_11 {
+
+    41.6666666667%,
+    from {
+        transform: translateZ(0) rotateZ(157.5deg) rotateX(0)
+    }
+
+    91.6666666667%,
+    to {
+        transform: translateZ(3em) rotateZ(67.5deg) rotateX(179.999deg)
+    }
+}
+
+@keyframes afeb_worm_crawl_roll_right_animation_12 {
+
+    45.8333333333%,
+    from {
+        transform: translateZ(0) rotateZ(168.75deg) rotateX(0)
+    }
+
+    95.8333333333%,
+    to {
+        transform: translateZ(3em) rotateZ(78.75deg) rotateX(179.999deg)
+    }
+}

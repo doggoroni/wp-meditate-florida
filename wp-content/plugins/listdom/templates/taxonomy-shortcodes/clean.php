@@ -1,0 +1,49 @@
+<?php
+// no direct access
+defined('ABSPATH') || die();
+
+/** @var LSD_Shortcodes_Taxonomy $this */
+
+$grid = $this->atts['grid'] ?? 2;
+if (!in_array($grid, [1, 2, 3, 4, 6])) $grid = 3;
+?>
+<div class="lsd-taxonomy-shortcode-wrapper lsd-taxonomy-shortcode-clean lsd-font-m">
+    <?php if (!count($this->terms)): ?>
+        <?php echo LSD_Base::alert(esc_html__('No item found!', 'listdom'), 'warning'); ?>
+    <?php else: ?>
+
+        <?php $i = 1; foreach ($this->terms as $term): $have_icon = false; ?>
+
+        <?php if ($i == 1): ?><div class="lsd-row"><?php endif; ?>
+
+        <div class="lsd-col-<?php echo 12 / $grid; ?>">
+            <a href="<?php echo esc_url(get_term_link($term->term_id)); ?>">
+                <?php if (!isset($this->atts['show_icon']) || $this->atts['show_icon']): $icon = LSD_Taxonomies::icon($term->term_id); $color = get_term_meta($term->term_id, 'lsd_color', true); ?>
+                    <?php if (trim($icon)): $have_icon = true; ?>
+                        <div class="lsd-term-circle" style="background-color: <?php echo esc_attr(LSD_Color::lighter($color, 80)); ?>;">
+                            <div class="lsd-fe-icon" style="color: <?php echo esc_attr($color); ?>;"><?php echo $icon; ?></div>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <div class="lsd-title <?php if (!$have_icon) echo 'lsd-title-full'; ?>">
+                    <span class="lsd-tax-title"><?php echo esc_html($term->name); ?></span>
+                    <?php if (isset($this->atts['show_count']) && $this->atts['show_count']): ?>
+                        <span class="lsd-count"><?php echo sprintf(
+                            /* translators: %s: Listing count. */
+                            esc_html__('%s Listings', 'listdom'),
+                            $term->count
+                        ); ?></span>
+                    <?php endif; ?>
+                </div>
+            </a>
+        </div>
+
+        <?php if ($i == $grid): $i = 0; ?></div><?php endif; ?>
+
+        <?php $i++; endforeach; ?>
+
+        <?php if ($i != 1 && $i <= $grid) echo '<div class="lsd-col-transparent lsd-col-'.(12 / $grid).'"></div></div>'; ?>
+
+    <?php endif; ?>
+</div>

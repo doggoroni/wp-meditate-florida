@@ -1,0 +1,75 @@
+# =============================================
+# WordPress Core Files
+# These are WordPress itself — not your content.
+# They can always be re-downloaded from wordpress.org.
+# =============================================
+/index.php
+/license.txt
+/readme.html
+/local-xdebuginfo.php
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+/wp-admin/
+/wp-includes/
+
+# =============================================
+# Sensitive Config — NEVER commit this file!
+# It contains your database username & password.
+# =============================================
+/wp-config.php
+
+# =============================================
+# User Uploads
+# These are images/files visitors or you have uploaded.
+# They are large and should be backed up separately.
+# =============================================
+wp-content/uploads/
+
+# =============================================
+# Cache & Generated Files
+# These are auto-created and don't need tracking.
+# =============================================
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+
+# =============================================
+# Node Modules
+# If you ever use build tools (npm, etc.), ignore this folder.
+# =============================================
+node_modules/
+
+# =============================================
+# OS & Editor Junk Files
+# These are created by Windows/Mac/editors automatically.
+# =============================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+
+# =============================================
+# Log & Environment Files
+# =============================================
+*.log
+.env
+error_log
+
+# =============================================
+# Claude AI Assistant Files (internal use only)
+# =============================================
+.claude/

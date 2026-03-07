@@ -1,0 +1,2199 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Listdomer Core\n"
+"POT-Creation-Date: 2025-09-05 13:39-0700\n"
+"PO-Revision-Date: 2025-09-05 13:40-0700\n"
+"Last-Translator: Totalery <info@totalery.com>\n"
+"Language-Team: Webilia <info@webilia.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.7\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;esc_attr_e;esc_attr_x;_n;_nx\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .sass-cache\n"
+
+#: app/includes/documents/footer.php:24
+msgid "Listdomer Footer"
+msgstr "Pied de page Listdomer"
+
+#: app/includes/documents/footer.php:29
+msgid "Listdomer Footers"
+msgstr "Pieds de page Listdomer"
+
+#: app/includes/documents/header.php:24
+msgid "Listdomer Header"
+msgstr "En-tête Listdomer"
+
+#: app/includes/documents/header.php:29
+msgid "Listdomer Headers"
+msgstr "En-têtes Listdomer"
+
+#: app/includes/elementor.php:43 app/includes/hooks.php:102
+#: app/includes/menus.php:15 app/includes/settings.php:39
+msgid "Listdomer"
+msgstr "Listdomer"
+
+#: app/includes/elementor/base.php:27
+msgid "Post Type"
+msgstr "Type de publication"
+
+#: app/includes/elementor/base.php:40
+msgid "Navigation"
+msgstr "Navigation"
+
+#: app/includes/elementor/base.php:43 app/includes/settings/preloader.php:52
+msgid "Dots"
+msgstr "Points"
+
+#: app/includes/elementor/base.php:44
+msgid "Next / Previous Buttons"
+msgstr "Boutons Suivant / Précédent"
+
+#: app/includes/elementor/base.php:53
+msgid "Autoplay"
+msgstr "Lecture automatique"
+
+#: app/includes/elementor/base.php:62
+msgid "Loop"
+msgstr "Boucle"
+
+#: app/includes/elementor/base.php:71
+msgid "Items"
+msgstr "Éléments"
+
+#: app/includes/elementor/carousel.php:17
+msgid "Content Carousel"
+msgstr "Carrousel de contenu"
+
+#: app/includes/elementor/carousel.php:36
+#: app/includes/elementor/carousel.php:63
+#: app/includes/elementor/carousel.php:177
+#: app/includes/elementor/testimonials.php:37
+#: app/includes/elementor/testimonials.php:59
+#: app/includes/elementor/testimonials.php:136
+#: app/includes/elementor/tiny.php:35 app/includes/settings/notfound.php:50
+msgid "Content"
+msgstr "Contenu"
+
+#: app/includes/elementor/carousel.php:45
+#: app/includes/elementor/carousel.php:115
+msgid "Number"
+msgstr "Nombre"
+
+#: app/includes/elementor/carousel.php:54
+#: app/includes/elementor/carousel.php:146 app/includes/elementor/posts.php:301
+#: app/includes/elementor/testimonials.php:85
+#: app/includes/elementor/testimonials.php:292
+#: app/includes/elementor/tiny.php:65 app/includes/settings/notfound.php:43
+#: app/includes/widgets/contact.php:74
+msgid "Title"
+msgstr "Titre"
+
+#: app/includes/elementor/carousel.php:56
+#: app/includes/elementor/carousel.php:77
+#: app/includes/elementor/carousel.php:82
+#: app/includes/elementor/carousel.php:87
+#: app/includes/elementor/carousel.php:92
+#: app/includes/elementor/carousel.php:97
+msgid "How it works"
+msgstr "Comment ça marche"
+
+#: app/includes/elementor/carousel.php:71
+msgid "Slides"
+msgstr "Diapositives"
+
+#: app/includes/elementor/carousel.php:78
+#: app/includes/elementor/carousel.php:83
+#: app/includes/elementor/carousel.php:88
+#: app/includes/elementor/carousel.php:93
+#: app/includes/elementor/carousel.php:98
+#: app/includes/elementor/testimonials.php:61
+#: app/includes/elementor/testimonials.php:99
+#: app/includes/elementor/testimonials.php:105
+#: app/includes/elementor/testimonials.php:111
+#: app/includes/elementor/testimonials.php:117
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, "
+"luctus nec ullamcorper mattis, pulvinar dapibus leo."
+msgstr ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, "
+"luctus nec ullamcorper mattis, pulvinar dapibus leo."
+
+#: app/includes/elementor/carousel.php:124
+msgid "Number Color"
+msgstr "Couleur du nombre"
+
+#: app/includes/elementor/carousel.php:136
+msgid "Number Typography"
+msgstr "Typographie du nombre"
+
+#: app/includes/elementor/carousel.php:155 app/includes/elementor/posts.php:310
+#: app/includes/elementor/testimonials.php:301
+msgid "Title Color"
+msgstr "Couleur du titre"
+
+#: app/includes/elementor/carousel.php:167 app/includes/elementor/posts.php:322
+#: app/includes/elementor/testimonials.php:314
+#: app/includes/elementor/tiny.php:103
+#: app/includes/settings/blog/archive.php:84
+#: app/includes/settings/blog/single.php:38
+#: app/includes/settings/headings.php:58
+msgid "Title Typography"
+msgstr "Typographie du titre"
+
+#: app/includes/elementor/carousel.php:186
+#: app/includes/elementor/testimonials.php:145
+#: app/includes/settings/blog/single.php:156
+msgid "Content Color"
+msgstr "Couleur du contenu"
+
+#: app/includes/elementor/carousel.php:198
+#: app/includes/elementor/testimonials.php:158
+#: app/includes/settings/blog/single.php:56
+msgid "Content Typography"
+msgstr "Typographie du contenu"
+
+#: app/includes/elementor/carousel.php:208
+#: app/includes/elementor/testimonials.php:179
+#: app/includes/elementor/tiny.php:167
+msgid "Box"
+msgstr "Boîte"
+
+#: app/includes/elementor/carousel.php:217
+#: app/includes/elementor/testimonials.php:188
+msgid "Content Background"
+msgstr "Arrière-plan du contenu"
+
+#: app/includes/elementor/carousel.php:226 app/includes/elementor/posts.php:267
+#: app/includes/elementor/testimonials.php:219
+msgid "Gap Between Items"
+msgstr "Espacement entre les éléments"
+
+#: app/includes/elementor/posts.php:15 app/includes/elementor/posts.php:42
+msgid "Posts"
+msgstr "Articles"
+
+#: app/includes/elementor/posts.php:32
+msgid "All Categories"
+msgstr "Toutes les catégories"
+
+#: app/includes/elementor/posts.php:50
+msgid "Number of Posts"
+msgstr "Nombre d'articles"
+
+#: app/includes/elementor/posts.php:62
+msgid "Columns"
+msgstr "Colonnes"
+
+#: app/includes/elementor/posts.php:78
+msgid "Tablet Columns"
+msgstr "Colonnes tablette"
+
+#: app/includes/elementor/posts.php:97
+msgid "Mobile Columns"
+msgstr "Colonnes mobile"
+
+#: app/includes/elementor/posts.php:118
+msgid "Query"
+msgstr "Requête"
+
+#: app/includes/elementor/posts.php:127
+msgid "Select Post Type"
+msgstr "Sélectionner le type de publication"
+
+#: app/includes/elementor/posts.php:130
+msgid "Post"
+msgstr "Article"
+
+#: app/includes/elementor/posts.php:131
+msgid "Page"
+msgstr "Page"
+
+#: app/includes/elementor/posts.php:132
+msgid "Listing"
+msgstr "Annonce"
+
+#: app/includes/elementor/posts.php:140
+msgid "Post Category"
+msgstr "Catégorie de publication"
+
+#: app/includes/elementor/posts.php:154
+msgid "Carousel"
+msgstr "Carrousel"
+
+#: app/includes/elementor/posts.php:162
+msgid "Enable Carousel"
+msgstr "Activer le carrousel"
+
+#: app/includes/elementor/posts.php:164 app/includes/elementor/posts.php:176
+#: app/includes/elementor/posts.php:191 app/includes/elementor/posts.php:220
+#: app/includes/elementor/posts.php:257
+#: app/includes/settings/headings/archive.php:77
+msgid "Yes"
+msgstr "Oui"
+
+#: app/includes/elementor/posts.php:165 app/includes/elementor/posts.php:177
+#: app/includes/elementor/posts.php:192 app/includes/elementor/posts.php:221
+#: app/includes/elementor/posts.php:258
+#: app/includes/settings/headings/archive.php:78
+msgid "No"
+msgstr "Non"
+
+#: app/includes/elementor/posts.php:174
+msgid "Enable Loop"
+msgstr "Activer la boucle"
+
+#: app/includes/elementor/posts.php:189
+msgid "Enable AutoPlay"
+msgstr "Activer la lecture auto"
+
+#: app/includes/elementor/posts.php:204
+msgid "Autoplay duration (ms)"
+msgstr "Durée de lecture auto (ms)"
+
+#: app/includes/elementor/posts.php:218
+msgid "Enable Navigations"
+msgstr "Activer les navigations"
+
+#: app/includes/elementor/posts.php:233
+msgid "Gap Between Slides"
+msgstr "Espacement entre les diapositives"
+
+#: app/includes/elementor/posts.php:247
+msgid "Cards"
+msgstr "Cartes"
+
+#: app/includes/elementor/posts.php:255
+msgid "Equal Height"
+msgstr "Hauteur égale"
+
+#: app/includes/elementor/posts.php:332
+msgid "Category"
+msgstr "Catégorie"
+
+#: app/includes/elementor/posts.php:340
+msgid "Show Category"
+msgstr "Afficher la catégorie"
+
+#: app/includes/elementor/posts.php:342 app/includes/elementor/posts.php:401
+#: app/includes/elementor/posts.php:460
+#: app/includes/settings/blog/archive.php:129
+#: app/includes/settings/blog/archive.php:138
+#: app/includes/settings/blog/archive.php:147
+#: app/includes/settings/blog/single.php:104
+#: app/includes/settings/blog/single.php:113
+#: app/includes/settings/blog/single.php:122
+#: app/includes/settings/blog/single.php:131
+#: app/includes/settings/header.php:296 app/includes/settings/header.php:306
+#: app/includes/settings/header.php:324 app/includes/settings/headings.php:50
+#: app/includes/settings/headings.php:204
+#: app/includes/settings/preloader.php:38
+msgid "Show"
+msgstr "Afficher"
+
+#: app/includes/elementor/posts.php:343 app/includes/elementor/posts.php:402
+#: app/includes/elementor/posts.php:461
+#: app/includes/settings/blog/archive.php:130
+#: app/includes/settings/blog/archive.php:139
+#: app/includes/settings/blog/archive.php:148
+#: app/includes/settings/blog/single.php:105
+#: app/includes/settings/blog/single.php:114
+#: app/includes/settings/blog/single.php:123
+#: app/includes/settings/blog/single.php:132
+#: app/includes/settings/header.php:297 app/includes/settings/header.php:307
+#: app/includes/settings/header.php:325 app/includes/settings/headings.php:51
+#: app/includes/settings/headings.php:205
+#: app/includes/settings/preloader.php:39
+msgid "Hide"
+msgstr "Masquer"
+
+#: app/includes/elementor/posts.php:352
+msgid "Category Color"
+msgstr "Couleur de la catégorie"
+
+#: app/includes/elementor/posts.php:367
+msgid "Category Typography"
+msgstr "Typographie de la catégorie"
+
+#: app/includes/elementor/posts.php:391
+#: app/includes/settings/headings/archive.php:38
+msgid "Author"
+msgstr "Auteur"
+
+#: app/includes/elementor/posts.php:399
+msgid "Show Author"
+msgstr "Afficher l'auteur"
+
+#: app/includes/elementor/posts.php:411
+msgid "Author Color"
+msgstr "Couleur de l'auteur"
+
+#: app/includes/elementor/posts.php:426
+msgid "Author Typography"
+msgstr "Typographie de l'auteur"
+
+#: app/includes/elementor/posts.php:450
+msgid "Date"
+msgstr "Date"
+
+#: app/includes/elementor/posts.php:458
+msgid "Show Date"
+msgstr "Afficher la date"
+
+#: app/includes/elementor/posts.php:470
+msgid "Date Color"
+msgstr "Couleur de la date"
+
+#: app/includes/elementor/posts.php:485
+msgid "Date Typography"
+msgstr "Typographie de la date"
+
+#: app/includes/elementor/posts.php:509
+#, fuzzy
+#| msgid "Slides"
+msgid "Slider Arrows"
+msgstr "Diapositives"
+
+#: app/includes/elementor/posts.php:521
+msgid "Position"
+msgstr ""
+
+#: app/includes/elementor/posts.php:525
+msgid "Default (Relative)"
+msgstr ""
+
+#: app/includes/elementor/posts.php:526
+msgid "Absolute"
+msgstr ""
+
+#: app/includes/elementor/posts.php:537
+msgid "Offset"
+msgstr ""
+
+#: app/includes/elementor/posts.php:554
+#: app/includes/elementor/testimonials.php:347
+#: app/includes/elementor/tiny.php:120 app/includes/elementor/tiny.php:152
+msgid "Color"
+msgstr "Couleur"
+
+#: app/includes/elementor/posts.php:566
+#: app/includes/settings/blog/single.php:176
+#: app/includes/settings/colors.php:47
+#: app/includes/settings/colors/buttons.php:42
+#: app/includes/settings/colors/buttons.php:129
+#: app/includes/settings/colors/icons.php:22
+#: app/includes/settings/colors/tabs.php:30 app/includes/settings/footer.php:44
+#: app/includes/settings/header.php:263 app/includes/settings/headings.php:102
+#: app/includes/settings/widgets.php:32
+msgid "Background Color"
+msgstr "Couleur d'arrière-plan"
+
+#: app/includes/elementor/posts.php:577
+#, fuzzy
+#| msgid "Font Size"
+msgid "Size"
+msgstr "Taille de police"
+
+#: app/includes/elementor/posts.php:595
+#, fuzzy
+#| msgid "Page Heading"
+msgid "Padding"
+msgstr "En-tête de page"
+
+#: app/includes/elementor/posts.php:614
+#: app/includes/elementor/testimonials.php:207
+#: app/includes/settings/blog/single.php:225
+#: app/includes/settings/widgets.php:60
+msgid "Border Radius"
+msgstr "Rayon de bordure"
+
+#: app/includes/elementor/testimonials.php:18
+#: app/includes/elementor/testimonials.php:94
+msgid "Testimonials"
+msgstr "Témoignages"
+
+#: app/includes/elementor/testimonials.php:45
+#: app/includes/elementor/tiny.php:43
+msgid "Style"
+msgstr "Style"
+
+#: app/includes/elementor/testimonials.php:48
+#: app/includes/elementor/tiny.php:46
+msgid "Style 1"
+msgstr "Style 1"
+
+#: app/includes/elementor/testimonials.php:49
+#: app/includes/elementor/tiny.php:47
+msgid "Style 2"
+msgstr "Style 2"
+
+#: app/includes/elementor/testimonials.php:68
+#: app/includes/elementor/tiny.php:57 app/includes/settings/notfound.php:34
+msgid "Image"
+msgstr "Image"
+
+#: app/includes/elementor/testimonials.php:76
+#: app/includes/elementor/testimonials.php:249
+msgid "Name"
+msgstr "Nom"
+
+#: app/includes/elementor/testimonials.php:78
+#: app/includes/elementor/testimonials.php:101
+#: app/includes/elementor/testimonials.php:107
+#: app/includes/elementor/testimonials.php:113
+#: app/includes/elementor/testimonials.php:119
+msgid "John Smith"
+msgstr "John Smith"
+
+#: app/includes/elementor/testimonials.php:87
+#: app/includes/elementor/testimonials.php:102
+#: app/includes/elementor/testimonials.php:108
+#: app/includes/elementor/testimonials.php:114
+#: app/includes/elementor/testimonials.php:120
+msgid "CEO"
+msgstr "PDG"
+
+#: app/includes/elementor/testimonials.php:198
+msgid "Content Border"
+msgstr "Bordure du contenu"
+
+#: app/includes/elementor/testimonials.php:258
+msgid "Name Color"
+msgstr "Couleur du nom"
+
+#: app/includes/elementor/testimonials.php:271
+msgid "Name Typography"
+msgstr "Typographie du nom"
+
+#: app/includes/elementor/testimonials.php:335
+msgid "Quote Mark"
+msgstr "Guillemet"
+
+#: app/includes/elementor/testimonials.php:360
+msgid "Font Size"
+msgstr "Taille de police"
+
+#: app/includes/elementor/tiny.php:16
+msgid "Tiny Image"
+msgstr "Petite image"
+
+#: app/includes/elementor/tiny.php:48
+msgid "Style 3"
+msgstr "Style 3"
+
+#: app/includes/elementor/tiny.php:67
+msgid "97%"
+msgstr "97%"
+
+#: app/includes/elementor/tiny.php:74
+msgid "Subtitle"
+msgstr "Sous-titre"
+
+#: app/includes/elementor/tiny.php:76
+msgid "Happy Clients"
+msgstr "Clients satisfaits"
+
+#: app/includes/elementor/tiny.php:83 app/includes/settings/preloader.php:62
+msgid "Icon"
+msgstr "Icône"
+
+#: app/includes/elementor/tiny.php:91
+msgid "Video"
+msgstr "Vidéo"
+
+#: app/includes/elementor/tiny.php:93
+msgid "If you insert video URL, it will show instead of the icon."
+msgstr ""
+"Si vous insérez l'URL d'une vidéo, elle s'affichera à la place de l'icône."
+
+#: app/includes/elementor/tiny.php:112 app/includes/elementor/tiny.php:144
+#: app/includes/settings/blog/single.php:33
+#: app/includes/settings/typography.php:14
+msgid "Typography"
+msgstr "Typographie"
+
+#: app/includes/elementor/tiny.php:135
+msgid "Subtitle Typography"
+msgstr "Typographie du sous-titre"
+
+#: app/includes/elementor/tiny.php:176
+msgid "Background"
+msgstr "Arrière-plan"
+
+#: app/includes/elementor/tiny.php:185
+msgid "Icon Color"
+msgstr "Couleur de l'icône"
+
+#: app/includes/elementor/tiny.php:199 app/includes/settings/preloader.php:50
+msgid "Circle"
+msgstr "Cercle"
+
+#: app/includes/elementor/tiny.php:208
+msgid "Background Circle"
+msgstr "Cercle d'arrière-plan"
+
+#: app/includes/hooks.php:93
+msgid "Claim It Now!"
+msgstr "Réclamez-le maintenant !"
+
+#: app/includes/hooks.php:120
+msgid "Header"
+msgstr "En-tête"
+
+#: app/includes/hooks.php:125 app/includes/hooks.php:140
+msgid "Inherit from global options"
+msgstr "Hériter des options globales"
+
+#: app/includes/hooks.php:135
+msgid "Footer"
+msgstr "Pied de page"
+
+#: app/includes/menus.php:20 app/includes/ocdi.php:536
+#: app/includes/ocdi.php:537
+msgid "Demo Import"
+msgstr "Importation de démo"
+
+#: app/includes/menus.php:26 app/includes/settings.php:38
+msgid "Settings"
+msgstr "Paramètres"
+
+#: app/includes/menus.php:29
+msgid "Documentation"
+msgstr "Documentation"
+
+#: app/includes/menus.php:30
+msgid "Support"
+msgstr "Assistance"
+
+#: app/includes/menus.php:40
+#, fuzzy
+#| msgid "Recommended Plugin Not Installed."
+msgid "Recommended plugin not installed."
+msgstr "Extension recommandée non installée."
+
+#: app/includes/menus.php:41
+#, fuzzy, php-format
+#| msgid "The Listdomer theme recommends the %s plugin to function properly."
+msgid "Listdomer recommends installing the %s plugin for full functionality."
+msgstr ""
+"Le thème Listdomer recommande l'extension %s pour fonctionner correctement."
+
+#: app/includes/menus.php:42
+#, fuzzy
+#| msgid ""
+#| "You can install the plugin from the notification bar above or go to "
+#| "Plugins > Add New in your WordPress dashboard."
+msgid ""
+"Install the plugin from the notice above or go to Plugins > Add New in your "
+"WordPress dashboard."
+msgstr ""
+"You can install the plugin from the notification bar above or go to Plugins "
+"> Add New in your WordPress dashboard."
+
+#: app/includes/ocdi.php:56
+msgid "General Directory"
+msgstr "Répertoire général"
+
+#: app/includes/ocdi.php:58 app/includes/ocdi.php:102
+#: app/includes/settings/headings.php:25
+msgid "General"
+msgstr "Général"
+
+#: app/includes/ocdi.php:78
+msgid "Real Estate Directory"
+msgstr "Répertoire immobilier"
+
+#: app/includes/ocdi.php:80
+msgid "Real Estate"
+msgstr "Immobilier"
+
+#: app/includes/ocdi.php:100
+#, fuzzy
+#| msgid "General Directory"
+msgid "Business Directory"
+msgstr "Répertoire général"
+
+#: app/includes/ocdi.php:156
+msgid ""
+"A powerful toolkit that equips Listdom with real estate features for modern "
+"property listings."
+msgstr ""
+
+#: app/includes/ocdi.php:176
+msgid ""
+"A feature-rich toolkit for building and customizing business and listing "
+"directories with Listdom."
+msgstr ""
+
+#: app/includes/ocdi.php:546
+msgid ""
+"Importing demo data (post, pages, images, theme settings, etc.) is the "
+"quickest and easiest way to set up your new theme. It allows you to simply "
+"edit everything instead of creating content and layouts from scratch."
+msgstr ""
+"Importing demo data (post, pages, images, theme settings, etc.) is the "
+"quickest and easiest way to set up your new theme. It allows you to simply "
+"edit everything instead of creating content and layouts from scratch."
+
+#: app/includes/ocdi.php:554
+msgid "Listdomer Demo Importer"
+msgstr "Importateur de démos Listdomer"
+
+#: app/includes/settings.php:40
+msgid "Listdomer Settings"
+msgstr "Paramètres de Listdomer"
+
+#: app/includes/settings/blog.php:14
+msgid "Blog"
+msgstr "Blog"
+
+#: app/includes/settings/blog.php:16
+msgid "Blog settings for various elements."
+msgstr "Paramètres du blog pour divers éléments."
+
+#: app/includes/settings/blog/archive.php:14
+#: app/includes/settings/headings/archive.php:14
+msgid "Archive"
+msgstr "Archive"
+
+#: app/includes/settings/blog/archive.php:16
+msgid "Blog Archive settings."
+msgstr "Paramètres de l'archive du blog."
+
+#: app/includes/settings/blog/archive.php:33
+#: app/includes/settings/blog/single.php:74
+msgid "Elements and Layout"
+msgstr "Éléments et mise en page"
+
+#: app/includes/settings/blog/archive.php:38
+msgid "Archive Post Layout"
+msgstr "Mise en page de l'article d'archive"
+
+#: app/includes/settings/blog/archive.php:39
+msgid "Choose the layout for archive blog post pages."
+msgstr "Choisissez la mise en page des pages d'articles en archive."
+
+#: app/includes/settings/blog/archive.php:42
+#: app/includes/settings/blog/single.php:83
+msgid "Left Sidebar"
+msgstr "Barre latérale gauche"
+
+#: app/includes/settings/blog/archive.php:46
+#: app/includes/settings/blog/single.php:87
+msgid "Full Width"
+msgstr "Pleine largeur"
+
+#: app/includes/settings/blog/archive.php:50
+#: app/includes/settings/blog/single.php:91
+msgid "Right Sidebar"
+msgstr "Barre latérale droite"
+
+#: app/includes/settings/blog/archive.php:59
+msgid "Archive Layout Type"
+msgstr "Type de mise en page de l'archive"
+
+#: app/includes/settings/blog/archive.php:60
+msgid "Choose between list style and grid style for the archive layout."
+msgstr ""
+"Choisissez entre le style liste et le style grille pour la mise en page de "
+"l'archive."
+
+#: app/includes/settings/blog/archive.php:62
+msgid "List Style"
+msgstr "Style liste"
+
+#: app/includes/settings/blog/archive.php:63
+msgid "Grid Style"
+msgstr "Style grille"
+
+#: app/includes/settings/blog/archive.php:70
+msgid "Number of Columns"
+msgstr "Nombre de colonnes"
+
+#: app/includes/settings/blog/archive.php:71
+msgid "Select how many columns to display."
+msgstr "Sélectionnez le nombre de colonnes à afficher."
+
+#: app/includes/settings/blog/archive.php:73
+msgid "1 Column"
+msgstr "1 colonne"
+
+#: app/includes/settings/blog/archive.php:74
+msgid "2 Columns"
+msgstr "2 colonnes"
+
+#: app/includes/settings/blog/archive.php:75
+msgid "3 Columns"
+msgstr "3 colonnes"
+
+#: app/includes/settings/blog/archive.php:76
+msgid "4 Columns"
+msgstr "4 colonnes"
+
+#: app/includes/settings/blog/archive.php:85
+#: app/includes/settings/typography.php:35
+msgid "Specify the main font properties."
+msgstr "Spécifiez les propriétés principales de la police."
+
+#: app/includes/settings/blog/archive.php:86
+#: app/includes/settings/blog/single.php:40
+#: app/includes/settings/blog/single.php:58
+#: app/includes/settings/typography.php:36
+#: app/includes/settings/typography.php:53
+#: app/includes/settings/typography.php:71
+#: app/includes/settings/typography.php:89
+#: app/includes/settings/typography.php:107
+#: app/includes/settings/typography.php:125
+#: app/includes/settings/typography.php:143
+msgid "You can choose one of Google fonts."
+msgstr "Vous pouvez choisir l'une des polices Google."
+
+#: app/includes/settings/blog/archive.php:102
+msgid "Title Text Decoration"
+msgstr "Décoration du texte du titre"
+
+#: app/includes/settings/blog/archive.php:103
+msgid "Choose the text decoration style for title on the blog archive."
+msgstr ""
+"Choisissez le style de décoration du texte du titre dans l'archive du blog."
+
+#: app/includes/settings/blog/archive.php:105
+#: app/includes/settings/colors/styles.php:40
+#: app/includes/settings/preloader.php:46
+msgid "None"
+msgstr "Aucun"
+
+#: app/includes/settings/blog/archive.php:106
+msgid "Underline"
+msgstr "Souligné"
+
+#: app/includes/settings/blog/archive.php:107
+msgid "Overline"
+msgstr "Ligne au-dessus"
+
+#: app/includes/settings/blog/archive.php:108
+msgid "Line Through"
+msgstr "Barré"
+
+#: app/includes/settings/blog/archive.php:115
+msgid "Pagination Style"
+msgstr "Style de pagination"
+
+#: app/includes/settings/blog/archive.php:116
+msgid "Choose the style for pagination on the blog archive."
+msgstr "Choisissez le style de pagination de l'archive du blog."
+
+#: app/includes/settings/blog/archive.php:118
+msgid "Next/Previous"
+msgstr "Suivant/Précédent"
+
+#: app/includes/settings/blog/archive.php:119
+msgid "Numeric"
+msgstr "Numérique"
+
+#: app/includes/settings/blog/archive.php:126
+#: app/includes/settings/blog/single.php:101
+msgid "Display Category"
+msgstr "Afficher la catégorie"
+
+#: app/includes/settings/blog/archive.php:127
+msgid "Show or hide the display of categories on blog posts."
+msgstr "Afficher ou masquer les catégories des articles de blog."
+
+#: app/includes/settings/blog/archive.php:135
+#: app/includes/settings/blog/single.php:110
+msgid "Display Author"
+msgstr "Afficher l'auteur"
+
+#: app/includes/settings/blog/archive.php:136
+msgid "Show or hide the display of the author's name on blog posts."
+msgstr "Afficher ou masquer le nom de l'auteur sur les articles de blog."
+
+#: app/includes/settings/blog/archive.php:144
+#: app/includes/settings/blog/single.php:119
+msgid "Display Published Date"
+msgstr "Afficher la date de publication"
+
+#: app/includes/settings/blog/archive.php:145
+msgid "Show or hide the display of the published date on blog posts."
+msgstr "Afficher ou masquer la date de publication sur les articles de blog."
+
+#: app/includes/settings/blog/archive.php:153
+msgid "Number of Posts per Page"
+msgstr "Nombre d'articles par page"
+
+#: app/includes/settings/blog/archive.php:154
+msgid "Control how many posts should appear on the blog page."
+msgstr "Contrôlez combien d'articles doivent apparaître sur la page du blog."
+
+#: app/includes/settings/blog/single.php:14
+msgid "Single"
+msgstr "Article individuel"
+
+#: app/includes/settings/blog/single.php:16
+msgid "Blog Single settings."
+msgstr "Paramètres de l'article individuel."
+
+#: app/includes/settings/blog/single.php:39
+msgid "Specify the font properties for title."
+msgstr "Spécifiez les propriétés de police pour le titre."
+
+#: app/includes/settings/blog/single.php:57
+msgid "Specify the font properties for content."
+msgstr "Spécifiez les propriétés de police pour le contenu."
+
+#: app/includes/settings/blog/single.php:79
+msgid "Single Post Layout"
+msgstr "Mise en page de l'article"
+
+#: app/includes/settings/blog/single.php:80
+msgid "Choose the layout for single blog post pages."
+msgstr "Choisissez la mise en page pour les articles individuels du blog."
+
+#: app/includes/settings/blog/single.php:102
+msgid "Show or hide categories on blog posts."
+msgstr "Afficher ou masquer les catégories des articles de blog."
+
+#: app/includes/settings/blog/single.php:111
+msgid "Show or hide the author's name on blog posts."
+msgstr "Afficher ou masquer le nom de l'auteur sur les articles de blog."
+
+#: app/includes/settings/blog/single.php:120
+msgid "Show or hide the published date on blog posts."
+msgstr "Afficher ou masquer la date de publication sur les articles de blog."
+
+#: app/includes/settings/blog/single.php:128
+msgid "Display Navigations"
+msgstr "Afficher la navigation"
+
+#: app/includes/settings/blog/single.php:129
+msgid "Show or hide the post navigations."
+msgstr "Afficher ou masquer la navigation entre les articles."
+
+#: app/includes/settings/blog/single.php:137
+msgid "Navigation Title Word Limit"
+msgstr "Limite de mots du titre de navigation"
+
+#: app/includes/settings/blog/single.php:138
+msgid "Set the maximum number of words for navigation titles."
+msgstr "Définissez le nombre maximal de mots pour les titres de navigation."
+
+#: app/includes/settings/blog/single.php:143
+msgid "Drag the slider to set the word limit. Set to 0 for no limit."
+msgstr ""
+"Faites glisser le curseur pour définir la limite de mots. Mettez 0 pour "
+"aucune limite."
+
+#: app/includes/settings/blog/single.php:151
+#: app/includes/settings/colors.php:25
+msgid "Colors"
+msgstr "Couleurs"
+
+#: app/includes/settings/blog/single.php:158
+msgid "Color of blog content."
+msgstr "Couleur du contenu du blog."
+
+#: app/includes/settings/blog/single.php:163
+msgid "Post Meta Text Color"
+msgstr "Couleur du texte des métadonnées"
+
+#: app/includes/settings/blog/single.php:165
+msgid "Color of anchor tags."
+msgstr "Couleur des liens."
+
+#: app/includes/settings/blog/single.php:171
+msgid "Comment Form"
+msgstr "Formulaire de commentaire"
+
+#: app/includes/settings/blog/single.php:178
+msgid "Set the background color for the comment form."
+msgstr "Définissez la couleur d'arrière-plan du formulaire de commentaire."
+
+#: app/includes/settings/blog/single.php:183
+#: app/includes/settings/colors/buttons.php:56
+#: app/includes/settings/colors/buttons.php:136
+#: app/includes/settings/colors/icons.php:28
+#: app/includes/settings/colors/tabs.php:37
+#: app/includes/settings/header.php:271
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+#: app/includes/settings/blog/single.php:185
+msgid "Set the text color in the comment form."
+msgstr "Définissez la couleur du texte dans le formulaire de commentaire."
+
+#: app/includes/settings/blog/single.php:190
+msgid "Placeholder Text Color"
+msgstr "Couleur du texte d'exemple"
+
+#: app/includes/settings/blog/single.php:192
+msgid "Set the color of the placeholder text in the comment form."
+msgstr ""
+"Définissez la couleur du texte indicatif dans le formulaire de commentaire."
+
+#: app/includes/settings/blog/single.php:197
+#: app/includes/settings/headings.php:186
+msgid "Border"
+msgstr "Bordure"
+
+#: app/includes/settings/blog/single.php:211
+msgid "Border Hover"
+msgstr "Bordure au survol"
+
+#: app/includes/settings/codes.php:14
+msgid "Codes"
+msgstr "Codes"
+
+#: app/includes/settings/codes.php:16
+msgid "Code settings for various elements."
+msgstr "Paramètres de code pour divers éléments."
+
+#: app/includes/settings/codes.php:35
+msgid "Custom CSS"
+msgstr "CSS personnalisé"
+
+#: app/includes/settings/codes.php:36
+msgid "Insert custom CSS code that will be applied globally to the site."
+msgstr ""
+"Insérez du code CSS personnalisé qui sera appliqué globalement au site."
+
+#: app/includes/settings/codes.php:46
+msgid "Custom JavaScript"
+msgstr "JavaScript personnalisé"
+
+#: app/includes/settings/codes.php:47
+msgid "Insert custom JavaScript code to be executed on every page."
+msgstr "Insérez du code JavaScript personnalisé à exécuter sur chaque page."
+
+#: app/includes/settings/codes.php:57
+msgid "Header Tracking Codes"
+msgstr "Codes de suivi dans l'en-tête"
+
+#: app/includes/settings/codes.php:58
+msgid ""
+"Paste your Google Analytics or other tracking codes that should go in the "
+"<head> section."
+msgstr ""
+"Paste your Google Analytics or other tracking codes that should go in the "
+"<head> section."
+
+#: app/includes/settings/codes.php:67
+msgid "Footer Tracking Codes"
+msgstr "Codes de suivi dans le pied de page"
+
+#: app/includes/settings/codes.php:68
+msgid ""
+"Paste your tracking codes that should go just before the closing </body> tag."
+msgstr ""
+"Paste your tracking codes that should go just before the closing </body> tag."
+
+#: app/includes/settings/colors.php:14
+msgid "Colors and Styles"
+msgstr "Couleurs et styles"
+
+#: app/includes/settings/colors.php:27
+#: app/includes/settings/colors/styles.php:16
+msgid "Settings for General Styles."
+msgstr "Paramètres des styles généraux."
+
+#: app/includes/settings/colors.php:49
+msgid "Change Main Background color."
+msgstr "Changer la couleur d'arrière-plan principale."
+
+#: app/includes/settings/colors.php:54
+msgid "Primary Color"
+msgstr "Couleur primaire"
+
+#: app/includes/settings/colors.php:56
+msgid "Change gradient first color."
+msgstr "Changer la première couleur du dégradé."
+
+#: app/includes/settings/colors.php:61
+msgid "Secondary Color"
+msgstr "Couleur secondaire"
+
+#: app/includes/settings/colors.php:63
+msgid "Change gradient second color."
+msgstr "Changer la seconde couleur du dégradé."
+
+#: app/includes/settings/colors/buttons.php:14
+msgid "Buttons"
+msgstr "Boutons"
+
+#: app/includes/settings/colors/buttons.php:16
+msgid "Button color settings."
+msgstr "Paramètres de couleur des boutons."
+
+#: app/includes/settings/colors/buttons.php:37
+msgid "Primary Buttons"
+msgstr "Boutons principaux"
+
+#: app/includes/settings/colors/buttons.php:43
+#: app/includes/settings/colors/buttons.php:50
+#: app/includes/settings/colors/buttons.php:130
+msgid "Set the background color of the buttons."
+msgstr "Définissez la couleur d'arrière-plan des boutons."
+
+#: app/includes/settings/colors/buttons.php:49
+msgid "Background Color 2"
+msgstr "Couleur d'arrière-plan 2"
+
+#: app/includes/settings/colors/buttons.php:57
+#: app/includes/settings/colors/buttons.php:137
+msgid "Set the text color of the buttons."
+msgstr "Définissez la couleur du texte des boutons."
+
+#: app/includes/settings/colors/buttons.php:63
+#: app/includes/settings/colors/buttons.php:143
+#: app/includes/settings/colors/tabs.php:44
+msgid "Hover Background Color"
+msgstr "Couleur d'arrière-plan au survol"
+
+#: app/includes/settings/colors/buttons.php:64
+#: app/includes/settings/colors/buttons.php:71
+#: app/includes/settings/colors/buttons.php:144
+#: app/includes/settings/colors/buttons.php:151
+msgid "Set the border color of the buttons."
+msgstr "Définissez la couleur de bordure des boutons."
+
+#: app/includes/settings/colors/buttons.php:70
+#: app/includes/settings/colors/buttons.php:150
+#: app/includes/settings/colors/tabs.php:51
+#: app/includes/settings/header.php:278
+msgid "Hover Text Color"
+msgstr "Couleur du texte au survol"
+
+#: app/includes/settings/colors/buttons.php:77
+#: app/includes/settings/colors/buttons.php:157
+msgid "Button Border"
+msgstr "Bordure du bouton"
+
+#: app/includes/settings/colors/buttons.php:78
+msgid "Set the border style, width, and color for the primary button."
+msgstr ""
+"Définissez le style, l'épaisseur et la couleur de la bordure du bouton "
+"principal."
+
+#: app/includes/settings/colors/buttons.php:92
+#: app/includes/settings/colors/buttons.php:172
+msgid "Button Border Hover"
+msgstr "Bordure du bouton au survol"
+
+#: app/includes/settings/colors/buttons.php:93
+msgid "Set the border style, width, and color for the primary button on hover."
+msgstr ""
+"Définissez le style, l'épaisseur et la couleur de la bordure du bouton "
+"principal au survol."
+
+#: app/includes/settings/colors/buttons.php:107
+#: app/includes/settings/colors/buttons.php:187
+msgid "Button Border Radius"
+msgstr "Rayon de bordure du bouton"
+
+#: app/includes/settings/colors/buttons.php:108
+msgid "Set the border radius of the primary button."
+msgstr "Définissez le rayon de bordure du bouton principal."
+
+#: app/includes/settings/colors/buttons.php:124
+msgid "Secondary Buttons"
+msgstr "Boutons secondaires"
+
+#: app/includes/settings/colors/buttons.php:158
+msgid "Set the border style, width, and color for the secondary button."
+msgstr ""
+"Définissez le style, l'épaisseur et la couleur de la bordure du bouton "
+"secondaire."
+
+#: app/includes/settings/colors/buttons.php:173
+msgid ""
+"Set the border style, width, and color for the secondary button on hover."
+msgstr ""
+"Set the border style, width, and color for the secondary button on hover."
+
+#: app/includes/settings/colors/buttons.php:188
+msgid "Set the border radius of the secondary button."
+msgstr "Définissez le rayon de bordure du bouton secondaire."
+
+#: app/includes/settings/colors/icons.php:14
+msgid "Icons"
+msgstr "Icônes"
+
+#: app/includes/settings/colors/icons.php:16
+msgid "Icons color settings."
+msgstr "Paramètres de couleur des icônes."
+
+#: app/includes/settings/colors/styles.php:14
+msgid "Styles"
+msgstr "Styles"
+
+#: app/includes/settings/colors/styles.php:37
+msgid "Rounding"
+msgstr "Arrondi"
+
+#: app/includes/settings/colors/styles.php:38
+msgid "Choose a rounding option for general elements."
+msgstr "Choisissez une option d'arrondi pour les éléments généraux."
+
+#: app/includes/settings/colors/styles.php:41
+msgid "Small (4px)"
+msgstr "Petit (4px)"
+
+#: app/includes/settings/colors/styles.php:42
+msgid "Medium (8px)"
+msgstr "Moyen (8px)"
+
+#: app/includes/settings/colors/styles.php:43
+msgid "Large (16px)"
+msgstr "Grand (16px)"
+
+#: app/includes/settings/colors/styles.php:50
+msgid "Custom Rounding"
+msgstr "Arrondi personnalisé"
+
+#: app/includes/settings/colors/styles.php:51
+msgid "Set a custom rounding value for finer control over the element corners."
+msgstr ""
+"Définissez une valeur d'arrondi personnalisée pour un contrôle plus précis "
+"des coins des éléments."
+
+#: app/includes/settings/colors/tabs.php:14
+msgid "Tabs"
+msgstr "Onglets"
+
+#: app/includes/settings/colors/tabs.php:16
+msgid "Tabs color settings."
+msgstr "Paramètres de couleur des onglets."
+
+#: app/includes/settings/colors/tabs.php:31
+msgid "Set the background color of the tabs."
+msgstr "Définissez la couleur d'arrière-plan des onglets."
+
+#: app/includes/settings/colors/tabs.php:38
+msgid "Set the text color of the tabs."
+msgstr "Définissez la couleur du texte des onglets."
+
+#: app/includes/settings/colors/tabs.php:45
+#: app/includes/settings/colors/tabs.php:52
+msgid "Set the border color of the tabs."
+msgstr "Définissez la couleur de bordure des onglets."
+
+#: app/includes/settings/colors/tabs.php:58
+msgid "Tabs Border"
+msgstr "Bordure des onglets"
+
+#: app/includes/settings/colors/tabs.php:59
+msgid "Set the border style, width, and color for the tabs."
+msgstr ""
+"Définissez le style, l'épaisseur et la couleur de la bordure des onglets."
+
+#: app/includes/settings/colors/tabs.php:73
+msgid "Tabs Border Hover"
+msgstr "Bordure des onglets au survol"
+
+#: app/includes/settings/colors/tabs.php:74
+msgid "Set the border style, width, and color for the tabs on hover."
+msgstr ""
+"Définissez le style, l'épaisseur et la couleur de la bordure des onglets au "
+"survol."
+
+#: app/includes/settings/colors/tabs.php:89
+msgid "Tabs Border Radius"
+msgstr "Rayon de bordure des onglets"
+
+#: app/includes/settings/colors/tabs.php:90
+msgid "Set the border radius of the tabs."
+msgstr "Définissez le rayon de bordure des onglets."
+
+#: app/includes/settings/footer.php:14
+msgid "Footer Settings"
+msgstr "Paramètres du pied de page"
+
+#: app/includes/settings/footer.php:16
+msgid "Options for configuring the footer."
+msgstr "Options de configuration du pied de page."
+
+#: app/includes/settings/footer.php:36
+msgid "Footer Type"
+msgstr "Type de pied de page"
+
+#: app/includes/settings/footer.php:39
+msgid "You need listdomer pro version to see all footer types."
+msgstr ""
+"Vous avez besoin de la version pro de Listdomer pour voir tous les types de "
+"pied de page."
+
+#: app/includes/settings/footer.php:46
+msgid "Easily change footer background color."
+msgstr "Changez facilement la couleur d'arrière-plan du pied de page."
+
+#: app/includes/settings/footer.php:51 app/includes/settings/widgets.php:39
+msgid "Title Text Color"
+msgstr "Couleur du texte du titre"
+
+#: app/includes/settings/footer.php:53
+msgid "Easily change footer text color."
+msgstr "Changez facilement la couleur du texte du pied de page."
+
+#: app/includes/settings/footer.php:58
+msgid "Footer Widgets"
+msgstr "Widgets de pied de page"
+
+#: app/includes/settings/footer.php:60
+#, fuzzy, php-format
+#| msgid ""
+#| "The footer columns are managed in the widgets of the theme. %sClick "
+#| "here%s."
+msgid "Manage footer columns in the theme widgets. %sClick here%s."
+msgstr ""
+"The footer columns are managed in the widgets of the theme. %sClick here%s."
+
+#: app/includes/settings/footer.php:67 app/includes/settings/header.php:236
+msgid "Select Menu"
+msgstr "Sélectionnez un menu"
+
+#: app/includes/settings/footer.php:71
+msgid ""
+"Select a menu for the sub-footer. Choosing a menu here will override the one "
+"selected in Appearance > Menus > Manage Locations."
+msgstr ""
+"Select a menu for the sub-footer. Choosing a menu here will override the one "
+"selected in Appearance > Menus > Manage Locations."
+
+#: app/includes/settings/footer.php:79
+msgid "Footer Copyright Text"
+msgstr "Texte de copyright du pied de page"
+
+#: app/includes/settings/footer.php:81
+msgid ""
+"Enter the text for your footer copyright. This text will be displayed at the "
+"bottom of your footer."
+msgstr ""
+"Enter the text for your footer copyright. This text will be displayed at the "
+"bottom of your footer."
+
+#: app/includes/settings/general.php:14
+msgid "General Settings"
+msgstr "Paramètres généraux"
+
+#: app/includes/settings/general.php:16
+msgid "General settings for the theme."
+msgstr "Paramètres généraux du thème."
+
+#: app/includes/settings/general.php:34 app/includes/widgets/contact.php:40
+msgid "Site Logo"
+msgstr "Logo du site"
+
+#: app/includes/settings/general.php:35
+msgid "Upload a logo for the site."
+msgstr "Téléversez un logo pour le site."
+
+#: app/includes/settings/header.php:14
+msgid "Header Settings"
+msgstr "Paramètres d'en-tête"
+
+#: app/includes/settings/header.php:16
+msgid "Options for configuring the header."
+msgstr "Options de configuration de l'en-tête."
+
+#: app/includes/settings/header.php:35
+msgid "Menu Search Form"
+msgstr ""
+
+#: app/includes/settings/header.php:41
+msgid "Menu Search Sidebar"
+msgstr ""
+
+#: app/includes/settings/header.php:98
+#, fuzzy
+#| msgid "Search"
+msgid "Text Search"
+msgstr "Recherche"
+
+#: app/includes/settings/header.php:152
+msgid "Menu Search Grid"
+msgstr ""
+
+#: app/includes/settings/header.php:196
+msgid "Menu Search Results"
+msgstr ""
+
+#: app/includes/settings/header.php:219
+msgid "Header Type"
+msgstr "Type d'en-tête"
+
+#: app/includes/settings/header.php:222
+msgid "You need listdomer pro version to see all header types."
+msgstr ""
+"Vous avez besoin de la version pro de Listdomer pour voir tous les types "
+"d'en-tête."
+
+#: app/includes/settings/header.php:227
+#, fuzzy
+#| msgid "Social Login Shortcode"
+msgid "Search Shortcode"
+msgstr "Shortcode de connexion sociale"
+
+#: app/includes/settings/header.php:229
+msgid "Select the search shortcode that will show up in the header"
+msgstr ""
+
+#: app/includes/settings/header.php:239
+msgid ""
+"Choose a header menu. It overrides the menu assigned in Appearance > Menus. "
+"If left empty, the default menu is used."
+msgstr ""
+
+#: app/includes/settings/header.php:245
+msgid "Dark Logo"
+msgstr "Logo sombre"
+
+#: app/includes/settings/header.php:247
+#, fuzzy
+#| msgid "It used in some special header types."
+msgid "Used in some special header types."
+msgstr "Utilisé dans certains types d'en-tête spéciaux."
+
+#: app/includes/settings/header.php:253
+msgid "Logo Background"
+msgstr "Arrière-plan du logo"
+
+#: app/includes/settings/header.php:255
+#, fuzzy
+#| msgid ""
+#| "If your logo does not appear well against the background color, you can "
+#| "disable the background color option."
+msgid "If your logo doesn't stand out, disable its background color."
+msgstr ""
+"If your logo does not appear well against the background color, you can "
+"disable the background color option."
+
+#: app/includes/settings/header.php:256
+#: app/includes/settings/headings/archive.php:54
+#: app/includes/settings/headings/archive.php:65
+#: app/includes/settings/headings/listings.php:59
+#: app/includes/settings/headings/listings.php:70
+#: app/includes/settings/headings/pages.php:35
+#: app/includes/settings/headings/pages.php:46
+msgid "Enable"
+msgstr "Activer"
+
+#: app/includes/settings/header.php:257
+#: app/includes/settings/headings/archive.php:55
+#: app/includes/settings/headings/archive.php:66
+#: app/includes/settings/headings/archive.php:90
+#: app/includes/settings/headings/listings.php:60
+#: app/includes/settings/headings/listings.php:71
+#: app/includes/settings/headings/listings.php:83
+#: app/includes/settings/headings/pages.php:36
+#: app/includes/settings/headings/pages.php:47
+#: app/includes/settings/headings/pages.php:58
+msgid "Disable"
+msgstr "Désactiver"
+
+#: app/includes/settings/header.php:265
+msgid "Easily change header background color."
+msgstr "Changez facilement la couleur d'arrière-plan de l'en-tête."
+
+#: app/includes/settings/header.php:273 app/includes/settings/header.php:280
+#: app/includes/settings/header.php:287
+msgid "Easily change header text color."
+msgstr "Changez facilement la couleur du texte de l'en-tête."
+
+#: app/includes/settings/header.php:285
+msgid "Active Text Color"
+msgstr "Couleur du texte actif"
+
+#: app/includes/settings/header.php:293
+msgid "Language Switcher"
+msgstr "Sélecteur de langue"
+
+#: app/includes/settings/header.php:295
+#, fuzzy
+#| msgid ""
+#| "Display WPML language switcher in the header. It works only when WPML is "
+#| "installed and configured correctly."
+msgid ""
+"Show the WPML language switcher in the header. It works only if WPML is "
+"installed and configured."
+msgstr ""
+"Display WPML language switcher in the header. It works only when WPML is "
+"installed and configured correctly."
+
+#: app/includes/settings/header.php:303
+msgid "Add Listing Button"
+msgstr "Bouton Ajouter une annonce"
+
+#: app/includes/settings/header.php:305
+#, fuzzy
+#| msgid "Links to add listing form."
+msgid "Links to the add listing form."
+msgstr "Lien vers le formulaire d'ajout d'annonce."
+
+#: app/includes/settings/header.php:312
+msgid "Add Listing Button Text"
+msgstr "Texte du bouton Ajouter une annonce"
+
+#: app/includes/settings/header.php:313
+msgid "Add Listing"
+msgstr "Ajouter une annonce"
+
+#: app/includes/settings/header.php:314
+#, fuzzy
+#| msgid "Text displayed on the add listing button."
+msgid "Text shown on the add listing button."
+msgstr "Texte affiché sur le bouton d'ajout d'annonce."
+
+#: app/includes/settings/header.php:321
+msgid "Login & Register"
+msgstr "Connexion & Inscription"
+
+#: app/includes/settings/header.php:323
+#, fuzzy
+#| msgid "Display login & register form in the header."
+msgid "Show the login and register form in the header."
+msgstr "Afficher le formulaire de connexion et d'inscription dans l'en-tête."
+
+#: app/includes/settings/header.php:331
+msgid "Login Redirection Page"
+msgstr "Page de redirection après connexion"
+
+#: app/includes/settings/header.php:333
+#, fuzzy
+#| msgid "Redirection page after user login."
+msgid "Page to redirect users after login."
+msgstr "Page de redirection après la connexion de l'utilisateur."
+
+#: app/includes/settings/header.php:340
+msgid "Register Redirection Page"
+msgstr "Page de redirection après inscription"
+
+#: app/includes/settings/header.php:342
+msgid ""
+"Page to redirect users after registration. Use it to thank them and guide "
+"them."
+msgstr ""
+
+#: app/includes/settings/header.php:348
+msgid "Social Login Shortcode"
+msgstr "Shortcode de connexion sociale"
+
+#: app/includes/settings/header.php:350
+#, fuzzy
+#| msgid ""
+#| "You can place social login shortcodes here. Please note that you should "
+#| "configure the social plugin correctly otherwise you may not see anything "
+#| "as output."
+msgid ""
+"Add social login shortcodes here. Configure the social plugin first or "
+"nothing will show."
+msgstr ""
+"You can place social login shortcodes here. Please note that you should "
+"configure the social plugin correctly otherwise you may not see anything as "
+"output."
+
+#: app/includes/settings/headings.php:14
+msgid "Page Heading"
+msgstr "En-tête de page"
+
+#: app/includes/settings/headings.php:16
+msgid "Page Heading settings."
+msgstr "Paramètres de l'en-tête de page."
+
+#: app/includes/settings/headings.php:27
+msgid "Page Heading Settings"
+msgstr "Paramètres de l'en-tête de page"
+
+#: app/includes/settings/headings.php:48
+msgid "Enable Page Header Section"
+msgstr "Activer la section d'en-tête de page"
+
+#: app/includes/settings/headings.php:59
+msgid "Set typography for page titles."
+msgstr "Définissez la typographie des titres de page."
+
+#: app/includes/settings/headings.php:80
+msgid "Description Typography"
+msgstr "Typographie de la description"
+
+#: app/includes/settings/headings.php:81
+msgid "Set typography for page description."
+msgstr "Définissez la typographie de la description de page."
+
+#: app/includes/settings/headings.php:112
+msgid "Background Image"
+msgstr "Image d'arrière-plan"
+
+#: app/includes/settings/headings.php:123
+msgid "Background Position"
+msgstr "Position de l'arrière-plan"
+
+#: app/includes/settings/headings.php:128
+msgid "Left Top"
+msgstr "Gauche haut"
+
+#: app/includes/settings/headings.php:129
+msgid "Left Center"
+msgstr "Gauche centre"
+
+#: app/includes/settings/headings.php:130
+msgid "Left Bottom"
+msgstr "Gauche bas"
+
+#: app/includes/settings/headings.php:131
+msgid "Center Top"
+msgstr "Centre haut"
+
+#: app/includes/settings/headings.php:132
+msgid "Center Center"
+msgstr "Centre centre"
+
+#: app/includes/settings/headings.php:133
+msgid "Center Bottom"
+msgstr "Centre bas"
+
+#: app/includes/settings/headings.php:134
+msgid "Right Top"
+msgstr "Droite haut"
+
+#: app/includes/settings/headings.php:135
+msgid "Right Center"
+msgstr "Droite centre"
+
+#: app/includes/settings/headings.php:136
+msgid "Right Bottom"
+msgstr "Droite bas"
+
+#: app/includes/settings/headings.php:143
+msgid "Background Repeat"
+msgstr "Répétition de l'arrière-plan"
+
+#: app/includes/settings/headings.php:148
+msgid "No Repeat"
+msgstr "Pas de répétition"
+
+#: app/includes/settings/headings.php:149
+msgid "Repeat"
+msgstr "Répéter"
+
+#: app/includes/settings/headings.php:150
+msgid "Repeat Horizontally"
+msgstr "Répéter horizontalement"
+
+#: app/includes/settings/headings.php:151
+msgid "Repeat Vertically"
+msgstr "Répéter verticalement"
+
+#: app/includes/settings/headings.php:158
+msgid "Background Size"
+msgstr "Taille de l'arrière-plan"
+
+#: app/includes/settings/headings.php:163
+msgid "Auto"
+msgstr "Automatique"
+
+#: app/includes/settings/headings.php:164
+msgid "Cover"
+msgstr "Couvrir"
+
+#: app/includes/settings/headings.php:165
+msgid "Contain"
+msgstr "Contenir"
+
+#: app/includes/settings/headings.php:172
+msgid "Background Attachment"
+msgstr "Attache de l'arrière-plan"
+
+#: app/includes/settings/headings.php:177
+msgid "Scroll"
+msgstr "Défiler"
+
+#: app/includes/settings/headings.php:178
+msgid "Fixed"
+msgstr "Fixe"
+
+#: app/includes/settings/headings.php:202
+msgid "Enable Shapes"
+msgstr "Activer les formes"
+
+#: app/includes/settings/headings/archive.php:34
+msgid "Select taxonomies where the page title should be displayed."
+msgstr "Sélectionnez les taxonomies où le titre de la page doit être affiché."
+
+#: app/includes/settings/headings/archive.php:36
+#: app/includes/settings/headings/listings.php:37
+msgid "Categories"
+msgstr "Catégories"
+
+#: app/includes/settings/headings/archive.php:37
+#: app/includes/settings/headings/listings.php:41
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: app/includes/settings/headings/archive.php:52
+#: app/includes/settings/headings/listings.php:57
+msgid "Archive Title"
+msgstr "Titre de l'archive"
+
+#: app/includes/settings/headings/archive.php:63
+#: app/includes/settings/headings/listings.php:68
+msgid "Archive Breadcrumb"
+msgstr "Fil d'Ariane de l'archive"
+
+#: app/includes/settings/headings/archive.php:74
+msgid "Include Context in Title"
+msgstr "Inclure le contexte dans le titre"
+
+#: app/includes/settings/headings/archive.php:75
+msgid ""
+"Show prefix like \"Category:\", \"Tag:\", or \"Author:\" before the archive "
+"title."
+msgstr ""
+"Show prefix like \"Category:\", \"Tag:\", or \"Author:\" before the archive "
+"title."
+
+#: app/includes/settings/headings/archive.php:88
+#: app/includes/settings/headings/listings.php:81
+msgid "Archive Description Position"
+msgstr "Position de la description de l'archive"
+
+#: app/includes/settings/headings/archive.php:91
+#: app/includes/settings/headings/listings.php:84
+#: app/includes/settings/headings/pages.php:59
+msgid "Inside Page Header Section"
+msgstr "Dans la section d'en-tête de page"
+
+#: app/includes/settings/headings/archive.php:92
+#: app/includes/settings/headings/listings.php:85
+#: app/includes/settings/headings/pages.php:60
+msgid "After Content"
+msgstr "Après le contenu"
+
+#: app/includes/settings/headings/archive.php:99
+#: app/includes/settings/headings/listings.php:92
+#: app/includes/settings/headings/pages.php:67
+msgid "Description Length"
+msgstr "Longueur de la description"
+
+#: app/includes/settings/headings/archive.php:101
+#: app/includes/settings/headings/listings.php:94
+#: app/includes/settings/headings/pages.php:69
+msgid "Limited"
+msgstr "Limité"
+
+#: app/includes/settings/headings/archive.php:102
+#: app/includes/settings/headings/listings.php:95
+#: app/includes/settings/headings/pages.php:70
+msgid "Full Text"
+msgstr "Texte complet"
+
+#: app/includes/settings/headings/archive.php:110
+#: app/includes/settings/headings/listings.php:103
+#: app/includes/settings/headings/pages.php:78
+msgid "Description Character Limit"
+msgstr "Limite de caractères de la description"
+
+#: app/includes/settings/headings/archive.php:111
+#: app/includes/settings/headings/listings.php:104
+#: app/includes/settings/headings/pages.php:79
+msgid "Set the maximum number of characters to show before \"Show More\"."
+msgstr ""
+"Définissez le nombre maximal de caractères à afficher avant \"Afficher "
+"plus\"."
+
+#: app/includes/settings/headings/listings.php:14
+msgid "Listings Archive"
+msgstr "Archive des annonces"
+
+#: app/includes/settings/headings/listings.php:35
+msgid "Select taxonomies where the page header should be displayed."
+msgstr "Sélectionnez les taxonomies où l'en-tête de page doit être affiché."
+
+#: app/includes/settings/headings/listings.php:38
+msgid "Locations"
+msgstr "Emplacements"
+
+#: app/includes/settings/headings/listings.php:39
+msgid "Labels"
+msgstr "Étiquettes"
+
+#: app/includes/settings/headings/listings.php:40
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: app/includes/settings/headings/pages.php:14
+msgid "Pages"
+msgstr "Pages"
+
+#: app/includes/settings/headings/pages.php:33
+msgid "Page Title"
+msgstr "Titre de la page"
+
+#: app/includes/settings/headings/pages.php:44
+msgid "Page Breadcrumb"
+msgstr "Fil d'Ariane de la page"
+
+#: app/includes/settings/headings/pages.php:56
+msgid "Page Description Position"
+msgstr "Position de la description de la page"
+
+#: app/includes/settings/listdom.php:14
+msgid "Listdom Settings"
+msgstr "Paramètres de Listdom"
+
+#: app/includes/settings/listdom.php:22
+msgid "Attention!"
+msgstr "Attention !"
+
+#: app/includes/settings/listdom.php:23
+msgid "If you want to change the Listdom settings"
+msgstr "Si vous souhaitez modifier les paramètres de Listdom"
+
+#: app/includes/settings/listdom.php:25
+msgid "click here to edit."
+msgstr "cliquez ici pour modifier."
+
+#: app/includes/settings/notfound.php:14
+msgid "404 page"
+msgstr "Page 404"
+
+#: app/includes/settings/notfound.php:16
+#, fuzzy
+#| msgid "settings for 404 page."
+msgid "Settings for 404 page."
+msgstr "Paramètres pour la page 404."
+
+#: app/includes/settings/notfound.php:35
+msgid "Upload an image for the 404 page."
+msgstr "Téléversez une image pour la page 404."
+
+#: app/includes/settings/notfound.php:44
+msgid "Set a title for the 404 page."
+msgstr "Définissez un titre pour la page 404."
+
+#: app/includes/settings/notfound.php:45
+msgid "Oops! Error 404."
+msgstr "Oups ! Erreur 404."
+
+#: app/includes/settings/notfound.php:51
+msgid "Set content for the 404 page."
+msgstr "Définissez le contenu de la page 404."
+
+#: app/includes/settings/notfound.php:52
+#, fuzzy
+#| msgid "We can not seem to find the page you are looking for."
+msgid "We can't find the page you're looking for."
+msgstr "Nous ne trouvons pas la page que vous recherchez."
+
+#: app/includes/settings/notfound.php:57
+msgid "Button Text"
+msgstr "Texte du bouton"
+
+#: app/includes/settings/notfound.php:58
+msgid "Set text for the button on the 404 page."
+msgstr "Définissez le texte du bouton de la page 404."
+
+#: app/includes/settings/notfound.php:59
+msgid "Go to Home"
+msgstr "Aller à l'accueil"
+
+#: app/includes/settings/notfound.php:64
+msgid "Button Page"
+msgstr "Page du bouton"
+
+#: app/includes/settings/notfound.php:65
+msgid "Select the target page for the button on the 404 page."
+msgstr "Sélectionnez la page cible du bouton de la page 404."
+
+#: app/includes/settings/preloader.php:14
+msgid "PreLoader"
+msgstr "Préchargeur"
+
+#: app/includes/settings/preloader.php:16
+#, fuzzy
+#| msgid "settings preloader."
+msgid "Settings preloader."
+msgstr "Paramètres du préchargeur."
+
+#: app/includes/settings/preloader.php:36
+msgid "Display Preloader"
+msgstr "Afficher le préchargeur"
+
+#: app/includes/settings/preloader.php:44
+msgid "Select Loading Style"
+msgstr "Sélectionner le style de chargement"
+
+#: app/includes/settings/preloader.php:47
+msgid "Spinner"
+msgstr "Tourniquet"
+
+#: app/includes/settings/preloader.php:48
+msgid "Multi Spinner"
+msgstr "Spinner multiple"
+
+#: app/includes/settings/preloader.php:49
+msgid "Bars"
+msgstr "Barres"
+
+#: app/includes/settings/preloader.php:51
+msgid "Pulse"
+msgstr "Impulsion"
+
+#: app/includes/settings/preloader.php:63
+msgid "Upload an icon for the pre-loader."
+msgstr "Téléversez une icône pour le préchargeur."
+
+#: app/includes/settings/search.php:14
+msgid "Search"
+msgstr "Recherche"
+
+#: app/includes/settings/search.php:16
+msgid "Configure how search functionality behaves across your site."
+msgstr "Configurez le comportement de la recherche sur votre site."
+
+#: app/includes/settings/search.php:34
+msgid "Use Default WordPress Search"
+msgstr "Utiliser la recherche WordPress par défaut"
+
+#: app/includes/settings/search.php:35
+msgid ""
+"Enable to use WordPress native search behavior. Disable to customize post "
+"types for search results."
+msgstr ""
+"Enable to use WordPress native search behavior. Disable to customize post "
+"types for search results."
+
+#: app/includes/settings/search.php:37
+msgid "Enabled"
+msgstr "Activé"
+
+#: app/includes/settings/search.php:38
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: app/includes/settings/search.php:43
+msgid "PostTypes To Include In Search"
+msgstr "Types de contenu à inclure dans la recherche"
+
+#: app/includes/settings/search.php:44
+msgid ""
+"Select which post types should appear in search results when the default "
+"search is disabled."
+msgstr ""
+"Select which post types should appear in search results when the default "
+"search is disabled."
+
+#: app/includes/settings/typography.php:34
+msgid "Main Font"
+msgstr "Police principale"
+
+#: app/includes/settings/typography.php:51
+msgid "H1 Font"
+msgstr "Police H1"
+
+#: app/includes/settings/typography.php:52
+msgid "Specify the font properties for H1 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H1."
+
+#: app/includes/settings/typography.php:69
+msgid "H2 Font"
+msgstr "Police H2"
+
+#: app/includes/settings/typography.php:70
+msgid "Specify the font properties for H2 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H2."
+
+#: app/includes/settings/typography.php:87
+msgid "H3 Font"
+msgstr "Police H3"
+
+#: app/includes/settings/typography.php:88
+msgid "Specify the font properties for H3 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H3."
+
+#: app/includes/settings/typography.php:105
+msgid "H4 Font"
+msgstr "Police H4"
+
+#: app/includes/settings/typography.php:106
+msgid "Specify the font properties for H4 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H4."
+
+#: app/includes/settings/typography.php:123
+msgid "H5 Font"
+msgstr "Police H5"
+
+#: app/includes/settings/typography.php:124
+msgid "Specify the font properties for H5 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H5."
+
+#: app/includes/settings/typography.php:141
+msgid "H6 Font"
+msgstr "Police H6"
+
+#: app/includes/settings/typography.php:142
+msgid "Specify the font properties for H6 tags."
+msgstr "Spécifiez les propriétés de police pour les balises H6."
+
+#: app/includes/settings/widgets.php:14
+msgid "Widgets"
+msgstr "Widgets"
+
+#: app/includes/settings/widgets.php:16
+msgid "Widget settings."
+msgstr "Paramètres des widgets."
+
+#: app/includes/settings/widgets.php:33
+msgid "Set the background color of the widget."
+msgstr "Définissez la couleur d'arrière-plan du widget."
+
+#: app/includes/settings/widgets.php:40
+msgid "Set the text color."
+msgstr "Définissez la couleur du texte."
+
+#: app/includes/settings/widgets.php:46
+msgid "Title Border Color"
+msgstr "Couleur de la bordure du titre"
+
+#: app/includes/settings/widgets.php:47
+msgid "Set the border color."
+msgstr "Définissez la couleur de la bordure."
+
+#: app/includes/settings/widgets.php:53
+msgid "Content Text Color"
+msgstr "Couleur du texte du contenu"
+
+#: app/includes/settings/widgets.php:54
+msgid "Set the content text color."
+msgstr "Définissez la couleur du texte du contenu."
+
+#: app/includes/settings/widgets.php:61
+msgid "Set the border radius of the widget container."
+msgstr "Définissez le rayon de bordure du conteneur de widget."
+
+#: app/includes/theme.php:10
+msgid "Listdomer Two buttons"
+msgstr "Deux boutons Listdomer"
+
+#: app/includes/theme.php:11
+#, fuzzy
+#| msgid ""
+#| "Listdomer Two horizontal buttons, the left button is filled in, and the "
+#| "right button is outlined."
+msgid "Two horizontal buttons. The left is filled and the right is outlined."
+msgstr ""
+"Listdomer Two horizontal buttons, the left button is filled in, and the "
+"right button is outlined."
+
+#: app/includes/theme.php:12
+msgid "Button One"
+msgstr "Bouton un"
+
+#: app/includes/theme.php:12
+msgid "Button Two"
+msgstr "Bouton deux"
+
+#: app/includes/theme.php:21
+msgid "Listdomer Button"
+msgstr "Bouton Listdomer"
+
+#: app/includes/theme.php:26
+msgid "Listdomer Table"
+msgstr "Tableau Listdomer"
+
+#: app/includes/theme.php:83
+msgid "Listdomer user button"
+msgstr "Bouton utilisateur Listdomer"
+
+#: app/includes/theme.php:129 app/includes/theme.php:130
+msgid "Show More"
+msgstr "Afficher plus"
+
+#: app/includes/theme.php:129
+msgid "Show Less"
+msgstr "Afficher moins"
+
+#: app/includes/theme.php:206 app/includes/theme.php:207
+#: app/includes/theme.php:245 app/includes/theme.php:246
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: app/includes/theme.php:208 app/includes/theme.php:209
+msgid "Password"
+msgstr "Mot de passe"
+
+#: app/includes/theme.php:213
+msgid "Lost your password?"
+msgstr "Mot de passe perdu ?"
+
+#: app/includes/theme.php:214
+msgid "Remember Me"
+msgstr "Se souvenir de moi"
+
+#: app/includes/theme.php:217
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: app/includes/theme.php:221
+msgid "Don't have an account?"
+msgstr "Vous n'avez pas de compte ?"
+
+#: app/includes/theme.php:222
+msgid "Create Account"
+msgstr "Créer un compte"
+
+#: app/includes/theme.php:247 app/includes/theme.php:248
+#: app/includes/widgets/contact.php:48 app/includes/widgets/contact.php:79
+msgid "Email"
+msgstr "E-mail"
+
+#: app/includes/theme.php:251
+msgid "Registration confirmation will be emailed to you."
+msgstr "La confirmation d'inscription vous sera envoyée par e-mail."
+
+#: app/includes/theme.php:254
+msgid "Register"
+msgstr "S'inscrire"
+
+#: app/includes/theme.php:257
+msgid "Have an account?"
+msgstr "Vous avez un compte ?"
+
+#: app/includes/theme.php:258
+#, fuzzy
+#| msgid "Signin"
+msgid "Sign in"
+msgstr "Connexion"
+
+#: app/includes/theme.php:273
+msgid "Or sign up with"
+msgstr "Ou inscrivez-vous avec"
+
+#: app/includes/widgets/contact.php:7
+msgid "(Listdomer) Contact"
+msgstr "(Listdomer) Contact"
+
+#: app/includes/widgets/contact.php:7
+msgid "A simple contact details widget to include in footer"
+msgstr "Un widget de coordonnées simple à inclure dans le pied de page"
+
+#: app/includes/widgets/contact.php:47 app/includes/widgets/contact.php:84
+msgid "Phone"
+msgstr "Téléphone"
+
+#: app/includes/widgets/contact.php:89
+msgid "Facebook"
+msgstr "Facebook"
+
+#: app/includes/widgets/contact.php:94
+msgid "X"
+msgstr ""
+
+#: app/includes/widgets/contact.php:99
+msgid "Instagram"
+msgstr "Instagram"
+
+#: app/includes/widgets/contact.php:104
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+#: app/includes/widgets/contact.php:109
+msgid "Pinterest"
+msgstr ""
+
+#: app/includes/widgets/contact.php:114
+msgid "Youtube"
+msgstr ""
+
+#: app/includes/widgets/contact.php:119
+msgid "WhatsApp"
+msgstr ""
+
+#: app/includes/widgets/contact.php:124
+msgid "Telegram"
+msgstr ""
+
+#: templates/redux-templates/footer.tpl.php:65
+#: templates/redux-templates/header-stickybar.tpl.php:25
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: templates/redux-templates/footer.tpl.php:70
+#: templates/redux-templates/header-stickybar.tpl.php:30
+msgid "Reset Section"
+msgstr "Réinitialiser la section"
+
+#: templates/redux-templates/footer.tpl.php:71
+#: templates/redux-templates/header-stickybar.tpl.php:31
+msgid "Reset All"
+msgstr "Tout réinitialiser"
+
+#: templates/redux-templates/header-stickybar.tpl.php:18
+msgid "Expand"
+msgstr "Étendre"
+
+#: templates/redux-templates/header.tpl.php:14
+#: templates/redux-templates/header.tpl.php:57
+msgid "Developer Mode Enabled"
+msgstr "Mode développeur activé"
+
+#: templates/redux-templates/header.tpl.php:25
+msgid "WP_DEBUG is enabled"
+msgstr "WP_DEBUG est activé"
+
+#: templates/redux-templates/header.tpl.php:32
+msgid "you are working in a localhost environment"
+msgstr "vous travaillez dans un environnement local"
+
+#: templates/redux-templates/header.tpl.php:38
+msgid "and"
+msgstr "et"
+
+#: templates/redux-templates/header.tpl.php:41
+msgid "This has been automatically enabled because"
+msgstr "Cela a été activé automatiquement car"
+
+#: templates/redux-templates/header.tpl.php:45
+msgid ""
+"If you are not a developer, your theme/plugin author shipped with developer "
+"mode enabled. Contact them directly to fix it."
+msgstr ""
+"If you are not a developer, your theme/plugin author shipped with developer "
+"mode enabled. Contact them directly to fix it."
+
+#: templates/redux-templates/header.tpl.php:60
+msgid "Theme Settings"
+msgstr "Paramètres du thème"
+
+#~ msgid "All you need for your Real Estate website."
+#~ msgstr "Tout ce dont vous avez besoin pour votre site immobilier."
+
+#~ msgid "Go Pro"
+#~ msgstr "Passer à la version Pro"
+
+#~ msgid ""
+#~ "Select a menu to use for your header. If you select a menu here, it will "
+#~ "override the menu assigned to the corresponding location in WordPress's "
+#~ "Appearance > Menus section. If no menu is selected, the default menu "
+#~ "assigned to the location will be used."
+#~ msgstr ""
+#~ "Select a menu to use for your header. If you select a menu here, it will "
+#~ "override the menu assigned to the corresponding location in WordPress's "
+#~ "Appearance > Menus section. If no menu is selected, the default menu "
+#~ "assigned to the location will be used."
+
+#~ msgid ""
+#~ "Redirection page after user registration. You can use this page to say "
+#~ "thank you and guide the users to use your website."
+#~ msgstr ""
+#~ "Redirection page after user registration. You can use this page to say "
+#~ "thank you and guide the users to use your website."
+
+#~ msgid "Twitter"
+#~ msgstr "Twitter"

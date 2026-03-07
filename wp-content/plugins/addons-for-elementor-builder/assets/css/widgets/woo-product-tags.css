@@ -1,0 +1,61 @@
+/* ================================
+   Woo Product Tags - Default Styles
+   ================================ */
+.afeb-woo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.afeb-woo-tag {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.afeb-woo-tag:hover {
+    background-color: #e6e6e6;
+    transform: translateY(-1px);
+}
+
+/* Inline Layout */
+.afeb-woo-tags.layout-inline {
+    flex-direction: row;
+    align-items: center;
+}
+.afeb-woo-tags.layout-inline .afeb-woo-tag {
+    display: inline-block;
+}
+
+/* Block Layout */
+.afeb-woo-tags.layout-block {
+    flex-direction: column;
+}
+.afeb-woo-tags.layout-block .afeb-woo-tag {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+/* Masonry Layout */
+.afeb-woo-tags.layout-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+}
+.afeb-woo-tags.layout-masonry .afeb-woo-tag {
+    width: 100%;
+}
+
+/* Optional: Small visual tweak for tag text */
+.afeb-woo-tag::first-letter {
+    text-transform: uppercase;
+}

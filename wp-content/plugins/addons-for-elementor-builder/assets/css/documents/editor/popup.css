@@ -1,0 +1,6 @@
+body.afeb-popup-template,
+body.afeb-popup-template-default {
+    background-image: url('../../../img/transparent.jpg') !important;
+    background-repeat: repeat;
+    height: 100vh
+}

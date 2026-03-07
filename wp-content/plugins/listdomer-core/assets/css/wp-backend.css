@@ -1,0 +1,5 @@
+#toplevel_page_listdomer img{width:20px}
+#toplevel_page_listdomer ul li:last-child:has(a[href='admin.php?page=listdomer-settings']) {display: none}
+#menu-settings ul li:has(a[href='options-general.php?page=redux-framework']) {display: none}
+.ocdi__theme-about-info .bottom-content {display: none}
+.ocdi__theme-about {display: none !important}

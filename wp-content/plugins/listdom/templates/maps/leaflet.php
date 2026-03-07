@@ -1,0 +1,99 @@
+<?php
+// no direct access
+defined('ABSPATH') || die();
+
+/** @var array $listings */
+/** @var array $args */
+
+// Include Leaflet Assets to the page
+$assets = new LSD_Assets();
+$assets->leaflet();
+
+// Listdom
+$main = new LSD_Main();
+
+// Listdom Settings
+$settings = LSD_Options::settings();
+
+$latitude = $args['default_lt'] ?? $settings['map_backend_lt'];
+$longitude = $args['default_ln'] ?? $settings['map_backend_ln'];
+$style = $args['mapstyle'] ?? '';
+$zoomlevel = $args['zoomlevel'] ?? 14;
+$gps_zl = $settings['map_gps_zl'] ?? 13;
+$gps_zl_current = $settings['map_gps_zl_current'] ?? 7;
+$map_height = $args['map_height'] ?? null;
+$atts = isset($args['atts']) && is_array($args['atts']) ? $args['atts'] : [];
+$mapsearch = isset($args['mapsearch']) && $args['mapsearch'];
+$autoGPS = isset($args['autoGPS']) && $args['autoGPS'];
+$infowindow = !isset($args['infowindow']) || $args['infowindow'];
+$infowindow_trigger = $args['infowindow_trigger'] ?? 'click';
+$max_bounds = isset($args['max_bounds']) && is_array($args['max_bounds']) ? $args['max_bounds'] : [];
+$access_token = LSD_Options::mapbox_token();
+$force_to_show = isset($args['force_to_show']) && $args['force_to_show'];
+$mousewheel_zoom = isset($args['mousewheel_zoom']) && $args['mousewheel_zoom'];
+
+// The Unique ID
+$id = $args['id'] ?? wp_rand(100, 999);
+
+if (isset($args['objects']) && is_array($args['objects']))
+{
+    $objects = $args['objects'];
+}
+else
+{
+    $archive = new LSD_PTypes_Listing_Archive();
+    $objects = $archive->render_map_objects($listings, $args);
+}
+
+// No Objects to show or only one object with default location
+if (!$force_to_show && (!count($objects) || (count($objects) === 1 && $objects[0]['latitude'] === $latitude && $objects[0]['longitude'] === $longitude))) return;
+    
+// Add Leaflet JS codes to footer
+$assets->footerOrPreview('<script>
+jQuery(document).ready(function()
+{
+    const lsdMap = jQuery("#lsd_map'.$id.'").listdomLeaflet(
+    {
+        latitude: "'.$latitude.'",
+        longitude: "'.$longitude.'",
+        id: '.$id.',
+        ajax_url: "'.admin_url('admin-ajax.php', null).'",
+        zoom: '.$zoomlevel.',
+        objects: '.wp_json_encode($objects, JSON_NUMERIC_CHECK).',
+        args: "'.http_build_query(['args'=>$args], '', '&').'",
+        richmarker: "",
+        infobox: "",
+        clustering: '.(isset($args['clustering']) && $args['clustering'] ? 'true' : 'false').',
+        clustering_images: "'.$assets->lsd_asset_url(isset($args['clustering_images']) && trim($args['clustering_images']) ? $args['clustering_images'] : 'img/cluster1/m').'",
+        styles: "",
+        mapcontrols: "",
+        fill_color: "'.$settings['map_shape_fill_color'].'",
+        fill_opacity: '.$settings['map_shape_fill_opacity'].',
+        stroke_color: "'.$settings['map_shape_stroke_color'].'",
+        stroke_opacity: '.$settings['map_shape_stroke_opacity'].',
+        stroke_weight: '.$settings['map_shape_stroke_weight'].',
+        atts: "'.http_build_query(['atts'=>$atts], '', '&').'",
+        mapsearch: '.($mapsearch ? 'true' : 'false').',
+        autoGPS: '.($autoGPS ? 'true' : 'false').',
+        geo_request: '.($main->is_geo_request() ? 'true' : 'false').',
+        mousewheel_zoom: '.($mousewheel_zoom ? 'true' : 'false').',
+        display_infowindow: '.($infowindow ? 'true' : 'false').',
+        infowindow_trigger: "'.esc_js($infowindow_trigger).'",
+        max_bounds: '.wp_json_encode($max_bounds, JSON_NUMERIC_CHECK).',
+        gps_zoom: {
+            zl: '.$gps_zl.',
+            current: '.$gps_zl_current.'
+        },
+        access_token: "'.$access_token.'",
+        tileserver: '.apply_filters('lsd_leaflet_tileserver', '""').',
+        layers: '.wp_json_encode(apply_filters('lsd_map_layers', [], LSD_MP_LEAFLET), JSON_NUMERIC_CHECK).',
+    });
+    
+    // Listdom Maps
+    (new ListdomMaps(lsdMap.id)).set(lsdMap);
+});
+</script>');
+?>
+<div class="lsd-listing-leaflet">
+    <div id="lsd_map<?php echo esc_attr($id); ?>" class="<?php echo isset($args['canvas_class']) ? sanitize_html_class($args['canvas_class']) : 'lsd-map-canvas'; ?>" <?php if ($map_height) echo 'style="height: '.esc_attr($map_height).';"'; ?>></div>
+</div>

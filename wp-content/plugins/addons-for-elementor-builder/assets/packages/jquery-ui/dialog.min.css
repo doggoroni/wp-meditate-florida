@@ -1,0 +1,162 @@
+.afeb-body.ui-dialog-show {
+    overflow: hidden !important
+}
+
+.afeb-body.ui-dialog-show * {
+    pointer-events: none !important
+}
+
+.afeb-body.ui-dialog-show .ui-dialog,
+.afeb-body.ui-dialog-show .ui-dialog * {
+    pointer-events: unset !important
+}
+
+.afeb-body .ui-dialog {
+    background-color: #fff;
+    box-shadow: 0 0 0 9999px rgba(29, 35, 39, .2);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .2em;
+    outline: 0;
+    z-index: 99999
+}
+
+.afeb-builder-posts-body .ui-dialog,
+.afeb-popup-builder-posts-body .ui-dialog {
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .1) !important
+}
+
+.afeb-body .ui-dialog .ui-dialog-titlebar {
+    padding: .4em 1em;
+    position: relative
+}
+
+.afeb-body .ui-dialog .ui-dialog-title {
+    float: left;
+    margin: .1em 0;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.afeb-body .ui-dialog .ui-dialog-titlebar-close {
+    background-color: #f2f4f7;
+    border: 0;
+    border-radius: 50%;
+    height: 40px;
+    margin: -6px 0 0;
+    padding: 1px;
+    position: absolute;
+    right: -55px;
+    top: 50%;
+    transition: .3s;
+    width: 40px
+}
+
+.afeb-body .ui-dialog .ui-dialog-titlebar-close:hover {
+    transform: rotate(180deg) !important
+}
+
+.afeb-builder-posts-body .ui-dialog .ui-dialog-titlebar-close,
+.afeb-popup-builder-posts-body .ui-dialog .ui-dialog-titlebar-close,
+.afeb-dashboard-body .ui-dialog .ui-dialog-titlebar-close {
+    background-color: #92003b;
+    box-shadow: 0 0 6px 1px rgb(146, 0, 59, .5) !important
+}
+
+.afeb-body .ui-dialog .ui-dialog-titlebar-close>span {
+    background-color: #fff;
+    border-radius: 20px;
+    display: block;
+    height: 4px;
+    left: 6px;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 18px;
+    width: 28px
+}
+
+.afeb-body .ui-dialog .ui-dialog-titlebar-close>span:last-child {
+    transform: rotate(-45deg) !important
+}
+
+.afeb-body .ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: 0 0;
+    overflow: auto;
+    width: 100% !important
+}
+
+.afeb-body .ui-dialog .ui-dialog-buttonpane {
+    text-align: left;
+    border-width: 1px 0 0;
+    background-image: none;
+    margin-top: .5em;
+    padding: .3em 1em .5em .4em
+}
+
+.afeb-body .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: right
+}
+
+.afeb-body .ui-dialog .ui-dialog-buttonpane button {
+    margin: .5em .4em .5em 0;
+    cursor: pointer
+}
+
+.afeb-body .ui-dialog .ui-resizable-n {
+    height: 2px;
+    top: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-e {
+    width: 2px;
+    right: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-s {
+    height: 2px;
+    bottom: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-w {
+    width: 2px;
+    left: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-ne,
+.afeb-body .ui-dialog .ui-resizable-nw,
+.afeb-body .ui-dialog .ui-resizable-se,
+.afeb-body .ui-dialog .ui-resizable-sw {
+    width: 7px;
+    height: 7px
+}
+
+.afeb-body .ui-dialog .ui-resizable-se {
+    right: 0;
+    bottom: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-sw {
+    left: 0;
+    bottom: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-ne {
+    right: 0;
+    top: 0
+}
+
+.afeb-body .ui-dialog .ui-resizable-nw {
+    left: 0;
+    top: 0
+}
+
+.afeb-body .ui-draggable .ui-dialog-titlebar {
+    cursor: move
+}

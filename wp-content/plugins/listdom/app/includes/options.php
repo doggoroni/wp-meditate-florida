@@ -1,0 +1,779 @@
+<?php
+
+class LSD_Options extends LSD_Base
+{
+    public static function settings(): array
+    {
+        return self::parse_args(
+            get_option('lsd_settings', []),
+            self::defaults()
+        );
+    }
+
+    public static function privacy(): array
+    {
+        return self::parse_args(
+            get_option('lsd_settings', []),
+            self::defaults()
+        );
+    }
+
+    public static function api(): array
+    {
+        $defaults = self::defaults('api');
+        $current = get_option('lsd_api', []);
+
+        // Add if not exists
+        if (!is_array($current) || !isset($current['tokens'])) update_option('lsd_api', $defaults);
+
+        return self::parse_args(
+            $current,
+            $defaults
+        );
+    }
+
+    public static function ai(): array
+    {
+        $defaults = self::defaults('ai');
+        $current = get_option('lsd_ai', []);
+
+        // Add if not exists
+        if (!is_array($current) || !isset($current['profiles'])) update_option('lsd_ai', $defaults);
+
+        return self::parse_args(
+            $current,
+            $defaults
+        );
+    }
+  
+    public static function payments(): array
+    {
+        return self::parse_args(
+            get_option('lsd_payments', []),
+            self::defaults('payments')
+        );
+    }
+
+    public static function auth(): array
+    {
+        return self::parse_args(
+            get_option('lsd_auth', []),
+            self::defaults('auth')
+        );
+    }
+
+    public static function styles(): array
+    {
+        return self::parse_args(
+            get_option('lsd_styles', []),
+            self::defaults('styles')
+        );
+    }
+
+    public static function details_page(): array
+    {
+        $options = self::parse_args(
+            get_option('lsd_details_page', []),
+            self::defaults('details_page')
+        );
+
+        if (!LSD_Components::work_hours())
+        {
+            unset($options['elements']['availability']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+                if (isset($options['builder'][$sec]['elements']['availability'])) unset($options['builder'][$sec]['elements']['availability']);
+        }
+
+        if (!LSD_Components::pricing())
+        {
+            unset($options['elements']['price']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+                if (isset($options['builder'][$sec]['elements']['price'])) unset($options['builder'][$sec]['elements']['price']);
+        }
+
+        if (!LSD_Components::map())
+        {
+            unset($options['elements']['map'], $options['elements']['address']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+            {
+                unset($options['builder'][$sec]['elements']['map']);
+                unset($options['builder'][$sec]['elements']['address']);
+            }
+        }
+
+        if (!LSD_Components::related())
+        {
+            unset($options['elements']['related']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+                if (isset($options['builder'][$sec]['elements']['related'])) unset($options['builder'][$sec]['elements']['related']);
+        }
+
+        if (!LSD_Components::socials())
+        {
+            unset($options['elements']['share']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+                if (isset($options['builder'][$sec]['elements']['share'])) unset($options['builder'][$sec]['elements']['share']);
+        }
+
+        if (!LSD_Components::cta())
+        {
+            unset($options['elements']['cta']);
+            foreach (['head1','head2','head3','col1','col2','col3','foot1','foot2','foot3'] as $sec)
+                if (isset($options['builder'][$sec]['elements']['cta'])) unset($options['builder'][$sec]['elements']['cta']);
+        }
+
+        return $options;
+    }
+
+    public static function dummy(): array
+    {
+        return self::parse_args(
+            get_option('lsd_dummy', []),
+            self::defaults('dummy')
+        );
+    }
+
+    public static function customizer(string $key = '')
+    {
+        if ($key) return LSD_Customizer::values($key);
+
+        return self::parse_args(
+            LSD_Customizer::values(),
+            self::defaults('customizer')
+        );
+    }
+
+    public static function socials(): array
+    {
+        if (!LSD_Components::socials()) return [];
+
+        $socials = (array) get_option('lsd_socials', []);
+        if (!empty($socials)) return $socials;
+
+        return self::parse_args(
+            $socials,
+            self::defaults('socials')
+        );
+    }
+
+    public static function details_page_pattern()
+    {
+        $default = self::defaults('details_page_pattern');
+        $pattern = get_option('lsd_details_page_pattern', '');
+        $pattern = is_string($pattern) ? $pattern : '';
+
+        return trim($pattern) ? $pattern : $default;
+    }
+
+    public static function addons($addon = null, $values = null)
+    {
+        $addons = self::parse_args(
+            get_option('lsd_addons', []),
+            self::defaults('addons')
+        );
+
+        // Save Options
+        if (is_array($values))
+        {
+            $addons[$addon] = $values;
+
+            // Save options
+            return update_option('lsd_addons', $addons);
+        }
+
+        return $addon ? ($addons[$addon] ?? []) : $addons;
+    }
+
+    public static function defaults($option = 'settings')
+    {
+        switch ($option)
+        {
+            case 'customizer':
+
+                $defaults = LSD_Customizer::defaults();
+                break;
+
+            case 'styles':
+
+                $defaults = ['CSS' => ''];
+                break;
+
+            case 'socials':
+
+                $defaults = [
+                    'facebook' => [
+                        'key' => 'facebook',
+                        'profile' => 1,
+                        'archive_share' => 1,
+                        'single_share' => 1,
+                        'listing' => 1,
+                    ],
+                    'twitter' => [
+                        'key' => 'twitter',
+                        'profile' => 1,
+                        'archive_share' => 1,
+                        'single_share' => 1,
+                        'listing' => 1,
+                    ],
+                    'pinterest' => [
+                        'key' => 'pinterest',
+                        'profile' => 0,
+                        'archive_share' => 0,
+                        'single_share' => 1,
+                        'listing' => 0,
+                    ],
+                    'linkedin' => [
+                        'key' => 'linkedin',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 1,
+                        'listing' => 0,
+                    ],
+                    'instagram' => [
+                        'key' => 'instagram',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 1,
+                        'listing' => 1,
+                    ],
+                    'whatsapp' => [
+                        'key' => 'whatsapp',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 0,
+                        'listing' => 1,
+                    ],
+                    'youtube' => [
+                        'key' => 'youtube',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 0,
+                        'listing' => 1,
+                    ],
+                    'tiktok' => [
+                        'key' => 'tiktok',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 0,
+                        'listing' => 1,
+                    ],
+                    'telegram' => [
+                        'key' => 'telegram',
+                        'profile' => 1,
+                        'archive_share' => 0,
+                        'single_share' => 0,
+                        'listing' => 1,
+                    ],
+                ];
+                break;
+
+            case 'details_page':
+
+                $defaults = [
+                    'general' => [
+                        'style' => 'style1',
+                        'theme_template' => '',
+                        'comments' => 1,
+                        'displ' => '0',
+                    ],
+                    'elements' => [
+                        'labels' => ['enabled' => 1, 'show_title' => 0],
+                        'image' => ['enabled' => 1, 'show_title' => 0],
+                        'video' => ['enabled' => 0, 'show_title' => 0],
+                        'title' => ['enabled' => 1, 'show_title' => 0],
+                        'categories' => ['enabled' => 1, 'show_title' => 1],
+                        'price' => ['enabled' => 1, 'show_title' => 0],
+                        'tags' => ['enabled' => 1, 'show_title' => 1],
+                        'content' => ['enabled' => 1, 'show_title' => 0],
+                        'faq' => ['enabled' => 0, 'show_title' => 1, 'count' => 0],
+                        'gallery' => ['enabled' => 1, 'show_title' => 0],
+                        'embed' => ['enabled' => 0, 'show_title' => 0],
+                        'attributes' => ['enabled' => 1, 'show_title' => 1, 'show_icons' => 0, 'show_attribute_title' => 1],
+                        'features' => ['enabled' => 1, 'show_title' => 1, 'show_icons' => 0],
+                        'contact' => ['enabled' => 1, 'show_title' => 1],
+                        'remark' => ['enabled' => 1, 'show_title' => 0],
+                        'locations' => ['enabled' => 1, 'show_title' => 0],
+                        'address' => ['enabled' => 1, 'show_title' => 0],
+                        'breadcrumb' => ['enabled' => 0, 'show_title' => 0, 'icon' => 1, 'taxonomy' => LSD_Base::TAX_CATEGORY],
+                        'map' => ['enabled' => 1, 'show_title' => 0, 'infowindow' => 0],
+                        'availability' => ['enabled' => 1, 'show_title' => 1],
+                        'owner' => ['enabled' => 1, 'show_title' => 0, 'pc_enabled' => 1, 'pc_label' => ''],
+                        'cta' => [
+                            'enabled' => 0,
+                            'show_title' => 0,
+                            'alignment' => 'center',
+                            'text' => '',
+                            'target' => 'details',
+                            'url' => '',
+                            'content' => '',
+                        ],
+                        'share' => ['enabled' => 1, 'show_title' => 0],
+                        'related' => ['enabled' => 0, 'show_title' => 0],
+                        'abuse' => ['enabled' => 0, 'show_title' => 0, 'pc_enabled' => 1, 'pc_label' => ''],
+                        'excerpt' => ['enabled' => 0, 'show_title' => 0],
+                    ],
+                ];
+                break;
+
+            case 'details_page_pattern':
+
+                $defaults = '{labels}{image}{title}{categories}{price}{tags}{content}{faq}{gallery}{embed}{attributes}{features}{contact}{remark}{locations}{address}{map}{availability}{owner}{cta}{share}';
+                break;
+
+            case 'mapcontrols':
+
+                $defaults = [
+                    'zoom' => 'RIGHT_BOTTOM',
+                    'maptype' => 'TOP_LEFT',
+                    'streetview' => 'RIGHT_BOTTOM',
+                    'draw' => 'TOP_CENTER',
+                    'gps' => 'RIGHT_BOTTOM',
+                    'scale' => '0',
+                    'fullscreen' => '1',
+                    'camera' => '0',
+                ];
+                break;
+
+            case 'sorts':
+
+                $defaults = [
+                    'default' => [
+                        'orderby' => 'post_date',
+                        'order' => 'DESC',
+                    ],
+                    'display' => 1,
+                    'sort_style' => 'drop-down',
+                    'options' => [
+                        'post_date' => [
+                            'status' => '1',
+                            'name' => esc_html__('List Date', 'listdom'),
+                            'order' => 'DESC',
+                        ],
+                        'title' => [
+                            'status' => '1',
+                            'name' => esc_html__('Listing Title', 'listdom'),
+                            'order' => 'ASC',
+                        ],
+                        'modified' => [
+                            'status' => '1',
+                            'name' => esc_html__('Last Update', 'listdom'),
+                            'order' => 'DESC',
+                        ],
+                        'comment_count' => [
+                            'status' => '1',
+                            'name' => esc_html__('Comments', 'listdom'),
+                            'order' => 'DESC',
+                        ],
+                        'ID' => [
+                            'status' => '0',
+                            'name' => esc_html__('Listing ID', 'listdom'),
+                            'order' => 'DESC',
+                        ],
+                        'lsd_visits' => [
+                            'status' => '0',
+                            'name' => esc_html__('Most Viewed', 'listdom'),
+                            'order' => 'DESC',
+                            'orderby' => 'meta_value_num',
+                        ],
+                    ],
+                ];
+                break;
+
+            case 'addons':
+
+                $defaults = [];
+                break;
+            
+            case 'payments':
+
+                $defaults = [
+                    'listdom' => 0,
+                    'gateways' => [],
+                    'checkout_page' => '',
+                    'appreciation_page' => '',
+                    'appreciation_message' => '',
+                    'appreciation_invoice_button' => '1',
+                    'agreement' => '',
+                    'pc_enabled' => 0,
+                    'pc_label' => 'I agree to the {{privacy_policy}}.',
+                    'free_checkout_comment' => '',
+                    'taxes' => [
+                        'enable' => 0,
+                        'prices_include_tax' => 0,
+                        'rate' => 0,
+                        'locations' => [],
+                        'label' => 'Tax',
+                    ],
+                    'empty' => [
+                        'logo' => '',
+                        'content' => '<p>Your cart is empty.</p>',
+                        'show_buttons' => 1,
+                    ],
+                    'invoice' => [
+                        'logo' => '',
+                        'from' => "Your Company.\nyour@email.com",
+                        'footer' => '',
+                    ],
+                ];
+
+                break;
+
+            case 'api':
+
+                $defaults = [
+                    'tokens' => [
+                        [
+                            'name' => esc_html__('Default API', 'listdom'),
+                            'key' => LSD_Base::str_random(40),
+                        ],
+                    ],
+                ];
+                break;
+
+            case 'ai':
+
+                $defaults = [
+                    'profiles' => [],
+                    'modules' => [
+                        'working_hours' => ['access' => ['administrator']],
+                        'content_generation' => ['access' => ['administrator']],
+                        'auto_mapping' => ['access' => ['administrator']],
+                    ],
+                ];
+                break;
+
+            case 'auth':
+
+                $defaults = [
+                    'auth' => [
+                        'switch_style' => 'both',
+                        'hide_login_form' => 0,
+                        'hide_register_form' => 0,
+                        'hide_forgot_password_form' => 0,
+                        'register_tab_label' => esc_html__('Register', 'listdom'),
+                        'register_link_label' => esc_html__('Not a member? Register.', 'listdom'),
+                        'login_tab_label' => esc_html__('Login', 'listdom'),
+                        'login_link_label' => esc_html__('Already a member? Login.', 'listdom'),
+                        'forgot_password_tab_label' => esc_html__('Forgot Password', 'listdom'),
+                        'forgot_password_link_label' => esc_html__('Forgot your password?', 'listdom'),
+                        'login_form' => 0,
+                        'login_page' => '',
+                        'register_form' => 0,
+                        'register_page' => '',
+                        'forgot_password_form' => 0,
+                        'forgot_password_page' => '',
+                    ],
+                    'register' => [
+                        'redirect' => get_option('page_on_front') ?? 0,
+                        'redirect_subscriber' => 0,
+                        'redirect_contributor' => 0,
+                        'redirect_listdom_author' => 0,
+                        'redirect_listdom_publisher' => 0,
+                        'email_verification' => 0,
+                        'username_label' => esc_html__('Username', 'listdom'),
+                        'username_placeholder' => esc_html__('Enter your username', 'listdom'),
+                        'password_label' => esc_html__('Password', 'listdom'),
+                        'password_placeholder' => esc_html__('Enter your password', 'listdom'),
+                        'email_label' => esc_html__('Email', 'listdom'),
+                        'email_placeholder' => esc_html__('Enter your email address', 'listdom'),
+                        'pc_enabled' => 1,
+                        'pc_label' => esc_html__('I agree to the {{privacy_policy}}.', 'listdom'),
+                        'submit_label' => esc_html__('Register', 'listdom'),
+                        'login_after_register' => 1,
+                        'strong_password' => 1,
+                        'password_length' => 8,
+                        'contain_uppercase' => 1,
+                        'contain_lowercase' => 1,
+                        'contain_numbers' => 1,
+                        'contain_specials' => 1,
+                    ],
+                    'login' => [
+                        'redirect' => get_option('page_on_front') ?? 0,
+                        'redirect_subscriber' => 0,
+                        'redirect_contributor' => 0,
+                        'redirect_listdom_author' => 0,
+                        'redirect_listdom_publisher' => 0,
+                        'username_label' => esc_html__('Username', 'listdom'),
+                        'password_label' => esc_html__('Password', 'listdom'),
+                        'username_placeholder' => esc_html__('Enter your username', 'listdom'),
+                        'password_placeholder' => esc_html__('Enter your password', 'listdom'),
+                        'remember_label' => esc_html__('Remember Me', 'listdom'),
+                        'submit_label' => esc_html__('Log In', 'listdom'),
+                    ],
+                    'forgot_password' => [
+                        'redirect' => get_option('page_on_front') ?? 0,
+                        'email_label' => esc_html__('Email', 'listdom'),
+                        'email_placeholder' => esc_html__('Enter your Email Address', 'listdom'),
+                        'submit_label' => esc_html__('Reset Password', 'listdom'),
+                    ],
+                    'account' => [
+                        'redirect' => get_option('page_on_front') ?? 0,
+                    ],
+                    'logout' => [
+                        'redirect' => get_option('page_on_front') ?? 0,
+                    ],
+                    'profile' => [
+                        'page' => get_option('page_on_front') ?? 0,
+                        'shortcode' => 'list',
+                        'pc_enabled' => 1,
+                        'pc_label' => esc_html__('I agree to the {{privacy_policy}}.', 'listdom'),
+                    ],
+                ];
+                break;
+
+            case 'dummy':
+                $defaults = [
+                    'dummy' => [
+                        'listings' => 1,
+                        'categories' => 1,
+                        'locations' => 1,
+                        'tags' => 1,
+                        'features' => 1,
+                        'labels' => 1,
+                        'shortcodes' => 1,
+                        'frontend_dashboard' => 1,
+                        'attributes' => 1,
+                        'profile' => 1,
+                    ],
+                ];
+                break;
+
+            default:
+
+                $defaults = [
+                    'default_currency' => 'USD',
+                    'currency_position' => 'before',
+                    'timepicker_format' => 24,
+                    'listing_link_status' => 1,
+                    'rss_status' => 1,
+                    'rss_slug' => 'listdom-listings',
+                    'visibility_max_visits' => '',
+                    'help_improve_listdom' => 0,
+                    'powered_by_message' => 0,
+                    'address_placeholder' => '123 Main St, Unit X, City, State, Zipcode',
+                    'address_autosuggest' => 1,
+                    'map_provider' => 'leaflet',
+                    'map_gps_zl' => 13,
+                    'map_gps_zl_current' => 7,
+                    'map_backend_zl' => 6,
+                    'map_backend_lt' => '37.0625',
+                    'map_backend_ln' => '-95.677068',
+                    'map_shape_fill_color' => '#1e90ff',
+                    'map_shape_fill_opacity' => '0.3',
+                    'map_shape_stroke_color' => '#1e74c7',
+                    'map_shape_stroke_opacity' => '0.8',
+                    'map_shape_stroke_weight' => '2',
+                    'googlemaps_api_key' => '',
+                    'mapbox_access_token' => '',
+                    'dply_main_color' => '#2b93ff',
+                    'dply_main_font' => 'lato',
+                    'listings_slug' => 'listings',
+                    'category_slug' => 'listing-category',
+                    'location_slug' => 'listing-location',
+                    'tag_slug' => 'listing-tag',
+                    'feature_slug' => 'listing-feature',
+                    'label_slug' => 'listing-label',
+                    'advanced_slug_status' => 0,
+                    'advanced_slug' => '%location%/%category%',
+                    'grecaptcha_status' => 0,
+                    'grecaptcha_sitekey' => '',
+                    'grecaptcha_secretkey' => '',
+                    'mailchimp_status' => 0,
+                    'mailchimp_api_key' => '',
+                    'mailchimp_list_id' => '',
+                    'submission_pc_enabled' => 1,
+                    'submission_pc_label' => '',
+                    'privacy_consent' => [
+                        'enabled' => 1,
+                        'default_label' => 'I agree to the {{privacy_policy}}.',
+                        'required_message' => 'Please confirm that you agree to our privacy policy before continuing.',
+                        'policy_content' => implode("\n\n", [
+                            'Listdom stores personal information that you provide when you submit listings, send contact or report forms, register for an account, or manage your profile. This data can include names, email addresses, phone numbers, and any messages that you send through the plugin.',
+                            'The information is saved inside your WordPress database as user metadata or listing metadata and is retained until you delete the related record (for example, removing a listing or user account) or process an erasure request with the WordPress privacy tools.',
+                            'Administrators can review, export, or erase Listdom data from WordPress admin by using Tools → Export Personal Data and Tools → Erase Personal Data.',
+                            'Listdom can load map services (Google Maps or OpenStreetMap) and Google reCAPTCHA when they are enabled. These services may receive visitor IP addresses or other usage data. Please reference their privacy documentation in your site policy.',
+                        ]),
+                    ],
+                    'dashboard_form_columns' => 2,
+                    'dashboard_menu_sidebar_status' => 'default',
+                    'dashboard_menu_sidebar_horizontal_mode' => 'default',
+                    'mailchimp_checked' => 0,
+                    'mailchimp_message' => '',
+                    'location_archive' => '',
+                    'category_archive' => '',
+                    'tag_archive' => '',
+                    'feature_archive' => '',
+                    'label_archive' => '',
+                    'price_component_currency' => 1,
+                    'price_component_max' => 1,
+                    'price_component_after' => 1,
+                    'price_component_class' => 1,
+                    'submission_tax_listdom-category_method' => 'dropdown',
+                    'submission_tax_additional_listdom-category_method' => 'checkboxes',
+                    'submission_category_children_only' => 0,
+                    'submission_tax_listdom-location_method' => 'checkboxes',
+                    'submission_tax_listdom-feature_method' => 'checkboxes',
+                    'submission_tax_listdom-tag_method' => 'textarea',
+                    'submission_term_builder_'.LSD_Base::TAX_CATEGORY => 'disabled',
+                    'submission_term_builder_'.LSD_Base::TAX_LOCATION => 'disabled',
+                    'submission_term_builder_'.LSD_Base::TAX_LABEL => 'disabled',
+                    'submission_term_builder_'.LSD_Base::TAX_TAG => 'disabled',
+                    'submission_term_builder_'.LSD_Base::TAX_FEATURE => 'disabled',
+                    'submission_module' => [
+                        'address' => 1,
+                        'price' => 1,
+                        'availability' => 1,
+                        'contact' => 1,
+                        'remark' => 1,
+                        'gallery' => 1,
+                        'faq' => 1,
+                        'attributes' => 1,
+                        'locations' => 1,
+                        'tags' => 1,
+                        'features' => 1,
+                        'labels' => 1,
+                        'image' => 1,
+                        'embed' => 1,
+                        'cta' => 1,
+                        'related' => 0,
+                    ],
+                    'assets' => [
+                        'load' => 1,
+                    ],
+                    'components' => [
+                        'map' => 1,
+                        'pricing' => 1,
+                        'work_hours' => 1,
+                        'visibility' => 1,
+                        'related' => 1,
+                        'socials' => 1,
+                        'cta' => 1,
+                    ],
+                    'block_admin_subscriber' => 1,
+                    'block_admin_contributor' => 1,
+                    'block_admin_listdom_author' => 1,
+                    'block_admin_listdom_publisher' => 1,
+                    'ai_driver' => LSD_AI_Models::OPENAI_GPT_41_NANO,
+                ];
+        }
+
+        // Default Values
+        return apply_filters('lsd_default_options', $defaults, $option);
+    }
+
+    public static function slug(): string
+    {
+        $settings = self::settings();
+        $slug = isset($settings['listings_slug']) && trim($settings['listings_slug'])
+            ? $settings['listings_slug']
+            : 'listings';
+
+        return sanitize_title($slug);
+    }
+
+    public static function location_slug(): string
+    {
+        $settings = self::settings();
+        $slug = $settings['location_slug'] ?? 'listing-location';
+
+        return sanitize_title($slug);
+    }
+
+    public static function category_slug(): string
+    {
+        $settings = self::settings();
+        $slug = $settings['category_slug'] ?? 'listing-category';
+
+        return sanitize_title($slug);
+    }
+
+    public static function tag_slug(): string
+    {
+        $settings = self::settings();
+        $slug = $settings['tag_slug'] ?? 'listing-tag';
+
+        return sanitize_title($slug);
+    }
+
+    public static function feature_slug(): string
+    {
+        $settings = self::settings();
+        $slug = $settings['feature_slug'] ?? 'listing-feature';
+
+        return sanitize_title($slug);
+    }
+
+    public static function label_slug(): string
+    {
+        $settings = self::settings();
+        $slug = $settings['label_slug'] ?? 'listing-label';
+
+        return sanitize_title($slug);
+    }
+
+    public static function mapbox_token(): string
+    {
+        $settings = self::settings();
+        $token = $settings['mapbox_access_token'] ?? '';
+
+        return apply_filters('lsd_mapbox_token', trim($token));
+    }
+
+    public static function currency(): string
+    {
+        $settings = self::settings();
+        $currency = $settings['default_currency'] ?? 'USD';
+
+        return apply_filters('lsd_default_currency', trim($currency));
+    }
+
+    public static function price_components(): array
+    {
+        $settings = LSD_Options::settings();
+        $pro = LSD_Base::isPro();
+
+        $pricing = LSD_Components::pricing();
+
+        return [
+            'currency' => !$pricing ? 0 : (
+                isset($settings['price_component_currency']) && $pro ? (int) $settings['price_component_currency'] : 1
+            ),
+            'max' => !$pricing ? 0 : (
+                isset($settings['price_component_max']) && $pro ? (int) $settings['price_component_max'] : 1
+            ),
+            'after' => !$pricing ? 0 : (
+                isset($settings['price_component_after']) && $pro ? (int) $settings['price_component_after'] : 1
+            ),
+            'class' => !$pricing ? 0 : (
+                isset($settings['price_component_class']) && $pro ? (int) $settings['price_component_class'] : 1
+            ),
+        ];
+    }
+
+    /**
+     * @param string $key
+     * @param string $type
+     * @param bool $return_original
+     * @return int
+     */
+    public static function post_id(string $key, string $type = 'page', bool $return_original = true): int
+    {
+        $settings = self::settings();
+        $post_id = $settings[$key] ?? 0;
+
+        return (int) apply_filters('wpml_object_id', $post_id, $type, $return_original);
+    }
+
+    public static function merge(string $key, array $options)
+    {
+        // Get current Listdom options
+        $current = get_option($key, []);
+        if (!is_array($current)) $current = [];
+
+        // Merge new options with previous options
+        $final = array_merge($current, $options);
+
+        // Save final options
+        update_option($key, $final);
+    }
+}

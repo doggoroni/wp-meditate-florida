@@ -1,0 +1,3212 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Vertex Addons for Elementor\n"
+"POT-Creation-Date: 2024-11-06 19:02-0800\n"
+"PO-Revision-Date: 2024-11-06 19:02-0800\n"
+"Last-Translator: Totalery <info@totalery.com>\n"
+"Language-Team: Webilia <info@webilia.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;"
+"esc_attr_e;esc_attr_x;_n;_nx\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .sass-cache\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: tests\n"
+"X-Poedit-SearchPathExcluded-4: bin\n"
+
+#: addons-for-elementor-builder.php:50
+#, php-format
+msgid "Vertex Addons for Elementor requires %1$s version %2$s+"
+msgstr ""
+
+#: app/Controls/CHelper.php:76
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+msgstr ""
+
+#: app/Controls/CHelper.php:77
+msgid "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+msgstr ""
+
+#: app/Controls/CHelper.php:78
+msgid ""
+"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
+"aliquip ex ea commodo consequat."
+msgstr ""
+
+#: app/Controls/CHelper.php:81 app/Widgets/Countdown.php:128
+#: app/Widgets/DataTable.php:773 app/Widgets/Hotspot.php:168
+#: app/Widgets/Tabs.php:141 app/Widgets/Timeline/Timeline.php:121
+msgid "Left"
+msgstr ""
+
+#: app/Controls/CHelper.php:82
+msgid "Center"
+msgstr ""
+
+#: app/Controls/CHelper.php:83 app/Widgets/Countdown.php:129
+#: app/Widgets/DataTable.php:774 app/Widgets/Hotspot.php:166
+#: app/Widgets/Timeline/Timeline.php:122
+msgid "Right"
+msgstr ""
+
+#: app/Controls/CHelper.php:604
+msgid "Link"
+msgstr ""
+
+#: app/Controls/CHelper.php:628
+msgid "Code Editor"
+msgstr ""
+
+#: app/Controls/CHelper.php:661 app/Widgets/AlertBox.php:119
+#: app/Widgets/DataTable.php:135 app/Widgets/DataTable.php:188
+#: app/Widgets/Hotspot.php:129 app/Widgets/NoticeBox/NoticeBox.php:112
+#: app/Widgets/NoticeBox/NoticeBox.php:146 app/Widgets/SearchForm.php:160
+#: app/Widgets/Timeline/Timeline.php:209
+msgid "Icon"
+msgstr ""
+
+#: app/Controls/CHelper.php:747 app/Controls/CHelper.php:781
+msgid "Yes"
+msgstr ""
+
+#: app/Controls/CHelper.php:748 app/Controls/CHelper.php:782
+msgid "No"
+msgstr ""
+
+#: app/Controls/CHelper.php:815
+msgid "Show"
+msgstr ""
+
+#: app/Controls/CHelper.php:816
+msgid "Hide"
+msgstr ""
+
+#: app/Controls/CHelper.php:1017 app/Widgets/DataTable.php:136
+#: app/Widgets/DataTable.php:189 app/Widgets/Hotspot.php:116
+#: app/Widgets/Hotspot.php:130 app/Widgets/Hotspot.php:202
+#: app/Widgets/SoundPlayer.php:164
+msgid "Image"
+msgstr ""
+
+#: app/Controls/CHelper.php:1049
+msgid "Audio"
+msgstr ""
+
+#: app/Controls/CHelper.php:1104 app/Controls/CHelper.php:1187
+msgid "Alignment"
+msgstr ""
+
+#: app/Controls/CHelper.php:1273 app/Widgets/Accordion.php:188
+#: app/Widgets/Countdown.php:116 app/Widgets/Timeline/Timeline.php:195
+msgid "Items"
+msgstr ""
+
+#: app/Controls/CHelper.php:1363 app/Widgets/Breadcrumb/Breadcrumb.php:127
+#: app/Widgets/Breadcrumb/Breadcrumb.php:136 app/Widgets/Countdown.php:170
+#: app/Widgets/DataTable.php:301 app/Widgets/DataTable.php:311
+#: app/Widgets/DataTable.php:448 app/Widgets/DataTable.php:461
+#: app/Widgets/Hotspot.php:267 app/Widgets/PriceBox/PriceBox.php:188
+#: app/Widgets/PriceBox/PriceBox.php:207 app/Widgets/PriceBox/PriceBox.php:224
+#: app/Widgets/SearchForm.php:183
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:182
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:196
+#: app/Widgets/Timeline/Timeline.php:131
+msgid "Text Color"
+msgstr ""
+
+#: app/Controls/CHelper.php:1396 app/Widgets/Breadcrumb/Breadcrumb.php:147
+msgid "Background Color"
+msgstr ""
+
+#: app/Controls/CHelper.php:1474
+msgid "Border"
+msgstr ""
+
+#: app/Controls/CHelper.php:1501
+msgid "Box Shadow"
+msgstr ""
+
+#: app/Controls/CHelper.php:1551 app/Widgets/DataTable.php:862
+msgid "Typography"
+msgstr ""
+
+#: app/Controls/CHelper.php:1857
+msgid "Date / Time"
+msgstr ""
+
+#: app/Controls/CHelper.php:1909
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:169
+msgid "Margin"
+msgstr ""
+
+#: app/Controls/CHelper.php:1912
+msgid "Padding"
+msgstr ""
+
+#: app/Controls/CHelper.php:1915 app/Widgets/Accordion.php:206
+#: app/Widgets/Accordion.php:264
+msgid "Border Radius"
+msgstr ""
+
+#: app/Extensions.php:48 app/Extensions/CustomCssjs.php:73
+msgid "Custom CSS/JS"
+msgstr ""
+
+#: app/Extensions.php:52 app/Extensions/WrapperLink.php:62
+msgid "Wrapper Link"
+msgstr ""
+
+#: app/Extensions.php:56 app/Extensions/GoingUpKit.php:52
+#: app/Extensions/GoingUpKit.php:74
+msgid "Scroll to Top"
+msgstr ""
+
+#: app/Extensions/CustomCssjs.php:79 app/Extensions/CustomCssjs.php:81
+msgid "CSS"
+msgstr ""
+
+#: app/Extensions/CustomCssjs.php:86
+msgid "JS"
+msgstr ""
+
+#: app/Extensions/CustomCssjs.php:88
+msgid "Header JS"
+msgstr ""
+
+#: app/Extensions/CustomCssjs.php:89
+msgid "Footer JS"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:76
+msgid "Enable Scroll To Top"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:79
+msgid "Show Title"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:80 app/Widgets/Accordion.php:124
+#: app/Widgets/DataTable.php:289
+#: app/Widgets/InformationBox/InformationBox.php:114
+#: app/Widgets/InformationBox/InformationBox.php:155 app/Widgets/Map.php:125
+#: app/Widgets/NewsTicker.php:116 app/Widgets/NewsTicker.php:171
+#: app/Widgets/NoticeBox/NoticeBox.php:121
+#: app/Widgets/PriceBox/PriceBox.php:113 app/Widgets/PriceBox/PriceBox.php:114
+#: app/Widgets/PriceBox/PriceBox.php:134 app/Widgets/PriceBox/PriceBox.php:149
+#: app/Widgets/PriceBox/PriceBox.php:170 app/Widgets/SoundPlayer.php:129
+#: app/Widgets/SoundPlayer.php:180 app/Widgets/Tabs.php:123
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:181
+#: app/Widgets/Timeline/Timeline.php:117 app/Widgets/Timeline/Timeline.php:224
+msgid "Title"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:80
+msgid "Back To Top"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:80
+msgid "e.g. Back To Top"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:87 app/Widgets/Accordion.php:250
+#: app/Widgets/AlertBox.php:150 app/Widgets/Breadcrumb/Breadcrumb.php:126
+#: app/Widgets/DataTable.php:148 app/Widgets/DataTable.php:202
+#: app/Widgets/DataTable.php:299 app/Widgets/DataTable.php:446
+#: app/Widgets/DataTable.php:481 app/Widgets/DataTable.php:516
+#: app/Widgets/DataTable.php:551 app/Widgets/DataTable.php:586
+#: app/Widgets/DataTable.php:618 app/Widgets/DataTable.php:653
+#: app/Widgets/DataTable.php:689 app/Widgets/DataTable.php:762
+#: app/Widgets/DataTable.php:840 app/Widgets/DataTable.php:853
+#: app/Widgets/Hotspot.php:239 app/Widgets/LoginRegister/LoginRegister.php:976
+#: app/Widgets/LoginRegister/LoginRegister.php:1173
+#: app/Widgets/LoginRegister/LoginRegister.php:1210
+#: app/Widgets/LoginRegister/LoginRegister.php:1247 app/Widgets/Map.php:167
+#: app/Widgets/SearchForm.php:134 app/Widgets/Tabs.php:196
+#: app/Widgets/Tabs.php:237
+msgid "Normal"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:94 app/Widgets/Hotspot.php:206
+#: app/Widgets/NewsTicker.php:149 app/Widgets/SoundPlayer.php:295
+msgid "Height"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:95 app/Widgets/Hotspot.php:207
+#: app/Widgets/Hotspot.php:271 app/Widgets/LoginRegister/LoginRegister.php:1179
+#: app/Widgets/LoginRegister/LoginRegister.php:1216
+msgid "Width"
+msgstr ""
+
+#: app/Extensions/GoingUpKit.php:104 app/Widgets/Accordion.php:257
+#: app/Widgets/AlertBox.php:166 app/Widgets/Breadcrumb/Breadcrumb.php:135
+#: app/Widgets/DataTable.php:161 app/Widgets/DataTable.php:215
+#: app/Widgets/DataTable.php:309 app/Widgets/DataTable.php:459
+#: app/Widgets/DataTable.php:496 app/Widgets/DataTable.php:529
+#: app/Widgets/DataTable.php:564 app/Widgets/DataTable.php:597
+#: app/Widgets/DataTable.php:631 app/Widgets/DataTable.php:669
+#: app/Widgets/DataTable.php:795 app/Widgets/DataTable.php:843
+#: app/Widgets/DataTable.php:856 app/Widgets/Hotspot.php:246
+#: app/Widgets/LoginRegister/LoginRegister.php:988
+#: app/Widgets/LoginRegister/LoginRegister.php:1189
+#: app/Widgets/LoginRegister/LoginRegister.php:1226
+#: app/Widgets/LoginRegister/LoginRegister.php:1260 app/Widgets/Map.php:175
+#: app/Widgets/SearchForm.php:146 app/Widgets/Tabs.php:206
+#: app/Widgets/Tabs.php:250
+msgid "Hover"
+msgstr ""
+
+#: app/Extensions/WrapperLink.php:63
+msgid "Enable Wrapper Link"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:140
+msgid "Please publish the page first and then try again"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:142
+msgid "The page ID is not set"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:151
+msgid "The widget ID is not set"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:156
+msgid "The submitted form is not secure, Nonce is not set"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:159
+msgid "Security token did not match"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:164
+#: app/Widgets/LoginRegister/LoginRegister.php:884
+msgid "You are already logged in"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:167
+msgid "Unfortunately, The ability to register on this site is disabled"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:172
+msgid "There is no user registered with that user name"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:175
+msgid "There is no user registered with that email address"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:181
+msgid "The password reset key is not set"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:184
+msgid "The user login parameter is not set correctly"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:187
+msgid "Please enter a new password"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:195
+#: app/Widgets/LoginRegister/LoginRegister.php:887
+msgid "Invalid security answer, Please try again"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:238
+msgid "Invalid Email. Please check your email or try again with your username"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:240
+msgid ""
+"Invalid Username. Please check your username or try again with your email"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:242
+#: app/Handler/Widgets/LoginRegisterHandler.php:427
+#: app/Handler/Widgets/LoginRegisterHandler.php:443
+#: app/Widgets/LoginRegister/LoginRegister.php:870
+msgid "Please enter a valid Password"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:246
+#: app/Widgets/LoginRegister/LoginRegister.php:890
+msgid "Something went wrong!"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:343
+#: app/Handler/Widgets/LoginRegisterHandler.php:358
+msgid "Please enter a valid username"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:347
+#, php-format
+msgid "Username must be more than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:351
+#, php-format
+msgid "Username must be less than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:354
+#: app/Widgets/LoginRegister/LoginRegister.php:845
+msgid "This username already exists on the site"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:372
+#: app/Widgets/LoginRegister/LoginRegister.php:853
+msgid "Please enter a valid email"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:376
+#, php-format
+msgid "Email must be more than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:380
+#, php-format
+msgid "Email must be less than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:383
+#: app/Widgets/LoginRegister/LoginRegister.php:859
+msgid "This email already exists on the site"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:387
+#: app/Handler/Widgets/LoginRegisterHandler.php:399
+#: app/Widgets/LoginRegister/LoginRegister.php:856
+msgid "Email is missing or Invalid"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:395
+#: app/Handler/Widgets/LoginRegisterHandler.php:403
+#: app/Widgets/LoginRegister/LoginRegister.php:862
+msgid "The confirmed email did not match"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:418
+#: app/Handler/Widgets/LoginRegisterHandler.php:724
+#, php-format
+msgid "Password must be more than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:422
+#, php-format
+msgid "Password must be less than %s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:439
+#: app/Handler/Widgets/LoginRegisterHandler.php:447
+#: app/Handler/Widgets/LoginRegisterHandler.php:720
+#: app/Widgets/LoginRegister/LoginRegister.php:873
+msgid "The confirmed password did not match"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:464
+#, php-format
+msgid "%1$s must be more than %1$s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:468
+#, php-format
+msgid "%1$s must be less than %1$s characters"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:473
+#, php-format
+msgid "Please enter a valid %s"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:508
+msgid "Sorry, something went wrong!, User could not be registered"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:624
+#: app/Widgets/LoginRegister/LoginRegister.php:906
+msgid ""
+"Your registration was successfull, Please check your email inbox for the "
+"password"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:625
+#: app/Widgets/LoginRegister/LoginRegister.php:903
+msgid "Your registration was successfull, Now you can login to the site"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:680
+msgid "Unfortunately, There is a problem in the email sending process"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:683
+#: app/Widgets/LoginRegister/LoginRegister.php:914
+msgid "Check your email for the confirmation link"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:733
+#: app/Widgets/LoginRegister/LoginRegister.php:876
+#: app/Widgets/LoginRegister/LoginRegister.php:1368
+msgid ""
+"Your password reset link appears to be invalid. Please request a new link"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:739
+#: app/Widgets/LoginRegister/LoginRegister.php:1374
+#, php-format
+msgid "That key is no longer valid. Please reset your password again. Code: %s"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:747
+#: app/Widgets/LoginRegister/LoginRegister.php:922
+msgid "Password changed successfully, Now you can login to the site"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:751
+msgid "Sorry, something went wrong!"
+msgstr ""
+
+#: app/Handler/Widgets/LoginRegisterHandler.php:893
+#: app/Widgets/LoginRegister/LoginRegister.php:703
+msgid "Click here to reset your password"
+msgstr ""
+
+#: app/Helper.php:59 app/Helper.php:60
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:57
+msgid "PRO"
+msgstr ""
+
+#: app/Helper.php:281 app/Widgets/DataTable.php:729 app/Widgets/Hotspot.php:209
+#: app/Widgets/LoginRegister/LoginRegister.php:796
+#: app/Widgets/LoginRegister/LoginRegister.php:945
+msgid "Default"
+msgstr ""
+
+#: app/Helper.php:577
+msgid "Select Menu"
+msgstr ""
+
+#: app/Menus.php:72 app/Widgets.php:83
+msgid "Vertex Addons"
+msgstr ""
+
+#: app/Menus.php:73 html/admin/menus/dashboard/tabs/tpl.php:18
+msgid "Widgets"
+msgstr ""
+
+#: app/Menus.php:74 html/admin/menus/dashboard/tabs/tpl.php:19
+msgid "3rd Party Widgets"
+msgstr ""
+
+#: app/Menus.php:75 html/admin/menus/dashboard/tabs/tpl.php:20
+msgid "Extensions"
+msgstr ""
+
+#: app/Menus/Dashboard.php:154 app/Menus/Dashboard.php:187
+#: app/Menus/Dashboard.php:220
+msgid "The submitted form is not secure, Nonce is not set."
+msgstr ""
+
+#: app/Menus/Dashboard.php:157 app/Menus/Dashboard.php:190
+#: app/Menus/Dashboard.php:223
+msgid "Security token did not match."
+msgstr ""
+
+#: app/Menus/Dashboard.php:171 app/Menus/Dashboard.php:204
+#: app/Menus/Dashboard.php:237
+msgid "Changes saved successfully."
+msgstr ""
+
+#: app/Menus/Dashboard.php:172 app/Menus/Dashboard.php:205
+#: app/Menus/Dashboard.php:238
+msgid "There was a problem when saving the changes."
+msgstr ""
+
+#: app/Plugin/Hooks.php:52 app/Plugin/Hooks.php:61
+msgid "Forbidden"
+msgstr ""
+
+#: app/Security.php:31
+msgid "Ajax request is not valid"
+msgstr ""
+
+#: app/Strs.php:30
+#, php-format
+msgid "To use this feature, Please upgrade the plugin to the %s version"
+msgstr ""
+
+#: app/Strs.php:31
+msgid "Unfortunately, there is no item to display"
+msgstr ""
+
+#: app/System/WordPress.php:62
+msgid "Enable"
+msgstr ""
+
+#: app/System/WordPress.php:62
+msgid "Disable"
+msgstr ""
+
+#: app/Widgets.php:102 app/Widgets/Accordion.php:68
+#: app/Widgets/Accordion.php:104 app/Widgets/Accordion.php:114
+msgid "Accordion"
+msgstr ""
+
+#: app/Widgets.php:106 app/Widgets/AlertBox.php:70 app/Widgets/AlertBox.php:106
+#: app/Widgets/AlertBox.php:116
+msgid "Alert Box"
+msgstr ""
+
+#: app/Widgets.php:110 app/Widgets/Breadcrumb/Breadcrumb.php:65
+#: app/Widgets/Breadcrumb/Breadcrumb.php:101
+#: app/Widgets/Breadcrumb/Breadcrumb.php:111
+msgid "Breadcrumb"
+msgstr ""
+
+#: app/Widgets.php:115 app/Widgets/Countdown.php:68
+#: app/Widgets/Countdown.php:104
+msgid "CountDown"
+msgstr ""
+
+#: app/Widgets.php:119 app/Widgets/DataTable.php:73
+#: app/Widgets/DataTable.php:109 app/Widgets/DataTable.php:119
+msgid "Data Table"
+msgstr ""
+
+#: app/Widgets.php:123 app/Widgets/FancyText.php:72
+#: app/Widgets/FancyText.php:108 app/Widgets/FancyText.php:118
+msgid "Fancy Text"
+msgstr ""
+
+#: app/Widgets.php:127 app/Widgets/Hotspot.php:70 app/Widgets/Hotspot.php:106
+msgid "Hotspot"
+msgstr ""
+
+#: app/Widgets.php:131 app/Widgets/InformationBox/InformationBox.php:66
+#: app/Widgets/InformationBox/InformationBox.php:102
+#: app/Widgets/InformationBox/InformationBox.php:112
+msgid "Information Box"
+msgstr ""
+
+#: app/Widgets.php:136 app/Widgets/LoginRegister/LoginRegister.php:266
+#: app/Widgets/LoginRegister/LoginRegister.php:302
+msgid "Login, Register"
+msgstr ""
+
+#: app/Widgets.php:141 app/Widgets/Map.php:69 app/Widgets/Map.php:105
+#: app/Widgets/Map.php:115 app/Widgets/Map.php:160
+msgid "Map"
+msgstr ""
+
+#: app/Widgets.php:155 app/Widgets/NewsTicker.php:69
+#: app/Widgets/NewsTicker.php:105 app/Widgets/NewsTicker.php:115
+msgid "News ticker"
+msgstr ""
+
+#: app/Widgets.php:159 app/Widgets/NoticeBox/NoticeBox.php:66
+#: app/Widgets/NoticeBox/NoticeBox.php:102
+msgid "Notice Box"
+msgstr ""
+
+#: app/Widgets.php:169 app/Widgets/PriceBox/PriceBox.php:67
+#: app/Widgets/PriceBox/PriceBox.php:103
+msgid "Price Box"
+msgstr ""
+
+#: app/Widgets.php:174 app/Widgets/SoundPlayer.php:73
+#: app/Widgets/SoundPlayer.php:115
+msgid "Sound Player"
+msgstr ""
+
+#: app/Widgets.php:178 app/Widgets/SearchForm.php:66
+#: app/Widgets/SearchForm.php:102 app/Widgets/SearchForm.php:112
+msgid "Search Form"
+msgstr ""
+
+#: app/Widgets.php:182 app/Widgets/Tabs.php:72 app/Widgets/Tabs.php:108
+#: app/Widgets/Tabs.php:118
+msgid "Tabs"
+msgstr ""
+
+#: app/Widgets.php:186
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:72
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:108
+msgid "Testimonial Carousel"
+msgstr ""
+
+#: app/Widgets.php:191 app/Widgets/Timeline/Timeline.php:66
+#: app/Widgets/Timeline/Timeline.php:102 app/Widgets/Timeline/Timeline.php:113
+msgid "Timeline"
+msgstr ""
+
+#: app/Widgets.php:380
+msgid "Request a New Feature"
+msgstr ""
+
+#: app/Widgets.php:388
+msgid "Request a feature"
+msgstr ""
+
+#: app/Widgets.php:389
+msgid ""
+"Missing an option, need a new widget, or have a feature idea? Feel free to "
+"share it with us."
+msgstr ""
+
+#: app/Widgets.php:391
+msgid "Request New Feature"
+msgstr ""
+
+#: app/Widgets.php:405 app/Widgets.php:413
+msgid "Report a Bug"
+msgstr ""
+
+#: app/Widgets.php:414
+msgid ""
+"Is there an issue? Please report it to us so we can fix it in the next "
+"version of the plugin."
+msgstr ""
+
+#: app/Widgets.php:416
+msgid "Report Now"
+msgstr ""
+
+#: app/Widgets.php:473 app/Widgets/DataTable.php:730
+#: app/Widgets/Hotspot.php:128 app/Widgets/Hotspot.php:135
+#: app/Widgets/LoginRegister/LoginRegister.php:588
+#: app/Widgets/LoginRegister/LoginRegister.php:619
+#: app/Widgets/LoginRegister/LoginRegister.php:786
+#: app/Widgets/LoginRegister/LoginRegister.php:799
+#: app/Widgets/LoginRegister/LoginRegister.php:810
+#: app/Widgets/LoginRegister/LoginRegister.php:821
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:153
+msgid "None"
+msgstr ""
+
+#: app/Widgets/Accordion.php:120
+msgid "Main Icon Color"
+msgstr ""
+
+#: app/Widgets/Accordion.php:121
+msgid "Main Icon Background Color"
+msgstr ""
+
+#: app/Widgets/Accordion.php:122 app/Widgets/Accordion.php:216
+msgid "Close Icon"
+msgstr ""
+
+#: app/Widgets/Accordion.php:123 app/Widgets/Accordion.php:217
+msgid "Open Icon"
+msgstr ""
+
+#: app/Widgets/Accordion.php:124 app/Widgets/PriceBox/PriceBox.php:134
+#: app/Widgets/Timeline/Timeline.php:117
+msgid "Lorem Ipsum"
+msgstr ""
+
+#: app/Widgets/Accordion.php:125
+#: app/Widgets/InformationBox/InformationBox.php:115
+#: app/Widgets/InformationBox/InformationBox.php:167
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:123
+msgid "Description"
+msgstr ""
+
+#: app/Widgets/Accordion.php:133
+msgid "How do I add items to my cart?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:142
+msgid "How do I create an account on the website?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:151
+msgid "How can I track my order after I make a purchase?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:160
+msgid "Is there an option for guest checkout?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:169
+msgid "What are the terms for buying and returning goods?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:178
+msgid "What payment methods are accepted on the website?"
+msgstr ""
+
+#: app/Widgets/Accordion.php:189
+msgid "Default Active Item"
+msgstr ""
+
+#: app/Widgets/Accordion.php:190
+msgid "Item Number"
+msgstr ""
+
+#: app/Widgets/Accordion.php:198
+msgid "Main Icon"
+msgstr ""
+
+#: app/Widgets/Accordion.php:202 app/Widgets/DataTable.php:485
+#: app/Widgets/DataTable.php:490 app/Widgets/DataTable.php:657
+#: app/Widgets/DataTable.php:663
+#: app/Widgets/InformationBox/InformationBox.php:128
+#: app/Widgets/NoticeBox/NoticeBox.php:153 app/Widgets/SearchForm.php:165
+#: app/Widgets/SoundPlayer.php:167 app/Widgets/SoundPlayer.php:227
+#: app/Widgets/SoundPlayer.php:240 app/Widgets/SoundPlayer.php:258
+#: app/Widgets/SoundPlayer.php:270
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:168
+msgid "Size"
+msgstr ""
+
+#: app/Widgets/Accordion.php:204
+msgid "Main Icon Width"
+msgstr ""
+
+#: app/Widgets/Accordion.php:213
+msgid "Open / Close Icons"
+msgstr ""
+
+#: app/Widgets/Accordion.php:219
+msgid "Close Mode Icon Color"
+msgstr ""
+
+#: app/Widgets/Accordion.php:221 app/Widgets/Accordion.php:234
+msgid "Open Mode Icon Color"
+msgstr ""
+
+#: app/Widgets/Accordion.php:223 app/Widgets/AlertBox.php:156
+#: app/Widgets/DataTable.php:153 app/Widgets/DataTable.php:207
+#: app/Widgets/LoginRegister/LoginRegister.php:1118
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:212
+msgid "Icon Size"
+msgstr ""
+
+#: app/Widgets/Accordion.php:231
+msgid "Texts"
+msgstr ""
+
+#: app/Widgets/Accordion.php:235
+msgid "Title Color On Hover"
+msgstr ""
+
+#: app/Widgets/Accordion.php:236
+msgid "Description Color"
+msgstr ""
+
+#: app/Widgets/Accordion.php:237 app/Widgets/DataTable.php:769
+msgid "Title Typography"
+msgstr ""
+
+#: app/Widgets/Accordion.php:238
+msgid "Description Typography"
+msgstr ""
+
+#: app/Widgets/AlertBox.php:117
+msgid "Write the alert text..."
+msgstr ""
+
+#: app/Widgets/AlertBox.php:118 app/Widgets/AlertBox.php:144
+msgid "Close Button"
+msgstr ""
+
+#: app/Widgets/AlertBox.php:129 app/Widgets/Breadcrumb/Breadcrumb.php:121
+#: app/Widgets/FancyText.php:160 app/Widgets/Map.php:122
+#: app/Widgets/NoticeBox/NoticeBox.php:120 app/Widgets/Tabs.php:125
+#: app/Widgets/Tabs.php:277
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:195
+msgid "Content"
+msgstr ""
+
+#: app/Widgets/AlertBox.php:154
+msgid "Box Icon Size"
+msgstr ""
+
+#: app/Widgets/Breadcrumb/Breadcrumb.php:112
+msgid "Disable Item Link"
+msgstr ""
+
+#: app/Widgets/Breadcrumb/Breadcrumb.php:128
+#: app/Widgets/Breadcrumb/Breadcrumb.php:137 app/Widgets/Tabs.php:280
+msgid "Link Color"
+msgstr ""
+
+#: app/Widgets/Breadcrumb/Breadcrumb.php:129
+msgid "Separator Color"
+msgstr ""
+
+#: app/Widgets/Breadcrumb/Breadcrumb.php:146 app/Widgets/Countdown.php:182
+#: app/Widgets/DataTable.php:428
+#: app/Widgets/InformationBox/InformationBox.php:144
+#: app/Widgets/NewsTicker.php:147 app/Widgets/NoticeBox/NoticeBox.php:131
+#: app/Widgets/PriceBox/PriceBox.php:159 app/Widgets/SoundPlayer.php:149
+#: app/Widgets/Tabs.php:163
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:205
+msgid "Box"
+msgstr ""
+
+#: app/Widgets/Countdown.php:114 app/Widgets/Countdown.php:165
+msgid "Timer"
+msgstr ""
+
+#: app/Widgets/Countdown.php:115
+msgid "Due Date"
+msgstr ""
+
+#: app/Widgets/Countdown.php:117 app/Widgets/Countdown.php:138
+msgid "Day"
+msgstr ""
+
+#: app/Widgets/Countdown.php:118 app/Widgets/Countdown.php:139
+msgid "Hour"
+msgstr ""
+
+#: app/Widgets/Countdown.php:119 app/Widgets/Countdown.php:140
+msgid "Minute"
+msgstr ""
+
+#: app/Widgets/Countdown.php:120 app/Widgets/Countdown.php:141
+msgid "Second"
+msgstr ""
+
+#: app/Widgets/Countdown.php:122
+msgid "Display"
+msgstr ""
+
+#: app/Widgets/Countdown.php:123
+msgid "Block"
+msgstr ""
+
+#: app/Widgets/Countdown.php:124
+msgid "Inline"
+msgstr ""
+
+#: app/Widgets/Countdown.php:127
+msgid "Direction"
+msgstr ""
+
+#: app/Widgets/Countdown.php:137
+msgid "Translation"
+msgstr ""
+
+#: app/Widgets/Countdown.php:138
+msgid "e.g. Day"
+msgstr ""
+
+#: app/Widgets/Countdown.php:139
+msgid "e.g. Hour"
+msgstr ""
+
+#: app/Widgets/Countdown.php:140
+msgid "e.g. Minute"
+msgstr ""
+
+#: app/Widgets/Countdown.php:141
+msgid "e.g. Second"
+msgstr ""
+
+#: app/Widgets/Countdown.php:142
+msgid "Apostrophe s"
+msgstr ""
+
+#: app/Widgets/Countdown.php:142
+msgid "s"
+msgstr ""
+
+#: app/Widgets/Countdown.php:149
+msgid "Expire Actions"
+msgstr ""
+
+#: app/Widgets/Countdown.php:151
+msgid "Hide Element"
+msgstr ""
+
+#: app/Widgets/Countdown.php:152 app/Widgets/Countdown.php:157
+msgid "Display Message"
+msgstr ""
+
+#: app/Widgets/Countdown.php:155
+msgid "CSS Selector to Hide Element"
+msgstr ""
+
+#: app/Widgets/Countdown.php:155
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:126
+msgid "e.g."
+msgstr ""
+
+#: app/Widgets/Countdown.php:169
+msgid "Timer Color"
+msgstr ""
+
+#: app/Widgets/Countdown.php:171
+msgid "End Message Color"
+msgstr ""
+
+#: app/Widgets/Countdown.php:172
+msgid "Timer Typography"
+msgstr ""
+
+#: app/Widgets/Countdown.php:173
+msgid "Text Typography"
+msgstr ""
+
+#: app/Widgets/Countdown.php:174
+msgid "End Message"
+msgstr ""
+
+#: app/Widgets/DataTable.php:120
+msgid "Source"
+msgstr ""
+
+#: app/Widgets/DataTable.php:121 app/Widgets/DataTable.php:124
+#: app/Widgets/FancyText.php:135 app/Widgets/Hotspot.php:135
+#: app/Widgets/LoginRegister/LoginRegister.php:590
+#: app/Widgets/LoginRegister/LoginRegister.php:621
+msgid "Custom"
+msgstr ""
+
+#: app/Widgets/DataTable.php:122 app/Widgets/DataTable.php:285
+msgid "CSV"
+msgstr ""
+
+#: app/Widgets/DataTable.php:131
+msgid "Table Header"
+msgstr ""
+
+#: app/Widgets/DataTable.php:133 app/Widgets/DataTable.php:186
+msgid "Content Type"
+msgstr ""
+
+#: app/Widgets/DataTable.php:134 app/Widgets/DataTable.php:192
+#: app/Widgets/DataTable.php:288 app/Widgets/FancyText.php:121
+#: app/Widgets/Timeline/Timeline.php:118 app/Widgets/Timeline/Timeline.php:240
+msgid "Text"
+msgstr ""
+
+#: app/Widgets/DataTable.php:138 app/Widgets/DataTable.php:361
+#: app/Widgets/LoginRegister/LoginRegister.php:360
+#: app/Widgets/LoginRegister/LoginRegister.php:493
+#: app/Widgets/LoginRegister/LoginRegister.php:494
+#: app/Widgets/LoginRegister/LoginRegister.php:654
+#: app/Widgets/LoginRegister/LoginRegister.php:730
+#: app/Widgets/LoginRegister/LoginRegister.php:747
+#: app/Widgets/LoginRegister/LoginRegister.php:772
+msgid "Label"
+msgstr ""
+
+#: app/Widgets/DataTable.php:141 app/Widgets/DataTable.php:195
+#: app/Widgets/DataTable.php:292
+msgid "Custom Style"
+msgstr ""
+
+#: app/Widgets/DataTable.php:155 app/Widgets/DataTable.php:209
+#: app/Widgets/DataTable.php:823
+msgid "Image Height"
+msgstr ""
+
+#: app/Widgets/DataTable.php:156 app/Widgets/DataTable.php:210
+#: app/Widgets/DataTable.php:824
+msgid "Image Width"
+msgstr ""
+
+#: app/Widgets/DataTable.php:167
+msgid "Name"
+msgstr ""
+
+#: app/Widgets/DataTable.php:168 app/Widgets/Hotspot.php:158
+msgid "Position"
+msgstr ""
+
+#: app/Widgets/DataTable.php:169
+msgid "Office"
+msgstr ""
+
+#: app/Widgets/DataTable.php:170
+msgid "Age"
+msgstr ""
+
+#: app/Widgets/DataTable.php:171
+msgid "Start Date"
+msgstr ""
+
+#: app/Widgets/DataTable.php:172
+msgid "Salary"
+msgstr ""
+
+#: app/Widgets/DataTable.php:180
+msgid "Table Body"
+msgstr ""
+
+#: app/Widgets/DataTable.php:182
+msgid "Action"
+msgstr ""
+
+#: app/Widgets/DataTable.php:183
+msgid "Add New Cell"
+msgstr ""
+
+#: app/Widgets/DataTable.php:184
+msgid "Start New Row"
+msgstr ""
+
+#: app/Widgets/DataTable.php:187
+msgid "Textarea"
+msgstr ""
+
+#: app/Widgets/DataTable.php:191
+msgid "Sample Content"
+msgstr ""
+
+#: app/Widgets/DataTable.php:223
+msgid "Airi Satou"
+msgstr ""
+
+#: app/Widgets/DataTable.php:227
+msgid "Accountant"
+msgstr ""
+
+#: app/Widgets/DataTable.php:231
+msgid "Tokyo"
+msgstr ""
+
+#: app/Widgets/DataTable.php:235
+msgid "33"
+msgstr ""
+
+#: app/Widgets/DataTable.php:239
+msgid "2008/11/28"
+msgstr ""
+
+#: app/Widgets/DataTable.php:243
+msgid "$162,700"
+msgstr ""
+
+#: app/Widgets/DataTable.php:250
+msgid "Angelica Ramos"
+msgstr ""
+
+#: app/Widgets/DataTable.php:254
+msgid "Chief Executive Officer (CEO)"
+msgstr ""
+
+#: app/Widgets/DataTable.php:258
+msgid "London"
+msgstr ""
+
+#: app/Widgets/DataTable.php:262
+msgid "47"
+msgstr ""
+
+#: app/Widgets/DataTable.php:266
+msgid "2009/10/09"
+msgstr ""
+
+#: app/Widgets/DataTable.php:270
+msgid "$1,200,000"
+msgstr ""
+
+#: app/Widgets/DataTable.php:279 app/Widgets/FancyText.php:125
+#: app/Widgets/Map.php:148 app/Widgets/NewsTicker.php:131
+#: app/Widgets/SoundPlayer.php:139
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:143
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:70
+msgid "Settings"
+msgstr ""
+
+#: app/Widgets/DataTable.php:280 app/Widgets/DataTable.php:441
+msgid "Buttons"
+msgstr ""
+
+#: app/Widgets/DataTable.php:282 app/Widgets/DataTable.php:342
+msgid "Type"
+msgstr ""
+
+#: app/Widgets/DataTable.php:283
+msgid "Copy"
+msgstr ""
+
+#: app/Widgets/DataTable.php:284
+msgid "Excel"
+msgstr ""
+
+#: app/Widgets/DataTable.php:286
+msgid "Print"
+msgstr ""
+
+#: app/Widgets/DataTable.php:290 app/Widgets/DataTable.php:364
+#: app/Widgets/DataTable.php:377 app/Widgets/DataTable.php:382
+#: app/Widgets/DataTable.php:387 app/Widgets/DataTable.php:393
+#: app/Widgets/DataTable.php:482 app/Widgets/DataTable.php:497
+#: app/Widgets/DataTable.php:654 app/Widgets/DataTable.php:670
+msgid "Before Icon"
+msgstr ""
+
+#: app/Widgets/DataTable.php:291 app/Widgets/DataTable.php:365
+#: app/Widgets/DataTable.php:378 app/Widgets/DataTable.php:383
+#: app/Widgets/DataTable.php:388 app/Widgets/DataTable.php:394
+#: app/Widgets/DataTable.php:488 app/Widgets/DataTable.php:500
+#: app/Widgets/DataTable.php:660 app/Widgets/DataTable.php:673
+msgid "After Icon"
+msgstr ""
+
+#: app/Widgets/DataTable.php:302 app/Widgets/DataTable.php:312
+msgid "Before Icon Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:303 app/Widgets/DataTable.php:313
+msgid "After Icon Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:304 app/Widgets/DataTable.php:314
+#: app/Widgets/DataTable.php:747 app/Widgets/Hotspot.php:250
+#: app/Widgets/LoginRegister/LoginRegister.php:1154
+msgid "Border Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:335
+msgid "Length Change"
+msgstr ""
+
+#: app/Widgets/DataTable.php:336
+msgid "Length Menu"
+msgstr ""
+
+#: app/Widgets/DataTable.php:337 app/Widgets/DataTable.php:360
+msgid "Searching"
+msgstr ""
+
+#: app/Widgets/DataTable.php:338
+msgid "Ordering"
+msgstr ""
+
+#: app/Widgets/DataTable.php:339 app/Widgets/DataTable.php:403
+msgid "Info"
+msgstr ""
+
+#: app/Widgets/DataTable.php:340
+msgid "Paging"
+msgstr ""
+
+#: app/Widgets/DataTable.php:341
+msgid "Length"
+msgstr ""
+
+#: app/Widgets/DataTable.php:343
+msgid "Numbers"
+msgstr ""
+
+#: app/Widgets/DataTable.php:344
+msgid "Simple"
+msgstr ""
+
+#: app/Widgets/DataTable.php:345
+msgid "Simple Numbers"
+msgstr ""
+
+#: app/Widgets/DataTable.php:346
+msgid "Full"
+msgstr ""
+
+#: app/Widgets/DataTable.php:347
+msgid "First Last Numbers"
+msgstr ""
+
+#: app/Widgets/DataTable.php:355
+msgid "Translation And Icons"
+msgstr ""
+
+#: app/Widgets/DataTable.php:362
+msgid "Search:"
+msgstr ""
+
+#: app/Widgets/DataTable.php:367
+#: app/Widgets/LoginRegister/LoginRegister.php:361
+#: app/Widgets/LoginRegister/LoginRegister.php:655
+#: app/Widgets/LoginRegister/LoginRegister.php:731
+#: app/Widgets/LoginRegister/LoginRegister.php:748
+#: app/Widgets/SearchForm.php:118
+msgid "Placeholder"
+msgstr ""
+
+#: app/Widgets/DataTable.php:368
+msgid "Type Here To Search..."
+msgstr ""
+
+#: app/Widgets/DataTable.php:374
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:152
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:231
+msgid "Pagination"
+msgstr ""
+
+#: app/Widgets/DataTable.php:375
+msgid "First"
+msgstr ""
+
+#: app/Widgets/DataTable.php:380
+msgid "Last"
+msgstr ""
+
+#: app/Widgets/DataTable.php:385
+msgid "Next"
+msgstr ""
+
+#: app/Widgets/DataTable.php:390
+msgid "Previous"
+msgstr ""
+
+#: app/Widgets/DataTable.php:391
+msgid "Prev"
+msgstr ""
+
+#: app/Widgets/DataTable.php:399
+#: app/Widgets/LoginRegister/LoginRegister.php:883
+msgid "More"
+msgstr ""
+
+#: app/Widgets/DataTable.php:400
+msgid "Menu Length"
+msgstr ""
+
+#: app/Widgets/DataTable.php:401
+msgid "Show [MENU] entries"
+msgstr ""
+
+#: app/Widgets/DataTable.php:404
+msgid "Showing page [PAGE] of [PAGES]"
+msgstr ""
+
+#: app/Widgets/DataTable.php:406
+msgid "Empty Table"
+msgstr ""
+
+#: app/Widgets/DataTable.php:407
+msgid "No data available in table"
+msgstr ""
+
+#: app/Widgets/DataTable.php:409
+msgid "Info Empty"
+msgstr ""
+
+#: app/Widgets/DataTable.php:410
+msgid "No entries to show"
+msgstr ""
+
+#: app/Widgets/DataTable.php:412
+msgid "Loading Records"
+msgstr ""
+
+#: app/Widgets/DataTable.php:413
+msgid "Please wait - loading..."
+msgstr ""
+
+#: app/Widgets/DataTable.php:415
+msgid "Zero Records"
+msgstr ""
+
+#: app/Widgets/DataTable.php:416
+msgid "No matching records found"
+msgstr ""
+
+#: app/Widgets/DataTable.php:476
+msgid "Button Icons"
+msgstr ""
+
+#: app/Widgets/DataTable.php:483 app/Widgets/DataTable.php:489
+#: app/Widgets/DataTable.php:655 app/Widgets/DataTable.php:661
+#: app/Widgets/DataTable.php:813
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:232
+msgid "Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:511
+msgid "Length Box"
+msgstr ""
+
+#: app/Widgets/DataTable.php:546
+msgid "Length Select Box"
+msgstr ""
+
+#: app/Widgets/DataTable.php:581
+msgid "Search Box"
+msgstr ""
+
+#: app/Widgets/DataTable.php:613
+msgid "Search Label"
+msgstr ""
+
+#: app/Widgets/DataTable.php:648
+msgid "Search Label Icons"
+msgstr ""
+
+#: app/Widgets/DataTable.php:684
+msgid "Search Input"
+msgstr ""
+
+#: app/Widgets/DataTable.php:692 app/Widgets/DataTable.php:706
+#: app/Widgets/LoginRegister/LoginRegister.php:1134
+#: app/Widgets/SearchForm.php:184
+msgid "Placeholder Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:703
+msgid "Focus"
+msgstr ""
+
+#: app/Widgets/DataTable.php:719
+msgid "Table"
+msgstr ""
+
+#: app/Widgets/DataTable.php:728
+msgid "Border Type"
+msgstr ""
+
+#: app/Widgets/DataTable.php:731
+msgid "Solid"
+msgstr ""
+
+#: app/Widgets/DataTable.php:732
+msgid "Double"
+msgstr ""
+
+#: app/Widgets/DataTable.php:733
+msgid "Dotted"
+msgstr ""
+
+#: app/Widgets/DataTable.php:734
+msgid "Dashed"
+msgstr ""
+
+#: app/Widgets/DataTable.php:735
+msgid "Groove"
+msgstr ""
+
+#: app/Widgets/DataTable.php:746
+msgid "Border Width"
+msgstr ""
+
+#: app/Widgets/DataTable.php:757
+msgid "Header"
+msgstr ""
+
+#: app/Widgets/DataTable.php:767 app/Widgets/DataTable.php:799
+#: app/Widgets/Timeline/Timeline.php:129
+msgid "Title Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:768 app/Widgets/DataTable.php:800
+msgid "Sorting Icon Color"
+msgstr ""
+
+#: app/Widgets/DataTable.php:770
+msgid "Sorting Icon Typography"
+msgstr ""
+
+#: app/Widgets/DataTable.php:777
+msgid "Sorting Icon Alignment"
+msgstr ""
+
+#: app/Widgets/DataTable.php:781
+msgid "Sorting Icon Left Offset"
+msgstr ""
+
+#: app/Widgets/DataTable.php:783
+msgid "Sorting Icon Right Offset"
+msgstr ""
+
+#: app/Widgets/DataTable.php:785
+msgid "Minumum Width"
+msgstr ""
+
+#: app/Widgets/DataTable.php:812
+msgid "Header Icon"
+msgstr ""
+
+#: app/Widgets/DataTable.php:821
+msgid "Header Image"
+msgstr ""
+
+#: app/Widgets/DataTable.php:832
+msgid "Body"
+msgstr ""
+
+#: app/Widgets/DataTable.php:839
+msgid "Odd"
+msgstr ""
+
+#: app/Widgets/DataTable.php:852
+msgid "Even"
+msgstr ""
+
+#: app/Widgets/DataTable.php:958
+#, php-format
+msgid "Showing page %s of %s"
+msgstr ""
+
+#: app/Widgets/DataTable.php:960
+#, php-format
+msgid "%s-%sfiltered from %s records"
+msgstr ""
+
+#: app/Widgets/DataTable.php:962
+#, php-format
+msgid "Show %s entries"
+msgstr ""
+
+#: app/Widgets/FancyText.php:119
+msgid "Prefix Text"
+msgstr ""
+
+#: app/Widgets/FancyText.php:119
+msgid "This is the "
+msgstr ""
+
+#: app/Widgets/FancyText.php:121 app/Widgets/FancyText.php:122
+msgid "First string"
+msgstr ""
+
+#: app/Widgets/FancyText.php:127
+msgid "Effect"
+msgstr ""
+
+#: app/Widgets/FancyText.php:128
+msgid "Typing"
+msgstr ""
+
+#: app/Widgets/FancyText.php:129
+msgid "Rotate"
+msgstr ""
+
+#: app/Widgets/FancyText.php:130
+msgid "Falling"
+msgstr ""
+
+#: app/Widgets/FancyText.php:132
+msgid "Cursor"
+msgstr ""
+
+#: app/Widgets/FancyText.php:133
+msgid "Underline"
+msgstr ""
+
+#: app/Widgets/FancyText.php:134
+msgid "Pipe"
+msgstr ""
+
+#: app/Widgets/FancyText.php:137
+msgid "Custom Cursor"
+msgstr ""
+
+#: app/Widgets/FancyText.php:138 app/Widgets/FancyText.php:139
+#: app/Widgets/FancyText.php:140
+msgid "Interruption Time"
+msgstr ""
+
+#: app/Widgets/FancyText.php:152
+msgid "HTML tag"
+msgstr ""
+
+#: app/Widgets/FancyText.php:163
+msgid "Prefix Text Color"
+msgstr ""
+
+#: app/Widgets/FancyText.php:164
+msgid "Prefix Text Typography"
+msgstr ""
+
+#: app/Widgets/FancyText.php:165
+msgid "Fluid Text Color"
+msgstr ""
+
+#: app/Widgets/FancyText.php:166
+msgid "Fluid Text Typography"
+msgstr ""
+
+#: app/Widgets/FancyText.php:167
+msgid "Suffix Text Color"
+msgstr ""
+
+#: app/Widgets/FancyText.php:168
+msgid "Suffix Text Typography"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:125
+msgid "Hotspots"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:127
+msgid "Media Type"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:135
+msgid "Offset"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:143
+msgid "Offset Left"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:144
+msgid "Offset Top"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:148
+msgid "Show Tooltip"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:154
+msgid "(PRO)"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:165 app/Widgets/Tabs.php:140
+msgid "Top"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:167
+msgid "Bottom"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:182
+msgid "Tooltip Text"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:182 app/Widgets/Hotspot.php:188
+msgid "Tooltip Content"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:182
+msgid "Type tooltip text here"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:208
+msgid "Object Fit"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:210
+msgid "Fill"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:211
+msgid "Cover"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:212
+msgid "Contain"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:226
+msgid "Spot"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:227
+msgid "Media Size"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:233
+msgid "Background Size"
+msgstr ""
+
+#: app/Widgets/Hotspot.php:265 app/Widgets/Map.php:186
+msgid "Tooltip"
+msgstr ""
+
+#: app/Widgets/InformationBox/InformationBox.php:114
+msgid "Title Here"
+msgstr ""
+
+#: app/Widgets/InformationBox/InformationBox.php:131
+msgid "Box Height"
+msgstr ""
+
+#: app/Widgets/InformationBox/InformationBox.php:133
+#: app/Widgets/NoticeBox/NoticeBox.php:151
+msgid "Box Width"
+msgstr ""
+
+#: app/Widgets/InformationBox/InformationBox.php:178
+msgid "Back Box"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:236
+msgid "Note"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:237
+msgid ""
+"You can use dynamic content in the email body like [fieldname]. For example "
+"[username] will be replaced by user-typed username. Available tags are: "
+"[username], [email], [firstname],[lastname], [website], "
+"[password_reset_link] and [sitetitle]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:322
+msgid "General"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:323
+#: app/Widgets/LoginRegister/LoginRegister.php:779
+msgid "Form Type"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:324
+#: app/Widgets/LoginRegister/LoginRegister.php:784
+msgid "Login"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:325
+msgid "Registration"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:326
+#: app/Widgets/LoginRegister/LoginRegister.php:419
+msgid "Lost Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:333
+#, php-format
+msgid ""
+"Registration is disabled on your site. Please enable it to use registration "
+"form. You can enable it from Dashboard » Settings » General » "
+"%1$sMembership%2$s."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:344
+msgid "Login Form Fields"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:346
+#: app/Widgets/LoginRegister/LoginRegister.php:439
+#: app/Widgets/LoginRegister/LoginRegister.php:455
+#: app/Widgets/LoginRegister/LoginRegister.php:651
+#: app/Widgets/LoginRegister/LoginRegister.php:721
+msgid "Preview Form In Editor"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:349
+#: app/Widgets/LoginRegister/LoginRegister.php:458
+msgid "Field Type"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:351
+#: app/Widgets/LoginRegister/LoginRegister.php:376
+#: app/Widgets/LoginRegister/LoginRegister.php:377
+#: app/Widgets/LoginRegister/LoginRegister.php:460
+#: app/Widgets/LoginRegister/LoginRegister.php:536
+#: app/Widgets/LoginRegister/LoginRegister.php:537
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:124
+msgid "User Name"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:355
+#: app/Widgets/LoginRegister/LoginRegister.php:385
+#: app/Widgets/LoginRegister/LoginRegister.php:386
+#: app/Widgets/LoginRegister/LoginRegister.php:472
+#: app/Widgets/LoginRegister/LoginRegister.php:554
+#: app/Widgets/LoginRegister/LoginRegister.php:555
+#: app/Widgets/LoginRegister/LoginRegister.php:869
+msgid "Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:360
+#: app/Widgets/LoginRegister/LoginRegister.php:361
+#: app/Widgets/LoginRegister/LoginRegister.php:493
+#: app/Widgets/LoginRegister/LoginRegister.php:494
+msgid "e.g User Name"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:362
+#: app/Widgets/LoginRegister/LoginRegister.php:500
+#: app/Widgets/LoginRegister/LoginRegister.php:656
+#: app/Widgets/LoginRegister/LoginRegister.php:733
+#: app/Widgets/LoginRegister/LoginRegister.php:749
+#: app/Widgets/LoginRegister/LoginRegister.php:773
+msgid "Show Required Mark"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:363
+#: app/Widgets/LoginRegister/LoginRegister.php:522
+#: app/Widgets/LoginRegister/LoginRegister.php:657
+#: app/Widgets/LoginRegister/LoginRegister.php:734
+#: app/Widgets/LoginRegister/LoginRegister.php:750
+#: app/Widgets/LoginRegister/LoginRegister.php:774
+msgid "Enable Help Description"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:364
+#: app/Widgets/LoginRegister/LoginRegister.php:523
+#: app/Widgets/LoginRegister/LoginRegister.php:658
+#: app/Widgets/LoginRegister/LoginRegister.php:735
+#: app/Widgets/LoginRegister/LoginRegister.php:751
+#: app/Widgets/LoginRegister/LoginRegister.php:775
+#: app/Widgets/LoginRegister/LoginRegister.php:1085
+msgid "Help Description Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:365
+#: app/Widgets/LoginRegister/LoginRegister.php:525
+#: app/Widgets/LoginRegister/LoginRegister.php:736
+msgid "Password Visibility Icon"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:368
+#: app/Widgets/LoginRegister/LoginRegister.php:528
+#: app/Widgets/LoginRegister/LoginRegister.php:679
+#: app/Widgets/LoginRegister/LoginRegister.php:739
+#: app/Widgets/LoginRegister/LoginRegister.php:754
+#: app/Widgets/LoginRegister/LoginRegister.php:778
+msgid "Field Width"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:390
+#: app/Widgets/LoginRegister/LoginRegister.php:395
+#: app/Widgets/LoginRegister/LoginRegister.php:1149
+msgid "Remember Me"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:391
+msgid "Show Remember Me"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:393
+msgid "Checked By Default"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:395
+msgid "Remember Me Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:397
+#: app/Widgets/LoginRegister/LoginRegister.php:1168
+msgid "Login Button"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:398
+msgid "Log In"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:399
+#: app/Widgets/LoginRegister/LoginRegister.php:561
+#: app/Widgets/LoginRegister/LoginRegister.php:662
+#: app/Widgets/LoginRegister/LoginRegister.php:760
+#: app/Widgets/SearchForm.php:119
+msgid "Button Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:402
+msgid "Sign Up"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:403
+#: app/Widgets/LoginRegister/LoginRegister.php:416
+msgid "Show Sign Up Link"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:404
+msgid "Sign up"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:405
+msgid "Sign Up Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:406
+msgid "Sign Up Action"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:407
+msgid "WP Registration Page"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:408
+#: app/Widgets/LoginRegister/LoginRegister.php:425
+#: app/Widgets/LoginRegister/LoginRegister.php:568
+#: app/Widgets/LoginRegister/LoginRegister.php:669
+#: app/Widgets/LoginRegister/LoginRegister.php:787
+#: app/Widgets/LoginRegister/LoginRegister.php:811
+msgid "Custom URL"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:409
+msgid "Show Sign Up Form"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:414
+#: app/Widgets/LoginRegister/LoginRegister.php:431
+#: app/Widgets/LoginRegister/LoginRegister.php:574
+#: app/Widgets/LoginRegister/LoginRegister.php:675
+msgid "Back Button Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:414
+#: app/Widgets/LoginRegister/LoginRegister.php:431
+#: app/Widgets/LoginRegister/LoginRegister.php:574
+#: app/Widgets/LoginRegister/LoginRegister.php:675
+msgid "Back"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:420
+#: app/Widgets/LoginRegister/LoginRegister.php:1242
+msgid "Lost Password Link"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:421
+msgid "Lost Password?"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:422
+msgid "Lost Password Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:423
+msgid "Lost Password Action"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:424
+msgid "WP Default Page"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:426
+msgid "Show Lost Password Form"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:438
+msgid "After Logged In"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:441
+msgid "Select Template"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:443
+msgid "Hi [username] 👋"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:444
+msgid "Welcome to [sitetitle]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:445
+#: app/Widgets/LoginRegister/LoginRegister.php:595
+#: app/Widgets/LoginRegister/LoginRegister.php:606
+#: app/Widgets/LoginRegister/LoginRegister.php:626
+#: app/Widgets/LoginRegister/LoginRegister.php:634
+#: app/Widgets/LoginRegister/LoginRegister.php:688
+#: app/Widgets/LoginRegister/LoginRegister.php:698
+#: app/Widgets/LoginRegister/LoginRegister.php:704
+#: app/Widgets/LoginRegister/LoginRegister.php:871
+#: app/Widgets/LoginRegister/LoginRegister.php:874
+#: app/Widgets/LoginRegister/LoginRegister.php:885
+#: app/Widgets/LoginRegister/LoginRegister.php:888
+#: app/Widgets/LoginRegister/LoginRegister.php:891
+#: app/Widgets/LoginRegister/LoginRegister.php:904
+#: app/Widgets/LoginRegister/LoginRegister.php:907
+#: app/Widgets/LoginRegister/LoginRegister.php:915
+#: app/Widgets/LoginRegister/LoginRegister.php:923
+msgid "Eg."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:446
+msgid "Message"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:453
+msgid "Register Form Fields"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:464
+#: app/Widgets/LoginRegister/LoginRegister.php:545
+#: app/Widgets/LoginRegister/LoginRegister.php:546
+#: app/Widgets/LoginRegister/LoginRegister.php:852
+msgid "Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:468
+msgid "Confirm Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:476
+msgid "Confirm Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:480
+msgid "First Name"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:484
+msgid "Last Name"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:488
+msgid "Website"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:496
+msgid "Min Limit Fields Length"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:497
+msgid "Max Limit Fields Length"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:499
+msgid "Required"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:559
+#: app/Widgets/LoginRegister/LoginRegister.php:1205
+msgid "Register Button"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:560
+#: app/Widgets/LoginRegister/LoginRegister.php:795
+#: app/Widgets/LoginRegister/LoginRegister.php:902
+msgid "Register"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:563
+#: app/Widgets/LoginRegister/LoginRegister.php:565
+#: app/Widgets/LoginRegister/LoginRegister.php:664
+#: app/Widgets/LoginRegister/LoginRegister.php:666
+msgid "Sign in"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:564
+#: app/Widgets/LoginRegister/LoginRegister.php:665
+msgid "Show Sign In Link"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:565
+#: app/Widgets/LoginRegister/LoginRegister.php:666
+msgid "Sign In Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:566
+#: app/Widgets/LoginRegister/LoginRegister.php:667
+msgid "Sign In Action"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:567
+#: app/Widgets/LoginRegister/LoginRegister.php:668
+msgid "WP Login Page"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:569
+#: app/Widgets/LoginRegister/LoginRegister.php:670
+msgid "Show Sign In Form"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:581
+msgid "Register Email Options"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:586
+msgid "New User Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:587
+#: app/Widgets/LoginRegister/LoginRegister.php:618
+msgid "Email Type"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:589
+#: app/Widgets/LoginRegister/LoginRegister.php:620
+msgid "WordPress Default"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:594
+#, php-format
+msgid "Thank you for registering on \"%s\"!"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:597
+#: app/Widgets/LoginRegister/LoginRegister.php:628
+#: app/Widgets/LoginRegister/LoginRegister.php:689
+msgid "Email Subject"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:600
+#: app/Widgets/LoginRegister/LoginRegister.php:632
+#: app/Widgets/LoginRegister/LoginRegister.php:693
+msgid "Username: [username]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:601
+msgid "Password: [password]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:602
+#: app/Widgets/LoginRegister/LoginRegister.php:695
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:604
+msgid "Please click the following address to login to your account:"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:607
+#: app/Widgets/LoginRegister/LoginRegister.php:635
+#: app/Widgets/LoginRegister/LoginRegister.php:700
+msgid "Email Message"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:609
+#: app/Widgets/LoginRegister/LoginRegister.php:637
+#: app/Widgets/LoginRegister/LoginRegister.php:706
+msgid "Email Content Type"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:610
+#: app/Widgets/LoginRegister/LoginRegister.php:638
+#: app/Widgets/LoginRegister/LoginRegister.php:707
+msgid "HTML"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:611
+#: app/Widgets/LoginRegister/LoginRegister.php:639
+#: app/Widgets/LoginRegister/LoginRegister.php:708
+msgid "Plain"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:617
+msgid "New User Admin Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:625
+#, php-format
+msgid "[\"%s\"] New User Registration"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:631
+#, php-format
+msgid "New user registration on your site %s"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:633
+msgid "Email: [email]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:649
+msgid "Lost Password Form Fields"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:653
+msgid "Username or Email Address"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:660
+msgid "Lost Password Button"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:661
+msgid "Reset Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:686
+msgid "Lost Password Email Options"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:687
+msgid "Password Reset Confirmation"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:691
+msgid "Someone has requested a password reset for the following account:"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:692
+msgid "Sitename: [sitetitle]"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:694
+msgid "If this was a mistake, ignore this email and nothing will happen."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:697
+msgid "Thanks!"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:705
+msgid "Reset Link Text"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:716
+#: app/Widgets/LoginRegister/LoginRegister.php:717
+msgid "Custom Reset Password Form"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:727
+#: app/Widgets/LoginRegister/LoginRegister.php:729
+msgid "New Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:732
+msgid "Limit Fields Length"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:744
+#: app/Widgets/LoginRegister/LoginRegister.php:746
+msgid "Confirm New Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:758
+msgid "Reset Password Button"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:759
+msgid "Save Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:767
+msgid "Additional Form Options"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:768
+msgid "Show Security Field"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:771
+msgid "CAPTCHA"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:785
+msgid "Redirect After Login"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:788
+#: app/Widgets/LoginRegister/LoginRegister.php:812
+msgid "Redirect to Previous Page"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:797
+msgid "New User Role"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:798
+#: app/Widgets/LoginRegister/LoginRegister.php:820
+msgid "After Register Action(s)"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:800
+#: app/Widgets/LoginRegister/LoginRegister.php:822
+msgid "Redirect"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:801
+#: app/Widgets/LoginRegister/LoginRegister.php:823
+msgid "Auto Login"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:808
+#: app/Widgets/LoginRegister/LoginRegister.php:913
+msgid "LostPassword"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:809
+msgid "Redirect After Send Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:819
+#: app/Widgets/LoginRegister/LoginRegister.php:921
+msgid "ResetPassword"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:834
+msgid "Validation Messages"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:835
+msgid "Error Messages"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:841
+msgid "UserName"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:842
+msgid "You have used an invalid username"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:843
+msgid "Eg. Your username is invalid."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:844
+msgid "Invalid Username"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:846
+msgid "Eg. Your username is already registered."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:847
+msgid "Username already in use"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:854
+msgid "Eg. Your email is invalid."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:855
+msgid "Invalid Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:857
+msgid "Eg. Email is missing or Invalid"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:858
+msgid "Email is missing"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:860
+msgid "Eg. Your email is already in use"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:861
+msgid "Already Used Email"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:863
+msgid "Eg. Confirm email mismatch"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:864
+msgid "Invalid Email Confirmed"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:872
+msgid "Invalid Password"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:875
+msgid "Invalid Password Confirmed"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:877
+msgid "Eg. "
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:878
+msgid "Reset Password Expired Error"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:886
+msgid "Already Logged In"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:889
+msgid "Security Captcha Field"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:892
+msgid "Other Errors"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:896
+msgid "Success Messages"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:905
+msgid "Register Form Success"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:908
+msgid "Register Form Success (Password Not Set)"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:916
+msgid "Lost Password Form Success"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:924
+msgid "ResetPassword Form Success"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:935
+#: app/Widgets/PriceBox/PriceBox.php:147 app/Widgets/PriceBox/PriceBox.php:221
+#: app/Widgets/SearchForm.php:129
+msgid "Button"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:944
+msgid "Mouse Cursor"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:946
+msgid "Pointer"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:967
+msgid "Before Icon Size"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:969
+msgid "After Icon Size"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:971
+msgid "Icon Spacing"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:978
+msgid "Content Color"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1012
+msgid "Form"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1026
+msgid "Form Fields Group"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1040
+msgid "Form Labels"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1056
+msgid "Form Fields Box"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1070
+msgid "Help Description"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1072
+#: app/Widgets/LoginRegister/LoginRegister.php:1114
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:209
+#: app/Widgets/Timeline/Timeline.php:128
+msgid "Icon Color"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1101
+msgid "Required Mark"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1112
+msgid "Form Fields Icons"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1116
+msgid "Box Size"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1131
+msgid "Form Fields Input"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1136
+#: app/Widgets/SearchForm.php:186
+msgid "Placeholder Typography"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1155
+msgid "Check Mark Color"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1159
+msgid "Gap"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1276
+msgid "Error Message Box"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1280
+msgid ""
+"For a better view of the changes. You can enable the error message box "
+"preview mode from Content Tab » Validation Messages Section » Error "
+"Messages » Preview In Editor"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1299
+msgid "Success Message Box"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1303
+msgid ""
+"For a better view of the changes. You can enable the success message box "
+"preview mode from Content Tab » Validation Messages Section » Success "
+"Messages » Preview In Editor"
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1626
+msgid "The username and email fields are required and cannot be removed."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1630
+msgid "You are not allowed to use a duplicate field."
+msgstr ""
+
+#: app/Widgets/LoginRegister/LoginRegister.php:1639
+msgid "There is no field to display in the registration form."
+msgstr ""
+
+#: app/Widgets/Map.php:116
+msgid "Show Marker"
+msgstr ""
+
+#: app/Widgets/Map.php:123
+msgid "Latitude"
+msgstr ""
+
+#: app/Widgets/Map.php:124
+msgid "Longitude"
+msgstr ""
+
+#: app/Widgets/Map.php:130 app/Widgets/Map.php:141
+#: app/Widgets/Timeline/Timeline.php:168
+msgid "Marker"
+msgstr ""
+
+#: app/Widgets/Map.php:131
+msgid "Custom Marker"
+msgstr ""
+
+#: app/Widgets/Map.php:132
+msgid "Marker Image"
+msgstr ""
+
+#: app/Widgets/Map.php:149
+msgid "Zoom"
+msgstr ""
+
+#: app/Widgets/Map.php:151
+msgid "Default Zoom"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:116
+msgid "Lates News"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:116
+msgid "e.g. Lates News"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:120
+msgid "Categories"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:124
+msgid "Taxonomy"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:132
+msgid "Number of Posts"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:133
+msgid "Sort"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:134
+msgid "Ascending"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:135
+msgid "Descending"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:137 app/Widgets/Timeline/Timeline.php:119
+msgid "Show Date"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:151
+msgid "Box Border Radius"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:158
+msgid "Head"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:164
+msgid "Title/Meta Width"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:183 app/Widgets/Timeline/Timeline.php:115
+#: app/Widgets/Timeline/Timeline.php:179
+msgid "Date"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:195
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:226
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:228
+msgid "Navigation"
+msgstr ""
+
+#: app/Widgets/NewsTicker.php:282
+msgid "Sorry,no posts were found for display."
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:121
+msgid "Notice text"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:121
+msgid "Type title text here"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:122
+msgid "Type description here"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:133
+msgid "Border line color"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:134
+msgid "Items Gap"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:154
+msgid "Box Type"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:155
+msgid "Shield"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:156
+msgid "Circle"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:157
+msgid "Square"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:168
+msgid "Title Style"
+msgstr ""
+
+#: app/Widgets/NoticeBox/NoticeBox.php:178
+msgid "Description Style"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:114
+msgid "Monthly account"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:114
+msgid "e.g. Monthly account"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:121 app/Widgets/PriceBox/PriceBox.php:122
+#: app/Widgets/PriceBox/PriceBox.php:186
+msgid "Price"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:122
+msgid "150.000"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:122
+msgid "e.g. 150.000"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:123
+msgid "Currency"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:123
+msgid "$"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:123
+msgid "e.g. $"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:124
+msgid "Special Sales"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:125
+msgid "Regular Price"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:125
+msgid "200.000"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:125
+msgid "e.g. 200.000"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:132 app/Widgets/PriceBox/PriceBox.php:205
+msgid "Features"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:136
+msgid "24-hour support"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:137
+msgid "Half price traffic"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:138
+msgid "Online service"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:139
+msgid "Global bandwidth speed"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:148
+msgid "Button Show"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:149
+msgid "Order Account"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:189
+msgid "Regular Price Color"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:191
+msgid "Currency Typography"
+msgstr ""
+
+#: app/Widgets/PriceBox/PriceBox.php:192
+msgid "Regular Price Typography"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:115
+msgid "All"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:117
+msgid "Post Type"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:118
+msgid "Search..."
+msgstr ""
+
+#: app/Widgets/SearchForm.php:119
+msgid "Search"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:120
+msgid "Button Icon"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:167
+msgid "Vertical Position"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:168
+msgid "Horizontal Position"
+msgstr ""
+
+#: app/Widgets/SearchForm.php:181
+msgid "Input Box"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:130 app/Widgets/SoundPlayer.php:194
+msgid "Sub Title"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:140
+msgid "Sound Volume"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:208
+msgid "Buttons Box"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:221
+msgid "30 Seconds Back Button"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:236
+msgid "Play And Pause Button"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:252
+msgid "30 Seconds Forward Button"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:267
+msgid "Volume Button"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:279
+msgid "Volume Box"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:282
+msgid "Bar Color"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:286 app/Widgets/SoundPlayer.php:315
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:234
+msgid "Active Color"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:309
+msgid "Seek Bar"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:336
+msgid "Time Counter"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:352
+msgid "Fixed Time"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:498
+msgid "Remaining Time"
+msgstr ""
+
+#: app/Widgets/SoundPlayer.php:511
+msgid "Please select a valid audio file"
+msgstr ""
+
+#: app/Widgets/Tabs.php:122
+msgid "Tab Title"
+msgstr ""
+
+#: app/Widgets/Tabs.php:127
+msgid "Tab1"
+msgstr ""
+
+#: app/Widgets/Tabs.php:136
+msgid "Tab Items"
+msgstr ""
+
+#: app/Widgets/Tabs.php:151
+msgid "Nav Width"
+msgstr ""
+
+#: app/Widgets/Tabs.php:154
+msgid "Spacing"
+msgstr ""
+
+#: app/Widgets/Tabs.php:177
+msgid "Tab Bar"
+msgstr ""
+
+#: app/Widgets/Tabs.php:191
+msgid "Tab"
+msgstr ""
+
+#: app/Widgets/Tabs.php:216 app/Widgets/Tabs.php:261
+msgid "Active"
+msgstr ""
+
+#: app/Widgets/Tabs.php:230
+msgid "Tab Text"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:118
+msgid "Testimonials"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:123
+#: app/Widgets/Timeline/Timeline.php:118
+msgid "Write description text here"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:124
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:133
+msgid "John Dou"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:124
+msgid "e.g. John Dou"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:126
+msgid "Site Name"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:127
+msgid "Show Rate"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:128
+msgid "Rate"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:129
+msgid "Show Number"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:147
+msgid "Slides Per View"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:151
+msgid "Arrows"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:154
+msgid "Dots"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:155
+msgid "Fraction"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:165
+msgid "Avatar"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:183
+msgid "SubTitle Color"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:184
+msgid "Stars Color"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:185
+msgid "Untracked Stars Color"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:188
+msgid "Title Box Padding"
+msgstr ""
+
+#: app/Widgets/TestimonialCarousel/TestimonialCarousel.php:198
+msgid "Content Margin"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:115
+msgid "15 Dec"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:125
+msgid "Box Alignment"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:126
+msgid "Date Color"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:127
+msgid "Icon Background Color"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:130
+msgid "Text Background Color"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:132
+msgid "Item Background Color"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:136
+msgid "Intelligence Organization"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:141
+msgid "Basic Economics"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:147
+msgid "World Tourism"
+msgstr ""
+
+#: app/Widgets/Timeline/Timeline.php:158
+msgid "Line"
+msgstr ""
+
+#: assets/packages/data-table/data-table.min.js:4
+msgid "0000-01-01 00:00:00"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:18
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:17
+msgid "Search the Widgets"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:25
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:24
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:24
+msgid "Activate All"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:28
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:27
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:27
+msgid "Deactivate All"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:74
+msgid "Install the plugin"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:81
+msgid "Plugin activation"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:87
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:78
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:64
+msgid "Demo"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/3rdpt-widgets/tpl.php:102
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:93
+#: html/admin/menus/dashboard/fragments/content/widgets/tpl.php:100
+msgid "Save"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:21
+msgid "Welcome"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:23
+msgid "Hello Webilia"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:29
+msgid ""
+"Webilia is your companions on the exciting journey of online creation. We "
+"understand that your website is the canvas for your digital masterpiece, and "
+"we’re here to provide the best WordPress plugins and themes you need to "
+"paint your vision."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:33
+msgid "Open our site"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:44
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:267
+msgid "Change Log"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:46
+msgid "What's New?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:50
+msgid "Notable additions made to The Vertex Addons for Elementor."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:58
+msgid "October 15, 2024"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:62
+#, php-format
+msgid "Version %1$s"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:68
+msgid "Fixed : Compatibility with PHP 7."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:74
+msgid "Lite Full Change Log"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:96
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:98
+msgid "Basic System Info"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:102
+msgid "See the basic information of the system here."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:113
+msgid "WP Version"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:121
+msgid "PHP Version"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:129
+msgid "Memory Limit"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:143
+msgid "Max Upload Size"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:151
+msgid "Debug Mode"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:159
+msgid "Max post size"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:180
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:182
+msgid "Support & Feedback"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:188
+msgid ""
+"Tried everything but not found a solution? Our premium support team is "
+"always there for your backup. Just click the button below."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:192
+msgid "Go to Support Center"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:206
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:208
+msgid "Latest News About Vertex Addons for Elementor"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:212
+msgid ""
+"Follow the latest content and important news related to Vertex Addons for "
+"Elementor plugin from here."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:247
+msgid "Read More"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:269
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:283
+msgid "What does Vertex Addons for Elementor add to my site?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:292
+msgid ""
+"Currently, Vertex Addons for Elementor adds a set of practical and "
+"professional widgets to your Elementor page builder for greater convenience "
+"and speed."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:304
+msgid "Which version of Elementor should we use?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:313
+msgid "It is better to always use the latest version of Elementor"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:325
+msgid "Is it compatible with every theme?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:334
+msgid ""
+"Yes, but there might be a few highly unlikely exceptions to be honest. If "
+"you're that unlucky to get one of those incompatible themes in your basket, "
+"let us know and we will fix it."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:346
+msgid "Is there any coding skill required to use these addons?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:355
+msgid ""
+"Nope, these widgets are made to bring smiles on your face. So go ahead, grab "
+"a cup of coffee and start using Vertex Addons for Elementor from today."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:367
+msgid "Are you adding more widgets to this collection?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:376
+msgid ""
+"Yes, of course! We're constantly working on Vertex Addons for Elementor and "
+"trying to make it better"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:395
+#: html/admin/menus/dashboard/tpl.php:65
+msgid "Webilia"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:398
+msgid "Try Our Other Products and Services"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:404
+msgid ""
+"Webilia has some brilliant solutions for your digital needs. One of best "
+"products is Listdom. A final solution for directory and classified websites."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:408
+msgid "Get Listdom"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:431
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:433
+msgid "Missing Any Feature?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:439
+msgid ""
+"Are you in need of a feature that's not available in our plugin? Feel free "
+"to do a feature request from here"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:443
+msgid "Ask For The Feature"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:457
+msgid "Give Us A Review"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:459
+msgid "Happy with Our Work?"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:465
+msgid ""
+"We are really thankful to you that you have chosen our plugin. If our plugin "
+"brings a smile in your face while working, please share your happiness by "
+"giving us a 5 starts rating in WordPress Org. It will make us happy and "
+"won't take more than 2 mins."
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/dashboard/tpl.php:469
+msgid "Rate On WordPress"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:17
+msgid "Search the Extensions"
+msgstr ""
+
+#: html/admin/menus/dashboard/fragments/content/extensions/tpl.php:72
+msgid "Get PRO Version"
+msgstr ""
+
+#: html/admin/menus/dashboard/tabs/tpl.php:17
+msgid "Dashboard"
+msgstr ""
+
+#: html/admin/menus/dashboard/tabs/tpl.php:21
+msgid "Go Pro"
+msgstr ""
+
+#: html/admin/menus/dashboard/tpl.php:41
+msgid "Get the Pro"
+msgstr ""
+
+#: html/admin/menus/dashboard/tpl.php:44
+msgid "Documentation"
+msgstr ""
+
+#: html/admin/menus/dashboard/tpl.php:64
+msgid "Made by"
+msgstr ""

@@ -1,0 +1,1166 @@
+/* Human-readable source for woo-checkout.min.css. */
+:root {
+    /* Layout */
+    --one-column-max-width: 100%;
+    --one-column-padding: 0;
+    --two-column-left-width: 60%;
+    --two-column-gap: 30px;
+    --sticky-top-offset: 2rem;
+    --sticky-zindex: 50;
+
+    /* Forms layout */
+    --forms-columns-gap-padding: 1rem;
+    --forms-columns-gap-margin: -0.5rem;
+    --forms-rows-gap: 1.5rem;
+    --forms-labels-color: #333;
+    --forms-label-spacing: 0.5rem;
+
+    /* Fields: normal */
+    --forms-fields-normal-background: #f9f9f9;
+    --forms-fields-normal-color: #333;
+    --forms-fields-normal-box-shadow: none;
+    --forms-fields-border-color: #ddd;
+    --forms-fields-border-radius: 4px;
+    --forms-fields-padding: 0.75rem 1rem;
+
+    /* Fields: focus */
+    --forms-fields-focus-background: #fff;
+    --forms-fields-focus-color: #333;
+    --forms-fields-placeholder-color: #999;
+    --forms-fields-focus-border-color: #0073e6;
+    --forms-fields-focus-transition-duration: 200ms;
+
+    /* Sections base */
+    --sections-margin: 0 0 2rem 0;
+    --sections-padding: 2rem;
+    --sections-background-color: #fff;
+    --sections-border-type: solid;
+    --sections-border-color: #eaeaea;
+    --sections-border-width: 1px;
+    --sections-border-radius: 8px;
+    --sections-title-color: #000;
+    --sections-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    /* Order table */
+    --order-table-cell-padding: 0.75rem;
+    --order-table-header-bg: #f5f5f5;
+    --order-table-header-color: #000;
+    --order-table-footer-bg: #f5f5f5;
+    --order-table-footer-color: #000;
+    --order-table-border-color: #eaeaea;
+
+    /* Payment */
+    --payment-border-color: #eaeaea;
+    --payment-border-width: 1px;
+    --payment-border-radius: 8px;
+    --payment-background-color: #fafafa;
+    --payment-padding: 2rem;
+
+    /* Buttons */
+    --button-bg-color: #0073e6;
+    --button-bg-hover-color: #005bb5;
+    --button-text-color: #fff;
+    --button-text-hover-color: #fff;
+    --button-border-radius: 6px;
+    --button-padding: 12px 24px;
+    --button-font-family: inherit;
+    --button-font-size: 16px;
+    --button-font-weight: 600;
+}
+
+/* Right column styling */
+.elementor-wc-checkout-right {
+    position: relative;
+}
+
+/* Order review section */
+.elementor-order-review-section {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Payment section */
+.elementor-payment-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading state handling */
+.elementor-payment-section.loading {
+    position: relative;
+    min-height: 100px;
+}
+
+.elementor-payment-section.loading:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ===== CRITICAL FIXES - FORM FIELD VISIBILITY ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row {
+    display: block !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row label {
+    display: block !important;
+    margin-bottom: 8px !important;
+    font-weight: 500 !important;
+    color: var(--forms-labels-color, #333) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row .input-text,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row select,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row textarea {
+    width: 100% !important;
+    padding: 12px 15px !important;
+    border: 1px solid var(--forms-fields-border-color, #ddd) !important;
+    border-radius: var(--forms-fields-border-radius, 4px) !important;
+    background-color: var(--forms-fields-normal-background, #f9f9f9) !important;
+    color: var(--forms-fields-normal-color, #333) !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row .input-text:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row select:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row textarea:focus {
+    background-color: var(--forms-fields-focus-background, #fff) !important;
+    color: var(--forms-fields-focus-color, #333) !important;
+    border-color: var(--forms-fields-focus-border-color, #0073e6) !important;
+    outline: none !important;
+}
+
+/* Fix for required field indicators */
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row .required {
+    color: #ff0000 !important;
+}
+
+/* Fix for select2 dropdowns */
+.elementor-widget-afeb_woo_checkout .select2-container--default .select2-selection--single {
+    height: auto !important;
+    padding: 10px !important;
+    border: 1px solid var(--forms-fields-border-color, #ddd) !important;
+    border-radius: var(--forms-fields-border-radius, 4px) !important;
+}
+
+/* Fix for checkbox and radio buttons */
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row .input-checkbox,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row .input-radio {
+    margin-right: 8px !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+}
+
+/* Fix for form validation */
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-invalid .input-text,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-invalid select,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-invalid textarea {
+    border-color: #ff0000 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-validated .input-text,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-validated select,
+.elementor-widget-afeb_woo_checkout .woocommerce form .form-row.woocommerce-validated textarea {
+    border-color: #00ff00 !important;
+}
+
+/* ===== LAYOUT FIXES ===== */
+.elementor-wc-checkout-layout-two-column {
+    width: calc(100% + 10px);
+    /* Compensate for negative margin */
+    margin-left: 0px;
+    /* Pull container left */
+}
+
+.elementor-wc-checkout-left {
+    position: relative;
+    z-index: 1;
+    padding-right: 10px;
+    /* This creates the visible gap */
+}
+
+.elementor-wc-checkout-right {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    padding-left: 10px;
+    /* Prevent content from touching edge */
+}
+
+/* Clear floats for WooCommerce elements */
+.woocommerce-form-coupon-toggle,
+.woocommerce-info {
+    clear: both;
+    width: 100%;
+    margin-left: 10px;
+    /* Align with container */
+}
+
+
+/* Sticky sidebar */
+.elementor-wc-checkout-right.sticky {
+    position: sticky !important;
+    top: var(--sticky-top-offset, 20px) !important;
+    z-index: var(--sticky-zindex, 10) !important;
+}
+
+/* One column layout */
+.elementor-wc-checkout-single-column {
+    margin: 0 auto !important;
+    padding: var(--one-column-padding, 0) !important;
+}
+
+/* ===== SECTION VISIBILITY FIXES ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields,
+.elementor-widget-afeb_woo_checkout .e-checkout__order_review,
+.elementor-widget-afeb_woo_checkout #payment {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Section titles */
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields h3,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields h3,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields h3,
+.elementor-widget-afeb_woo_checkout .e-checkout__order_review h3 {
+    color: var(--sections-title-color, #000) !important;
+    margin-bottom: 20px !important;
+    font-size: 1.25em !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.elementor-widget-afeb_woo_checkout .e-checkout__order_review {
+    display: var(--order-section-display, block) !important;
+}
+
+
+/* ===== ORDER TABLE FIXES ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 20px !important;
+    display: table !important;
+}
+
+/* Ensure Your Order section only affects its specific section */
+.elementor-widget-afeb_woo_checkout .e-checkout__order_review {
+    display: var(--order-section-display, block) !important;
+}
+
+/* Completely remove payment notices */
+.elementor-widget-afeb_woo_checkout .woocommerce-info,
+.elementor-widget-afeb_woo_checkout .woocommerce-message {
+    display: none !important;
+}
+
+/* Improved two-column layout calculation */
+/* Container */
+.elementor-wc-checkout-layout-two-column {
+    display: block;
+    width: 100%;
+    overflow: visible;
+    /* Allow overflow */
+}
+
+/* Clear floats for coupon section */
+.woocommerce-form-coupon-toggle,
+.woocommerce-info {
+    clear: both;
+    width: 100%;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+
+    .elementor-wc-checkout-left,
+    .elementor-wc-checkout-right {
+        width: 100% !important;
+        float: none;
+        margin-right: 0;
+    }
+}
+
+
+/* Remove all max-width constraints */
+.elementor-widget-afeb_woo_checkout,
+.elementor-widget-afeb_woo_checkout .woocommerce,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table th,
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table td {
+    padding: var(--order-table-cell-padding, 12px) !important;
+    border-bottom: 1px solid var(--sections-border-color, #eaeaea) !important;
+    text-align: left !important;
+    display: table-cell !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table thead th {
+    background-color: var(--order-table-header-bg, #f5f5f5) !important;
+    color: var(--order-table-header-color, #000) !important;
+    font-weight: 600 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table tfoot th,
+.elementor-widget-afeb_woo_checkout .woocommerce table.shop_table tfoot td {
+    background-color: var(--order-table-footer-bg, #f5f5f5) !important;
+    color: var(--order-table-footer-color, #000) !important;
+    font-weight: 600 !important;
+}
+
+/* ===== BUTTON FIXES ===== */
+.elementor-widget-afeb_woo_checkout #place_order,
+.elementor-widget-afeb_woo_checkout .checkout_coupon button {
+    background-color: var(--button-bg-color, #0073e6) !important;
+    color: var(--button-text-color, #fff) !important;
+    border-radius: var(--button-border-radius, 6px) !important;
+    border: none;
+    padding: var(--button-padding, 12px 24px);
+    font-family: var(--button-font-family, inherit);
+    font-size: var(--button-font-size, 16px) !important;
+    font-weight: var(--button-font-weight, 600) !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    text-align: center !important;
+    width: auto !important;
+    min-width: 200px !important;
+    visibility: visible !important;
+}
+
+.elementor-widget-afeb_woo_checkout #place_order:hover,
+.elementor-widget-afeb_woo_checkout .checkout_coupon button:hover {
+    background-color: var(--button-bg-hover-color, #005bb5) !important;
+    color: var(--button-text-hover-color, #fff) !important;
+}
+
+/* ===== COUPON SECTION FIXES ===== */
+.elementor-widget-afeb_woo_checkout .checkout_coupon {
+    display: block !important;
+    visibility: visible !important;
+    margin-bottom: 20px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .checkout_coupon .form-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .checkout_coupon .input-text {
+    flex: 1 !important;
+    min-width: 200px !important;
+}
+
+/* ===== PAYMENT SECTION FIXES ===== */
+.elementor-widget-afeb_woo_checkout #payment {
+    background-color: var(--payment-background-color, #fafafa) !important;
+    border: var(--payment-border-width, 1px) solid var(--payment-border-color, #eaeaea) !important;
+    border-radius: var(--payment-border-radius, 8px) !important;
+    padding: var(--payment-padding, 20px) !important;
+    margin-top: 20px !important;
+    display: block !important;
+}
+
+.elementor-widget-afeb_woo_checkout #payment .payment_methods {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.elementor-widget-afeb_woo_checkout #payment .payment_methods li {
+    margin-bottom: 15px !important;
+    display: block !important;
+}
+
+/* ===== FORM FIELD WRAPPER FIXES ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields__field-wrapper,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields__field-wrapper,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields__field-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== SELECT2 FIXES ===== */
+.elementor-widget-afeb_woo_checkout .select2-container {
+    display: block !important;
+    width: 100% !important;
+    visibility: visible !important;
+}
+
+.elementor-widget-afeb_woo_checkout .select2-selection--single {
+    height: auto !important;
+    padding: 12px 15px !important;
+    border: 1px solid var(--forms-fields-border-color, #ddd) !important;
+    border-radius: var(--forms-fields-border-radius, 4px) !important;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+    .elementor-wc-checkout-columns {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    .elementor-wc-checkout-right.sticky {
+        position: static !important;
+    }
+
+    .elementor-widget-afeb_woo_checkout .woocommerce form .form-row {
+        margin-bottom: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .elementor-widget-afeb_woo_checkout .checkout_coupon .form-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .elementor-widget-afeb_woo_checkout .checkout_coupon .input-text {
+        min-width: auto !important;
+    }
+}
+
+/* ===== ELEMENTOR EDITOR SPECIFIC FIXES ===== */
+.elementor-editor-active .elementor-widget-afeb_woo_checkout .elementor-wc-checkout-right.sticky {
+    position: static !important;
+}
+
+.elementor-editor-active .elementor-widget-afeb_woo_checkout {
+    pointer-events: none;
+}
+
+.elementor-editor-active .elementor-widget-afeb_woo_checkout * {
+    pointer-events: auto;
+}
+
+/* ===== LOADING STATES ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .blockUI.blockOverlay {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: var(--sections-border-radius, 8px);
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .blockUI.blockOverlay::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--button-bg-color, #0073e6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -15px 0 0 -15px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== FORCE VISIBILITY FOR ALL CRITICAL ELEMENTS ===== */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout * {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout form {
+    display: block !important;
+}
+
+/* ===== CONTINUATION OF CRITICAL FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .col2-set {
+    display: block !important;
+    width: 100% !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .col-1,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .col-2 {
+    float: none !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+}
+
+/* Fix for address fields */
+.elementor-widget-afeb_woo_checkout .woocommerce-address-fields {
+    display: block !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-address-fields__field-wrapper {
+    display: block !important;
+}
+
+/* Fix for create account checkbox */
+.elementor-widget-afeb_woo_checkout .woocommerce-form__label-for-checkbox {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 15px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-form__input-checkbox {
+    margin-right: 10px !important;
+}
+
+/* Fix for shipping methods */
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-methods {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-methods li {
+    margin-bottom: 10px !important;
+    display: block !important;
+}
+
+.elementor-widget-afeb_woo_checkout .shipping_method {
+    margin-right: 10px !important;
+}
+
+/* Fix for terms and conditions */
+.elementor-widget-afeb_woo_checkout .woocommerce-terms-and-conditions-wrapper {
+    display: block !important;
+    margin-top: 20px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-terms-and-conditions {
+    border: 1px solid #ddd !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+/* Fix for login form */
+.elementor-widget-afeb_woo_checkout .woocommerce-form-login {
+    display: block !important;
+    margin-bottom: 20px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-form-login p {
+    margin-bottom: 15px !important;
+}
+
+/* Fix for lost password link */
+.elementor-widget-afeb_woo_checkout .lost_password {
+    display: block !important;
+    margin-top: 10px !important;
+}
+
+/* ===== SPECIFIC ELEMENT OVERRIDES ===== */
+
+/* Ensure all form elements are visible */
+.elementor-widget-afeb_woo_checkout input,
+.elementor-widget-afeb_woo_checkout select,
+.elementor-widget-afeb_woo_checkout textarea,
+.elementor-widget-afeb_woo_checkout button {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for hidden fields */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="hidden"] {
+    display: none !important;
+}
+
+/* Fix for labels */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout label {
+    display: block !important;
+    margin-bottom: 5px !important;
+    font-weight: 500 !important;
+}
+
+/* Fix for form row widths */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-wide {
+    width: 100% !important;
+    float: none !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-first,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-last {
+    width: 48% !important;
+    float: left !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-last {
+    float: right !important;
+}
+
+/* Clearfix for form rows */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* ===== PAYMENT METHOD SPECIFIC FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .payment_method_icons {
+    display: flex !important;
+    gap: 10px !important;
+    margin-top: 10px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .payment_method_icons img {
+    max-height: 25px !important;
+    width: auto !important;
+}
+
+/* Fix for payment box */
+.elementor-widget-afeb_woo_checkout .payment_box {
+    display: block !important;
+    padding: 15px !important;
+    background-color: #f9f9f9 !important;
+    border-radius: 4px !important;
+    margin-top: 10px !important;
+}
+
+/* ===== COUPON FORM FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-form-coupon-toggle {
+    display: block !important;
+    margin-bottom: 20px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-form-coupon {
+    display: block !important;
+}
+
+/* ===== ORDER REVIEW SPECIFIC FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout-review-order-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout-review-order-table th,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout-review-order-table td {
+    padding: 12px !important;
+    border-bottom: 1px solid #eee !important;
+    text-align: left !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout-review-order-table th {
+    font-weight: 600 !important;
+    background-color: #f9f9f9 !important;
+}
+
+/* ===== ERROR MESSAGE FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-error,
+.elementor-widget-afeb_woo_checkout .woocommerce-message {
+    display: block !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 4px !important;
+    border-left: 4px solid !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-error {
+    background-color: #ffebee !important;
+    border-left-color: #f44336 !important;
+    color: #c62828 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-message {
+    background-color: #e8f5e8 !important;
+    border-left-color: #4caf50 !important;
+    color: #2e7d32 !important;
+}
+
+/* ===== LOADING AND AJAX STATES ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .blockUI {
+    display: none !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .processing {
+    opacity: 0.7 !important;
+    pointer-events: none !important;
+}
+
+/* ===== ACCESSIBILITY FIXES ===== */
+
+.elementor-widget-afeb_woo_checkout .screen-reader-text {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+    .elementor-widget-afeb_woo_checkout .elementor-wc-checkout-right.sticky {
+        position: static !important;
+    }
+
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
+
+/* ===== REDUCED MOTION SUPPORT ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ===== FINAL OVERRIDE FOR ELEMENTOR EDITOR ===== */
+
+.elementor-editor-active .elementor-widget-afeb_woo_checkout {
+    min-height: 400px !important;
+}
+
+
+
+/* ===== CUSTOM PROPERTY FALLBACKS ===== */
+
+.elementor-widget-afeb_woo_checkout {
+    /* Layout fallbacks */
+    --two-column-gap: var(--two-column-gap, 30px);
+    --two-column-left-width: var(--two-column-left-width, 60%);
+    --sticky-top-offset: var(--sticky-top-offset, 20px);
+
+    /* Form field fallbacks */
+    /*--forms-fields-normal-background: var(--forms-fields-normal-background, #f9f9f9);*/
+    /*--forms-fields-normal-color: var(--forms-fields-normal-color, #333);*/
+    /*--forms-fields-border-color: var(--forms-fields-border-color, #ddd);*/
+
+    /* Button fallbacks */
+    --button-bg-color: var(--button-bg-color, #0073e6);
+    --button-text-color: var(--button-text-color, #fff);
+
+    /* Section fallbacks */
+    --sections-background-color: var(--sections-background-color, #fff);
+    --sections-border-color: var(--sections-border-color, #eaeaea);
+}
+
+.elementor-widget-afeb_woo_checkout {
+    background: transparent !important;
+}
+
+/* ===== IMPORTANT SAFETY OVERRIDES ===== */
+
+.elementor-widget-afeb_woo_checkout *[style*="display: none"],
+.elementor-widget-afeb_woo_checkout *[style*="visibility: hidden"],
+.elementor-widget-afeb_woo_checkout *[style*="opacity: 0"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout form[style*="display: none"] {
+    display: block !important;
+}
+
+/* ===== FINAL Z-INDEX MANAGEMENT ===== */
+
+.elementor-widget-afeb_woo_checkout {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .elementor-wc-checkout-right.sticky {
+    z-index: var(--sticky-zindex, 10) !important;
+}
+
+.elementor-widget-afeb_woo_checkout .select2-container {
+    z-index: 9999 !important;
+}
+
+.elementor-widget-afeb_woo_checkout #payment {
+    z-index: 100 !important;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.elementor-widget-afeb_woo_checkout {
+    contain: layout style paint !important;
+    will-change: transform !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout {
+    content-visibility: auto !important;
+    contain-intrinsic-size: 400px !important;
+}
+
+/* ===== BROWSER SPECIFIC FIXES ===== */
+
+/* Firefox specific fixes */
+@-moz-document url-prefix() {
+
+    .elementor-widget-afeb_woo_checkout .woocommerce form .form-row .input-text,
+    .elementor-widget-afeb_woo_checkout .woocommerce form .form-row select {
+        padding: 11px 15px !important;
+    }
+}
+
+/* Safari specific fixes */
+@media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+        .elementor-widget-afeb_woo_checkout .woocommerce form .form-row select {
+            padding: 11px 15px !important;
+        }
+    }
+}
+
+/* ===== FINAL TOUCHES ===== */
+
+.elementor-widget-afeb_woo_checkout {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+    line-height: 1.6 !important;
+    color: #333 !important;
+}
+
+.elementor-widget-afeb_woo_checkout * {
+    box-sizing: border-box !important;
+}
+
+.elementor-widget-afeb_woo_checkout a {
+    color: var(--button-bg-color, #0073e6) !important;
+    text-decoration: none !important;
+}
+
+.elementor-widget-afeb_woo_checkout a:hover {
+    text-decoration: underline !important;
+}
+
+/* ===== END OF CRITICAL FIXES ===== */
+/* ===== CRITICAL FIX FOR FORM FIELDS AND LABELS ===== */
+
+/* Force display of form rows and their containers */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields .form-row,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields .form-row,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields .form-row {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 15px !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+/* Force display and proper styling for ALL labels */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout label,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields label,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields label,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields label,
+.elementor-widget-afeb_woo_checkout .woocommerce-account-fields label,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row label {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-bottom: 8px !important;
+    font-weight: 600 !important;
+    color: var(--forms-labels-color, #333) !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+/* Required field asterisk */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout label .required,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields label .required,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields label .required {
+    color: #ff0000 !important;
+    font-weight: 700 !important;
+    margin-left: 3px !important;
+}
+
+/* Force display and proper styling for ALL input fields */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="text"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="email"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="tel"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="password"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="number"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="date"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout select,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout textarea,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields input,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields input,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields input,
+.elementor-widget-afeb_woo_checkout .woocommerce-account-fields input,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields select,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields select,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields select,
+.elementor-widget-afeb_woo_checkout .woocommerce-account-fields select,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields textarea,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields textarea,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields textarea {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    padding: 12px 15px !important;
+    border: 1px solid var(--forms-fields-border-color, #ddd) !important;
+    border-radius: var(--forms-fields-border-radius, 4px) !important;
+    background-color: var(--forms-fields-normal-background, #f9f9f9) !important;
+    color: var(--forms-fields-normal-color, #333) !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    min-height: 44px !important;
+}
+
+/* Focus states for all fields */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout select:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout textarea:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce-billing-fields input:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce-shipping-fields input:focus,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields input:focus {
+    background-color: var(--forms-fields-focus-background, #fff);
+    color: var(--forms-fields-focus-color, #333) !important;
+    border-color: var(--button-bg-color, #0073e6) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(0, 115, 230, 0.1) !important;
+}
+
+/* Placeholder styling */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout ::placeholder,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout :-ms-input-placeholder,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout ::-ms-input-placeholder {
+    color: var(--forms-fields-placeholder-color, #999) !important;
+    opacity: 1 !important;
+}
+
+/* Specific fix for textarea */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout textarea,
+.elementor-widget-afeb_woo_checkout .woocommerce-additional-fields textarea {
+    min-height: 100px !important;
+    resize: vertical !important;
+}
+
+/* Fix for select2 dropdowns */
+.elementor-widget-afeb_woo_checkout .select2-container--default .select2-selection--single,
+.elementor-widget-afeb_woo_checkout .select2-container--default .select2-selection--multiple {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    padding: 11px 15px !important;
+    border: 1px solid var(--forms-fields-border-color, #ddd) !important;
+    border-radius: var(--forms-fields-border-radius, 4px) !important;
+    background-color: var(--forms-fields-normal-background, #f9f9f9) !important;
+    color: var(--forms-fields-normal-color, #333) !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    height: auto !important;
+    min-height: 44px !important;
+}
+
+.elementor-widget-afeb_woo_checkout .select2-container--default .select2-selection__rendered {
+    color: var(--forms-fields-normal-color, #333) !important;
+    line-height: 1.4 !important;
+    padding: 0 !important;
+}
+
+/* Fix for checkbox and radio buttons */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="checkbox"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout input[type="radio"] {
+    display: inline-block !important;
+    width: auto !important;
+    margin-right: 8px !important;
+    vertical-align: middle !important;
+    min-height: auto !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-form__label-for-checkbox,
+.elementor-widget-afeb_woo_checkout .woocommerce-form__label-for-radio {
+    display: flex !important;
+    align-items: center !important;
+    font-weight: normal !important;
+}
+
+/* Fix for form row layouts */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-first,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-last {
+    width: 48% !important;
+    float: left !important;
+    display: block !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-last {
+    float: right !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-wide {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+}
+
+/* Clearfix for form rows */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row:after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+}
+
+/* Fix for validation states */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-invalid input,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-invalid select,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-invalid textarea {
+    border-color: #ff0000 !important;
+    background-color: var(--forms-fields-normal-background, #f9f9f9) !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-validated input,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-validated select,
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-validated textarea {
+    border-color: #4caf50 !important;
+}
+
+/* Fix for field descriptions */
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .woocommerce-input-wrapper {
+    display: block !important;
+    width: 100% !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout .description {
+    display: block !important;
+    font-size: 12px !important;
+    color: #666 !important;
+    margin-top: 5px !important;
+    font-style: italic !important;
+}
+
+/* ===== SPECIFIC SECTION FIXES ===== */
+
+/* Billing fields */
+.elementor-widget-afeb_woo_checkout #billing_address_1_field,
+.elementor-widget-afeb_woo_checkout #billing_address_2_field,
+.elementor-widget-afeb_woo_checkout #billing_city_field,
+.elementor-widget-afeb_woo_checkout #billing_state_field,
+.elementor-widget-afeb_woo_checkout #billing_postcode_field,
+.elementor-widget-afeb_woo_checkout #billing_country_field {
+    display: block !important;
+}
+
+/* Shipping fields */
+.elementor-widget-afeb_woo_checkout #shipping_address_1_field,
+.elementor-widget-afeb_woo_checkout #shipping_address_2_field,
+.elementor-widget-afeb_woo_checkout #shipping_city_field,
+.elementor-widget-afeb_woo_checkout #shipping_state_field,
+.elementor-widget-afeb_woo_checkout #shipping_postcode_field,
+.elementor-widget-afeb_woo_checkout #shipping_country_field {
+    display: block !important;
+}
+
+/* Account fields */
+.elementor-widget-afeb_woo_checkout #account_password_field {
+    display: block !important;
+}
+
+/* ===== ELEMENTOR EDITOR SPECIFIC FIXES ===== */
+
+.elementor-editor-active .elementor-widget-afeb_woo_checkout .woocommerce-checkout label,
+.elementor-editor-active .elementor-widget-afeb_woo_checkout .woocommerce-checkout input,
+.elementor-editor-active .elementor-widget-afeb_woo_checkout .woocommerce-checkout select,
+.elementor-editor-active .elementor-widget-afeb_woo_checkout .woocommerce-checkout textarea {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+
+@media (max-width: 768px) {
+
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-first,
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout .form-row-last {
+        width: 100% !important;
+        float: none !important;
+        margin-right: 0 !important;
+    }
+
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout input,
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout select,
+    .elementor-widget-afeb_woo_checkout .woocommerce-checkout textarea {
+        font-size: 16px !important;
+        /* Prevents zoom on iOS */
+    }
+}
+
+/* ===== FINAL OVERRIDE FOR HIDDEN ELEMENTS ===== */
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout [style*="display: none"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout [style*="visibility: hidden"],
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout [style*="opacity: 0"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.elementor-widget-afeb_woo_checkout .woocommerce-checkout form[style*="display: none"] {
+    display: block !important;
+}

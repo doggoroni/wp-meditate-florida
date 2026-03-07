@@ -1,0 +1,294 @@
+.afeb-team-member-carousel-item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px
+}
+
+.afeb-team-member-carousel-item-image img {
+    border-radius: 10px;
+    display: inline-block !important
+}
+
+.afeb-team-member-carousel-item-title {
+    font-weight: 700;
+    text-align: center
+}
+
+.afeb-team-member-carousel-item-text {
+    text-align: center
+}
+
+.afeb-team-member-carousel-social-icon-link {
+    align-items: center;
+    background: #5936c6;
+    border-radius: 50px;
+    color: #fff;
+    display: flex;
+    font-size: 25px;
+    height: 40px;
+    justify-content: center;
+    margin: 5px;
+    text-align: center;
+    transition-duration: .1s;
+    width: 40px
+}
+
+.afeb-team-member-carousel-social-icon-link .afeb-team-member-carousel-social-icon {
+    fill: #fff
+}
+
+.afeb-team-member-carousel-icon-android {
+    background-color: #a4c639
+}
+
+.afeb-team-member-carousel-icon-apple {
+    background-color: #999
+}
+
+.afeb-team-member-carousel-icon-behance {
+    background-color: #1769ff
+}
+
+.afeb-team-member-carousel-icon-bitbucket {
+    background-color: #205081
+}
+
+.afeb-team-member-carousel-icon-codepen,
+.afeb-team-member-carousel-icon-threads,
+.afeb-team-member-carousel-icon-x-twitter {
+    background-color: #000
+}
+
+.afeb-team-member-carousel-icon-delicious {
+    background-color: #39f
+}
+
+.afeb-team-member-carousel-icon-deviantart {
+    background-color: #05cc47
+}
+
+.afeb-team-member-carousel-icon-digg {
+    background-color: #005be2
+}
+
+.afeb-team-member-carousel-icon-dribbble {
+    background-color: #ea4c89
+}
+
+.afeb-team-member-carousel-icon-elementor {
+    background-color: #d30c5c
+}
+
+.afeb-team-member-carousel-icon-envelope {
+    background-color: #ea4335
+}
+
+.afeb-team-member-carousel-icon-facebook,
+.afeb-team-member-carousel-icon-facebook-f {
+    background-color: #3b5998
+}
+
+.afeb-team-member-carousel-icon-flickr {
+    background-color: #0063dc
+}
+
+.afeb-team-member-carousel-icon-foursquare {
+    background-color: #2d5be3
+}
+
+.afeb-team-member-carousel-icon-free-code-camp,
+.afeb-team-member-carousel-icon-freecodecamp {
+    background-color: #006400
+}
+
+.afeb-team-member-carousel-icon-github {
+    background-color: #333
+}
+
+.afeb-team-member-carousel-icon-gitlab {
+    background-color: #e24329
+}
+
+.afeb-team-member-carousel-icon-globe {
+    background-color: #69727d
+}
+
+.afeb-team-member-carousel-icon-google-plus,
+.afeb-team-member-carousel-icon-google-plus-g {
+    background-color: #dd4b39
+}
+
+.afeb-team-member-carousel-icon-houzz {
+    background-color: #7ac142
+}
+
+.afeb-team-member-carousel-icon-instagram {
+    background-color: #262626
+}
+
+.afeb-team-member-carousel-icon-jsfiddle {
+    background-color: #487aa2
+}
+
+.afeb-team-member-carousel-icon-link {
+    background-color: #818a91
+}
+
+.afeb-team-member-carousel-icon-linkedin,
+.afeb-team-member-carousel-icon-linkedin-in,
+.afeb-team-member-carousel-icon-slideshare {
+    background-color: #0077b5
+}
+
+.afeb-team-member-carousel-icon-medium {
+    background-color: #00ab6b
+}
+
+.afeb-team-member-carousel-icon-meetup {
+    background-color: #ec1c40
+}
+
+.afeb-team-member-carousel-icon-mixcloud {
+    background-color: #273a4b
+}
+
+.afeb-team-member-carousel-icon-odnoklassniki {
+    background-color: #f4731c
+}
+
+.afeb-team-member-carousel-icon-pinterest {
+    background-color: #bd081c
+}
+
+.afeb-team-member-carousel-icon-product-hunt {
+    background-color: #da552f
+}
+
+.afeb-team-member-carousel-icon-reddit {
+    background-color: #ff4500
+}
+
+.afeb-team-member-carousel-icon-rss {
+    background-color: #f26522
+}
+
+.afeb-team-member-carousel-icon-shopping-cart {
+    background-color: #4caf50
+}
+
+.afeb-team-member-carousel-icon-skype {
+    background-color: #00aff0
+}
+
+.afeb-team-member-carousel-icon-snapchat {
+    background-color: #fffc00
+}
+
+.afeb-team-member-carousel-icon-soundcloud {
+    background-color: #f80
+}
+
+.afeb-team-member-carousel-icon-spotify {
+    background-color: #2ebd59
+}
+
+.afeb-team-member-carousel-icon-stack-overflow {
+    background-color: #fe7a15
+}
+
+.afeb-team-member-carousel-icon-steam {
+    background-color: #00adee
+}
+
+.afeb-team-member-carousel-icon-stumbleupon {
+    background-color: #eb4924
+}
+
+.afeb-team-member-carousel-icon-telegram {
+    background-color: #2ca5e0
+}
+
+.afeb-team-member-carousel-icon-thumb-tack {
+    background-color: #1aa1d8
+}
+
+.afeb-team-member-carousel-icon-tripadvisor {
+    background-color: #589442
+}
+
+.afeb-team-member-carousel-icon-tumblr {
+    background-color: #35465c
+}
+
+.afeb-team-member-carousel-icon-twitch {
+    background-color: #6441a5
+}
+
+.afeb-team-member-carousel-icon-twitter {
+    background-color: #1da1f2
+}
+
+.afeb-team-member-carousel-icon-viber {
+    background-color: #665cac
+}
+
+.afeb-team-member-carousel-icon-vimeo {
+    background-color: #1ab7ea
+}
+
+.afeb-team-member-carousel-icon-vk {
+    background-color: #45668e
+}
+
+.afeb-team-member-carousel-icon-weibo {
+    background-color: #dd2430
+}
+
+.afeb-team-member-carousel-icon-weixin {
+    background-color: #31a918
+}
+
+.afeb-team-member-carousel-icon-whatsapp {
+    background-color: #25d366
+}
+
+.afeb-team-member-carousel-icon-wordpress {
+    background-color: #21759b
+}
+
+.afeb-team-member-carousel-icon-xing {
+    background-color: #026466
+}
+
+.afeb-team-member-carousel-icon-yelp {
+    background-color: #af0606
+}
+
+.afeb-team-member-carousel-icon-youtube {
+    background-color: #cd201f
+}
+
+.afeb-team-member-carousel-icon-500px {
+    background-color: #0099e5
+}
+
+.afeb-team-member-carousel-item-buttons,
+.afeb-team-member-carousel-item-social-icons {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px auto
+}
+
+.afeb-team-member-carousel-button-link {
+    border: 1px solid #5936c6;
+    border-radius: 8px;
+    color: #5936c6;
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px;
+    padding: 8px 20px;
+    text-align: center;
+    transition-duration: .1s
+}

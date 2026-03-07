@@ -1,0 +1,47 @@
+/* Human-readable source for woo-my-account.min.css (RTL). */
+[class*=afeb_woo_my_account] .afeb-my-account-tab .woocommerce-MyAccount-content {
+    float: left;
+    padding-right: var(--afeb-woo-my-account-tab-content-spacing, 6%);
+}
+
+[class*=afeb_woo_my_account] .afeb-my-account-tab:not(.afeb-my-account-tab-dashboard-custom) {
+
+    & .woocommerce thead:first-child tr:first-child td,
+    & .woocommerce thead:first-child tr:first-child th {
+        padding-right: 0;
+    }
+
+    & .woocommerce tbody>tr:nth-child(2n)>td,
+    & .woocommerce tbody>tr:nth-child(2n)>th,
+    & .woocommerce tbody>tr:nth-child(odd)>td,
+    & .woocommerce tbody>tr:nth-child(odd)>th {
+        padding-right: 0;
+    }
+
+    & .woocommerce .order_details tfoot td,
+    & .woocommerce .order_details tfoot th {
+        padding-right: 0
+    }
+
+    & .woocommerce-Address .edit,
+    & .woocommerce-Addresses .edit {
+        float: right;
+    }
+}
+
+[class*=afeb_woo_my_account] .afeb-my-account-tab .woocommerce .woocommerce-MyAccount-navigation {
+    float: right;
+}
+
+.afeb-my-account-tabs-horizontal .afeb-wc-account-tabs-nav .woocommerce-MyAccount-navigation ul li {
+    border-left: var(--afeb-woo-my-account-tabs-divider-weight, 0) solid var(--afeb-woo-my-account-tabs-divider-color, #69727d);
+}
+
+.afeb-my-account-tabs-horizontal .afeb-wc-account-tabs-nav .woocommerce-MyAccount-navigation ul li:first-of-type {
+    padding-right: 0
+}
+
+.afeb-my-account-tabs-horizontal .afeb-wc-account-tabs-nav .woocommerce-MyAccount-navigation ul li:last-of-type {
+    border-left-width: 0;
+    padding-left: 0
+}

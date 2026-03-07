@@ -1,0 +1,77 @@
+<?php
+// No Direct Access
+defined('ABSPATH') || die();
+
+/**
+ * The template for the panel footer area.
+ * Override this template by specifying the path where it is stored (templates_path) in your Redux config.
+ *
+ * @author        Redux Framework
+ * @package       ReduxFramework/Templates
+ * @version:      4.4.2
+ */
+?>
+<div id="redux-sticky-padder" style="display: none;">&nbsp;</div>
+<div id="redux-footer-sticky">
+	<div id="redux-footer">
+		<?php
+		if (isset($this->parent->args['share_icons']))
+		{
+			$skip_icons = false;
+
+			if (!$this->parent->args['dev_mode'] && $this->parent->args_class->omit_icons)
+			{
+				$skip_icons = true;
+			}
+			?>
+			<div id="redux-share">
+				<?php
+				foreach ($this->parent->args['share_icons'] as $links)
+				{
+					if ($skip_icons) continue;
+
+					// SHIM, use URL now.
+					if (!empty($links['link']))
+					{
+						$links['url'] = $links['link'];
+						unset($links['link']);
+					}
+
+					if (!empty($links['icon']))
+					{
+						if (strpos($links['icon'], 'el-icon') !== false && strpos($links['icon'], 'el ') === false)
+						{
+							$links['icon'] = 'el ' . $links['icon'];
+						}
+					}
+					?>
+					<a href="<?php echo esc_url($links['url']); ?>" title="<?php echo esc_attr($links['title']); ?>" target="_blank">
+						<?php if (!empty($links['icon'])): ?>
+							<i class="<?php echo esc_attr($links['icon']); ?>"></i>
+						<?php else: ?>
+							<img alt="<?php echo esc_url($links['img']); ?>"
+								 src="<?php echo esc_url($links['img']); ?>">
+						<?php endif; ?>
+					</a>
+				<?php } ?>
+			</div>
+		<?php } ?>
+
+		<div class="redux-action_bar">
+			<span class="spinner"></span>
+			<?php
+                                if (false === $this->parent->args['hide_save'])
+                                {
+                                        submit_button(esc_html__('Save Changes', 'listdomer-core'), 'primary', 'redux_save', false, ['id' => 'redux_bottom_save']);
+                                }
+
+                                if (false === $this->parent->args['hide_reset'])
+                                {
+                                        submit_button(esc_html__('Reset Section', 'listdomer-core'), 'secondary', $this->parent->args['opt_name'] . '[defaults-section]', false, ['id' => 'redux-defaults-section-bottom']);
+                                        submit_button(esc_html__('Reset All', 'listdomer-core'), 'secondary', $this->parent->args['opt_name'] . '[defaults]', false, ['id' => 'redux-defaults-bottom']);
+                                }
+			?>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

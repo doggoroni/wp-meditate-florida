@@ -1,0 +1,777 @@
+<?php
+
+class LSD_Entity_Listing extends LSD_Entity
+{
+    public $post;
+    public $schema;
+
+    public function __construct($post = null)
+    {
+        parent::__construct();
+
+        // Get the Post
+        $this->post = get_post($post);
+    }
+
+    public function save(array $data = [], $trigger_actions = true)
+    {
+        // Edit Locked?
+        if (get_post_meta($this->post->ID, 'lsd_lock_edit', true)) return;
+
+        $category = isset($data['listing_category']) ? sanitize_text_field($data['listing_category']) : '';
+        $term = $category ? get_term_by('term_id', $category, LSD_Base::TAX_CATEGORY) : null;
+        $additional_categories = isset($data['listing_categories']) && is_array($data['listing_categories'])
+            ? array_filter(array_map('intval', $data['listing_categories']))
+            : [];
+
+        // Category is valid
+        if (trim($category) && !empty($term) && !is_wp_error($term))
+        {
+            $categories = array_unique(array_merge([$term->term_id], $additional_categories));
+
+            // Category Term
+            wp_set_object_terms($this->post->ID, $categories, LSD_Base::TAX_CATEGORY, false);
+
+            // Primary Category Meta
+            update_post_meta($this->post->ID, 'lsd_primary_category', $term->term_id);
+        }
+        // A valid category is required!
+        else if ($trigger_actions)
+        {
+            LSD_Flash::add(esc_html__("A valid Listing Category is required.", 'listdom'), 'error');
+        }
+
+        update_post_meta($this->post->ID, 'lsd_object_type', isset($data['object_type']) ? sanitize_text_field($data['object_type']) : 'marker');
+        update_post_meta($this->post->ID, 'lsd_zoomlevel', isset($data['zoomlevel']) ? sanitize_text_field($data['zoomlevel']) : $this->settings['map_backend_zl']);
+
+        // Lat / Long
+        $lat = isset($data['latitude']) ? sanitize_text_field($data['latitude']) : $this->settings['map_backend_lt'];
+        $lng = isset($data['longitude']) ? sanitize_text_field($data['longitude']) : $this->settings['map_backend_ln'];
+
+        // Geo Point on WP Meta Table
+        update_post_meta($this->post->ID, 'lsd_address', isset($data['address']) ? sanitize_text_field($data['address']) : '');
+        update_post_meta($this->post->ID, 'lsd_latitude', $lat);
+        update_post_meta($this->post->ID, 'lsd_longitude', $lng);
+
+        // Geo-point
+        $data_id = $this->update_geopoint($this->post->ID, $lat, $lng);
+
+        // Shape
+        update_post_meta($this->post->ID, 'lsd_shape_type', isset($data['shape_type']) ? sanitize_text_field($data['shape_type']) : '');
+        update_post_meta($this->post->ID, 'lsd_shape_paths', isset($data['shape_paths']) ? sanitize_text_field($data['shape_paths']) : '');
+        update_post_meta($this->post->ID, 'lsd_shape_radius', isset($data['shape_radius']) ? sanitize_text_field($data['shape_radius']) : '');
+
+        // Attributes
+        $attributes = $data['attributes'] ?? [];
+        update_post_meta($this->post->ID, 'lsd_attributes', $attributes);
+
+        // Save attributes one by one
+        $attributes_input = $data['attributes'] ?? [];
+        $attribute_types = [];
+        foreach (LSD_Main::get_attributes_details() as $attribute_detail)
+        {
+            $attribute_types[$attribute_detail['slug']] = $attribute_detail['field_type'];
+        }
+
+        $normalized_attributes = [];
+        foreach ($attributes_input as $key => $attribute_value)
+        {
+            if (is_array($attribute_value))
+            {
+                $normalized_array = array_map('sanitize_text_field', $attribute_value);
+                $normalized_attributes[$key] = $normalized_array;
+                $stored_value = implode(',', $normalized_array);
+            }
+            else
+            {
+                $normalized_value = $this->normalize_attribute_value($attribute_value, $attribute_types[$key] ?? '');
+                $normalized_attributes[$key] = $normalized_value;
+                $stored_value = $normalized_value;
+            }
+
+            update_post_meta($this->post->ID, 'lsd_attribute_' . $key, $stored_value);
+        }
+
+        update_post_meta($this->post->ID, 'lsd_attributes', $normalized_attributes);
+
+        // Related Listings
+        update_post_meta($this->post->ID, 'lsd_related_listings', isset($data['related_listings']) && is_array($data['related_listings']) ? $data['related_listings'] : []);
+
+        // Listing Link
+        update_post_meta($this->post->ID, 'lsd_link', isset($data['link']) && filter_var($data['link'], FILTER_VALIDATE_URL) ? esc_url_raw($data['link']) : '');
+
+        // Price Options
+        update_post_meta($this->post->ID, 'lsd_price', isset($data['price']) ? sanitize_text_field($data['price']) : 0);
+        update_post_meta($this->post->ID, 'lsd_price_max', isset($data['price_max']) ? sanitize_text_field($data['price_max']) : 0);
+        update_post_meta($this->post->ID, 'lsd_price_after', isset($data['price_after']) ? sanitize_text_field($data['price_after']) : '');
+        update_post_meta($this->post->ID, 'lsd_price_class', isset($data['price_class']) ? sanitize_text_field($data['price_class']) : 2);
+        update_post_meta($this->post->ID, 'lsd_currency', isset($data['currency']) ? sanitize_text_field($data['currency']) : LSD_Options::currency());
+
+        // Availability
+        update_post_meta($this->post->ID, 'lsd_ava', $data['ava'] ?? []);
+
+        // Contact Details
+        update_post_meta($this->post->ID, 'lsd_email', isset($data['email']) ? sanitize_email($data['email']) : '');
+        update_post_meta($this->post->ID, 'lsd_phone', isset($data['phone']) ? sanitize_text_field($data['phone']) : '');
+        update_post_meta($this->post->ID, 'lsd_website', isset($data['website']) ? esc_url($data['website']) : '');
+        update_post_meta($this->post->ID, 'lsd_contact_address', isset($data['contact_address']) ? sanitize_text_field($data['contact_address']) : '');
+
+        $cta_text = isset($data['cta_text']) ? sanitize_text_field($data['cta_text']) : '';
+        $cta_options = ['details', 'lightbox', 'custom', 'popup'];
+
+        $cta_target = isset($data['cta_target']) ? sanitize_text_field($data['cta_target']) : 'details';
+        if (!in_array($cta_target, $cta_options, true)) $cta_target = 'details';
+        if ($cta_target === 'popup' && !LSD_Base::isPro()) $cta_target = 'details';
+
+        $cta_mode = isset($data['cta_mode']) ? sanitize_text_field($data['cta_mode']) : 'custom';
+        if (!in_array($cta_mode, ['inherit', 'custom'], true)) $cta_mode = 'custom';
+
+        $cta_url = isset($data['cta_url']) ? esc_url_raw($data['cta_url']) : '';
+        $cta_popup = isset($data['cta_popup']) ? wp_kses_post($data['cta_popup']) : '';
+
+        update_post_meta($this->post->ID, 'lsd_call_to_action', [
+            'mode' => $cta_mode,
+            'text' => $cta_text,
+            'target' => $cta_target,
+            'url' => $cta_url,
+            'content' => $cta_popup,
+        ]);
+
+        if (!empty($data['privacy_consent']) && LSD_Privacy::is_consent_enabled('dashboard'))
+        {
+            $log_extra = [
+                'context' => 'listing_submission',
+                'listing_id' => $this->post->ID,
+            ];
+
+            if (!empty($data['guest_email'])) $log_extra['email'] = sanitize_email($data['guest_email']);
+            else if (!empty($data['email'])) $log_extra['email'] = sanitize_email($data['email']);
+
+            $current_user = get_current_user_id();
+            if ($current_user) $log_extra['user_id'] = $current_user;
+
+            update_post_meta($this->post->ID, 'lsd_privacy_consent', LSD_Privacy::create_log($log_extra));
+        }
+
+        // add zero Visits
+        add_post_meta($this->id(), 'lsd_visits', 0, true);
+
+        // Remark
+        update_post_meta($this->post->ID, 'lsd_remark', $data['remark'] ?? '');
+
+        // Display Options
+        update_post_meta($this->post->ID, 'lsd_displ', $data['displ'] ?? []);
+
+        // Gallery
+        update_post_meta($this->post->ID, 'lsd_gallery', isset($data['gallery']) ? array_map('sanitize_text_field', $data['gallery']) : []);
+
+        // Embeds
+        update_post_meta($this->post->ID, 'lsd_embeds', isset($data['embeds']) && is_array($data['embeds']) ? $this->indexify($data['embeds']) : []);
+
+        // FAQs
+        update_post_meta($this->post->ID, 'lsd_faqs', isset($data['faqs']) && is_array($data['faqs']) ? $this->indexify($data['faqs']) : []);
+
+        // Guest Data
+        if (isset($data['guest_email']))
+        {
+            // Guest Email
+            $guest_email = sanitize_email($data['guest_email']);
+
+            update_post_meta($this->post->ID, 'lsd_guest_email', $guest_email);
+            update_post_meta($this->post->ID, 'lsd_guest_message', isset($data['guest_message']) ? sanitize_text_field($data['guest_message']) : '');
+            update_post_meta($this->post->ID, 'lsd_guest_fullname', isset($data['guest_fullname']) ? sanitize_text_field($data['guest_fullname']) : '');
+        }
+
+        // Registration Method
+        $guest_registration = $this->settings['submission_guest_registration'] ?? 'approval';
+
+        // Create user and assign listing to new user
+        $guest_email = get_post_meta($this->post->ID, 'lsd_guest_email', true);
+        if (is_email($guest_email) && $guest_registration === 'submission' && !$data_id)
+        {
+            LSD_User::listing(
+                $this->post->ID,
+                $guest_email,
+                $data['guest_password'] ?? '',
+                $data['guest_fullname'] ?? ''
+            );
+        }
+
+        // Save Third Party Data
+        do_action('lsd_listing_saved', $this->post, $data, !$data_id);
+
+        // New Listing Action
+        if ($trigger_actions && !$data_id) do_action('lsd_new_listing', $this->post->ID);
+    }
+
+    public function update_geopoint($listing_id, $lat, $lng)
+    {
+        // Listdom DB
+        $db = new LSD_db();
+
+        // Listdom Data ID
+        $data_id = $db->select("SELECT `id` FROM `#__lsd_data` WHERE `id`='" . esc_sql($listing_id) . "'");
+
+        // Insert Geo Point on Listdom Table
+        if (!$data_id) $db->q("INSERT INTO `#__lsd_data` (`id`, `latitude`, `longitude`) VALUES ('" . esc_sql($listing_id) . "', '" . $lat . "', '" . $lng . "')");
+        else $db->q("UPDATE `#__lsd_data` SET `latitude`='" . $lat . "', `longitude`='" . $lng . "' WHERE `id`='" . esc_sql($listing_id) . "'");
+
+        // Update Point Field
+        $db->q("UPDATE `#__lsd_data` SET `point`=Point(`latitude`, `longitude`) WHERE `id`='" . esc_sql($listing_id) . "'");
+
+        return $data_id;
+    }
+
+    public function id(): int
+    {
+        return $this->post->ID;
+    }
+
+    public function get_title()
+    {
+        $element = new LSD_Element_Title();
+        return $element->get($this->post->ID);
+    }
+
+    public function get_content($content)
+    {
+        $element = new LSD_Element_Content();
+        return $element->get($content);
+    }
+
+    public function get_remark()
+    {
+        $element = new LSD_Element_Remark();
+        return $element->get($this->post->ID);
+    }
+
+    public function get_excerpt($limit = 15, $read_more = false, $full = false)
+    {
+        $element = new LSD_Element_Excerpt();
+        return $element->get($this->post->ID, $limit, $read_more, $full);
+    }
+
+    public function get_features($method = 'list', $show_icons = true, $enable_link = true, $list_style = 'per-row')
+    {
+        $element = new LSD_Element_Features($show_icons, $enable_link);
+
+        if ($method === 'text') return $element->text($this->post->ID);
+        else return $element->get($this->post->ID, $list_style);
+    }
+
+    public function get_tags($enable_link = true)
+    {
+        $element = new LSD_Element_Tags($enable_link);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_categories($args = true, $multiple_categories = false, $color_method = 'bg', $enable_link = true)
+    {
+        if (!is_array($args))
+        {
+            $args = [
+                'show_color' => (bool) $args,
+                'multiple_categories' => $multiple_categories,
+                'color_method' => $color_method,
+                'enable_link' => $enable_link,
+                'display_name' => true,
+                'display_icon' => false,
+            ];
+        }
+
+        $element = new LSD_Element_Categories($args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_attributes($show_icons = false, $show_attribute_title = true)
+    {
+        $element = new LSD_Element_Attributes();
+        return $element->get($this->post->ID, $show_icons, $show_attribute_title);
+    }
+
+    public function get_map($args = [])
+    {
+        $element = new LSD_Element_Map();
+        return $element->get($this->post->ID, $args);
+    }
+
+    public function get_featured_image($size = 'full')
+    {
+        $element = new LSD_Element_Image();
+        return $element->get($size, $this->post->ID);
+    }
+
+    public function get_cover_image($size = [390, 260], $link_method = 'normal', string $style = '')
+    {
+        $element = new LSD_Element_Image();
+        return $element->cover($size, $this->post->ID, $link_method, $style);
+    }
+
+    public function get_image_slider($size = [390, 260], $link_method = 'normal', string $style = '')
+    {
+        $element = new LSD_Element_Image();
+        return $element->slider($size, $this->post->ID, $link_method, $style);
+    }
+
+    public function get_image_module($shortcode, $size = [390, 260])
+    {
+        if ($shortcode->image_method === 'slider') return $this->get_image_slider(
+            $size,
+            $shortcode->get_listing_link_method(),
+            $shortcode->get_single_listing_style()
+        );
+        else return $this->get_cover_image(
+            $size,
+            $shortcode->get_listing_link_method(),
+            $shortcode->get_single_listing_style()
+        );
+    }
+
+    public function get_gallery($params = [])
+    {
+        $element = new LSD_Element_Gallery();
+        return $element->get($params, $this->post->ID);
+    }
+
+    public function get_embeds()
+    {
+        $element = new LSD_Element_Embed();
+        return $element->get($this->post->ID);
+    }
+
+    public function get_faqs($limit = 0)
+    {
+        $element = new LSD_Element_Faq();
+        return $element->get($this->post->ID, $limit);
+    }
+
+    public function get_featured_video()
+    {
+        $element = new LSD_Element_Video();
+        return $element->get($this->post->ID);
+    }
+
+    public function get_breadcrumb($icon = true, $taxonomy = LSD_Base::TAX_CATEGORY)
+    {
+        $element = new LSD_Element_Breadcrumb();
+        return $element->get($icon, $taxonomy);
+    }
+
+    public function get_address($icon = true)
+    {
+        $element = new LSD_Element_Address();
+        return $element->get($this->post->ID, $icon);
+    }
+
+    public function get_locations($args = [])
+    {
+        $element = new LSD_Element_Locations($args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_price($minimized = false)
+    {
+        if (!LSD_Components::pricing()) return '';
+
+        $element = new LSD_Element_Price();
+        return $element->get($this->post->ID, $minimized);
+    }
+
+    public function get_price_class(): string
+    {
+        if (!LSD_Components::pricing()) return '';
+
+        $class = (int) get_post_meta($this->post->ID, 'lsd_price_class', true);
+        if (!trim($class)) $class = 2;
+
+        switch ($class)
+        {
+            case 1:
+
+                $tag = '$';
+                $label = esc_html__('Cheap', 'listdom');
+                break;
+
+            case 3:
+
+                $tag = '$$$';
+                $label = esc_html__('High', 'listdom');
+                break;
+
+            case 4:
+
+                $tag = '$$$$';
+                $label = esc_html__('Ultra High', 'listdom');
+                break;
+
+            default:
+
+                $tag = '$$';
+                $label = esc_html__('Normal', 'listdom');
+                break;
+        }
+
+        return '<span title="' . esc_attr($label) . '">' . $tag . '</span>';
+    }
+
+    public function get_availability($oneday = false, $day = null)
+    {
+        if (!LSD_Components::work_hours()) return '';
+
+        $element = new LSD_Element_Availability($oneday, $day);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_phone(): string
+    {
+        $phone = get_post_meta($this->post->ID, 'lsd_phone', true);
+        if (trim($phone) == '') return '';
+
+        return '<i class="lsd-icon fas fa-phone-square-alt" aria-hidden="true"></i> ' . esc_html($phone);
+    }
+
+    public function get_email(): string
+    {
+        $email = get_post_meta($this->post->ID, 'lsd_email', true);
+        if (trim($email) == '') return '';
+
+        return '<i class="lsd-icon fa fa-envelope" aria-hidden="true"></i> ' . esc_html($email);
+    }
+
+    public function get_owner($layout = 'details', $args = [])
+    {
+        $element = new LSD_Element_Owner($layout, $args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_abuse(array $args = [])
+    {
+        $element = new LSD_Element_Abuse($args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_labels($style = 'tags', $enable_link = true)
+    {
+        $element = new LSD_Element_Labels($style, $enable_link);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_share_buttons($layout = 'archive', $args = [])
+    {
+        if (!LSD_Components::socials()) return '';
+
+        $element = new LSD_Element_Share($layout, $args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_cta(string $context = 'archive', array $args = [])
+    {
+        if (!LSD_Components::cta()) return '';
+
+        $element = new LSD_Element_Cta();
+
+        $args['context'] = $context;
+        $args['listing'] = $this;
+
+        return $element->get($this->post->ID, $args);
+    }
+
+    public function get_related_listings($args = [])
+    {
+        if (!LSD_Components::related()) return '';
+
+        $element = new LSD_Element_Related($args);
+        return $element->get($this->post->ID);
+    }
+
+    public function get_marker(): string
+    {
+        $icon = '';
+        $bgcolor = '';
+
+        $category = $this->get_data_category();
+        if ($category && isset($category->term_id))
+        {
+            $icon = LSD_Taxonomies::icon($category->term_id);
+            $bgcolor = get_term_meta($category->term_id, 'lsd_color', true);
+        }
+
+        // Marker
+        $marker = '<div class="lsd-marker-container" style="background-color: ' . esc_attr($bgcolor) . '">
+            <span class="lsd-marker-inner"></span>
+            ' . $icon . '
+        </div>';
+
+        // Apply Filters
+        return LSD_Kses::element(apply_filters('lsd_marker', $marker, $this));
+    }
+
+    public function get_infowindow()
+    {
+        $element = new LSD_Element_Infowindow();
+        $element->set_listing($this);
+
+        $infowindow = $element->get($this->post->ID);
+
+        // Apply Filters
+        return apply_filters('lsd_infowindow', $infowindow, $element);
+    }
+
+    public function get_map_card()
+    {
+        $element = new LSD_Element_Mapcard();
+        $element->set_listing($this);
+
+        $card = $element->get($this->post->ID);
+
+        // Apply Filters
+        return apply_filters('lsd_map_card', $card, $element);
+    }
+
+    /**
+     * @return bool|WP_Term
+     */
+    public function get_data_category()
+    {
+        return self::get_primary_category($this->post->ID);
+    }
+
+    /**
+     * @param $listing_id
+     * @return bool|WP_Term
+     */
+    public static function get_primary_category($listing_id)
+    {
+        // Primary Category
+        $primary_id = get_post_meta($listing_id, 'lsd_primary_category', true);
+        if ($primary_id)
+        {
+            $term = get_term($primary_id);
+            if ($term instanceof WP_Term) return $term;
+        }
+
+        // Get the First Category
+        $terms = wp_get_post_terms($listing_id, LSD_Base::TAX_CATEGORY);
+        if (!count($terms)) return null;
+
+        return $terms[0];
+    }
+
+    public function get_category_color()
+    {
+        $category = $this->get_data_category();
+        return $category && isset($category->term_id)
+            ? get_term_meta($category->term_id, 'lsd_color', true)
+            : '';
+    }
+
+    public function get_contact_info(array $args = [])
+    {
+        $element = new LSD_Element_Contact();
+        $element->set_listing($this);
+
+        return $element->get($this->post->ID, $args);
+    }
+
+    public function get_favorite_button($type = 'heart')
+    {
+        return apply_filters('lsd_favorite_button', '', $type, $this);
+    }
+
+    public function get_compare_button($type = 'icon')
+    {
+        return apply_filters('lsd_compare_button', '', $type, $this);
+    }
+
+    public function is_claimed(): bool
+    {
+        return $this->is('claimed');
+    }
+
+    public function get_claim_button()
+    {
+        return apply_filters('lsd_claim_button', '', $this);
+    }
+
+    public function get_rate_stars($type = 'stars', $link = true)
+    {
+        return apply_filters('lsd_rate_stars', '', $type, $link, $this);
+    }
+
+    public function get_shape_fill_color()
+    {
+        return $this->settings['map_shape_fill_color'] ?? '#1e90ff';
+    }
+
+    public function get_shape_fill_opacity()
+    {
+        return $this->settings['map_shape_fill_opacity'] ?? '0.3';
+    }
+
+    public function get_shape_stroke_color()
+    {
+        return $this->settings['map_shape_stroke_color'] ?? '#1e74c7';
+    }
+
+    public function get_shape_stroke_opacity()
+    {
+        return $this->settings['map_shape_stroke_opacity'] ?? '0.8';
+    }
+
+    public function get_shape_stroke_weight()
+    {
+        return $this->settings['map_shape_stroke_weight'] ?? '2';
+    }
+
+    public function image_class_wrapper(): string
+    {
+        return has_post_thumbnail($this->post->ID) ? 'lsd-has-image' : 'lsd-has-no-image';
+    }
+
+    public function get_meta($key)
+    {
+        return get_post_meta($this->post->ID, $key, true);
+    }
+
+    public function is_shape(): bool
+    {
+        return $this->get_meta('lsd_object_type') === 'shape';
+    }
+
+    public function update_visits()
+    {
+        $visits = $this->get_visits();
+        update_post_meta($this->post->ID, 'lsd_visits', ++$visits);
+    }
+
+    public function get_visits()
+    {
+        $visits = $this->get_meta('lsd_visits');
+        if (!$visits) $visits = apply_filters('lsd_listing_visits_start', 0);
+
+        return $visits;
+    }
+
+    public function update_contacts()
+    {
+        $visits = $this->get_contacts();
+        update_post_meta($this->post->ID, 'lsd_contacts', ++$visits);
+    }
+
+    public function get_contacts()
+    {
+        $contacts = $this->get_meta('lsd_contacts');
+        if (!$contacts) $contacts = apply_filters('lsd_listing_contacts_start', 0);
+
+        return $contacts;
+    }
+
+    public function get_title_tag(string $method = 'normal', string $style = ''): string
+    {
+        // Link is Enabled
+        if (in_array($method, ['normal', 'blank', 'lightbox', 'right-panel', 'left-panel', 'bottom-panel']))
+        {
+            return '<a
+                data-listing-id="' . esc_attr($this->id()) . '"
+                data-listdom-style="' . $style . '"
+                href="' . esc_url(get_the_permalink($this->id())) . '"
+                ' . ($method === 'blank' ? 'target="_blank"' : '') . '
+                ' . ($method === 'lightbox' ? 'data-listdom-lightbox' : '') . '
+                ' . ($method === 'right-panel' ? 'data-listdom-panel="right"' : '') . '
+                ' . ($method === 'left-panel' ? 'data-listdom-panel="left"' : '') . '
+                ' . ($method === 'bottom-panel' ? 'data-listdom-panel="bottom"' : '') . '
+                ' . lsd_schema()->url() . '
+            >' . LSD_Kses::element($this->get_title()) . '</a>';
+        }
+        // Link is Disabled
+        else return LSD_Kses::element($this->get_title());
+    }
+
+    protected function normalize_attribute_value($value, string $type): string
+    {
+        if (is_array($value) || is_object($value)) return '';
+
+        $value = sanitize_text_field((string) $value);
+        $value = trim($value);
+
+        if ($value === '') return '';
+
+        switch ($type)
+        {
+            case 'date':
+
+                $dt = DateTime::createFromFormat('Y-m-d', $value);
+                if ($dt instanceof DateTime) return sanitize_text_field($dt->format('Y-m-d'));
+
+                $timestamp = strtotime($value);
+                if ($timestamp !== false) return sanitize_text_field(lsd_date('Y-m-d', $timestamp));
+
+                break;
+
+            case 'time':
+
+                foreach (['H:i', 'H:i:s'] as $format)
+                {
+                    $dt = DateTime::createFromFormat($format, $value);
+                    if ($dt instanceof DateTime) return sanitize_text_field($dt->format($format));
+                }
+
+                $timestamp = strtotime($value);
+                if ($timestamp !== false) return sanitize_text_field(lsd_date('H:i', $timestamp));
+
+                break;
+
+            case 'datetime':
+
+                $normalized = str_replace(' ', 'T', $value);
+
+                foreach (['Y-m-d\TH:i', 'Y-m-d\TH:i:s', 'Y-m-d H:i', 'Y-m-d H:i:s'] as $format)
+                {
+                    $dt = DateTime::createFromFormat($format, $normalized);
+                    if ($dt instanceof DateTime) return sanitize_text_field($dt->format('Y-m-d\TH:i'));
+                }
+
+                $timestamp = strtotime(str_replace('T', ' ', $normalized));
+                if ($timestamp !== false) return sanitize_text_field(lsd_date('Y-m-d\TH:i', $timestamp));
+
+                break;
+
+            default:
+                break;
+        }
+
+        return $value;
+    }
+
+    public function is($key = null): bool
+    {
+        // No Key
+        if (!trim($key)) return false;
+
+        // Claim Status
+        if ($key === 'claimed')
+        {
+            return (boolean) get_post_meta($this->post->ID, 'lsd_claimed', true);
+        }
+
+        return false;
+    }
+
+    public function get_children($limit = -1): array
+    {
+        // Get Children
+        return get_posts([
+            'post_type' => LSD_Base::PTYPE_LISTING,
+            'posts_per_page' => $limit,
+            'meta_query' => [[
+                'key' => 'lsd_parent',
+                'value' => $this->post->ID,
+            ]],
+        ]);
+    }
+
+    public function has_child(): bool
+    {
+        return (boolean) count($this->get_children(1));
+    }
+}

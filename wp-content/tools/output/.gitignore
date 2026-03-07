@@ -1,0 +1,2 @@
+# Ignore all generated CSV files — don't commit import data
+*.csv

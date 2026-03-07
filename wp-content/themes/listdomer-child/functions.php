@@ -165,6 +165,121 @@ function mfl_output_rating_data(): void
     echo '<script>window.mflListingRatings = ' . wp_json_encode($data) . ';</script>' . PHP_EOL;
 }
 
+// ─── Homepage: enqueue CSS + JS only on the page-home.php template ───────────
+
+add_action('wp_enqueue_scripts', 'mfl_enqueue_home_assets');
+
+function mfl_enqueue_home_assets(): void
+{
+    if (!is_page_template('page-home.php')) return;
+
+    $child_uri = get_stylesheet_directory_uri();
+    $ver       = wp_get_theme()->get('Version');
+
+    // Homepage-specific CSS
+    wp_enqueue_style(
+        'mfl-home',
+        $child_uri . '/assets/css/home.css',
+        ['mfl-child'],
+        $ver
+    );
+
+    // Homepage hero JS (Places Autocomplete)
+    wp_enqueue_script(
+        'mfl-home-hero',
+        $child_uri . '/assets/js/home-hero.js',
+        [],
+        $ver,
+        true   // load in footer
+    );
+
+    // Pass API key + config to the script via wp_localize_script
+    // (reads the same .env file as the importer — no key in source control)
+    wp_localize_script('mfl-home-hero', 'mflHeroConfig', [
+        'apiKey'        => mfl_get_maps_api_key(),
+        'defaultRadius' => 30,   // km — adjustable
+    ]);
+}
+
+/**
+ * Read GOOGLE_PLACES_API_KEY from the .env file for front-end use.
+ * The key IS exposed in the page source (this is normal for JS Maps API keys).
+ * Restrict it by HTTP Referrer in Google Cloud Console.
+ */
+function mfl_get_maps_api_key(): string
+{
+    $env_file = ABSPATH . '.env';
+    if (!file_exists($env_file)) return '';
+
+    foreach (file($env_file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if (str_starts_with($line, '#') || !str_contains($line, '=')) continue;
+        [$key, $val] = explode('=', $line, 2);
+        if (trim($key) === 'GOOGLE_PLACES_API_KEY') return trim(trim($val), '"\'');
+    }
+
+    return '';
+}
+
+// ─── WordPress Customizer: Homepage settings ──────────────────────────────────
+
+add_action('customize_register', 'mfl_customizer_homepage');
+
+function mfl_customizer_homepage(WP_Customize_Manager $wp_customize): void
+{
+    // Section
+    $wp_customize->add_section('mfl_homepage', [
+        'title'    => __('Homepage Hero', 'listdomer-child'),
+        'priority' => 30,
+    ]);
+
+    // Hero title
+    $wp_customize->add_setting('mfl_hero_title', [
+        'default'           => 'Find Meditation & Wellness in Florida',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage',
+    ]);
+    $wp_customize->add_control('mfl_hero_title', [
+        'label'   => __('Hero Headline', 'listdomer-child'),
+        'section' => 'mfl_homepage',
+        'type'    => 'text',
+    ]);
+
+    // Hero subtitle
+    $wp_customize->add_setting('mfl_hero_subtitle', [
+        'default'           => 'Discover studios, retreats, classes, and teachers near you',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'postMessage',
+    ]);
+    $wp_customize->add_control('mfl_hero_subtitle', [
+        'label'   => __('Hero Subheadline', 'listdomer-child'),
+        'section' => 'mfl_homepage',
+        'type'    => 'text',
+    ]);
+
+    // Hero background image
+    $wp_customize->add_setting('mfl_hero_bg_image', [
+        'default'           => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'mfl_hero_bg_image', [
+        'label'   => __('Hero Background Photo', 'listdomer-child'),
+        'section' => 'mfl_homepage',
+    ]));
+
+    // Listings page URL
+    $wp_customize->add_setting('mfl_listings_page_url', [
+        'default'           => home_url('/listings/'),
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('mfl_listings_page_url', [
+        'label'       => __('Listings Page URL', 'listdomer-child'),
+        'description' => __('URL of the page that contains your [listdom] shortcode. Search results will be sent here.', 'listdomer-child'),
+        'section'     => 'mfl_homepage',
+        'type'        => 'url',
+    ]);
+}
+
 // ─── Register newsletter widget area ─────────────────────────────────────────
 
 add_action('widgets_init', 'mfl_register_sidebars');

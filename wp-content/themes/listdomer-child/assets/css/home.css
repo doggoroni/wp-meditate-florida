@@ -1,0 +1,702 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Meditate Florida — Homepage styles
+   Loaded only on the page-home.php template.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. HERO ─────────────────────────────────────────────────────────────── */
+
+.mfl-hero {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Placeholder gradient — replace with a real photo via Customizer */
+  background: linear-gradient(160deg, #1E3A2F 0%, #2C4A3E 45%, #3D6457 100%);
+}
+
+/* User-uploaded background image sits behind the overlay */
+.mfl-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.03);  /* slight zoom so CSS transition doesn't show edge */
+  transition: transform 8s ease-out;
+}
+
+.mfl-hero.is-loaded .mfl-hero__bg {
+  transform: scale(1);
+}
+
+/* Semi-transparent overlay for text contrast */
+.mfl-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(28, 48, 38, 0.72) 0%,
+    rgba(28, 48, 38, 0.55) 60%,
+    rgba(28, 48, 38, 0.80) 100%
+  );
+}
+
+.mfl-hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 60px 20px 80px;
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mfl-hero__eyebrow {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(168, 197, 160, 0.9);
+  margin-bottom: 20px;
+}
+
+.mfl-hero__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.18;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.25);
+}
+
+.mfl-hero__subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 44px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── Search form ─────────────────────────────────────────────────────────── */
+
+.mfl-search-form {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.12);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.mfl-search-form__field {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 14px;
+  border-right: 1px solid #E8EDE6;
+  min-width: 0;
+}
+
+.mfl-search-form__field:last-of-type {
+  border-right: none;
+}
+
+.mfl-search-form__label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2C4A3E;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+
+.mfl-search-form__input,
+.mfl-search-form__select {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  height: auto !important;
+  font-size: 14px !important;
+  color: #3D3D3D !important;
+  font-family: 'Lato', sans-serif;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.mfl-search-form__input::placeholder {
+  color: #9BAF9D !important;
+}
+
+.mfl-search-form__select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7B6E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 4px center !important;
+  padding-right: 20px !important;
+}
+
+.mfl-search-form__btn {
+  background: linear-gradient(135deg, #7C9E87 0%, #5A8269 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 16px 28px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  height: auto !important;
+  line-height: 1 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  box-shadow: 0 4px 16px rgba(90, 130, 105, 0.4);
+}
+
+.mfl-search-form__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(90, 130, 105, 0.5) !important;
+}
+
+.mfl-search-form__btn:active {
+  transform: translateY(0);
+}
+
+/* City autocomplete suggestions container gets custom z-index */
+.pac-container {
+  border-radius: 10px !important;
+  margin-top: 6px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
+  border: 1px solid #E0E8DE !important;
+  font-family: 'Lato', sans-serif !important;
+  z-index: 10000 !important;
+}
+
+.pac-item:hover,
+.pac-item-selected {
+  background: #F2F5F0 !important;
+}
+
+/* Hero trust strip */
+.mfl-hero__trust {
+  margin-top: 28px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.mfl-hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mfl-hero__trust-item i {
+  color: rgba(168, 197, 160, 0.8);
+}
+
+/* Mobile hero */
+@media (max-width: 767px) {
+  .mfl-hero {
+    min-height: 100svh;
+  }
+
+  .mfl-search-form {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .mfl-search-form__field {
+    border-right: none;
+    border-bottom: 1px solid #E8EDE6;
+    padding: 10px 14px;
+  }
+
+  .mfl-search-form__field:last-of-type {
+    border-bottom: none;
+    padding: 6px;
+  }
+
+  .mfl-search-form__btn {
+    width: 100% !important;
+    justify-content: center;
+    border-radius: 8px !important;
+    padding: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mfl-hero__title {
+    font-size: 1.9rem;
+  }
+
+  .mfl-hero__trust {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+/* ── 2. SECTION SHELL ────────────────────────────────────────────────────── */
+
+.mfl-section {
+  padding: 80px 0;
+}
+
+.mfl-section--alt {
+  background: #F2F5F0;
+}
+
+.mfl-section__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.mfl-section__eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7C9E87;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.mfl-section__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #2C4A3E;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.mfl-section__desc {
+  font-size: 16px;
+  color: #6B7B6E;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+.mfl-section__cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.mfl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  border: none;
+}
+
+.mfl-btn--primary {
+  background: linear-gradient(135deg, #7C9E87, #5A8269);
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(90, 130, 105, 0.3);
+}
+
+.mfl-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(90, 130, 105, 0.4);
+  color: #fff !important;
+}
+
+.mfl-btn--outline {
+  background: transparent;
+  color: #2C4A3E !important;
+  border: 2px solid #E0E8DE;
+}
+
+.mfl-btn--outline:hover {
+  border-color: #7C9E87;
+  background: #F2F5F0;
+}
+
+
+/* ── 3. BROWSE BY CITY ───────────────────────────────────────────────────── */
+
+.mfl-city-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.mfl-city-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 16px 24px;
+  background: #ffffff;
+  border: 1px solid #E0E8DE;
+  border-radius: 14px;
+  text-decoration: none !important;
+  color: #2C4A3E !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.mfl-city-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7C9E87, #A8C5A0);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.mfl-city-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(44, 74, 62, 0.12);
+  border-color: #A8C5A0;
+  color: #2C4A3E !important;
+  text-decoration: none !important;
+}
+
+.mfl-city-card:hover::before {
+  transform: scaleX(1);
+}
+
+.mfl-city-card__icon {
+  width: 48px;
+  height: 48px;
+  background: #F2F5F0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #7C9E87;
+  transition: background 0.2s;
+}
+
+.mfl-city-card:hover .mfl-city-card__icon {
+  background: #E6EFE4;
+}
+
+.mfl-city-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #2C4A3E;
+}
+
+.mfl-city-card__count {
+  font-size: 12px;
+  color: #9BAF9D;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .mfl-city-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .mfl-city-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mfl-city-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ── 4. FEATURED LISTINGS ────────────────────────────────────────────────── */
+
+.mfl-listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.mfl-listing-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #E0E8DE;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  text-decoration: none !important;
+}
+
+.mfl-listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(44, 74, 62, 0.13);
+}
+
+.mfl-listing-card__img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #E6EFE4;
+}
+
+.mfl-listing-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.mfl-listing-card:hover .mfl-listing-card__img {
+  transform: scale(1.05);
+}
+
+.mfl-listing-card__img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #A8C5A0;
+  background: linear-gradient(135deg, #E6EFE4, #F2F5F0);
+}
+
+.mfl-listing-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(245, 239, 230, 0.95);
+  color: #7A5C30;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(196, 168, 130, 0.3);
+}
+
+.mfl-listing-card__body {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mfl-listing-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2C4A3E;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+.mfl-listing-card a:hover .mfl-listing-card__title,
+.mfl-listing-card__title:hover {
+  color: #7C9E87;
+}
+
+.mfl-listing-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.mfl-listing-card__star-icons {
+  color: #D4A84B;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.mfl-listing-card__rating-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2C4A3E;
+}
+
+.mfl-listing-card__review-ct {
+  font-size: 12px;
+  color: #9BAF9D;
+}
+
+.mfl-listing-card__address {
+  font-size: 13px;
+  color: #6B7B6E;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  line-height: 1.5;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #F2F5F0;
+}
+
+.mfl-listing-card__address i {
+  color: #9BAF9D;
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+@media (max-width: 1024px) {
+  .mfl-listings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .mfl-listings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── 5. EXPLORE BY CATEGORY ──────────────────────────────────────────────── */
+
+.mfl-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.mfl-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 20px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #E0E8DE;
+  text-decoration: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+}
+
+.mfl-cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(44, 74, 62, 0.1);
+  background: #F7FAF6;
+  border-color: #A8C5A0;
+}
+
+.mfl-cat-card__icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #E6EFE4, #F2F5F0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 28px;
+  color: #7C9E87;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mfl-cat-card:hover .mfl-cat-card__icon-wrap {
+  background: linear-gradient(135deg, #7C9E87, #5A8269);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.mfl-cat-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2C4A3E;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.mfl-cat-card__count {
+  font-size: 12px;
+  color: #9BAF9D;
+  font-family: 'Lato', sans-serif;
+}
+
+@media (max-width: 1024px) {
+  .mfl-cat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .mfl-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .mfl-section {
+    padding: 56px 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .mfl-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ── 6. EMPTY STATE ──────────────────────────────────────────────────────── */
+
+.mfl-empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: #9BAF9D;
+}
+
+.mfl-empty-state i {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.mfl-empty-state p {
+  font-size: 15px;
+}

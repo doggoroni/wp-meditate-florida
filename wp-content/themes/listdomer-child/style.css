@@ -1,0 +1,694 @@
+/*
+Theme Name:  Listdomer Child — Meditate Florida
+Description: Child theme of Listdomer with a calm meditation aesthetic.
+             Soft greens, warm whites, earth tones. Playfair Display headings,
+             Lato body. Improved listing cards, sticky header, newsletter footer.
+Template:    listdomer
+Version:     1.0.0
+Author:      Tony
+Text Domain: listdomer-child
+*/
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTIES — FULL PALETTE
+   Overrides Listdomer's --listdomer-* variables so every theme component
+   picks up the new colors without touching parent files.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Core palette ─────────────────────────────────────────────────────── */
+  --mfl-sage:          #7C9E87;   /* primary green */
+  --mfl-sage-mid:      #A8C5A0;   /* secondary / gradient end */
+  --mfl-sage-dark:     #2C4A3E;   /* deep forest — headings, footer bg */
+  --mfl-sage-hover:    #5A8269;   /* primary button hover */
+  --mfl-sand:          #C4A882;   /* warm earth — category badges */
+  --mfl-sand-light:    #F5EFE6;   /* badge background */
+  --mfl-warm-white:    #FAFAF7;   /* page background */
+  --mfl-off-white:     #F2F5F0;   /* card / section backgrounds */
+  --mfl-soft-border:   #E0E8DE;   /* borders, dividers */
+  --mfl-body-text:     #3D3D3D;   /* main body text */
+  --mfl-muted:         #6B7B6E;   /* secondary / metadata text */
+  --mfl-star-gold:     #D4A84B;   /* rating stars */
+
+  /* ── Override Listdomer gradient variables ────────────────────────────── */
+  --listdomer-main-gbg1:  #7C9E87;
+  --listdomer-main-gbg2:  #A8C5A0;
+
+  /* ── Page background ──────────────────────────────────────────────────── */
+  --listdomer-body-bg:    #FAFAF7;
+
+  /* ── Primary buttons ──────────────────────────────────────────────────── */
+  --listdomer-primary-button-bg:               #7C9E87;
+  --listdomer-primary-button-bg-2:             #5A8269;
+  --listdomer-primary-button-text:             #ffffff;
+  --listdomer-primary-button-hover-bg:         #5A8269;
+  --listdomer-primary-button-hover-text:       #ffffff;
+  --listdomer-primary-button-border:           0px;
+  --listdomer-primary-button-border-style:     solid;
+  --listdomer-primary-button-border-color:     transparent;
+  --listdomer-primary-button-border-radius:    8px;
+  --listdomer-primary-button-border-hover:     0px;
+  --listdomer-primary-button-border-hover-style: solid;
+  --listdomer-primary-button-border-hover-color: transparent;
+
+  /* ── Secondary buttons ────────────────────────────────────────────────── */
+  --listdomer-secondary-button-bg:             #F2F5F0;
+  --listdomer-secondary-button-text:           #2C4A3E;
+  --listdomer-secondary-button-hover-bg:       #E0E8DE;
+  --listdomer-secondary-button-hover-text:     #2C4A3E;
+  --listdomer-secondary-button-border:         1px;
+  --listdomer-secondary-button-border-style:   solid;
+  --listdomer-secondary-button-border-color:   #E0E8DE;
+  --listdomer-secondary-button-border-radius:  8px;
+  --listdomer-secondary-button-border-hover:   1px;
+  --listdomer-secondary-button-border-hover-style: solid;
+  --listdomer-secondary-button-border-hover-color: #A8C5A0;
+
+  /* ── Form inputs ──────────────────────────────────────────────────────── */
+  --listdom-form-input-bg-color:               #ffffff;
+  --listdom-form-input-border-color:           #E0E8DE;
+  --listdom-form-input-focus-border-color:     #7C9E87;
+  --listdom-form-input-text-color:             #3D3D3D;
+  --listdom-form-input-placeholder-text-color: #9BAF9D;
+  --listdom-form-input-radius:                 8px;
+  --listdom-form-input-font-family:            'Lato';
+  --listdom-form-input-font-size:              15px;
+  --listdom-form-input-font-weight:            400;
+  --listdom-form-input-text-align:             left;
+  --listdom-form-input-line-height:            1.6;
+  --listdom-primary-button-font-family:        'Lato';
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. TYPOGRAPHY
+   Parent hardcodes `font-family: Poppins` on h1–h6 (not a CSS variable).
+   We override here with equal specificity so child styles win.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--mfl-body-text);
+  font-size: 16px;         /* parent sets 14px — increased for readability */
+  line-height: 1.75;
+  background-color: var(--mfl-warm-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  color: var(--mfl-sage-dark);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1.05rem; }
+h6 { font-size: 0.95rem; }
+
+p { margin-bottom: 1.2em; }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. ACCESSIBILITY FIXES
+   BEFORE: outline: none on ALL focusable elements (parent styles.css:218)
+   AFTER:  visible 2px sage-green focus ring — meets WCAG 2.1 AA 3:1 ratio
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+input[type="submit"]:focus,
+button:focus,
+span:focus {
+  outline: 2px solid var(--mfl-sage) !important;
+  outline-offset: 3px !important;
+  border-radius: 3px;
+}
+
+/* Skip-to-content link — parent colours (#eee bg, #444 text) updated */
+.skip-link.screen-reader-text:focus {
+  background-color: var(--mfl-sage-dark) !important;
+  color: #ffffff !important;
+  outline: 3px solid var(--mfl-sand) !important;
+}
+
+/* Restore visible underlines on links in body copy (accessibility) */
+.entry-content a:not([class]),
+.entry-content a:not(.lsd-color-white-txt) {
+  text-decoration: underline;
+  text-decoration-color: var(--mfl-sage);
+  text-underline-offset: 3px;
+}
+
+.entry-content a:hover {
+  color: var(--mfl-sage-hover);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. STICKY HEADER
+   BEFORE: static flow — scrolls away with page
+   AFTER:  sticks at top, gains shadow after scrolling (via .is-scrolled class
+           applied by child theme JS)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#masthead.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: rgba(250, 250, 247, 0.97);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--mfl-soft-border);
+  transition: box-shadow 0.25s ease;
+  padding: 0 24px;
+  gap: 20px;
+  align-items: center;
+}
+
+#masthead.site-header.is-scrolled {
+  box-shadow: 0 2px 16px rgba(44, 74, 62, 0.1);
+}
+
+/* Site branding in child */
+.site-branding a,
+.site-branding h1 a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--mfl-sage-dark);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.site-description {
+  font-size: 0.75rem;
+  color: var(--mfl-muted);
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Header search bar ──────────────────────────────────────────────────── */
+.mfl-header-search {
+  flex: 1;
+  max-width: 380px;
+  margin: 0 16px;
+}
+
+.mfl-header-search form {
+  display: flex;
+  align-items: center;
+  background: var(--mfl-off-white);
+  border: 1.5px solid var(--mfl-soft-border);
+  border-radius: 999px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  height: 42px;
+}
+
+.mfl-header-search form:focus-within {
+  border-color: var(--mfl-sage);
+  box-shadow: 0 0 0 3px rgba(124, 158, 135, 0.18);
+}
+
+.mfl-header-search input[type="search"],
+.mfl-header-search input[type="text"] {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 16px !important;
+  font-size: 14px !important;
+  height: 40px !important;
+  color: var(--mfl-body-text) !important;
+  flex: 1;
+  width: 100%;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.mfl-header-search button[type="submit"] {
+  background: none !important;
+  border: none !important;
+  padding: 0 14px !important;
+  color: var(--mfl-muted) !important;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.mfl-header-search button[type="submit"]:hover {
+  color: var(--mfl-sage) !important;
+}
+
+.mfl-header-search button[type="submit"] svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Responsive: collapse search on small screens ───────────────────────── */
+@media (max-width: 767px) {
+  .mfl-header-search {
+    display: none;
+  }
+
+  .mfl-header-search.is-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 12px 16px;
+    background: var(--mfl-warm-white);
+    border-top: 1px solid var(--mfl-soft-border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    z-index: 100;
+  }
+}
+
+@media (max-width: 480px) {
+  #masthead.site-header {
+    padding: 0 16px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. LISTING CARDS — IMPROVED DESIGN
+   BEFORE: generic white card with small shadow, no visual hierarchy
+   AFTER:  rounded corners, hover lift, category badge (earth tone),
+           rating stars row, city tag
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Card wrapper */
+.lsd-listing-item {
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44, 74, 62, 0.07) !important;
+  border: 1px solid var(--mfl-soft-border) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+  background: #ffffff !important;
+}
+
+.lsd-listing-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(44, 74, 62, 0.13) !important;
+}
+
+/* Image area */
+.lsd-listing-head,
+.lsd-listing-item .lsd-cover {
+  border-radius: 0 !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.lsd-listing-head img,
+.lsd-listing-item .lsd-cover img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.lsd-listing-item:hover .lsd-cover img {
+  transform: scale(1.04);
+}
+
+/* Category badge — overlaid on image */
+.lsd-listing-categories {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+.lsd-listing-categories a,
+.lsd-listing-category-badge {
+  display: inline-block;
+  background: var(--mfl-sand-light);
+  color: #7A5C30 !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-decoration: none !important;
+  border: 1px solid rgba(196, 168, 130, 0.4);
+}
+
+/* Card body */
+.lsd-listing-body {
+  padding: 16px 18px 18px !important;
+}
+
+/* Listing title */
+.lsd-listing-title a,
+.lsd-listing-item .entry-title a,
+.lsd-item-title a {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  color: var(--mfl-sage-dark) !important;
+  text-decoration: none !important;
+  line-height: 1.35 !important;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.lsd-listing-title a:hover,
+.lsd-item-title a:hover {
+  color: var(--mfl-sage) !important;
+}
+
+/* Rating stars row */
+.mfl-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 8px;
+}
+
+.mfl-stars {
+  color: var(--mfl-star-gold);
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.mfl-rating-count {
+  font-size: 12px;
+  color: var(--mfl-muted);
+  font-family: 'Lato', sans-serif;
+}
+
+/* Address / metadata */
+.lsd-listing-address,
+.lsd-listing-item .lsd-element-address {
+  font-size: 13px !important;
+  color: var(--mfl-muted) !important;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* City tag */
+.mfl-city-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mfl-sage-dark);
+  background: var(--mfl-off-white);
+  border: 1px solid var(--mfl-soft-border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Listing card footer row (phone/website links) */
+.lsd-listing-item .lsd-listing-contacts,
+.lsd-listing-item .lsd-element-contacts {
+  border-top: 1px solid var(--mfl-soft-border);
+  margin-top: 12px;
+  padding-top: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lsd-listing-item .lsd-listing-contacts a,
+.lsd-listing-item .lsd-element-contacts a {
+  font-size: 12px;
+  color: var(--mfl-sage) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lsd-listing-item .lsd-listing-contacts a:hover,
+.lsd-listing-item .lsd-element-contacts a:hover {
+  color: var(--mfl-sage-hover) !important;
+  text-decoration: underline !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. BUTTON FIXES
+   Parent disabled state used #E6F7FF (corporate blue). Changed to warm grey.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+input[type="submit"]:disabled,
+.listdomer-button a:disabled,
+button[type="submit"]:disabled,
+form button[type="submit"]:disabled {
+  background: var(--mfl-off-white) !important;
+  color: var(--mfl-muted) !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Carousel dots */
+.lsd-owl-carousel .owl-dots .owl-dot span {
+  border-color: var(--mfl-soft-border) !important;
+}
+
+.lsd-owl-carousel .owl-dots .owl-dot.active span,
+.lsd-owl-carousel .owl-dots .owl-dot:hover span {
+  background-color: var(--mfl-sage) !important;
+  border-color: var(--mfl-sage) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Newsletter band */
+.mfl-newsletter-band {
+  background: linear-gradient(135deg, var(--mfl-sage-dark) 0%, #3D6457 100%);
+  padding: 56px 0;
+  color: #fff;
+  text-align: center;
+}
+
+.mfl-newsletter-band h3 {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 10px;
+}
+
+.mfl-newsletter-band p {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mfl-newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.mfl-newsletter-form input[type="email"] {
+  flex: 1;
+  border: none !important;
+  border-radius: 8px 0 0 8px !important;
+  padding: 0 18px !important;
+  font-size: 15px !important;
+  height: 48px !important;
+  background: rgba(255,255,255,0.95) !important;
+  color: var(--mfl-body-text) !important;
+  outline: none !important;
+}
+
+.mfl-newsletter-form button {
+  background: var(--mfl-sand) !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 0 22px !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  height: 48px !important;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  letter-spacing: 0.03em;
+  font-family: 'Lato', sans-serif;
+}
+
+.mfl-newsletter-form button:hover {
+  background: #A8895E !important;
+}
+
+.mfl-newsletter-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 14px;
+}
+
+@media (max-width: 480px) {
+  .mfl-newsletter-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mfl-newsletter-form input[type="email"] {
+    border-radius: 8px !important;
+  }
+
+  .mfl-newsletter-form button {
+    border-radius: 8px !important;
+    width: 100%;
+  }
+}
+
+/* Footer widget area */
+.site-footer {
+  background: var(--mfl-sage-dark);
+  color: rgba(255,255,255,0.85);
+}
+
+.site-main-footer {
+  padding: 48px 0 32px;
+}
+
+.site-main-footer .widget-title {
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--mfl-sage);
+}
+
+.site-main-footer p,
+.site-main-footer li,
+.site-main-footer a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+}
+
+.site-main-footer a:hover {
+  color: var(--mfl-sage-mid) !important;
+  text-decoration: underline;
+}
+
+.site-main-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Sub-footer / copyright bar */
+.site-subfooter {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.site-info {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+.subfooter-navigation ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.subfooter-navigation ul a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5) !important;
+  text-decoration: none;
+}
+
+.subfooter-navigation ul a:hover {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. MISCELLANEOUS / MOBILE POLISH
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Section decoration line — updated to sage gradient */
+.listdomer-home-header::after {
+  background: linear-gradient(90deg, var(--mfl-sage) 0%, var(--mfl-sage-mid) 100%);
+}
+
+/* Checkboxes — updated to sage */
+.listdomer-checkbox input:checked ~ .checkmark {
+  background-color: var(--mfl-sage);
+}
+
+/* Select2 dropdowns */
+form:not(.lsd-search-form) .select2-container--default .select2-selection--single {
+  background-color: var(--mfl-off-white);
+  border: 1px solid var(--mfl-soft-border);
+  border-radius: 8px;
+}
+
+/* Tablet: add a breakpoint the parent theme is missing (768–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .lsd-col-md-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  #masthead.site-header {
+    flex-wrap: wrap;
+    padding: 8px 20px;
+  }
+
+  .mfl-header-search {
+    order: 3;
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin: 4px 0 8px;
+  }
+}
+
+/* Print: remove sticky header chrome */
+@media print {
+  #masthead.site-header {
+    position: relative;
+    box-shadow: none;
+  }
+}

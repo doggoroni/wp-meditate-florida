@@ -1,0 +1,2 @@
+# Don't commit log files — they're runtime output, not code.
+*.log

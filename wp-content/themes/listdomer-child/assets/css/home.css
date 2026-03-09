@@ -3,6 +3,65 @@
    Loaded only on the page-home.php template.
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* ── 0. HOMEPAGE: TRANSPARENT OVERLAID HEADER ────────────────────────────── */
+/*
+ * On page-home.php WordPress adds .page-template-page-home to <body>.
+ * Lift #masthead out of normal flow so it overlays the hero.
+ * The sticky JS in functions.php adds .is-scrolled — use that to solidify.
+ */
+
+.page-template-page-home #masthead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  z-index: 200;
+  border-bottom: none !important;
+}
+
+.page-template-page-home #masthead.is-scrolled {
+  position: fixed;
+  background: rgba(28, 48, 38, 0.97) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* White nav/branding while header is transparent */
+.page-template-page-home #masthead:not(.is-scrolled) .main-navigation a,
+.page-template-page-home #masthead:not(.is-scrolled) .site-branding a,
+.page-template-page-home #masthead:not(.is-scrolled) .site-branding,
+.page-template-page-home #masthead:not(.is-scrolled) .site-description,
+.page-template-page-home #masthead:not(.is-scrolled) #header-buttons button,
+.page-template-page-home #masthead:not(.is-scrolled) .mfl-header-search input,
+.page-template-page-home #masthead:not(.is-scrolled) .mfl-header-search button {
+  color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Submenu (dropdown) links must always be dark — they open over a white panel */
+.page-template-page-home #masthead:not(.is-scrolled) .main-navigation ul ul a,
+.page-template-page-home #masthead:not(.is-scrolled) .main-navigation ul ul li a {
+  color: var(--mfl-sage-dark, #2C4A3E) !important;
+  background: transparent !important;
+}
+.page-template-page-home #masthead:not(.is-scrolled) .main-navigation ul ul li a:hover {
+  color: var(--mfl-sage, #7C9E87) !important;
+  background: var(--mfl-off-white, #F2F5F0) !important;
+}
+
+.page-template-page-home #masthead:not(.is-scrolled) .mfl-header-search {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.page-template-page-home #masthead:not(.is-scrolled) .mfl-header-search input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
 /* ── 1. HERO ─────────────────────────────────────────────────────────────── */
 
 .mfl-hero {
@@ -14,6 +73,29 @@
   overflow: hidden;
   /* Placeholder gradient — replace with a real photo via Customizer */
   background: linear-gradient(160deg, #1E3A2F 0%, #2C4A3E 45%, #3D6457 100%);
+}
+
+/* Radial glow layers for depth without a photo */
+.mfl-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 28% 48%, rgba(168, 197, 160, 0.18) 0%, transparent 58%),
+    radial-gradient(ellipse at 75% 20%, rgba(212, 168, 75, 0.07) 0%, transparent 45%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Grain/noise texture for visual depth */
+.mfl-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* User-uploaded background image sits behind the overlay */
@@ -47,10 +129,75 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 60px 20px 80px;
+  /* Top: 60px base + ~80px header height. Bottom: 80px base + 80px wave clearance */
+  padding: 140px 20px 160px;
   max-width: 820px;
   width: 100%;
   margin: 0 auto;
+}
+
+/* ── Decorative floating shapes ─────────────────────────────────────────── */
+
+.mfl-hero__shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.07;
+}
+
+.mfl-hero__shape--lotus {
+  top: 8%;
+  left: 3%;
+  width: 220px;
+  height: 220px;
+  animation: mfl-float 12s ease-in-out infinite;
+}
+
+.mfl-hero__shape--leaf {
+  bottom: 14%;
+  right: 2%;
+  width: 180px;
+  height: 180px;
+  animation: mfl-float 16s ease-in-out infinite reverse;
+}
+
+.mfl-hero__shape--mandala {
+  top: 6%;
+  right: 5%;
+  width: 140px;
+  height: 140px;
+  opacity: 0.05;
+  animation: mfl-spin-slow 40s linear infinite;
+}
+
+@keyframes mfl-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(2deg); }
+  66%       { transform: translateY(6px) rotate(-1deg); }
+}
+
+@keyframes mfl-spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Wave divider ───────────────────────────────────────────────────────── */
+
+.mfl-hero__wave {
+  position: absolute;
+  bottom: -1px; /* -1px prevents 1px gap on some displays */
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 3;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.mfl-hero__wave svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .mfl-hero__eyebrow {
@@ -221,6 +368,19 @@
   .mfl-hero {
     min-height: 100svh;
   }
+
+  .mfl-hero__content {
+    padding-top: 110px;
+    padding-bottom: 100px;
+  }
+
+  .mfl-hero__wave {
+    height: 40px;
+  }
+
+  .mfl-hero__shape--lotus  { width: 130px; height: 130px; opacity: 0.06; }
+  .mfl-hero__shape--leaf   { width: 110px; height: 110px; opacity: 0.06; }
+  .mfl-hero__shape--mandala { display: none; }
 
   .mfl-search-form {
     grid-template-columns: 1fr;
@@ -680,6 +840,19 @@
   .mfl-cat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* ── Prevent Select2 chevron in the hero search form ─────────────────────── */
+/*
+ * The parent theme's scripts.js applies Select2 to all <select> elements,
+ * replacing the native select with a custom widget that includes a
+ * select2-selection__arrow chevron (the "down-arrow" visible in the top-right
+ * of the hero). The primary fix is data-enhanced="0" on the <select> in
+ * page-home.php; this rule hides just the arrow as a belt-and-suspenders
+ * fallback without hiding the entire dropdown.
+ */
+.mfl-search-form .select2-selection__arrow {
+  display: none !important;
 }
 
 

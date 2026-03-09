@@ -1,0 +1,27 @@
+User-agent: *
+
+# WordPress internals
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
+Disallow: /wp-json/
+Disallow: /feed/
+Disallow: /?author=
+
+# Crawl waste - these params add no indexable value
+Disallow: /listings/*?*sort=
+Disallow: /listings/*?*view=
+Disallow: /listings/*?*open_now=
+Disallow: /listings/*?*rating=
+Disallow: /listings/*?*paged=
+
+# Allow valuable filter combinations through
+Allow: /listings/?city=
+Allow: /listings/?category=
+
+Allow: /
+
+# Update both URLs to your production domain before going live
+Sitemap: https://meditateflorida.com/sitemap-listings.xml
+Sitemap: https://meditateflorida.com/wp-sitemap.xml

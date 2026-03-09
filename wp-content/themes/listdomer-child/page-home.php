@@ -152,6 +152,43 @@ get_header();
 
     <div class="mfl-hero__overlay" aria-hidden="true"></div>
 
+    <!-- Decorative floating shapes — lotus, leaf, mandala outlines -->
+    <div class="mfl-hero__shape mfl-hero__shape--lotus" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 105 C60 105 15 78 15 48 C15 28 35 18 60 38 C85 18 105 28 105 48 C105 78 60 105 60 105Z" stroke="white" stroke-width="1.2" fill="none"/>
+            <path d="M60 105 C60 105 32 72 32 48 C32 33 45 26 60 38 C75 26 88 33 88 48 C88 72 60 105 60 105Z" stroke="white" stroke-width="1" fill="none"/>
+            <path d="M60 105 C60 105 48 70 48 48 C48 38 53 32 60 38 C67 32 72 38 72 48 C72 70 60 105 60 105Z" stroke="white" stroke-width="0.9" fill="none"/>
+            <line x1="60" y1="38" x2="60" y2="105" stroke="white" stroke-width="0.8"/>
+            <ellipse cx="60" cy="55" rx="14" ry="9" stroke="white" stroke-width="0.8" fill="none"/>
+        </svg>
+    </div>
+
+    <div class="mfl-hero__shape mfl-hero__shape--leaf" aria-hidden="true">
+        <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 110 C50 110 8 80 8 42 C8 18 28 8 50 22 C72 8 92 18 92 42 C92 80 50 110 50 110Z" stroke="white" stroke-width="1.2" fill="none"/>
+            <line x1="50" y1="22" x2="50" y2="110" stroke="white" stroke-width="0.9"/>
+            <path d="M50 44 C30 41 14 37 8 42" stroke="white" stroke-width="0.7"/>
+            <path d="M50 60 C28 57 12 52 9 56" stroke="white" stroke-width="0.7"/>
+            <path d="M50 76 C32 73 18 68 13 72" stroke="white" stroke-width="0.7"/>
+            <path d="M50 44 C70 41 86 37 92 42" stroke="white" stroke-width="0.7"/>
+            <path d="M50 60 C72 57 88 52 91 56" stroke="white" stroke-width="0.7"/>
+            <path d="M50 76 C68 73 82 68 87 72" stroke="white" stroke-width="0.7"/>
+        </svg>
+    </div>
+
+    <div class="mfl-hero__shape mfl-hero__shape--mandala" aria-hidden="true">
+        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="70" cy="70" r="65" stroke="white" stroke-width="0.8"/>
+            <circle cx="70" cy="70" r="48" stroke="white" stroke-width="0.8"/>
+            <circle cx="70" cy="70" r="31" stroke="white" stroke-width="0.8"/>
+            <circle cx="70" cy="70" r="14" stroke="white" stroke-width="0.8"/>
+            <ellipse cx="70" cy="31" rx="7" ry="17" stroke="white" stroke-width="0.7" fill="none"/>
+            <ellipse cx="70" cy="31" rx="7" ry="17" stroke="white" stroke-width="0.7" fill="none" transform="rotate(45 70 70)"/>
+            <ellipse cx="70" cy="31" rx="7" ry="17" stroke="white" stroke-width="0.7" fill="none" transform="rotate(90 70 70)"/>
+            <ellipse cx="70" cy="31" rx="7" ry="17" stroke="white" stroke-width="0.7" fill="none" transform="rotate(135 70 70)"/>
+        </svg>
+    </div>
+
     <div class="mfl-hero__content">
 
         <span class="mfl-hero__eyebrow"><?php esc_html_e('Florida\'s Mindfulness Directory', 'listdomer-child'); ?></span>
@@ -166,7 +203,7 @@ get_header();
               method="get"
               action="<?php echo esc_url($listings_url); ?>"
               role="search"
-              aria-label="<?php esc_attr_e('Search listings', 'listdomer-child'); ?>">
+              aria-label="<?php esc_attr_e('Search locations', 'listdomer-child'); ?>">
 
             <!-- Keyword: maps to sf[s] (Listdom textsearch) -->
             <div class="mfl-search-form__field">
@@ -218,6 +255,7 @@ get_header();
                     name="sf[listdom-category]"
                     class="mfl-search-form__select"
                     aria-label="<?php esc_attr_e('Filter by category', 'listdomer-child'); ?>"
+                    data-enhanced="0"
                 >
                     <option value=""><?php esc_html_e('All categories', 'listdomer-child'); ?></option>
                     <?php if (!is_wp_error($search_categories)): ?>
@@ -260,7 +298,7 @@ get_header();
                     $total = wp_count_posts('listdom-listing');
                     $n     = $total->publish ?? 0;
                     /* translators: %d = number of listings */
-                    echo esc_html(sprintf(_n('%d listing', '%d listings', $n, 'listdomer-child'), $n));
+                    echo esc_html(sprintf(_n('%d location', '%d locations', $n, 'listdomer-child'), $n));
                 ?>
             </span>
             <span class="mfl-hero__trust-item">
@@ -269,6 +307,13 @@ get_header();
             </span>
         </div>
 
+    </div>
+
+    <!-- Wave transition to the section below (#F2F5F0) -->
+    <div class="mfl-hero__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#F2F5F0" d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z"/>
+        </svg>
     </div>
 </section>
 
@@ -290,21 +335,13 @@ get_header();
                 $count     = mfl_city_count($city['name']);
                 $lat       = $city['lat'];
                 $lng       = $city['lng'];
-                $city_url  = add_query_arg([
-                    'sf' => [
-                        'shape'             => 'circle',
-                        'circle_latitude'   => $lat,
-                        'circle_longitude'  => $lng,
-                        'circle_radius'     => 30,   // km
-                        'address'           => $city['name'] . ', FL',
-                    ],
-                ], $listings_url);
+                $city_url  = add_query_arg(['city' => $city['name']], $listings_url);
             ?>
                 <a href="<?php echo esc_url($city_url); ?>"
                    class="mfl-city-card"
                    aria-label="<?php echo esc_attr(sprintf(
                        /* translators: 1: city name 2: listing count */
-                       _n('Browse %1$s — %2$d listing', 'Browse %1$s — %2$d listings', $count, 'listdomer-child'),
+                       _n('Browse %1$s — %2$d location', 'Browse %1$s — %2$d locations', $count, 'listdomer-child'),
                        $city['name'], $count
                    )); ?>">
                     <div class="mfl-city-card__icon" aria-hidden="true">
@@ -314,7 +351,7 @@ get_header();
                     <div class="mfl-city-card__count">
                         <?php echo esc_html(
                             $count > 0
-                                ? sprintf(_n('%d listing', '%d listings', $count, 'listdomer-child'), $count)
+                                ? sprintf(_n('%d location', '%d locations', $count, 'listdomer-child'), $count)
                                 : __('Coming soon', 'listdomer-child')
                         ); ?>
                     </div>
@@ -334,7 +371,7 @@ get_header();
 
         <div class="mfl-section__header">
             <span class="mfl-section__eyebrow"><?php esc_html_e('Highly Rated', 'listdomer-child'); ?></span>
-            <h2 class="mfl-section__title"><?php esc_html_e('Featured Listings', 'listdomer-child'); ?></h2>
+            <h2 class="mfl-section__title"><?php esc_html_e('Featured Locations', 'listdomer-child'); ?></h2>
             <p class="mfl-section__desc"><?php esc_html_e('Top-rated meditation centres, retreats, and wellness studios across Florida.', 'listdomer-child'); ?></p>
         </div>
 
@@ -346,8 +383,8 @@ get_header();
                     $rev_count  = (int)   get_post_meta($pid, '_mfl_review_count', true);
                     $address    = get_post_meta($pid, 'lsd_address',               true);
                     $image_url  = get_post_meta($pid, '_mfl_image_url',            true);
-                    $categories = get_the_terms($pid, 'listdom-category');
-                    $cat_name   = (!is_wp_error($categories) && $categories) ? $categories[0]->name : '';
+                    $listing_cats = get_the_terms($pid, 'listdom-category');
+                    $cat_name     = (!is_wp_error($listing_cats) && $listing_cats) ? $listing_cats[0]->name : '';
                 ?>
                     <a href="<?php the_permalink(); ?>" class="mfl-listing-card">
 
@@ -408,7 +445,7 @@ get_header();
 
             <div class="mfl-section__cta">
                 <a href="<?php echo esc_url($listings_url); ?>" class="mfl-btn mfl-btn--primary">
-                    <?php esc_html_e('View All Listings', 'listdomer-child'); ?>
+                    <?php esc_html_e('View All Locations', 'listdomer-child'); ?>
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -416,7 +453,7 @@ get_header();
         <?php else: ?>
             <div class="mfl-empty-state">
                 <i class="fas fa-seedling" aria-hidden="true"></i>
-                <p><?php esc_html_e('Listings are being imported. Check back soon!', 'listdomer-child'); ?></p>
+                <p><?php esc_html_e('Locations are being imported. Check back soon!', 'listdomer-child'); ?></p>
             </div>
         <?php endif; ?>
 
@@ -439,14 +476,16 @@ get_header();
             <div class="mfl-cat-grid">
                 <?php foreach ($categories as $cat):
                     $icon     = mfl_category_icon($cat->name);
-                    $cat_link = get_term_link($cat);
-                    if (is_wp_error($cat_link)) $cat_link = $listings_url;
+                    $cat_link = add_query_arg(
+                        ['category' => $cat->term_id],
+                        $listings_url
+                    );
                 ?>
                     <a href="<?php echo esc_url($cat_link); ?>"
                        class="mfl-cat-card"
                        aria-label="<?php echo esc_attr(sprintf(
                            /* translators: 1: category name 2: count */
-                           _n('%1$s — %2$d listing', '%1$s — %2$d listings', $cat->count, 'listdomer-child'),
+                           _n('%1$s — %2$d location', '%1$s — %2$d locations', $cat->count, 'listdomer-child'),
                            $cat->name, $cat->count
                        )); ?>">
                         <div class="mfl-cat-card__icon-wrap" aria-hidden="true">
@@ -455,7 +494,7 @@ get_header();
                         <div class="mfl-cat-card__name"><?php echo esc_html($cat->name); ?></div>
                         <div class="mfl-cat-card__count">
                             <?php echo esc_html(sprintf(
-                                _n('%d listing', '%d listings', $cat->count, 'listdomer-child'),
+                                _n('%d location', '%d locations', $cat->count, 'listdomer-child'),
                                 $cat->count
                             )); ?>
                         </div>

@@ -39,13 +39,15 @@ $listdomer_logo_bg = LSDR_Settings::get('listdomer_logo_bg', 1);
     <!-- Inline search bar (hidden on mobile, toggled by button) -->
     <div class="mfl-header-search" id="mfl-header-search" role="search">
         <form method="get" action="<?php echo esc_url(home_url('/')); ?>"
-              aria-label="<?php esc_attr_e('Search meditation listings', 'listdomer-child'); ?>">
+              aria-label="<?php esc_attr_e('Search meditation locations', 'listdomer-child'); ?>">
             <input
                 type="search"
                 name="s"
                 value="<?php echo esc_attr(get_search_query()); ?>"
                 placeholder="<?php esc_attr_e('Search centers, retreats, studios…', 'listdomer-child'); ?>"
-                aria-label="<?php esc_attr_e('Search listings', 'listdomer-child'); ?>"
+                aria-label="<?php esc_attr_e('Search locations', 'listdomer-child'); ?>"
+                required
+                minlength="2"
             >
             <input type="hidden" name="post_type" value="listdom-listing">
             <button type="submit" aria-label="<?php esc_attr_e('Submit search', 'listdomer-child'); ?>">

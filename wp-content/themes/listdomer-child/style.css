@@ -161,10 +161,10 @@ span:focus {
   position: sticky;
   top: 0;
   z-index: 999;
-  background-color: rgba(250, 250, 247, 0.97);
+  background-color: rgba(28, 48, 38, 0.97);   /* dark forest green — overrides var(--listdomer-header-bg) */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--mfl-soft-border);
+  box-shadow: none;                             /* overrides .site-header { box-shadow: 0 3px 5px #00000012 } */
   transition: box-shadow 0.25s ease;
   padding: 0 24px;
   gap: 20px;
@@ -172,26 +172,231 @@ span:focus {
 }
 
 #masthead.site-header.is-scrolled {
-  box-shadow: 0 2px 16px rgba(44, 74, 62, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);  /* overrides: no parent rule; added on scroll */
 }
 
-/* Site branding in child */
+/* ── Nav links: lock to white on the solid scrolled header ─────────────── */
+/*
+ * When .is-scrolled is added the parent's personalized.css variables
+ * (--listdomer-header-tc: #000000, --listdomer-header-ac/hc: #0ab0fe)
+ * can win via cascade order. Using #masthead (ID) + .is-scrolled gives
+ * higher specificity than the parent's class-only selectors, and !important
+ * guards against personalized.css regardless of load order.
+ *
+ * Parent rules being overridden (styles.css:582-590):
+ *   .site-header .main-navigation > div > ul li a          { color: var(--listdomer-header-tc); }  → #000
+ *   .site-header .main-navigation > div > ul li a:hover    { color: var(--listdomer-header-hc); }  → #0ab0fe
+ *   .site-header .main-navigation > div > ul li.current-menu-item > a { color: var(--listdomer-header-ac); }  → #0ab0fe
+ */
+#masthead.is-scrolled .main-navigation a,
+#masthead.is-scrolled .site-branding a {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+#masthead.is-scrolled .main-navigation a:hover {
+  color: #A8C5A0 !important;
+}
+
+/* Active / current page item — brand sage green, not cyan.
+   Also applied without .is-scrolled so the active colour is consistent
+   across all scroll states on all pages. */
+#masthead.is-scrolled .main-navigation .current-menu-item > a,
+#masthead.is-scrolled .main-navigation .current_page_item > a,
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_item > a {
+  color: #A8C5A0 !important;
+}
+
+/* ── Site branding container ────────────────────────────────────────────── */
+
+/* Remove the gradient box on .site-branding.
+   Overrides: .site-header .site-branding {
+     background: transparent linear-gradient(180deg, var(--listdomer-main-gbg1) 0,
+                 var(--listdomer-main-gbg2) 100%) 0 0 no-repeat padding-box; }
+   This is the "bright blue/green gradient box" the user sees. */
+.site-header .site-branding {
+  background: transparent !important;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Custom logo — show and size correctly ──────────────────────────────── */
+/*
+ * LSDR_Theme::logo() (includes/theme.php) outputs when custom_logo is set:
+ *   <div class="site-logo">
+ *     <a class="custom-logo-link" href="/">
+ *       <img class="custom-logo" src="logo.png" width="163" height="41">
+ *     </a>
+ *   </div>
+ *
+ * personalized.css sets: .custom-logo { width: 160px; height: auto; max-width: 100%; }
+ * We override to height-constrained sizing so it fits the 44px branding row.
+ * Logo (logo.png) is already white — no filter needed.
+ */
+.site-header .site-branding .site-logo {
+  display: flex !important;
+  align-items: center;
+}
+
+.site-header .site-branding .custom-logo-link {
+  display: inline-flex !important;
+  align-items: center;
+  line-height: 0;   /* prevent phantom descender gap beneath the image */
+}
+
+.site-header .site-branding .custom-logo {
+  display: block !important;
+  max-height: 40px;
+  width: auto !important;   /* override personalized.css: width: 160px */
+  height: auto;
+  max-width: 220px;         /* safety cap — won't overflow on narrow headers */
+}
+
+/* ── Logotype text (site name) ──────────────────────────────────────────── */
+
+/* With both logo theme mods cleared, header.php takes the else branch and
+   outputs: <h1><a href="/">Meditate Florida</a></h1>  (front page)
+         or <a href="/">Meditate Florida</a>            (inner pages)
+   Overrides: .site-header .site-branding a { color: #fff; font-size: 20px; }
+              .site-header .site-branding h1.site-logo { margin-top: 15px; } */
 .site-branding a,
-.site-branding h1 a {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: var(--mfl-sage-dark);
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.site-branding .site-title a,
+.site-branding h1 a,
+.site-header .site-branding a,
+.site-header .site-branding h1 a {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  letter-spacing: 0.02em;
+  white-space: nowrap !important;
 }
 
-.site-description {
-  font-size: 0.75rem;
-  color: var(--mfl-muted);
-  margin-top: 2px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.site-header .site-branding a:hover,
+.site-header .site-branding h1 a:hover {
+  color: rgba(168, 197, 160, 0.9) !important;
+}
+
+/* ── Site tagline — hidden completely ───────────────────────────────────── */
+
+/* Overrides: .site-header .site-branding div.site-description { color: var(--listdomer-header-tagline-color); min-width: 125px; } */
+.site-header .site-branding .site-description {
+  display: none !important;
+}
+
+/* ── Navigation links ───────────────────────────────────────────────────── */
+
+/* Overrides: .site-header .main-navigation > div > ul li a { color: var(--listdomer-header-tc); } */
+.site-header .main-navigation > div > ul li a {
+  color: #E6EFE4 !important;   /* soft light green — readable on dark forest green */
+}
+
+/* Overrides: .site-header .main-navigation > div > ul li a:hover/active/focus { color: var(--listdomer-header-hc); } */
+.site-header .main-navigation > div > ul li a:hover,
+.site-header .main-navigation > div > ul li a:active,
+.site-header .main-navigation > div > ul li a:focus {
+  color: #A8C5A0 !important;   /* sage mid-green on hover */
+}
+
+/* Active / current page — adds bottom border, overrides:
+   .site-header .main-navigation > div > ul li.current-menu-parent > a,
+   .site-header .main-navigation > div > ul li.current-menu-item > a { color: var(--listdomer-header-ac); } */
+.site-header .main-navigation > div > ul > li.current-menu-parent > a,
+.site-header .main-navigation > div > ul > li.current-menu-item > a {
+  color: #E6EFE4 !important;
+  border-bottom: 2px solid #7C9E87;   /* sage underline on active item */
+  padding-bottom: 2px;
+}
+
+/* ── Cities dropdown: compact, no-wrap, scrollable ── */
+.main-navigation ul ul {
+  background: #ffffff;
+  border: 1px solid var(--mfl-soft-border, #E0E8DE);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(44, 74, 62, 0.12);
+  padding: 4px 0;
+  min-width: 210px;       /* wide enough for "Fort Lauderdale" on one line */
+  max-height: 360px;      /* caps at ~360px so it never overflows viewport */
+  overflow-y: auto;       /* allows scrolling if content taller than max-height */
+  overflow-x: hidden;
+}
+
+.main-navigation ul ul li a {
+  padding: 7px 16px !important;   /* was 9px 18px — tighter vertical rhythm */
+  font-size: 13px !important;
+  font-weight: 500;
+  display: block;
+  white-space: nowrap !important;  /* prevent city names from wrapping */
+  color: var(--mfl-sage-dark, #2C4A3E) !important;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1.4;
+}
+
+.main-navigation ul ul a:hover,
+.main-navigation ul ul li a:hover {
+  background: var(--mfl-off-white, #F2F5F0);
+  color: var(--mfl-sage, #7C9E87) !important;
+}
+
+/* Scrollbar styling for the dropdown */
+.main-navigation ul ul::-webkit-scrollbar { width: 4px; }
+.main-navigation ul ul::-webkit-scrollbar-thumb {
+  background: var(--mfl-sage-mid, #A8C5A0);
+  border-radius: 2px;
+}
+
+/* ── Mobile hamburger ───────────────────────────────────────────────────── */
+
+/* The hamburger is a FontAwesome icon (fas fa-align-right) inside a <span>.
+   Overrides: .site-header .header-buttons .listdomer-responsive-sidebar-menu { background: none; border: none; } */
+.site-header .header-buttons .listdomer-responsive-sidebar-menu,
+.site-header .header-buttons .listdomer-responsive-sidebar-menu > span {
+  color: #ffffff;           /* white icon on dark header */
+}
+
+.site-header .header-buttons .listdomer-responsive-sidebar-menu i {
+  color: #ffffff;           /* FontAwesome icon colour */
+  font-size: 1.25rem;
+}
+
+/* Mobile nav panel background (slides in at ≤767px)
+   Overrides: @media (max-width: 767px) .site-header .main-navigation { background-color: var(--listdomer-header-bg); } */
+@media (max-width: 767px) {
+  .site-header .main-navigation {
+    background-color: #1C3026 !important;   /* deep forest for off-canvas panel */
+  }
+
+  /* Close button in mobile nav */
+  .site-header .main-navigation .main-navigation-close {
+    color: #E6EFE4 !important;
+  }
+}
+
+/* ── Listdom header search (.lsd-header-search) ─────────────────────────── */
+
+/* Overrides: .site-header .lsd-header-search { padding: 10px; align-self: center; }
+   No background/border set by parent — adding dark-themed input */
+.site-header .lsd-header-search input,
+.site-header .lsd-header-search-mobile input,
+.site-header .lsd-header-search input[type="text"],
+.site-header .lsd-header-search input[type="search"] {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #E6EFE4 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px;
+}
+
+.site-header .lsd-header-search input::placeholder,
+.site-header .lsd-header-search-mobile input::placeholder {
+  color: rgba(230, 239, 228, 0.5) !important;
+}
+
+/* Search button / magnifier icon */
+.site-header .lsd-header-search .lsd-search-button,
+.site-header .lsd-header-search-mobile .lsd-search-button {
+  color: #A8C5A0 !important;
 }
 
 /* ── Header search bar ──────────────────────────────────────────────────── */
@@ -253,8 +458,22 @@ span:focus {
   height: 16px;
 }
 
-/* ── Responsive: collapse search on small screens ───────────────────────── */
+/* ── Desktop: hide mobile-only search elements ───────────────────────────── */
+@media (min-width: 768px) {
+  #mfl-header-search,
+  #mfl-search-toggle {
+    display: none !important;
+  }
+}
+
+/* ── Mobile: show search toggle, collapse search bar ────────────────────── */
 @media (max-width: 767px) {
+  #mfl-search-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
   .mfl-header-search {
     display: none;
   }
@@ -608,6 +827,15 @@ form button[type="submit"]:disabled {
   margin: 0;
 }
 
+/* Branded footer credit — replaces parent GPL/Webilia text
+   Overrides: partials/sub-footer.php → .site-info { font-size: 13px; color: rgba(255,255,255,0.5) } */
+.mfl-footer-credit {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* Sub-footer / copyright bar */
 .site-subfooter {
   border-top: 1px solid rgba(255,255,255,0.1);
@@ -691,4 +919,166 @@ form:not(.lsd-search-form) .select2-container--default .select2-selection--singl
     position: relative;
     box-shadow: none;
   }
+}
+
+/* ── Homepage section background fix ─────────────────────────────────────── */
+/*
+ * The parent theme's personalized.css sets --listdomer-body-bg: #e8f1ff
+ * (light blue), which shows through .mfl-section elements that have no
+ * explicit background. Force white on non-alt sections.
+ */
+body,
+.mfl-section:not(.mfl-section--alt) {
+  background-color: #ffffff;
+}
+
+/* ── Blog post: directory CTA ── */
+.mfl-post-cta {
+    background: var(--mfl-sage-dark, #2C4A3E);
+    color: #fff;
+    border-radius: 12px;
+    padding: 32px 36px;
+    margin: 40px 0 32px;
+    text-align: center;
+}
+.mfl-post-cta__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin: 0 0 8px;
+}
+.mfl-post-cta__heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: #fff;
+}
+.mfl-post-cta__body {
+    font-size: 0.95rem;
+    opacity: 0.88;
+    margin: 0 auto 20px;
+    max-width: 520px;
+}
+.mfl-post-cta__btn {
+    display: inline-block;
+    background: #fff;
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: opacity 0.15s;
+}
+.mfl-post-cta__btn:hover {
+    opacity: 0.88;
+}
+
+/* ── Blog post: tame the title ── */
+.single-post .entry-title,
+.single .entry-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+}
+
+/* ── Blog post: date meta below title ── */
+.single-post .entry-meta,
+.single .entry-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: #6b7a72;
+    margin: 6px 0 18px;
+}
+
+/* ── Consistent primary button colour ── */
+
+/* Newsletter subscribe button */
+.mfl-newsletter-band .mfl-newsletter-form button,
+.mfl-newsletter-band .mfl-newsletter-form button[type="submit"] {
+    background-color: var(--mfl-sage-dark, #2C4A3E) !important;
+    color: #fff !important;
+    border: none !important;
+}
+.mfl-newsletter-band .mfl-newsletter-form button:hover {
+    background-color: var(--mfl-sage, #7C9E87) !important;
+}
+
+/* Claim request submit button */
+.mfl-claim-form button[type="submit"],
+.mfl-sl-claim button[type="submit"] {
+    background-color: var(--mfl-sage-dark, #2C4A3E) !important;
+    color: #fff !important;
+    border: none !important;
+}
+.mfl-claim-form button[type="submit"]:hover,
+.mfl-sl-claim button[type="submit"]:hover {
+    background-color: var(--mfl-sage, #7C9E87) !important;
+}
+
+/* WordPress "Post Comment" button
+   Must override input[type="submit"] rule in parent styles.css which sets
+   background: transparent linear-gradient(cyan→blue) !important via CSS vars.
+   Setting both background shorthand AND background-image: none ensures the
+   gradient is fully cancelled, leaving only our sage-dark colour. */
+#respond #submit,
+.comment-form #submit {
+    background: var(--mfl-sage-dark, #2C4A3E) !important;
+    background-image: none !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 10px 24px !important;
+    height: auto !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: background 0.2s !important;
+}
+#respond #submit:hover,
+.comment-form #submit:hover {
+    background: var(--mfl-sage, #7C9E87) !important;
+    background-image: none !important;
+}
+
+/* ── Newsletter signup notices ── */
+.mfl-newsletter-notice {
+    margin: 0 0 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+.mfl-newsletter-notice--success {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+}
+.mfl-newsletter-notice--error {
+    background: rgba(220,53,69,0.2);
+    color: #ffe0e0;
+    border: 1px solid rgba(220,53,69,0.4);
+}
+
+/* ── Dropdown submenu: always dark text regardless of scroll state ── */
+#masthead.is-scrolled .main-navigation ul ul a,
+#masthead.is-scrolled .main-navigation ul ul li a {
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+}
+
+/* ── Breadcrumb colour fix ── */
+.lsdr-breadcrumb-wrapper a,
+div.lsdr-breadcrumb ul a {
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+    text-decoration: none;
+}
+.lsdr-breadcrumb-wrapper a:hover,
+div.lsdr-breadcrumb ul a:hover {
+    color: var(--mfl-sage, #7C9E87) !important;
+    text-decoration: underline;
 }

@@ -165,6 +165,21 @@ function mfl_output_rating_data(): void
     echo '<script>window.mflListingRatings = ' . wp_json_encode($data) . ';</script>' . PHP_EOL;
 }
 
+// ─── Blog: enqueue CSS on post archives and single posts ─────────────────────
+
+add_action('wp_enqueue_scripts', function () {
+    if (is_home() || is_singular('post') || is_category() || is_tag()) {
+        $child_uri = get_stylesheet_directory_uri();
+        $ver       = wp_get_theme()->get('Version');
+        wp_enqueue_style(
+            'mfl-blog',
+            $child_uri . '/assets/css/blog.css',
+            ['mfl-child'],
+            $ver
+        );
+    }
+});
+
 // ─── Homepage: enqueue CSS + JS only on the page-home.php template ───────────
 
 add_action('wp_enqueue_scripts', 'mfl_enqueue_home_assets');
@@ -280,6 +295,71 @@ function mfl_customizer_homepage(WP_Customize_Manager $wp_customize): void
     ]);
 }
 
+// ─── Listing archive: enqueue CSS + JS ───────────────────────────────────────
+// Loads on the listdom-listing CPT archive (archive-listdom-listing.php).
+
+add_action('wp_enqueue_scripts', 'mfl_enqueue_archive_assets');
+
+function mfl_enqueue_archive_assets(): void
+{
+    if (!is_post_type_archive('listdom-listing')) return;
+
+    $child_uri = get_stylesheet_directory_uri();
+    $ver       = wp_get_theme()->get('Version');
+
+    wp_enqueue_style(
+        'mfl-archive-listings',
+        $child_uri . '/assets/css/archive-listings.css',
+        ['mfl-child'],
+        $ver
+    );
+
+    wp_enqueue_script(
+        'mfl-archive-listings',
+        $child_uri . '/assets/js/archive-listings.js',
+        [],
+        $ver,
+        true
+    );
+}
+
+// ─── Single listing: enqueue CSS + lightbox JS ───────────────────────────────
+
+add_action('wp_enqueue_scripts', 'mfl_enqueue_single_listing_assets');
+
+function mfl_enqueue_single_listing_assets(): void
+{
+    if (!is_singular('listdom-listing')) return;
+
+    $child_uri = get_stylesheet_directory_uri();
+    $ver       = wp_get_theme()->get('Version');
+
+    wp_enqueue_style(
+        'mfl-single-listing',
+        $child_uri . '/assets/css/single-listing.css',
+        ['mfl-child'],
+        $ver
+    );
+
+    wp_enqueue_script(
+        'mfl-single-listing',
+        $child_uri . '/assets/js/single-listing.js',
+        [],
+        $ver,
+        true
+    );
+}
+
+// ─── Enable Listdom CPT archive ───────────────────────────────────────────────
+// Listdom registers listdom-listing without has_archive by default.
+// This filter adds it so WordPress generates the archive URL and our
+// archive-listdom-listing.php template is picked up by the template hierarchy.
+
+add_filter('lsd_ptype_listing_args', function (array $args): array {
+    $args['has_archive'] = true;
+    return $args;
+});
+
 // ─── Register newsletter widget area ─────────────────────────────────────────
 
 add_action('widgets_init', 'mfl_register_sidebars');
@@ -296,3 +376,19 @@ function mfl_register_sidebars(): void
         'after_title'   => '</h3>',
     ]);
 }
+
+// ─── Redirect Listdom category archives to filtered browse page ────────────────
+add_action('template_redirect', function () {
+    if (is_tax('listdom-category')) {
+        $term         = get_queried_object();
+        $listings_page = get_page_by_path('listings');
+        if ($listings_page && $term) {
+            $redirect_url = add_query_arg(
+                ['sf' => ['listdom-category' => $term->term_id]],
+                get_permalink($listings_page)
+            );
+            wp_redirect($redirect_url, 301);
+            exit;
+        }
+    }
+});

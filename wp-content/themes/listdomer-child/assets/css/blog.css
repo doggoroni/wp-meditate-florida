@@ -1,0 +1,95 @@
+/* =========================================================
+   Blog card styles — archive page post list
+   ========================================================= */
+
+/* Card thumbnail — <img> from the_post_thumbnail() direct call */
+.mfl-blog-card__thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    display: block;
+}
+
+/* Card thumbnail — <a> wrapper from partials/content.php */
+a.mfl-blog-card__thumb {
+    display: block;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    aspect-ratio: 16 / 9;
+    background: var(--mfl-soft-bg, #F5F7F4);
+    height: auto;
+}
+.mfl-blog-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+a.mfl-blog-card__thumb:hover .mfl-blog-card__img {
+    transform: scale(1.03);
+}
+
+/* Card body */
+.mfl-blog-card__body {
+    padding: 20px 24px 24px;
+}
+
+/* Date meta */
+.mfl-blog-card__meta {
+    margin-bottom: 8px;
+}
+.mfl-blog-card__date {
+    font-size: 0.8rem;
+    color: var(--mfl-sage, #7C9E87);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Title */
+.mfl-blog-card__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1.35;
+}
+.mfl-blog-card__title a {
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.mfl-blog-card__title a:hover {
+    color: var(--mfl-sage, #7C9E87) !important;
+    text-decoration: underline;
+}
+
+/* Excerpt */
+.mfl-blog-card__excerpt {
+    color: #555;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+.mfl-blog-card__excerpt p {
+    margin: 0;
+}
+
+/* Read more button */
+.mfl-blog-card__read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--mfl-sage-dark, #2C4A3E) !important;
+    text-decoration: none;
+    border-bottom: 2px solid var(--mfl-sage, #7C9E87);
+    padding-bottom: 1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.mfl-blog-card__read-more:hover {
+    color: var(--mfl-sage, #7C9E87) !important;
+    border-color: var(--mfl-sage-dark, #2C4A3E);
+}

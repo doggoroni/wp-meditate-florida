@@ -161,7 +161,7 @@ class MFL_Places_Importer
                     continue;
                 }
 
-                $place = $this->normalize_place($details, $city);
+                $place = $this->normalize_place($details, $city, $term);
 
                 if (isset($this->existing_place_ids[$place_id])) {
                     // Existing listing — update mutable fields only.
@@ -268,7 +268,7 @@ class MFL_Places_Importer
     /**
      * Flatten a Place Details API response into a flat array ready for WP.
      */
-    private function normalize_place(array $place, string $city): array
+    private function normalize_place(array $place, string $city, string $search_term = ''): array
     {
         $full_address = $place['formatted_address'] ?? '';
         $parsed       = $this->parse_address($full_address);
@@ -285,7 +285,7 @@ class MFL_Places_Importer
 
         $hours_json = '';
         if (!empty($place['opening_hours']['weekday_text'])) {
-            $hours_json = wp_json_encode($place['opening_hours']['weekday_text']);
+            $hours_json = wp_json_encode($place['opening_hours']['weekday_text'], JSON_UNESCAPED_UNICODE);
         }
 
         return [
@@ -303,7 +303,7 @@ class MFL_Places_Importer
             'website'      => $place['website'] ?? '',
             'lat'          => (string) ($place['geometry']['location']['lat'] ?? ''),
             'lng'          => (string) ($place['geometry']['location']['lng'] ?? ''),
-            'category'     => $this->derive_category($place['types'] ?? []),
+            'category'     => $this->derive_category($place['types'] ?? [], $search_term),
             'rating'       => (string) ($place['rating'] ?? ''),
             'review_count' => (string) ($place['user_ratings_total'] ?? ''),
             'place_id'     => $place['place_id'] ?? '',
@@ -339,15 +339,28 @@ class MFL_Places_Importer
     }
 
     /**
-     * Pick the most meaningful category label from Google's types array.
+     * Pick the most meaningful category label, preferring the search term used
+     * to discover the place, falling back to Google's types array.
      */
-    private function derive_category(array $types): string
+    private function derive_category(array $types, string $search_term = ''): string
     {
+        // ── 1. Search-term based (most accurate) ────────────────────────────────
+        $term_lower = strtolower($search_term);
+        if (str_contains($term_lower, 'buddhist'))          return 'Buddhist Center';
+        if (str_contains($term_lower, 'mindfulness'))        return 'Mindfulness Center';
+        if (str_contains($term_lower, 'yoga'))               return 'Yoga Studio';
+        if (str_contains($term_lower, 'meditation retreat')) return 'Meditation Retreat';
+        if (str_contains($term_lower, 'wellness retreat'))   return 'Wellness Retreat';
+        if (str_contains($term_lower, 'meditation center'))  return 'Meditation Center';
+        if (str_contains($term_lower, 'meditation'))         return 'Meditation Center';
+
+        // ── 2. Google types fallback (secondary signal) ──────────────────────────
         foreach ($types as $type) {
             if (isset(self::TYPE_MAP[$type])) {
                 return self::TYPE_MAP[$type];
             }
         }
+
         return 'Wellness Center';
     }
 

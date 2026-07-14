@@ -53,6 +53,9 @@ jobs:
 
       - name: Flush caches
         run: |
+          # Older SiteGround Speed Optimizer versions don't register `sg purge`,
+          # so fall back to the plugin's internal purge function via wp eval.
           ssh -p "$SSH_PORT" -i ~/.ssh/deploy_key \
             "${{ secrets.SITEGROUND_SSH_USER }}@$SSH_HOST" \
-            "cd ~/$REMOTE_ROOT && wp cache flush && (wp sg purge || true)"
+            "cd ~/$REMOTE_ROOT && wp cache flush && (wp sg purge 2>/dev/null || wp eval 'SiteGround_Optimizer\Supercacher\Supercacher::purge_cache(); WP_CLI::log(\"Dynamic cache purged via Supercacher fallback.\");')" \
+            || echo "::warning::Dynamic cache purge failed — flush manually in Site Tools (Speed → Caching)"

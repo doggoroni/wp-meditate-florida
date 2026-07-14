@@ -3,22 +3,54 @@
    Loaded only on single listdom-listing posts.
    ═══════════════════════════════════════════════════════════════════════════ */
 
+/* ── 0. PAGE BASE ────────────────────────────────────────────────────────── */
+
+/* Warm off-white page background (parent theme sets a cold blue #E8F1FF) */
+body.single-listdom-listing {
+  background-color: var(--mfl-off-white, #F2F5F0) !important;
+}
+
+/* Safety net: unclassed links inside the listing layout inherit brand colors
+   instead of the parent theme's bootstrap blue. */
+.mfl-sl-main a:not([class]),
+.mfl-sl-sidebar a:not([class]) {
+  color: var(--mfl-sage-dark, #2C4A3E);
+  text-decoration: none;
+}
+
+.mfl-sl-main a:not([class]):hover,
+.mfl-sl-sidebar a:not([class]):hover {
+  color: var(--mfl-sage, #7C9E87);
+}
+
 /* ── 1. HERO ─────────────────────────────────────────────────────────────── */
 
 /* ── Hero: shorter + overlaid info ── */
 .mfl-sl-hero {
   position: relative;
-  height: 300px;        /* was 420px — now fits above fold alongside header */
+  height: 340px;
   background: linear-gradient(135deg, #1E3A2F 0%, #2C4A3E 100%);
   overflow: hidden;
 }
 
+/* Blurred duplicate of the photo fills the banner edge-to-edge… */
+.mfl-sl-hero__bg {
+  position: absolute;
+  inset: -24px;                 /* bleed past edges so the blur has no halo */
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) saturate(1.05) brightness(0.72);
+  transform: scale(1.08);
+}
+
+/* …so the sharp photo can render `contain` — portrait and odd-aspect photos
+   show whole instead of being crop-zoomed into an awkward slice. */
 .mfl-sl-hero__img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -160,7 +192,7 @@
 }
 
 @media (max-width: 767px) {
-  .mfl-sl-hero { height: 220px; } /* was 280px */
+  .mfl-sl-hero { height: 250px; }
   .mfl-sl-hero__info { padding: 12px 16px 16px; }
   .mfl-sl-hero__title { font-size: 1.1rem; }
 }
@@ -470,8 +502,9 @@
   background: #fff;
   border: 1px solid var(--mfl-soft-border, #E0E8DE);
   border-radius: 14px;
-  padding: 28px;
-  margin-bottom: 20px;
+  padding: 30px 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(44, 74, 62, 0.04);
 }
 
 .mfl-sl-section__title {
@@ -614,7 +647,8 @@
   border: 1px solid var(--mfl-soft-border, #E0E8DE);
   border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(44, 74, 62, 0.04);
 }
 
 .mfl-sl-sidebar-card__head {
@@ -689,80 +723,141 @@
 
 
 /* ── 10. SIMILAR LISTINGS ────────────────────────────────────────────────── */
+/* Class names match the template's BEM (__)-style — a previous version of
+   this block used old names and the whole section rendered unstyled. */
+
+.mfl-sl-similar-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 20px 14px;
+}
 
 .mfl-sl-similar-item {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 12px 0;
   border-bottom: 1px solid var(--mfl-soft-border, #E0E8DE);
-  text-decoration: none !important;
 }
 
 .mfl-sl-similar-item:last-child {
   border-bottom: none;
-  padding-bottom: 0;
 }
 
-.mfl-sl-similar-item:first-child {
-  padding-top: 0;
+.mfl-sl-similar-item__link {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
-.mfl-sl-similar-thumb {
+.mfl-sl-similar-item__thumb {
   width: 56px;
   height: 56px;
-  border-radius: 8px;
+  border-radius: 10px;
   object-fit: cover;
   flex-shrink: 0;
   background: var(--mfl-off-white, #F2F5F0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  color: var(--mfl-sage, #7C9E87);
-}
-
-.mfl-sl-similar-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
   display: block;
 }
 
-.mfl-sl-similar-info {
-  flex: 1;
-  min-width: 0;
+.mfl-sl-similar-item__thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--mfl-sage, #7C9E87);
 }
 
-.mfl-sl-similar-name {
+.mfl-sl-similar-item__thumb--placeholder::after {
+  content: '🧘';
+}
+
+.mfl-sl-similar-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mfl-sl-similar-item__name {
   font-weight: 700;
   font-size: 13px;
   color: var(--mfl-sage-dark, #2C4A3E);
   line-height: 1.35;
-  margin-bottom: 3px;
-  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mfl-sl-similar-item:hover .mfl-sl-similar-name {
+.mfl-sl-similar-item__link:hover .mfl-sl-similar-item__name {
   color: var(--mfl-sage, #7C9E87);
 }
 
-.mfl-sl-similar-meta {
-  font-size: 12px;
-  color: var(--mfl-muted, #6B7B6E);
+.mfl-sl-similar-item__stars {
+  color: var(--mfl-star-gold, #D4A84B);
+  font-size: 11px;
+  letter-spacing: 1px;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.mfl-sl-similar-stars {
-  color: var(--mfl-star-gold, #D4A84B);
-  font-size: 11px;
-  letter-spacing: 1px;
+.mfl-sl-similar-item__rating-num {
+  color: var(--mfl-muted, #6B7B6E);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.mfl-sl-similar-item__addr {
+  font-size: 12px;
+  color: var(--mfl-muted, #6B7B6E);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── 10b. CONTACT INFO LIST ─────────────────────────────────────────────── */
+/* Previously unstyled: rendered as an indented bullet list with default
+   blue links. */
+
+.mfl-sl-contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 20px 16px;
+}
+
+.mfl-sl-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--mfl-soft-border, #E0E8DE);
+  font-size: 14px;
+  color: var(--mfl-body-text, #3D3D3D);
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.mfl-sl-contact-list li:last-child {
+  border-bottom: none;
+}
+
+.mfl-sl-contact-list svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--mfl-sage, #7C9E87);
+}
+
+.mfl-sl-contact-list a {
+  color: var(--mfl-sage-dark, #2C4A3E) !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.mfl-sl-contact-list a:hover {
+  color: var(--mfl-sage, #7C9E87) !important;
+  text-decoration: underline !important;
 }
 
 

@@ -143,6 +143,10 @@ $claim_error     = isset($_GET['mfl_claim'])   && $_GET['mfl_claim']   === 'erro
 <!-- ═══════════════════════════════════════════════════════════════ HERO ══ -->
 <section class="mfl-sl-hero" aria-label="<?php echo esc_attr($title); ?> hero photo">
     <?php if ($hero_src) : ?>
+        <?php // Blurred fill layer: lets the sharp photo render `contain` so
+              // portrait/odd-aspect photos aren't awkwardly crop-zoomed. ?>
+        <div class="mfl-sl-hero__bg" aria-hidden="true"
+             style="background-image:url('<?php echo esc_url($hero_src); ?>');"></div>
         <img src="<?php echo esc_url($hero_src); ?>"
              alt="<?php echo esc_attr($title); ?>"
              class="mfl-sl-hero__img" loading="eager">

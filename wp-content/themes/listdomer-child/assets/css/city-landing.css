@@ -1,0 +1,332 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   City landing pages — /meditation/{slug}/
+   Loaded only on city pages (see functions.php enqueue).
+   Card styles duplicated from home.css by design: city pages must not
+   depend on the homepage bundle.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.mfl-city-hero {
+  background: linear-gradient(160deg, #2C4A3E 0%, #1C3026 100%);
+  padding: 120px 0 56px;
+  color: #E6EFE4;
+}
+
+.mfl-city-hero__breadcrumb {
+  font-size: 13px;
+  color: #A8C5A0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.mfl-city-hero__breadcrumb a {
+  color: #A8C5A0;
+  text-decoration: none;
+}
+
+.mfl-city-hero__breadcrumb a:hover {
+  color: #E6EFE4;
+  text-decoration: underline;
+}
+
+.mfl-city-hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+
+.mfl-city-hero__count {
+  font-size: 1.02rem;
+  color: #C7DCC3;
+  margin: 0;
+}
+
+/* ── Body layout ──────────────────────────────────────────────────────── */
+.mfl-city-body {
+  background: #F2F5F0;
+  padding: 48px 0 72px;
+}
+
+.mfl-city-intro {
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+
+.mfl-city-intro p {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: #3D3D3D;
+  margin: 0 0 14px;
+}
+
+.mfl-city-intro__data {
+  color: #6B7B6E;
+  font-size: 0.98rem;
+}
+
+/* ── Chips (categories + nearby) ──────────────────────────────────────── */
+.mfl-city-cats,
+.mfl-city-nearby__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.mfl-city-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #E0E8DE;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2C4A3E;
+  text-decoration: none !important;
+  transition: border-color 0.15s, box-shadow 0.15s, color 0.15s;
+}
+
+.mfl-city-chip:hover {
+  border-color: #7C9E87;
+  color: #7C9E87;
+  box-shadow: 0 4px 14px rgba(44, 74, 62, 0.08);
+}
+
+.mfl-city-chip__count {
+  background: #E6EFE4;
+  color: #4E6B5C;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+
+/* ── Sections + grid ──────────────────────────────────────────────────── */
+.mfl-city-section {
+  margin-bottom: 48px;
+}
+
+.mfl-city-section__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C4A3E;
+  margin: 0 0 20px;
+}
+
+.mfl-city-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .mfl-city-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .mfl-city-grid { grid-template-columns: 1fr; }
+  .mfl-city-hero { padding-top: 96px; }
+}
+
+.mfl-city-viewall {
+  text-align: center;
+  margin: 0 0 56px;
+}
+
+/* ── Listing cards (mirrors home.css card component) ─────────────────── */
+.mfl-listing-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #E0E8DE;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  text-decoration: none !important;
+}
+
+.mfl-listing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(44, 74, 62, 0.13);
+}
+
+.mfl-listing-card__img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #E6EFE4;
+}
+
+.mfl-listing-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.mfl-listing-card:hover .mfl-listing-card__img {
+  transform: scale(1.05);
+}
+
+.mfl-listing-card__img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #A8C5A0;
+  background: linear-gradient(135deg, #E6EFE4, #F2F5F0);
+}
+
+.mfl-listing-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(245, 239, 230, 0.95);
+  color: #7A5C30;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.mfl-listing-card__body {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mfl-listing-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2C4A3E;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.mfl-listing-card:hover .mfl-listing-card__title {
+  color: #7C9E87;
+}
+
+.mfl-listing-card__stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.mfl-listing-card__star-icons {
+  color: #D4A84B;
+  font-size: 13px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.mfl-listing-card__rating-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2C4A3E;
+}
+
+.mfl-listing-card__review-ct {
+  font-size: 12px;
+  color: #9BAF9D;
+}
+
+.mfl-listing-card__address {
+  font-size: 13px;
+  color: #6B7B6E;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  line-height: 1.5;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.mfl-listing-card__address svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: #9BAF9D;
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.mfl-city-faq {
+  max-width: 760px;
+}
+
+.mfl-city-faq__item {
+  background: #ffffff;
+  border: 1px solid #E0E8DE;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.mfl-city-faq__item summary {
+  cursor: pointer;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: #2C4A3E;
+  font-size: 1rem;
+  list-style: none;
+  position: relative;
+  padding-right: 44px;
+}
+
+.mfl-city-faq__item summary::-webkit-details-marker { display: none; }
+
+.mfl-city-faq__item summary::after {
+  content: '+';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7C9E87;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.mfl-city-faq__item[open] summary::after { content: '–'; }
+
+.mfl-city-faq__item p {
+  padding: 0 20px 18px;
+  margin: 0;
+  color: #3D3D3D;
+  line-height: 1.7;
+  font-size: 0.97rem;
+}
+
+/* ── Primary button (mirrors theme button) ────────────────────────────── */
+.mfl-city-body .mfl-btn--primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2C4A3E;
+  color: #ffffff !important;
+  border-radius: 999px;
+  padding: 13px 28px;
+  font-weight: 700;
+  font-size: 14.5px;
+  text-decoration: none !important;
+  transition: background 0.18s, transform 0.18s;
+}
+
+.mfl-city-body .mfl-btn--primary:hover {
+  background: #7C9E87;
+  transform: translateY(-2px);
+}

@@ -178,6 +178,18 @@ function mfl_output_rating_data(): void
     echo '<script>window.mflListingRatings = ' . wp_json_encode($data) . ';</script>' . PHP_EOL;
 }
 
+// ─── City landing pages: enqueue CSS only on /meditation/{slug}/ ─────────────
+
+add_action('wp_enqueue_scripts', function () {
+    if (!get_query_var('mfl_city_page')) return;
+    wp_enqueue_style(
+        'mfl-city-landing',
+        get_stylesheet_directory_uri() . '/assets/css/city-landing.css',
+        ['mfl-child'],
+        mfl_asset_ver('/assets/css/city-landing.css')
+    );
+});
+
 // ─── Blog: enqueue CSS on post archives and single posts ─────────────────────
 
 add_action('wp_enqueue_scripts', function () {

@@ -33,6 +33,64 @@ function mfl_city_url(string $slug): string
     return home_url('/meditation/' . $slug . '/');
 }
 
+/**
+ * Data-driven FAQ copy for a city page. Single source of truth: the template
+ * renders these AND the FAQPage JSON-LD mirrors them, so they must not drift.
+ *
+ * @return array<int, array{q: string, a: string}>
+ */
+function mfl_city_faqs(string $slug): array
+{
+    $city = MFL_City_Pages::get_city($slug);
+    if (!$city) {
+        return [];
+    }
+
+    $ids   = MFL_City_Pages::get_city_listing_ids($slug);
+    $count = count($ids);
+    if (!$count) {
+        return [];
+    }
+
+    $cats      = MFL_City_Pages::get_city_category_counts($slug);
+    $cat_names = array_column($cats, 'name');
+
+    $top = [];
+    foreach (array_slice($ids, 0, 3) as $id) {
+        $rating = (float) get_post_meta($id, '_mfl_rating', true);
+        $top[]  = get_the_title($id) . ($rating ? sprintf(' (%.1f stars)', $rating) : '');
+    }
+
+    return [
+        [
+            'q' => sprintf('How many meditation centers are there in %s, FL?', $city['name']),
+            'a' => sprintf(
+                'Meditate Florida currently lists %d meditation and wellness locations within %d miles of %s, spanning %s.',
+                $count,
+                MFL_City_Pages::RADIUS_MILES,
+                $city['name'],
+                strtolower(implode(', ', array_slice($cat_names, 0, 4)) ?: 'several categories')
+            ),
+        ],
+        [
+            'q' => sprintf('What are the top-rated meditation spots in %s?', $city['name']),
+            'a' => sprintf(
+                'Based on visitor ratings, the highest-rated places near %s right now are %s. Each listing shows current hours, contact details, and directions.',
+                $city['name'],
+                implode('; ', $top)
+            ),
+        ],
+        [
+            'q' => sprintf('What types of wellness practices can I find in %s?', $city['name']),
+            'a' => sprintf(
+                'Around %s you\'ll find %s. Use the directory filters to narrow by category, rating, or what\'s open now.',
+                $city['name'],
+                strtolower(implode(', ', $cat_names) ?: 'a growing mix of meditation and wellness spaces')
+            ),
+        ],
+    ];
+}
+
 // Register AJAX search handler
 add_action('init', function () {
     (new MFL_Search_Handler())->register();

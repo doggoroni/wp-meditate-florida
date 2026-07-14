@@ -114,6 +114,29 @@ h6 { font-size: 0.95rem; }
 
 p { margin-bottom: 1.2em; }
 
+/* Content links: brand green, not the parent theme's bootstrap blue.
+   Covers blog post bodies, static pages (About/Contact/Privacy/Terms),
+   and any editor content. !important + article/page selectors beat the
+   parent's `article a:not(.lsd-color-white-txt)` rule (specificity 0,1,2). */
+.entry-content a:not(.lsd-color-white-txt),
+.page-content a:not(.lsd-color-white-txt),
+article .entry-content a,
+.mfl-page-content a {
+  color: var(--mfl-sage-dark, #2C4A3E) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(124, 158, 135, 0.55);
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.entry-content a:not(.lsd-color-white-txt):hover,
+.page-content a:not(.lsd-color-white-txt):hover,
+article .entry-content a:hover,
+.mfl-page-content a:hover {
+  color: var(--mfl-sage, #7C9E87) !important;
+  text-decoration-color: var(--mfl-sage, #7C9E87);
+}
+
 
 /* ═══════════════════════════════════════════════════════════════════════════
    3. ACCESSIBILITY FIXES
@@ -290,6 +313,23 @@ span:focus {
 }
 
 /* ── Navigation links ───────────────────────────────────────────────────── */
+
+/* Center the primary nav within the header. On inner pages (search bar
+   hidden) the auto margins pull the menu toward the middle instead of the
+   right edge; on the homepage the search bar's flex-grow keeps nav at right. */
+.site-header .main-navigation {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Larger, more spacious top-level links */
+.site-header .main-navigation > div > ul > li > a,
+.site-header .main-navigation #primary-menu > li > a {
+  font-size: 1.02rem !important;
+  letter-spacing: 0.015em;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
 
 /* Overrides: .site-header .main-navigation > div > ul li a { color: var(--listdomer-header-tc); } */
 .site-header .main-navigation > div > ul li a {
@@ -864,6 +904,86 @@ form button[type="submit"]:disabled {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* Footer main — brand + link columns (fills the previously empty widget area) */
+.mfl-footer-main {
+  background: #243D33;                 /* a shade deeper than the forest body */
+  padding: 56px 0 44px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.mfl-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.mfl-footer-col--brand {
+  max-width: 340px;
+}
+
+.mfl-footer-brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.mfl-footer-tagline {
+  color: var(--mfl-sage-light, #A8C5A0);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 6px 0 16px;
+}
+
+.mfl-footer-blurb {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.mfl-footer-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+
+.mfl-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mfl-footer-links a {
+  color: rgba(255,255,255,0.62) !important;
+  text-decoration: none !important;
+  font-size: 0.92rem;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+
+.mfl-footer-links a:hover {
+  color: var(--mfl-sage-light, #A8C5A0) !important;
+  padding-left: 4px;
+}
+
+@media (max-width: 900px) {
+  .mfl-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .mfl-footer-col--brand { grid-column: 1 / -1; max-width: none; }
+}
+
+@media (max-width: 520px) {
+  .mfl-footer-grid { grid-template-columns: 1fr; }
+  .mfl-footer-main { padding: 40px 0 32px; }
 }
 
 /* Branded footer credit — replaces parent GPL/Webilia text

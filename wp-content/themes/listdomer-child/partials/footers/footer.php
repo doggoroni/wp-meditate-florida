@@ -58,8 +58,64 @@
         </div>
     </div>
 
-    <!-- ─── Footer widget areas (sidebars 1–4 from parent) ─────────────── -->
-    <?php get_template_part('partials/footer-widgets', 'none'); ?>
+    <!-- ─── Footer main: brand + link columns ──────────────────────────── -->
+    <?php
+        $footer_listings_url = get_post_type_archive_link('listdom-listing') ?: home_url('/listings/');
+        $footer_cities = [
+            'miami' => 'Miami', 'orlando' => 'Orlando', 'tampa' => 'Tampa',
+            'jacksonville' => 'Jacksonville', 'fort-lauderdale' => 'Fort Lauderdale',
+            'st-petersburg' => 'St. Petersburg', 'sarasota' => 'Sarasota', 'naples' => 'Naples',
+        ];
+        $footer_cats = [
+            'Meditation Center', 'Yoga Studio', 'Meditation Retreat',
+            'Buddhist Center', 'Wellness Center',
+        ];
+    ?>
+    <div class="mfl-footer-main">
+        <div class="container">
+            <div class="mfl-footer-grid">
+
+                <div class="mfl-footer-col mfl-footer-col--brand">
+                    <div class="mfl-footer-brand">Meditate Florida</div>
+                    <p class="mfl-footer-tagline"><?php esc_html_e('Florida\'s Mindfulness Directory', 'listdomer-child'); ?></p>
+                    <p class="mfl-footer-blurb">
+                        <?php esc_html_e('A free, community-minded directory of meditation centers, yoga studios, and retreats across the Sunshine State — helping you find a place to slow down, wherever you are in Florida.', 'listdomer-child'); ?>
+                    </p>
+                </div>
+
+                <div class="mfl-footer-col">
+                    <h4 class="mfl-footer-heading"><?php esc_html_e('Explore', 'listdomer-child'); ?></h4>
+                    <ul class="mfl-footer-links">
+                        <li><a href="<?php echo esc_url($footer_listings_url); ?>"><?php esc_html_e('Browse All Locations', 'listdomer-child'); ?></a></li>
+                        <?php foreach ($footer_cats as $cat): ?>
+                        <li><a href="<?php echo esc_url(add_query_arg('category', $cat, $footer_listings_url)); ?>"><?php echo esc_html($cat); ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
+                <div class="mfl-footer-col">
+                    <h4 class="mfl-footer-heading"><?php esc_html_e('Popular Cities', 'listdomer-child'); ?></h4>
+                    <ul class="mfl-footer-links">
+                        <?php foreach ($footer_cities as $slug => $name): ?>
+                        <li><a href="<?php echo esc_url(home_url('/meditation/' . $slug . '/')); ?>"><?php echo esc_html($name); ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+
+                <div class="mfl-footer-col">
+                    <h4 class="mfl-footer-heading"><?php esc_html_e('Meditate Florida', 'listdomer-child'); ?></h4>
+                    <ul class="mfl-footer-links">
+                        <li><a href="<?php echo esc_url(home_url('/about/')); ?>"><?php esc_html_e('About Us', 'listdomer-child'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/blog/')); ?>"><?php esc_html_e('Blog', 'listdomer-child'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/contact/')); ?>"><?php esc_html_e('Contact', 'listdomer-child'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>"><?php esc_html_e('Privacy Policy', 'listdomer-child'); ?></a></li>
+                        <li><a href="<?php echo esc_url(home_url('/terms/')); ?>"><?php esc_html_e('Terms & Conditions', 'listdomer-child'); ?></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- ─── Sub-footer / copyright ──────────────────────────────────────── -->
     <?php

@@ -101,7 +101,7 @@ function mfl_sl_similar(int $post_id, float $lat, float $lng, ?object $cat, int 
                         * COS(RADIANS(d.longitude) - RADIANS(%f))
                         + SIN(RADIANS(%f)) * SIN(RADIANS(d.latitude)) ) ) ) AS distance_miles
              FROM {$wpdb->posts} p
-             INNER JOIN {$wpdb->prefix}lsd_data d    ON d.post_id = p.ID
+             INNER JOIN {$wpdb->prefix}lsd_data d    ON d.id = p.ID
              INNER JOIN {$wpdb->term_relationships} tr ON tr.object_id = p.ID
              LEFT  JOIN {$wpdb->postmeta} pm_r    ON pm_r.post_id    = p.ID AND pm_r.meta_key    = '_mfl_rating'
              LEFT  JOIN {$wpdb->postmeta} pm_a    ON pm_a.post_id    = p.ID AND pm_a.meta_key    = 'lsd_address'

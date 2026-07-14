@@ -612,7 +612,7 @@
   background: transparent !important;
   background-color: transparent !important;
   border: none !important;
-  padding: 9px 0 !important;
+  padding: 10px 14px !important;   /* breathing room — text not flush left */
 }
 
 .mfl-hours-table__day,
@@ -626,15 +626,21 @@
   text-align: left !important;
 }
 
-/* Today's row: highlight the row, not inherited th background */
+/* Today's row: sage-tinted band + accent edge (off-white was invisible
+   against the white card). Cells stay transparent so the row color shows. */
 .mfl-hours-table tr.mfl-today {
-  background: var(--mfl-off-white, #F2F5F0) !important;
+  background: #E6EFE4 !important;
+  box-shadow: inset 3px 0 0 var(--mfl-sage, #7C9E87);
 }
 
 .mfl-hours-table tr.mfl-today th,
 .mfl-hours-table tr.mfl-today td {
   background: transparent !important;
-  padding-left: 10px !important;
+}
+
+.mfl-hours-table tr.mfl-today th:first-child,
+.mfl-hours-table tr.mfl-today td:first-child {
+  padding-left: 22px !important;   /* keeps the "today is indented" feel */
 }
 
 

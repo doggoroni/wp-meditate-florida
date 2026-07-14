@@ -46,6 +46,22 @@ class MFL_Places_Importer
     /** Milliseconds to sleep between Google API requests. */
     const RATE_LIMIT_MS = 200;
 
+    /**
+     * Google place types that never belong in a meditation directory.
+     * Text search for e.g. "wellness retreat in Tampa" happily returns
+     * casinos and resort hotels with spas.
+     */
+    const EXCLUDED_TYPES = [
+        'casino', 'night_club', 'bar', 'amusement_park', 'bowling_alley',
+        'movie_theater', 'shopping_mall', 'car_dealer', 'real_estate_agency',
+    ];
+
+    /** Name patterns that mark generic hospitality, not contemplative spaces. */
+    const EXCLUDED_NAME_PATTERN = '/\bcasino\b|vacation\s+(villas?|rentals?)|margaritaville/i';
+
+    /** Lodging is acceptable only when the name signals a genuine retreat/practice space. */
+    const RETREATISH_NAME_PATTERN = '/retreat|meditat|monaster|ashram|sanctuar|hermitage|zen|dharma|yoga|mindful|spiritual|renewal|wellness|abbey|temple|kripalu|vipassana/i';
+
     /** Listdom post type and taxonomy (confirmed from plugin source). */
     const PTYPE   = 'listdom-listing';
     const TAX_CAT = 'listdom-category';
@@ -168,6 +184,14 @@ class MFL_Places_Importer
                 // Only Florida addresses belong in this directory.
                 if (!$this->is_florida_address($details['formatted_address'] ?? '')) {
                     $this->log->info("  skipped (not in FL): {$place['title']}");
+                    $stats['skipped']++;
+                    continue;
+                }
+
+                // Filter out hospitality/entertainment venues that match
+                // retreat-flavored searches (casinos, resort hotels, etc.).
+                if ($reason = self::excluded_place_reason($details)) {
+                    $this->log->info("  skipped ({$reason}): {$place['title']}");
                     $stats['skipped']++;
                     continue;
                 }
@@ -319,6 +343,31 @@ class MFL_Places_Importer
             'image_url'    => $image_url,
             'hours_json'   => $hours_json,
         ];
+    }
+
+    /**
+     * Why a Google place should be excluded from the directory, or null to keep.
+     * Public static + stateless so it can be exercised by a test harness.
+     */
+    public static function excluded_place_reason(array $place): ?string
+    {
+        $types = (array) ($place['types'] ?? []);
+        $name  = (string) ($place['name'] ?? '');
+
+        $bad_types = array_intersect($types, self::EXCLUDED_TYPES);
+        if ($bad_types) {
+            return 'excluded type: ' . implode(',', $bad_types);
+        }
+
+        if (preg_match(self::EXCLUDED_NAME_PATTERN, $name)) {
+            return 'hospitality name';
+        }
+
+        if (in_array('lodging', $types, true) && !preg_match(self::RETREATISH_NAME_PATTERN, $name)) {
+            return 'generic lodging';
+        }
+
+        return null;
     }
 
     /**

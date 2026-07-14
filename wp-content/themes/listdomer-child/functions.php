@@ -8,6 +8,19 @@ defined('ABSPATH') || exit;
 
 // ─── Enqueue Google Fonts + parent + child stylesheets ────────────────────────
 
+/**
+ * Cache-busting version for child theme assets: the file's modification time.
+ * A static version string ("1.0.0") let browsers and SiteGround's static
+ * cache serve stale CSS/JS after deploys — filemtime changes on every rsync.
+ */
+function mfl_asset_ver(string $relative): string
+{
+    $file = get_stylesheet_directory() . $relative;
+    return file_exists($file)
+        ? (string) filemtime($file)
+        : (string) wp_get_theme()->get('Version');
+}
+
 add_action('wp_enqueue_scripts', 'mfl_child_enqueue_styles');
 
 function mfl_child_enqueue_styles(): void
@@ -41,7 +54,7 @@ function mfl_child_enqueue_styles(): void
         'mfl-child',
         get_stylesheet_uri(),
         ['listdomer-parent-assets'],
-        wp_get_theme()->get('Version')
+        mfl_asset_ver('/style.css')
     );
 }
 
@@ -169,13 +182,11 @@ function mfl_output_rating_data(): void
 
 add_action('wp_enqueue_scripts', function () {
     if (is_home() || is_singular('post') || is_category() || is_tag()) {
-        $child_uri = get_stylesheet_directory_uri();
-        $ver       = wp_get_theme()->get('Version');
         wp_enqueue_style(
             'mfl-blog',
-            $child_uri . '/assets/css/blog.css',
+            get_stylesheet_directory_uri() . '/assets/css/blog.css',
             ['mfl-child'],
-            $ver
+            mfl_asset_ver('/assets/css/blog.css')
         );
     }
 });
@@ -189,14 +200,13 @@ function mfl_enqueue_home_assets(): void
     if (!is_page_template('page-home.php')) return;
 
     $child_uri = get_stylesheet_directory_uri();
-    $ver       = wp_get_theme()->get('Version');
 
     // Homepage-specific CSS
     wp_enqueue_style(
         'mfl-home',
         $child_uri . '/assets/css/home.css',
         ['mfl-child'],
-        $ver
+        mfl_asset_ver('/assets/css/home.css')
     );
 
     // Homepage hero JS (Places Autocomplete)
@@ -204,7 +214,7 @@ function mfl_enqueue_home_assets(): void
         'mfl-home-hero',
         $child_uri . '/assets/js/home-hero.js',
         [],
-        $ver,
+        mfl_asset_ver('/assets/js/home-hero.js'),
         true   // load in footer
     );
 
@@ -307,20 +317,19 @@ function mfl_enqueue_archive_assets(): void
     if (!is_post_type_archive('listdom-listing')) return;
 
     $child_uri = get_stylesheet_directory_uri();
-    $ver       = wp_get_theme()->get('Version');
 
     wp_enqueue_style(
         'mfl-archive-listings',
         $child_uri . '/assets/css/archive-listings.css',
         ['mfl-child'],
-        $ver
+        mfl_asset_ver('/assets/css/archive-listings.css')
     );
 
     wp_enqueue_script(
         'mfl-archive-listings',
         $child_uri . '/assets/js/archive-listings.js',
         [],
-        $ver,
+        mfl_asset_ver('/assets/js/archive-listings.js'),
         true
     );
 }
@@ -334,20 +343,19 @@ function mfl_enqueue_single_listing_assets(): void
     if (!is_singular('listdom-listing')) return;
 
     $child_uri = get_stylesheet_directory_uri();
-    $ver       = wp_get_theme()->get('Version');
 
     wp_enqueue_style(
         'mfl-single-listing',
         $child_uri . '/assets/css/single-listing.css',
         ['mfl-child'],
-        $ver
+        mfl_asset_ver('/assets/css/single-listing.css')
     );
 
     wp_enqueue_script(
         'mfl-single-listing',
         $child_uri . '/assets/js/single-listing.js',
         [],
-        $ver,
+        mfl_asset_ver('/assets/js/single-listing.js'),
         true
     );
 }

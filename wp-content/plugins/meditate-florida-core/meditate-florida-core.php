@@ -23,6 +23,7 @@ define('MFL_ENV_FILE',  ABSPATH . '.env');
 require_once MFL_DIR . 'includes/class-logger.php';
 require_once MFL_DIR . 'includes/class-places-importer.php';
 require_once MFL_DIR . 'includes/class-search-handler.php';
+require_once MFL_DIR . 'includes/class-city-pages.php';
 
 // Register AJAX search handler
 add_action('init', function () {

@@ -91,7 +91,10 @@ body {
   color: var(--mfl-body-text);
   font-size: 16px;         /* parent sets 14px — increased for readability */
   line-height: 1.75;
-  background-color: var(--mfl-warm-white);
+  /* !important: the parent's customizer-generated personalized.css loads
+     AFTER child styles and sets a cold blue (--listdomer-body-bg: #e8f1ff)
+     that otherwise wins by cascade order. */
+  background-color: var(--mfl-off-white) !important;
 }
 
 h1, h2, h3, h4, h5, h6 {

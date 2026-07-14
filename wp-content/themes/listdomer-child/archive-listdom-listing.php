@@ -38,10 +38,7 @@ $categories = get_terms([
 ]);
 $categories = is_wp_error($categories) ? [] : $categories;
 
-$cities = MFL_Search_Handler::CITIES;
-sort($cities);
-
-$service_types = MFL_Search_Handler::SERVICE_TYPES;
+$cities = MFL_Search_Handler::get_cities();
 
 // Current active filter values (for UI state)
 $f_city     = $filters['city'];
@@ -140,34 +137,6 @@ $archive_url = get_post_type_archive_link('listdom-listing') ?: home_url('/listd
                 </fieldset>
             </div>
             <?php endif; ?>
-
-            <!-- Service type -->
-            <div class="mfl-filter-group">
-                <fieldset>
-                    <legend class="mfl-filter-label">Service Type</legend>
-                    <ul class="mfl-filter-checklist">
-                        <?php foreach ($service_types as $slug => $label) : ?>
-                        <li>
-                            <label class="mfl-filter-check">
-                                <input type="radio" name="type" value="<?php echo esc_attr($slug); ?>"
-                                    <?php checked($f_type, $slug); ?>>
-                                <span class="mfl-filter-check__mark"></span>
-                                <?php echo esc_html($label); ?>
-                            </label>
-                        </li>
-                        <?php endforeach; ?>
-                        <?php if ($f_type) : ?>
-                        <li>
-                            <label class="mfl-filter-check mfl-filter-check--clear">
-                                <input type="radio" name="type" value="" <?php checked($f_type, ''); ?>>
-                                <span class="mfl-filter-check__mark"></span>
-                                All Types
-                            </label>
-                        </li>
-                        <?php endif; ?>
-                    </ul>
-                </fieldset>
-            </div>
 
             <!-- Minimum rating -->
             <div class="mfl-filter-group">

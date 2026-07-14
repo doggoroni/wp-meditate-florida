@@ -29,6 +29,28 @@ add_action('init', function () {
     (new MFL_Search_Handler())->register();
 });
 
+// Newsletter subscribers: stored as a private CPT so the list is browsable
+// in wp-admin ("Subscribers") and exportable, instead of living only in
+// notification emails.
+add_action('init', function () {
+    register_post_type('mfl_subscriber', [
+        'labels' => [
+            'name'          => 'Subscribers',
+            'singular_name' => 'Subscriber',
+            'menu_name'     => 'Subscribers',
+        ],
+        'public'              => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_icon'           => 'dashicons-email-alt',
+        'menu_position'       => 26,
+        'supports'            => ['title'],
+        'exclude_from_search' => true,
+        'publicly_queryable'  => false,
+        'show_in_rest'        => false,
+    ]);
+});
+
 // ─── Listing image helper ────────────────────────────────────────────────────
 
 /**
@@ -220,7 +242,33 @@ function mfl_handle_newsletter_signup(): void
         exit;
     }
 
-    // 3. Send notification email to site owner
+    // 3. Store the subscriber (dedupe by email). Repeat signups still get the
+    //    success redirect but don't create duplicates or re-notify the owner.
+    $existing = get_posts([
+        'post_type'      => 'mfl_subscriber',
+        'post_status'    => 'any',
+        'meta_key'       => '_mfl_subscriber_email',
+        'meta_value'     => $email,
+        'fields'         => 'ids',
+        'posts_per_page' => 1,
+    ]);
+
+    if ($existing) {
+        wp_safe_redirect(add_query_arg('mfl_newsletter', 'sent', $redirect));
+        exit;
+    }
+
+    $sub_id = wp_insert_post([
+        'post_type'   => 'mfl_subscriber',
+        'post_status' => 'publish',
+        'post_title'  => $email,
+    ]);
+    if ($sub_id && !is_wp_error($sub_id)) {
+        update_post_meta($sub_id, '_mfl_subscriber_email', $email);
+        update_post_meta($sub_id, '_mfl_subscribed_at', current_time('mysql'));
+    }
+
+    // 4. Send notification email to site owner
     $notify_to = get_option('mfl_contact_email', get_option('admin_email'));
     $subject   = '[Meditate Florida] New newsletter subscriber';
     $body      = sprintf(
@@ -234,7 +282,7 @@ function mfl_handle_newsletter_signup(): void
 
     wp_mail($notify_to, $subject, $body, $headers);
 
-    // 4. Redirect back with success flag
+    // 5. Redirect back with success flag
     wp_safe_redirect(add_query_arg('mfl_newsletter', 'sent', $redirect));
     exit;
 }

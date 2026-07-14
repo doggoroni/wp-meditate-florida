@@ -47,6 +47,47 @@ class MFL_Search_Handler
         add_action('wp_ajax_nopriv_mfl_listings_search', [$this, 'handle_ajax']);
     }
 
+    /**
+     * Cities that actually have published listings, parsed from lsd_address
+     * ("123 Main St, Miami, FL 33101"). Replaces the stale hardcoded CITIES
+     * list for filter UIs, so the dropdown always matches the data.
+     *
+     * @param  int $min_count Hide one-off cities below this listing count.
+     * @return string[] alphabetized city names
+     */
+    public static function get_cities(int $min_count = 2): array
+    {
+        $cities = get_transient('mfl_filter_cities');
+        if (is_array($cities)) {
+            return $cities;
+        }
+
+        global $wpdb;
+        $addresses = $wpdb->get_col(
+            "SELECT m.meta_value
+             FROM {$wpdb->postmeta} m
+             INNER JOIN {$wpdb->posts} p ON p.ID = m.post_id
+             WHERE m.meta_key = 'lsd_address'
+               AND p.post_type = 'listdom-listing'
+               AND p.post_status = 'publish'"
+        );
+
+        $counts = [];
+        foreach ($addresses as $addr) {
+            if (preg_match('/,\s*([^,]+),\s*FL\b/i', $addr, $m)) {
+                $city = trim($m[1]);
+                $counts[$city] = ($counts[$city] ?? 0) + 1;
+            }
+        }
+
+        $cities = array_keys(array_filter($counts, fn($c) => $c >= $min_count));
+        natcasesort($cities);
+        $cities = array_values($cities);
+
+        set_transient('mfl_filter_cities', $cities, 12 * HOUR_IN_SECONDS);
+        return $cities;
+    }
+
     // ── AJAX entry point ─────────────────────────────────────────────────────
 
     public function handle_ajax(): void

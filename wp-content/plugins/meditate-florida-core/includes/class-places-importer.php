@@ -163,6 +163,15 @@ class MFL_Places_Importer
 
                 $place = $this->normalize_place($details, $city, $term);
 
+                // Google text search sometimes returns out-of-state results
+                // (e.g. a Tennessee retreat for "meditation retreat in Miami").
+                // Only Florida addresses belong in this directory.
+                if (!$this->is_florida_address($details['formatted_address'] ?? '')) {
+                    $this->log->info("  skipped (not in FL): {$place['title']}");
+                    $stats['skipped']++;
+                    continue;
+                }
+
                 if (isset($this->existing_place_ids[$place_id])) {
                     // Existing listing — update mutable fields only.
                     $post_id = $this->existing_place_ids[$place_id];
@@ -310,6 +319,15 @@ class MFL_Places_Importer
             'image_url'    => $image_url,
             'hours_json'   => $hours_json,
         ];
+    }
+
+    /**
+     * True if a Google formatted_address is in Florida.
+     * Matches ", FL " / ", FL," / ", FL 33101" — not substrings of other words.
+     */
+    private function is_florida_address(string $formatted_address): bool
+    {
+        return (bool) preg_match('/,\s*FL(\s|,|$)/i', $formatted_address);
     }
 
     /**

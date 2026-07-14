@@ -1,0 +1,58 @@
+name: Deploy to SiteGround
+
+# Deploys the child theme and custom plugin whenever they change on master.
+# Requires two repository secrets (Settings → Secrets and variables → Actions):
+#   SITEGROUND_SSH_KEY   — private key authorized for the SiteGround SSH user
+#   SITEGROUND_SSH_USER  — e.g. u1673-newoibm6yff4
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'wp-content/themes/listdomer-child/**'
+      - 'wp-content/plugins/meditate-florida-core/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+env:
+  SSH_HOST: ssh.meditateflorida.com
+  SSH_PORT: '18765'
+  REMOTE_ROOT: www/meditateflorida.com/public_html
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SITEGROUND_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy child theme
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' --exclude='*.log' --exclude='.DS_Store' \
+            -e "ssh -p $SSH_PORT -i ~/.ssh/deploy_key" \
+            wp-content/themes/listdomer-child/ \
+            "${{ secrets.SITEGROUND_SSH_USER }}@$SSH_HOST:~/$REMOTE_ROOT/wp-content/themes/listdomer-child/"
+
+      - name: Deploy custom plugin
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' --exclude='*.log' --exclude='.DS_Store' \
+            -e "ssh -p $SSH_PORT -i ~/.ssh/deploy_key" \
+            wp-content/plugins/meditate-florida-core/ \
+            "${{ secrets.SITEGROUND_SSH_USER }}@$SSH_HOST:~/$REMOTE_ROOT/wp-content/plugins/meditate-florida-core/"
+
+      - name: Flush caches
+        run: |
+          ssh -p "$SSH_PORT" -i ~/.ssh/deploy_key \
+            "${{ secrets.SITEGROUND_SSH_USER }}@$SSH_HOST" \
+            "cd ~/$REMOTE_ROOT && wp cache flush && (wp sg purge || true)"

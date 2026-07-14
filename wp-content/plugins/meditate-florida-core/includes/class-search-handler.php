@@ -278,11 +278,7 @@ class MFL_Search_Handler
             if (!$lat || !$lng) continue;
 
             $rating = (float) get_post_meta($id, '_mfl_rating', true);
-            $img    = get_post_meta($id, '_mfl_image_url', true);
-            if (!$img) {
-                $ava = get_post_meta($id, 'lsd_ava', true);
-                if ($ava) $img = wp_get_attachment_image_url($ava, 'thumbnail');
-            }
+            $img    = mfl_listing_image_url($id, 'thumbnail');
 
             $pins[] = [
                 'id'      => $id,
@@ -328,15 +324,7 @@ class MFL_Search_Handler
         $website = get_post_meta($id, 'lsd_website',       true);
         $rating  = (float) get_post_meta($id, '_mfl_rating',       true);
         $count   = (int)   get_post_meta($id, '_mfl_review_count', true);
-        $img     = get_post_meta($id, '_mfl_image_url',    true);
-
-        if (!$img) {
-            $ava_id = get_post_meta($id, 'lsd_ava', true);
-            if ($ava_id) $img = wp_get_attachment_image_url($ava_id, 'medium');
-        }
-        if (!$img && has_post_thumbnail($id)) {
-            $img = get_the_post_thumbnail_url($id, 'medium');
-        }
+        $img     = mfl_listing_image_url($id, 'medium');
 
         $cats     = get_the_terms($id, 'listdom-category');
         $cat_name = (!empty($cats) && !is_wp_error($cats)) ? $cats[0]->name : '';

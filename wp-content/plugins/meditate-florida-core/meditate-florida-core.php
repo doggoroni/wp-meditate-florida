@@ -29,6 +29,70 @@ add_action('init', function () {
     (new MFL_Search_Handler())->register();
 });
 
+// ─── Listing image helper ────────────────────────────────────────────────────
+
+/**
+ * Resolve the display image for a listing from locally hosted attachments only.
+ *
+ * Priority: featured image → lsd_ava attachment (Listdom avatar).
+ * Deliberately never falls back to _mfl_image_url: those are Google Places
+ * Photo API links that bill per pageview, expire, and embed the API key in
+ * the public HTML. Run `wp mfl backfill-images` to populate local images.
+ */
+function mfl_listing_image_url(int $post_id, string $size = 'medium_large'): string
+{
+    $url = get_the_post_thumbnail_url($post_id, $size);
+    if ($url) {
+        return $url;
+    }
+
+    $ava_id = (int) get_post_meta($post_id, 'lsd_ava', true);
+    if ($ava_id) {
+        $url = wp_get_attachment_image_url($ava_id, $size);
+        if ($url) {
+            return $url;
+        }
+    }
+
+    return '';
+}
+
+// ─── WP-CLI: image backfill ──────────────────────────────────────────────────
+
+if (defined('WP_CLI') && WP_CLI) {
+    /**
+     * Download Google Places photos into the media library for listings that
+     * don't have a local image yet. Fetches a fresh photo_reference per place,
+     * so it works even when the stored _mfl_image_url has expired.
+     *
+     * ## OPTIONS
+     *
+     * [--limit=<n>]
+     * : Max number of listings to process this run (0 = all). Default 0.
+     *
+     * ## EXAMPLES
+     *     wp mfl backfill-images
+     *     wp mfl backfill-images --limit=25
+     */
+    WP_CLI::add_command('mfl backfill-images', function ($args, $assoc_args) {
+        $limit    = (int) ($assoc_args['limit'] ?? 0);
+        $logger   = new MFL_Logger(MFL_LOG_FILE);
+        $importer = new MFL_Places_Importer($logger);
+        $stats    = $importer->backfill_images($limit);
+
+        WP_CLI::log(sprintf(
+            'Processed: %d | Images added: %d | Skipped (no photo): %d | Errors: %d',
+            $stats['processed'], $stats['added'], $stats['skipped'], $stats['errors']
+        ));
+
+        if ($stats['errors'] > 0) {
+            WP_CLI::warning('Some downloads failed — see wp-content/logs/places-import.log');
+        } else {
+            WP_CLI::success('Backfill complete.');
+        }
+    });
+}
+
 // ─── Activation / Deactivation ───────────────────────────────────────────────
 
 register_activation_hook(__FILE__, 'mfl_activate');
@@ -365,7 +429,7 @@ function mfl_output_meta_tags(): void {
     $og_image = (is_singular() && has_post_thumbnail())
         ? get_the_post_thumbnail_url(null, 'large') : '';
     if (!$og_image && is_singular('listdom-listing')) {
-        $og_image = esc_url(get_post_meta($post->ID, '_mfl_image_url', true));
+        $og_image = mfl_listing_image_url($post->ID, 'large');
     }
     $og_type  = is_singular('post') ? 'article' : 'website';
 
@@ -506,9 +570,8 @@ function mfl_output_listing_schema(): void {
     $email   = sanitize_email(get_post_meta($post_id,      'lsd_email',   true));
     $address = sanitize_text_field(get_post_meta($post_id, 'lsd_address', true));
 
-    // Featured image, falling back to imported Google photo URL
-    $image = get_the_post_thumbnail_url($post_id, 'large')
-          ?: esc_url(get_post_meta($post_id, '_mfl_image_url', true));
+    // Locally hosted image only (featured image → lsd_ava attachment)
+    $image = mfl_listing_image_url($post_id, 'large');
 
     // Ratings stored by importer
     $rating_value = (float) get_post_meta($post_id, '_mfl_rating',       true);

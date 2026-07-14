@@ -39,18 +39,11 @@ $classes_txt = get_post_meta($post_id, 'lsd_classes',   true); // freeform sched
 $rating      = (float) get_post_meta($post_id, '_mfl_rating',       true);
 $review_cnt  = (int)   get_post_meta($post_id, '_mfl_review_count', true);
 $hours_json  = get_post_meta($post_id, '_mfl_hours_json', true);
-$image_url   = get_post_meta($post_id, '_mfl_image_url',  true);
-
-// Hero image: lsd_ava attachment → _mfl_image_url fallback → post thumbnail
-if ($ava_id) {
-    $hero_src = wp_get_attachment_image_url($ava_id, 'full');
-} elseif ($image_url) {
-    $hero_src = esc_url($image_url);
-} elseif (has_post_thumbnail()) {
-    $hero_src = get_the_post_thumbnail_url($post_id, 'full');
-} else {
-    $hero_src = '';
-}
+// Hero image: locally hosted attachments only (featured image → lsd_ava).
+// The old _mfl_image_url fallback hotlinked the Google Places Photo API,
+// which bills per view, expires, and exposes the API key in the HTML.
+$hero_src = function_exists('mfl_listing_image_url')
+    ? mfl_listing_image_url($post_id, 'full') : '';
 
 // Gallery: filter out empty / non-numeric IDs
 $gallery_ids = array_filter($gallery_ids, 'is_numeric');
@@ -102,8 +95,6 @@ function mfl_sl_similar(int $post_id, float $lat, float $lng, ?object $cat, int 
     $results = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT p.ID, p.post_title,
-                    pm_img.meta_value  AS image_url,
-                    pm_img2.meta_value AS ava_id,
                     pm_r.meta_value    AS rating,
                     pm_a.meta_value    AS address,
                     ( 3959 * ACOS( LEAST(1, COS(RADIANS(%f)) * COS(RADIANS(d.latitude))
@@ -112,8 +103,6 @@ function mfl_sl_similar(int $post_id, float $lat, float $lng, ?object $cat, int 
              FROM {$wpdb->posts} p
              INNER JOIN {$wpdb->prefix}lsd_data d    ON d.post_id = p.ID
              INNER JOIN {$wpdb->term_relationships} tr ON tr.object_id = p.ID
-             LEFT  JOIN {$wpdb->postmeta} pm_img  ON pm_img.post_id  = p.ID AND pm_img.meta_key  = '_mfl_image_url'
-             LEFT  JOIN {$wpdb->postmeta} pm_img2 ON pm_img2.post_id = p.ID AND pm_img2.meta_key = 'lsd_ava'
              LEFT  JOIN {$wpdb->postmeta} pm_r    ON pm_r.post_id    = p.ID AND pm_r.meta_key    = '_mfl_rating'
              LEFT  JOIN {$wpdb->postmeta} pm_a    ON pm_a.post_id    = p.ID AND pm_a.meta_key    = 'lsd_address'
              WHERE p.post_type   = 'listdom-listing'
@@ -491,13 +480,8 @@ $claim_error     = isset($_GET['mfl_claim'])   && $_GET['mfl_claim']   === 'erro
         <ul class="mfl-sl-similar-list">
             <?php foreach ($similar as $s) :
                 $s_url   = get_permalink($s->ID);
-                $s_img   = '';
-                if ($s->ava_id) {
-                    $s_img = wp_get_attachment_image_url($s->ava_id, 'thumbnail');
-                }
-                if (!$s_img && $s->image_url) {
-                    $s_img = esc_url($s->image_url);
-                }
+                $s_img   = function_exists('mfl_listing_image_url')
+                    ? mfl_listing_image_url((int) $s->ID, 'thumbnail') : '';
                 $s_rating = (float) $s->rating;
             ?>
             <li class="mfl-sl-similar-item">

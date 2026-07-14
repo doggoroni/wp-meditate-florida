@@ -382,7 +382,8 @@ get_header();
                     $rating     = (float) get_post_meta($pid, '_mfl_rating',       true);
                     $rev_count  = (int)   get_post_meta($pid, '_mfl_review_count', true);
                     $address    = get_post_meta($pid, 'lsd_address',               true);
-                    $image_url  = get_post_meta($pid, '_mfl_image_url',            true);
+                    $image_url  = function_exists('mfl_listing_image_url')
+                        ? mfl_listing_image_url($pid, 'medium_large') : '';
                     $listing_cats = get_the_terms($pid, 'listdom-category');
                     $cat_name     = (!is_wp_error($listing_cats) && $listing_cats) ? $listing_cats[0]->name : '';
                 ?>

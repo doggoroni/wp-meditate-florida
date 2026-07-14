@@ -432,6 +432,10 @@ class MFL_Places_Importer
         // 5. Insert the geo-point row that Listdom uses for map proximity search.
         $this->upsert_geopoint($post_id, $place['lat'], $place['lng']);
 
+        // 6. Download the Google photo into the media library so the site
+        //    never hotlinks the Places Photo API at render time.
+        $this->sideload_photo($post_id, $place['image_url']);
+
         return $post_id;
     }
 
@@ -457,7 +461,161 @@ class MFL_Places_Importer
             }
         }
 
+        // Listings imported before photo sideloading existed have no local
+        // image yet — grab one now while we hold a fresh photo_reference.
+        if (!$this->has_local_image($post_id) && $this->sideload_photo($post_id, $place['image_url'])) {
+            $changed = true;
+        }
+
         return $changed;
+    }
+
+    // ─── Photo sideloading ───────────────────────────────────────────────────
+
+    /**
+     * True if the listing already has a locally hosted image
+     * (featured image or Listdom lsd_ava attachment).
+     */
+    private function has_local_image(int $post_id): bool
+    {
+        return has_post_thumbnail($post_id)
+            || (int) get_post_meta($post_id, 'lsd_ava', true) > 0;
+    }
+
+    /**
+     * Download a Google Places photo into the media library, attach it to the
+     * listing, and set it as both the featured image and Listdom avatar.
+     *
+     * Returns the attachment ID, or 0 if there was no photo / download failed.
+     */
+    private function sideload_photo(int $post_id, string $image_url): int
+    {
+        if ($image_url === '') {
+            return 0;
+        }
+
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+
+        // download_url() returns WP_Error on any non-200 response, so expired
+        // photo references or billing/key problems fail cleanly here.
+        $tmp = download_url($image_url, 30);
+        if (is_wp_error($tmp)) {
+            $this->log->warning("  Photo download failed for post #{$post_id}: " . $tmp->get_error_message());
+            return 0;
+        }
+
+        $mime = wp_get_image_mime($tmp);
+        $ext  = match ($mime) {
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+            'image/gif'  => 'gif',
+            'image/webp' => 'webp',
+            default      => '',
+        };
+
+        if ($ext === '') {
+            @unlink($tmp);
+            $this->log->warning("  Photo for post #{$post_id} is not a valid image (mime: " . ($mime ?: 'unknown') . ')');
+            return 0;
+        }
+
+        $slug = get_post_field('post_name', $post_id) ?: 'listing';
+        $file_array = [
+            'name'     => sanitize_file_name("{$slug}-{$post_id}.{$ext}"),
+            'tmp_name' => $tmp,
+        ];
+
+        $attach_id = media_handle_sideload($file_array, $post_id, get_the_title($post_id));
+        if (is_wp_error($attach_id)) {
+            @unlink($tmp);
+            $this->log->warning("  media_handle_sideload failed for post #{$post_id}: " . $attach_id->get_error_message());
+            return 0;
+        }
+
+        set_post_thumbnail($post_id, $attach_id);
+
+        // Listdom uses lsd_ava as the listing's primary image; only set it if
+        // one hasn't been chosen manually.
+        if (!(int) get_post_meta($post_id, 'lsd_ava', true)) {
+            update_post_meta($post_id, 'lsd_ava', $attach_id);
+        }
+
+        return (int) $attach_id;
+    }
+
+    /**
+     * Backfill local images for listings that don't have one yet.
+     *
+     * Re-fetches Place Details per listing to obtain a fresh photo_reference
+     * (stored _mfl_image_url values expire), then sideloads the photo.
+     *
+     * @param  int $limit Max listings to process (0 = no limit).
+     * @return array{processed: int, added: int, skipped: int, errors: int}
+     */
+    public function backfill_images(int $limit = 0): array
+    {
+        $this->log->separator();
+        $this->log->info('=== Image backfill started ===');
+
+        $stats = ['processed' => 0, 'added' => 0, 'skipped' => 0, 'errors' => 0];
+
+        $post_ids = get_posts([
+            'post_type'      => self::PTYPE,
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'meta_query'     => [
+                ['key' => '_mfl_google_place_id', 'compare' => 'EXISTS'],
+            ],
+        ]);
+
+        foreach ($post_ids as $post_id) {
+            if ($this->has_local_image($post_id)) {
+                continue;
+            }
+            if ($limit > 0 && $stats['processed'] >= $limit) {
+                break;
+            }
+
+            $stats['processed']++;
+            $place_id = get_post_meta($post_id, '_mfl_google_place_id', true);
+
+            $this->rate_limit();
+            $details = $this->place_details($place_id);
+
+            if ($details === null) {
+                $this->log->warning("  Backfill: details fetch failed for post #{$post_id} ({$place_id})");
+                $stats['errors']++;
+                continue;
+            }
+
+            $place = $this->normalize_place($details, '');
+
+            if ($place['image_url'] === '') {
+                $this->log->info("  Backfill: no photo available for post #{$post_id}");
+                $stats['skipped']++;
+                continue;
+            }
+
+            // Keep the stored URL fresh for reference/debugging.
+            update_post_meta($post_id, '_mfl_image_url', esc_url_raw($place['image_url']));
+
+            if ($this->sideload_photo($post_id, $place['image_url'])) {
+                $this->log->info("  Backfill: image added for post #{$post_id} (" . get_the_title($post_id) . ')');
+                $stats['added']++;
+            } else {
+                $stats['errors']++;
+            }
+        }
+
+        $this->log->info(sprintf(
+            '=== Backfill complete — Processed: %d | Added: %d | Skipped: %d | Errors: %d ===',
+            $stats['processed'], $stats['added'], $stats['skipped'], $stats['errors']
+        ));
+
+        return $stats;
     }
 
     /**

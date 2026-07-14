@@ -6,6 +6,7 @@ class LSDR_Assets extends LSDR_Base
     {
         add_action('wp_enqueue_scripts', [$this, 'frontend']);
         add_action('admin_init', [$this, 'backend']);
+        add_action('customize_save_after', [LSDR_Personalize::class, 'generate']);
     }
 
     public function backend()
@@ -15,6 +16,9 @@ class LSDR_Assets extends LSDR_Base
 
         // Editor Styles
         add_editor_style(get_template_directory_uri() . '/assets/css/editor.min.css');
+
+        // Listdomer JavaScript
+        wp_enqueue_script('listdomer', get_template_directory_uri() . '/assets/js/backend.min.js', ['jquery'], $this->version(), true);
     }
 
     public function frontend()

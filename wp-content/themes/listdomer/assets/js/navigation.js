@@ -4,48 +4,58 @@
  * Handles toggling the navigation menu for small screens and enables TAB key
  * navigation support for dropdown menus.
  */
-(function () {
+(function ()
+{
     const siteNavigation = document.getElementById('site-navigation');
 
     // Return early if the navigation don't exist.
-    if (!siteNavigation) {
+    if (!siteNavigation)
+    {
         return;
     }
 
     const button = siteNavigation.getElementsByTagName('button')[0];
 
     // Return early if the button don't exist.
-    if ('undefined' === typeof button) {
+    if ('undefined' === typeof button)
+    {
         return;
     }
 
     const menu = siteNavigation.getElementsByTagName('ul')[0];
 
     // Hide menu toggle button if menu is empty and return early.
-    if ('undefined' === typeof menu) {
+    if ('undefined' === typeof menu)
+    {
         button.style.display = 'none';
         return;
     }
 
-    if (!menu.classList.contains('nav-menu')) {
+    if (!menu.classList.contains('nav-menu'))
+    {
         menu.classList.add('nav-menu');
     }
 
     // Toggle the .toggled class and the aria-expanded value each time the button is clicked.
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function ()
+    {
         siteNavigation.classList.toggle('toggled');
 
-        if (button.getAttribute('aria-expanded') === 'true') {
+        if (button.getAttribute('aria-expanded') === 'true')
+        {
             button.setAttribute('aria-expanded', 'false');
-        } else {
+        } else
+        {
             button.setAttribute('aria-expanded', 'true');
         }
     });
 
     // Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', function (event)
+    {
         const isClickInside = siteNavigation.contains(event.target);
-        if (!isClickInside) {
+        if (!isClickInside)
+        {
             siteNavigation.classList.remove('toggled');
             button.setAttribute('aria-expanded', 'false');
         }
@@ -58,27 +68,33 @@
     const linksWithChildren = menu.querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a');
 
     // Toggle focus each time a menu link is focused or blurred.
-    for (const link of links) {
+    for (const link of links)
+    {
         link.addEventListener('focus', toggleFocus, true);
         link.addEventListener('blur', toggleFocus, true);
     }
 
     // Toggle focus each time a menu link with children receive a touch event.
-    for (const link of linksWithChildren) {
+    for (const link of linksWithChildren)
+    {
         link.addEventListener('touchstart', toggleFocus, false);
     }
 
     /**
      * Sets or removes .focus class on an element.
      */
-    function toggleFocus() {
-        if (event.type === 'focus' || event.type === 'blur') {
+    function toggleFocus()
+    {
+        if (event.type === 'focus' || event.type === 'blur')
+        {
             let self = this;
 
             // Move up through the ancestors of the current link until we hit .nav-menu.
-            while (!self.classList.contains('nav-menu')) {
+            while (!self.classList.contains('nav-menu'))
+            {
                 // On li elements toggle the class .focus.
-                if ('li' === self.tagName.toLowerCase()) {
+                if ('li' === self.tagName.toLowerCase())
+                {
                     self.classList.toggle('focus');
                 }
 
@@ -86,12 +102,15 @@
             }
         }
 
-        if (event.type === 'touchstart') {
+        if (event.type === 'touchstart')
+        {
             const menuItem = this.parentNode;
             event.preventDefault();
 
-            for (const link of menuItem.parentNode.children) {
-                if (menuItem !== link) {
+            for (const link of menuItem.parentNode.children)
+            {
+                if (menuItem !== link)
+                {
                     link.classList.remove('focus');
                 }
             }

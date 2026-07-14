@@ -13,6 +13,7 @@ $method = $csv['method'] ?? 'load-template';
 
 $type = isset($type) ? LSD_IX::normalize_import_type($type) : 'listings';
 $type_label = LSD_IX::import_type_label($type);
+$show_hierarchical_terms = in_array($type, ['listings', 'categories', 'locations'], true);
 
 // Feed Path / URL
 $path = $main->get_upload_path().$file;
@@ -158,6 +159,33 @@ if (!$ai->has_access(LSD_AI::TASK_MAPPING))
         </div>
     </div>
 </div>
+
+<?php if ($show_hierarchical_terms): ?>
+<div class="lsd-settings-fields-wrapper lsd-mt-4">
+    <div class="lsd-ix-options-wrap">
+        <div class="lsd-admin-section-heading">
+            <h3 class="lsd-admin-title lsd-m-0"><?php esc_html_e('Options', 'listdom'); ?></h3>
+        </div>
+        <div class="lsd-form-row lsd-ix-option-row">
+            <div class="lsd-col-12">
+                <div class="lsd-ix-option-toggle">
+                    <?php echo LSD_Form::switcher([
+                        'id' => 'lsd_ix_csv_hierarchical_terms',
+                        'name' => 'ix[hierarchical_terms]',
+                        'value' => 0,
+                    ]); ?>
+                    <?php echo LSD_Form::label([
+                        'for' => 'lsd_ix_csv_hierarchical_terms',
+                        'title' => esc_html__('Import categories/locations as a hierarchy path', 'listdom'),
+                        'class' => 'lsd-fields-label lsd-m-0 lsd-p-0',
+                    ]); ?>
+                </div>
+                <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('Format: Level1, Level2, Level3 (single path only). For listing imports, all levels are assigned; for categories, the deepest level is set as the primary category.', 'listdom'); ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 <script>
 // Template Change
 jQuery('#lsd_ix_csv_load_template_map').on('click', function ()

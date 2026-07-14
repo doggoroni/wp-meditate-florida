@@ -1045,32 +1045,51 @@
         listdomSwitchForm('.lsd-auth-switch-button', 200);
         lsdUpdateGalleryPlaceholder();
 
-         // Check for the 'tab' query parameter
+        // Check for the 'tab' query parameter
         const urlParams = new URLSearchParams(window.location.search);
         const tab = urlParams.get('tab');
+        const action = urlParams.get('action');
 
-        if (tab)
+        let desired = null;
+        if (tab === 'login')
         {
-            const $loginForm = jQuery('.lsd-auth-switch-button[data-target="#lsd-login-form"]');
-            const $registerForm = jQuery('.lsd-auth-switch-button[data-target="#lsd-register-form"]');
-            const $forgotPasswordForm = jQuery('.lsd-auth-switch-button[data-target="#lsd-forgot-password-form"]');
+            desired = 'login';
+        }
+        else if (tab === 'register')
+        {
+            desired = 'register';
+        }
+        else if (tab === 'lostpassword' || action === 'rp' || action === 'resetpass')
+        {
+            desired = 'forgot';
+        }
 
-            // Add the 'active' class to the correct tab based on the tab
-            if (tab === 'login')
-            {
-                $loginForm.trigger('click')
-                    .addClass('active');
-            }
-            else if (tab === 'register')
-            {
-                $registerForm.trigger('click')
-                    .addClass('active');
-            }
-            else if (tab === 'lostpassword')
-            {
-                $forgotPasswordForm.trigger('click')
-                    .addClass('active');
-            }
+        if (desired)
+        {
+            const prefixMap = {
+                login: '#lsd-login-form-',
+                register: '#lsd-register-form-',
+                forgot: '#lsd-forgot-password-form-'
+            };
+
+            jQuery('.lsd-auth-wrapper').each(function () {
+                const $wrapper = jQuery(this);
+                const prefix = prefixMap[desired];
+                let $btn = $wrapper.find('.lsd-auth-switch-button').filter(function () {
+                    const target = jQuery(this).data('target');
+                    return target && target.indexOf(prefix) === 0;
+                }).first();
+
+                if (!$btn.length)
+                {
+                    $btn = $wrapper.find('.lsd-auth-switch-button[data-target="#' + prefix.replace('#', '').replace(/-$/, '') + '"]');
+                }
+
+                if ($btn.length)
+                {
+                    $btn.trigger('click').addClass('active');
+                }
+            });
         }
 
         /**
@@ -1176,14 +1195,49 @@
                 const target = $(button).data('for');
                 const name = $(button).data('name');
                 const $target = $(target);
+                const $container = $target.closest('.lsd-listing-gallery-container');
+                const ratioLabel = ($container.data('aspectRatio') || '').toString().trim();
+                const ratioValue = parseAspectRatio(ratioLabel);
+                const aspectMessage =
+                    ($container.data('aspectMessage') || '').toString().trim() ||
+                    (ratioLabel ? 'Please upload images with an aspect ratio close to ' + ratioLabel + '.' : '');
+                let hasRatioMismatch = false;
 
                 attachments.map(function(attachment)
                 {
                     attachment = attachment.toJSON();
+
+                    if (ratioValue)
+                    {
+                        const width = parseInt(attachment.width, 10) || 0;
+                        const height = parseInt(attachment.height, 10) || 0;
+
+                        if (width && height && !isAspectRatioAllowed(width, height, ratioValue, aspectRatioTolerance))
+                        {
+                            hasRatioMismatch = true;
+                            return;
+                        }
+                    }
+
                     $target.append('<li data-id="'+attachment.id+'"><input type="hidden" name="'+name+'" value="'+attachment.id+'"><img src="'+attachment.url+'" alt=""><div class="lsd-gallery-actions"><i class="lsd-icon fas fa-trash-alt lsd-remove-gallery-single-button"></i> <i class="lsd-icon fas fa-arrows-alt lsd-handler"></i></div></li>');
                 });
 
                 lsdUpdateGalleryPlaceholder($target);
+
+                if (hasRatioMismatch)
+                {
+                    const $message = $('#lsd_listing_gallery_uploader_message');
+                    if ($message.length)
+                    {
+                        if (typeof listdom_alertify === 'function') $message.html(listdom_alertify(aspectMessage, 'lsd-error'));
+                        else $message.text(aspectMessage);
+
+                        setTimeout(function()
+                        {
+                            $message.html('');
+                        }, 60000);
+                    }
+                }
                 frame.close();
             });
 
@@ -1800,6 +1854,149 @@
     /**
      * Listdom Image picker -- Upload/Select Button
      */
+    $('.lsd-select-image-files-button, .lsd-add-images-button').on('click', function (event)
+    {
+        event.preventDefault();
+
+        const target = $(this).data('for');
+        const $input = $(target);
+
+        if (!$input.length) return;
+
+        if ($input.prop('multiple'))
+        {
+            const existingFiles = $input.prop('files') || [];
+            if (existingFiles.length)
+            {
+                $input.data('lsdExistingFiles', Array.from(existingFiles));
+            }
+            else
+            {
+                $input.removeData('lsdExistingFiles');
+            }
+        }
+
+        $input.trigger('click');
+    });
+
+    function updateMultiImagepicker($input)
+    {
+        const files = $input.prop('files') || [];
+        const $wrapper = $input.closest('.lsd-imagepicker-wrapper');
+        const $placeholder = $wrapper.find('.lsd-imagepicker-image-placeholder');
+        const $preview = $placeholder.find('.lsd-imagepicker-multiple-preview');
+        const $list = $preview.find('.lsd-imagepicker-multiple-list');
+        const $emptyState = $placeholder.find('.lsd-image-placeholder-empty');
+        const target = '#' + $input.attr('id');
+        const $removeButton = $wrapper.find('.lsd-remove-images-button[data-for="' + target + '"]');
+        const $addButton = $wrapper.find('.lsd-add-images-button[data-for="' + target + '"]');
+        const isMultiple = $input.prop('multiple');
+
+        $list.html('');
+
+        if (!files.length)
+        {
+            $preview.addClass('lsd-util-hide');
+            $emptyState.removeClass('lsd-util-hide');
+            $placeholder.removeClass('lsd-image-placeholder-has-image');
+            $removeButton.addClass('lsd-util-hide');
+            $addButton.addClass('lsd-util-hide');
+            return;
+        }
+
+        $.each(files, function (index, file)
+        {
+            const $item = $('<li class="lsd-imagepicker-multiple-item"></li>');
+
+            if (file && file.type && file.type.indexOf('image') === 0 && typeof FileReader !== 'undefined')
+            {
+                const reader = new FileReader();
+                const $img = $('<img alt="">');
+                $img.attr('alt', file.name || '');
+                reader.onload = function (event)
+                {
+                    $img.attr('src', event.target.result || '');
+                };
+                reader.readAsDataURL(file);
+                $item.append($img);
+            }
+            else if (file && file.name)
+            {
+                $item.append($('<span class="lsd-imagepicker-multiple-filename"></span>').text(file.name));
+            }
+
+            $list.append($item);
+        });
+
+        $preview.removeClass('lsd-util-hide');
+        $emptyState.addClass('lsd-util-hide');
+        $placeholder.addClass('lsd-image-placeholder-has-image');
+        $removeButton.removeClass('lsd-util-hide');
+        if (isMultiple) $addButton.removeClass('lsd-util-hide');
+        else $addButton.addClass('lsd-util-hide');
+    }
+
+    const aspectRatioTolerance = 0.05;
+
+    function parseAspectRatio(value)
+    {
+        if (!value || typeof value !== 'string') return null;
+
+        const trimmed = value.trim();
+        if (!trimmed || trimmed === 'none') return null;
+
+        const parts = trimmed.split(':');
+        if (parts.length !== 2) return null;
+
+        const width = parseFloat(parts[0]);
+        const height = parseFloat(parts[1]);
+
+        if (!width || !height || Number.isNaN(width) || Number.isNaN(height)) return null;
+
+        return width / height;
+    }
+
+    function isAspectRatioAllowed(width, height, ratio, tolerance)
+    {
+        if (!ratio || !width || !height) return true;
+        const actual = width / height;
+        return Math.abs(actual - ratio) / ratio <= tolerance;
+    }
+
+    $('.lsd-imagepicker-file-input').on('change', function ()
+    {
+        const $input = $(this);
+        const existingFiles = $input.data('lsdExistingFiles');
+        const newFiles = $input.prop('files') || [];
+
+        if (existingFiles && existingFiles.length && $input.prop('multiple') && typeof DataTransfer !== 'undefined')
+        {
+            const dataTransfer = new DataTransfer();
+            existingFiles.forEach((file) => dataTransfer.items.add(file));
+            Array.from(newFiles).forEach((file) => dataTransfer.items.add(file));
+            $input[0].files = dataTransfer.files;
+        }
+
+        $input.removeData('lsdExistingFiles');
+        updateMultiImagepicker($input);
+    });
+
+    $('.lsd-remove-images-button').on('click', function (event)
+    {
+        event.preventDefault();
+
+        const target = $(this).data('for');
+        const $input = $(target);
+        if (!$input.length) return;
+
+        $input.val('');
+        $input.removeData('lsdExistingFiles');
+        updateMultiImagepicker($input);
+    });
+
+    /**
+     * Listdom Image picker -- Upload/Select Button
+     */
     $('.lsd-select-image-button').on('click', function (event)
     {
         event.preventDefault();
@@ -1879,6 +2076,48 @@
 
                 frame.close();
                 return;
+            }
+
+            const ratioLabel = ($wrapper.data('aspectRatio') || '').toString().trim();
+            const ratioValue = parseAspectRatio(ratioLabel);
+            const aspectMessage =
+                ($wrapper.data('aspectMessage') || '').toString().trim() ||
+                (ratioLabel ? 'Please upload an image with an aspect ratio close to ' + ratioLabel + '.' : '');
+
+            if (ratioValue)
+            {
+                let width = 0;
+                let height = 0;
+
+                if (typeof attachment.get === 'function')
+                {
+                    width = parseInt(attachment.get('width'), 10) || 0;
+                    height = parseInt(attachment.get('height'), 10) || 0;
+                }
+
+                if ((!width || !height) && attachment.attributes)
+                {
+                    width = parseInt(attachment.attributes.width, 10) || 0;
+                    height = parseInt(attachment.attributes.height, 10) || 0;
+                }
+
+                if (width && height && !isAspectRatioAllowed(width, height, ratioValue, aspectRatioTolerance))
+                {
+                    const messageContent = aspectMessage || 'The selected image does not match the required aspect ratio.';
+
+                    if (typeof listdom_alertify === 'function') $message.html(listdom_alertify(messageContent, 'lsd-error'));
+                    else $message.text(messageContent);
+
+                    $wrapper.addClass('lsd-attribute-error');
+                    $placeholder.addClass('lsd-attribute-error');
+
+                    setTimeout(() => {
+                        $message.html('');
+                    }, 9000);
+
+                    frame.close();
+                    return;
+                }
             }
 
             const $preview = $placeholder.find('.lsd-image-placeholder-preview');

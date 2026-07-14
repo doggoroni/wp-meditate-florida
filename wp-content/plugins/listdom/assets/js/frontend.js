@@ -3168,11 +3168,9 @@ function ListdomDetails(id, link, settings) {
                     .children("div")
                     .attr("class");
 
-                const map_container_width = $(selector).width();
                 const offset = $(selector).offset();
                 const offset_top = offset.top;
 
-                $(selector).width(map_container_width);
                 $(selector).css("height", $(window).height());
                 $(selector + " > div").css("height", $(window).height());
                 $(selector).css("top", offset_top);
@@ -7558,6 +7556,64 @@ function ListdomDetails(id, link, settings) {
         let $featured_image_remove = $("#lsd_featured_image_remove_button");
         let $multiline_select = $(".lsd-select-multiple");
         let ajax = false;
+        const aspectRatioTolerance = 0.05;
+
+        function parseAspectRatio(value) {
+            if (!value || typeof value !== "string") return null;
+
+            const trimmed = value.trim();
+            if (!trimmed || trimmed === "none") return null;
+
+            const parts = trimmed.split(":");
+            if (parts.length !== 2) return null;
+
+            const width = parseFloat(parts[0]);
+            const height = parseFloat(parts[1]);
+
+            if (!width || !height || Number.isNaN(width) || Number.isNaN(height)) return null;
+
+            return width / height;
+        }
+
+        function isAspectRatioAllowed(width, height, ratio, tolerance) {
+            if (!ratio || !width || !height) return true;
+            const actual = width / height;
+            return Math.abs(actual - ratio) / ratio <= tolerance;
+        }
+
+        function getImageDimensions(file) {
+            return new Promise(function (resolve, reject) {
+                if (!file || !file.type || file.type.indexOf("image") !== 0) {
+                    reject(new Error("invalid_file"));
+                    return;
+                }
+
+                const image = new Image();
+                const urlCreator = window.URL || window.webkitURL;
+                const objectUrl = urlCreator ? urlCreator.createObjectURL(file) : null;
+
+                image.onload = function () {
+                    const width = image.naturalWidth || image.width;
+                    const height = image.naturalHeight || image.height;
+                    if (objectUrl && urlCreator) urlCreator.revokeObjectURL(objectUrl);
+
+                    if (!width || !height) {
+                        reject(new Error("invalid_dimensions"));
+                        return;
+                    }
+
+                    resolve({ width: width, height: height });
+                };
+
+                image.onerror = function () {
+                    if (objectUrl && urlCreator) urlCreator.revokeObjectURL(objectUrl);
+                    reject(new Error("load_error"));
+                };
+
+                if (objectUrl) image.src = objectUrl;
+                else reject(new Error("no_url"));
+            });
+        }
 
         function fallbackGalleryPlaceholder(context) {
             let $containers;
@@ -7881,13 +7937,61 @@ function ListdomDetails(id, link, settings) {
             // Wrapper
             let $wrapper = $(".lsd-dashboard-featured-image");
 
+            const file = $featured_image_upload.prop("files")[0];
+            if (!file) return;
+
+            const ratioLabel = ($featured_image_upload.data("aspectRatio") || "").toString().trim();
+            const ratioValue = parseAspectRatio(ratioLabel);
+
+            const aspectMessage =
+                ($featured_image_upload.data("aspectMessage") || "").toString().trim() ||
+                (ratioLabel ? "Please upload an image with an aspect ratio close to " + ratioLabel + "." : "");
+
+            if (ratioValue) {
+                getImageDimensions(file)
+                    .then(function (dimensions) {
+                        if (
+                            !isAspectRatioAllowed(
+                                dimensions.width,
+                                dimensions.height,
+                                ratioValue,
+                                aspectRatioTolerance
+                            )
+                        ) {
+                            const message = aspectMessage || "The image does not match the required aspect ratio.";
+                            $featured_image_upload.val("");
+                            $alert.html(listdom_alertify(message, "lsd-error"));
+                            setTimeout(function () {
+                                $alert.html("");
+                            }, 9000);
+                            return;
+                        }
+
+                        featured_image_upload_request(file, $wrapper, $alert);
+                    })
+                    .catch(function () {
+                        const message = aspectMessage || "Unable to validate the image aspect ratio.";
+                        $featured_image_upload.val("");
+                        $alert.html(listdom_alertify(message, "lsd-error"));
+                        setTimeout(function () {
+                            $alert.html("");
+                        }, 9000);
+                    });
+
+                return;
+            }
+
+            featured_image_upload_request(file, $wrapper, $alert);
+        }
+
+        function featured_image_upload_request(file, $wrapper, $alert) {
             // Loading Style
             $wrapper.addClass("lsd-loading");
 
             let fd = new FormData();
             fd.append("action", "lsd_dashboard_listing_upload_featured_image");
             fd.append("_wpnonce", settings.nonce);
-            fd.append("file", $featured_image_upload.prop("files")[0]);
+            fd.append("file", file);
 
             // Empty Alert
             $alert.html("");
@@ -7999,6 +8103,63 @@ function ListdomDetails(id, link, settings) {
                 }
             }
 
+            const ratioLabel = ($gallery_upload.data("aspectRatio") || $wrapper.data("aspectRatio") || "")
+                .toString()
+                .trim();
+            const ratioValue = parseAspectRatio(ratioLabel);
+            const aspectMessage =
+                ($gallery_upload.data("aspectMessage") || $wrapper.data("aspectMessage") || "").toString().trim() ||
+                (ratioLabel ? "Please upload images with an aspect ratio close to " + ratioLabel + "." : "");
+
+            if (ratioValue && ins > 0) {
+                validateGalleryAspectRatio(files, ratioValue, aspectMessage, $alert, $wrapper, $target, name);
+                return;
+            }
+
+            gallery_upload_request($wrapper, $target, name, files, currentCount, $alert);
+        }
+
+        function validateGalleryAspectRatio(files, ratioValue, aspectMessage, $alert, $wrapper, $target, name) {
+            const fileList = Array.from(files);
+            let index = 0;
+
+            const checkNext = function () {
+                if (index >= fileList.length) {
+                    gallery_upload_request($wrapper, $target, name, files, $target.find("li").length, $alert);
+                    return;
+                }
+
+                const file = fileList[index];
+                index += 1;
+
+                getImageDimensions(file)
+                    .then(function (dimensions) {
+                        if (!isAspectRatioAllowed(dimensions.width, dimensions.height, ratioValue, aspectRatioTolerance)) {
+                            const message = aspectMessage || "One or more images do not match the required aspect ratio.";
+                            $gallery_upload.val("");
+                            $alert.html(listdom_alertify(message, "lsd-error"));
+                            setTimeout(function () {
+                                $alert.html("");
+                            }, 60000);
+                            return;
+                        }
+
+                        checkNext();
+                    })
+                    .catch(function () {
+                        const message = aspectMessage || "Unable to validate the image aspect ratio.";
+                        $gallery_upload.val("");
+                        $alert.html(listdom_alertify(message, "lsd-error"));
+                        setTimeout(function () {
+                            $alert.html("");
+                        }, 60000);
+                    });
+            };
+
+            checkNext();
+        }
+
+        function gallery_upload_request($wrapper, $target, name, files, currentCount, $alert) {
             // Loading Style
             $wrapper.addClass("lsd-loading");
 
@@ -8014,7 +8175,7 @@ function ListdomDetails(id, link, settings) {
                 if (id) fd.append("existing_ids[]", id);
             });
 
-            for (let x = 0; x < ins; x++) fd.append("files[]", files[x]);
+            for (let x = 0; x < files.length; x++) fd.append("files[]", files[x]);
 
             $.ajax({
                 url: settings.ajax_url,
@@ -8826,9 +8987,14 @@ function ListdomDetails(id, link, settings) {
             let $form = $(this);
             let $register = $form.closest(".lsd-register-wrapper");
             let $message = $register.find(".lsd-register-form-message");
+            let $password = $form.find('input[name="lsd_password"]');
+            let $rulesWrapper = $register.find(".lsd-register-password-rules");
+            let $rules = $rulesWrapper.find(".lsd-register-password-rule");
             let ajax = false;
 
             if (!$message.length) $message = $form.find(".lsd-register-form-message");
+            if (!$rulesWrapper.length) $rulesWrapper = $form.find(".lsd-register-password-rules");
+            if (!$rules.length) $rules = $rulesWrapper.find(".lsd-register-password-rule");
 
             setListeners();
 
@@ -8836,6 +9002,51 @@ function ListdomDetails(id, link, settings) {
                 $form.off("submit").on("submit", function (event) {
                     event.preventDefault();
                     register();
+                });
+
+                if ($password.length && $rules.length) {
+                    $password.off("input.lsdPasswordRules").on("input.lsdPasswordRules", function () {
+                        updatePasswordRules();
+                    });
+                    updatePasswordRules();
+                }
+            }
+
+            function updatePasswordRules() {
+                if (!$password.length || !$rules.length) return;
+
+                const value = $password.val() || "";
+
+                $rules.each(function () {
+                    const $rule = $(this);
+                    const rule = $rule.data("rule");
+                    let isMet = false;
+
+                    switch (rule) {
+                        case "length": {
+                            const minLength = parseInt($rule.data("min-length"), 10) || 0;
+                            isMet = value.length >= minLength;
+                            break;
+                        }
+
+                        case "uppercase":
+                            isMet = /[A-Z]/.test(value);
+                            break;
+
+                        case "lowercase":
+                            isMet = /[a-z]/.test(value);
+                            break;
+
+                        case "number":
+                            isMet = /\d/.test(value);
+                            break;
+
+                        case "special":
+                            isMet = /[\W_]/.test(value);
+                            break;
+                    }
+
+                    $rule.toggleClass("lsd-register-password-rule--met", isMet);
                 });
             }
 
@@ -10260,7 +10471,7 @@ function lsdCheckoutComplete(orderKey)
             const name = $wrapper.find('.lsd-checkout-user-name').val() || '';
             const email = $wrapper.find('.lsd-checkout-user-email').val() || '';
 
-            const consentEl = $wrapper.find('input[name="lsd_checkout_consent"]').get(0);
+            const consentEl = $wrapper.find('input[name="lsd_privacy_consent"]').get(0);
 
             if (consentEl && consentEl.required)
             {
@@ -10274,9 +10485,11 @@ function lsdCheckoutComplete(orderKey)
                 consentEl.setCustomValidity('');
             }
 
+            const consentValue = consentEl && consentEl.checked ? '1' : '';
+
             $.ajax({
                 url: lsd.ajaxurl,
-                data: {action: 'lsd_checkout', _wpnonce: nonce, gateway: gateway, message: message, name: name, email: email},
+                data: {action: 'lsd_checkout', _wpnonce: nonce, gateway: gateway, message: message, name: name, email: email, lsd_privacy_consent: consentValue},
                 dataType: 'json',
                 type: 'post',
                 success: function (res) {

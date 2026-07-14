@@ -16,12 +16,12 @@ class LSD_IX extends LSD_Base
     {
         $types = [
             'listings' => ['label' => esc_html__('Listings', 'listdom')],
-            'categories' => ['label' => esc_html__('Categories', 'listdom'), 'taxonomy' => LSD_Base::TAX_CATEGORY],
-            'locations' => ['label' => esc_html__('Locations', 'listdom'), 'taxonomy' => LSD_Base::TAX_LOCATION],
-            'tags' => ['label' => esc_html__('Tags', 'listdom'), 'taxonomy' => LSD_Base::TAX_TAG],
-            'features' => ['label' => esc_html__('Features', 'listdom'), 'taxonomy' => LSD_Base::TAX_FEATURE],
-            'labels' => ['label' => esc_html__('Labels', 'listdom'), 'taxonomy' => LSD_Base::TAX_LABEL],
-            'attributes' => ['label' => esc_html__('Custom Fields', 'listdom'), 'taxonomy' => LSD_Base::TAX_ATTRIBUTE],
+            'categories' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY, 'plural')), 'taxonomy' => LSD_Base::TAX_CATEGORY],
+            'locations' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural')), 'taxonomy' => LSD_Base::TAX_LOCATION],
+            'tags' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')), 'taxonomy' => LSD_Base::TAX_TAG],
+            'features' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')), 'taxonomy' => LSD_Base::TAX_FEATURE],
+            'labels' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')), 'taxonomy' => LSD_Base::TAX_LABEL],
+            'attributes' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_ATTRIBUTE, 'plural')), 'taxonomy' => LSD_Base::TAX_ATTRIBUTE],
         ];
 
         /**
@@ -349,12 +349,12 @@ class LSD_IX extends LSD_Base
         return $ids;
     }
 
-    public function import_term_collection(array $terms, string $taxonomy): array
+    public function import_term_collection(array $terms, string $taxonomy, array $options = []): array
     {
-        return $this->import_terms($terms, $taxonomy);
+        return $this->import_terms($terms, $taxonomy, $options);
     }
 
-    protected function import_terms(array $terms, string $taxonomy): array
+    protected function import_terms(array $terms, string $taxonomy, array $options = []): array
     {
         $ids = [];
         $pending_storage_key = 'lsd_pending_term_parents_' . $taxonomy;
@@ -382,6 +382,27 @@ class LSD_IX extends LSD_Base
         foreach ($terms as $index => $term)
         {
             if (!is_array($term)) continue;
+
+            if ($this->should_import_hierarchy_path($term, $taxonomy, $options))
+            {
+                $path = $this->normalize_hierarchy_path($term['path']);
+                if (!count($path)) continue;
+
+                $term_id = $this->upsert_term_by_path($path, $taxonomy, $term);
+                if (!$term_id) continue;
+
+                $meta = isset($term['meta']) && is_array($term['meta']) ? $term['meta'] : [];
+                foreach ($meta as $key => $value) update_term_meta($term_id, $key, $value);
+
+                if (!empty($term['image']))
+                {
+                    $attachment_id = $this->attach(trim((string) $term['image']));
+                    if ($attachment_id) update_term_meta($term_id, 'lsd_image', $attachment_id);
+                }
+
+                $ids[$index] = $term_id;
+                continue;
+            }
 
             $name = isset($term['name']) ? trim((string) $term['name']) : '';
             if (!$name) continue;
@@ -510,6 +531,131 @@ class LSD_IX extends LSD_Base
         return null;
     }
 
+    protected function should_import_hierarchy_path(array $term, string $taxonomy, array $options): bool
+    {
+        return !empty($options['hierarchical_terms'])
+            && is_taxonomy_hierarchical($taxonomy)
+            && in_array($taxonomy, [LSD_Base::TAX_CATEGORY, LSD_Base::TAX_LOCATION], true)
+            && isset($term['path'])
+            && is_array($term['path'])
+            && count($term['path']);
+    }
+
+    protected function normalize_hierarchy_path(array $path): array
+    {
+        $normalized = [];
+        foreach ($path as $item)
+        {
+            if (!is_string($item) && !is_numeric($item)) continue;
+
+            $item = trim((string) $item);
+            if ($item === '') continue;
+
+            $normalized[] = $item;
+        }
+
+        return $normalized;
+    }
+
+    protected function upsert_term_by_path(array $path, string $taxonomy, array $term = []): int
+    {
+        $term_ids = $this->upsert_term_path($path, $taxonomy, $term);
+        if (!count($term_ids)) return 0;
+
+        return (int) end($term_ids);
+    }
+
+    protected function upsert_term_path(array $path, string $taxonomy, array $term = []): array
+    {
+        $path = $this->normalize_hierarchy_path($path);
+        if (!count($path)) return [];
+
+        $parent_id = 0;
+        $total = count($path);
+        $term_ids = [];
+
+        foreach ($path as $index => $segment)
+        {
+            $is_leaf = $index === ($total - 1);
+            $args = [];
+
+            if ($is_leaf)
+            {
+                if (array_key_exists('description', $term))
+                {
+                    $args['description'] = (string) $term['description'];
+                }
+
+                $slug = isset($term['slug']) ? sanitize_title((string) $term['slug']) : '';
+                if ($slug !== '') $args['slug'] = $slug;
+            }
+
+            $term_id = $this->upsert_term_under_parent($segment, $taxonomy, $parent_id, $args);
+            if (!$term_id) return [];
+
+            $term_ids[] = $term_id;
+            $parent_id = $term_id;
+        }
+
+        return $term_ids;
+    }
+
+    protected function upsert_term_under_parent(string $name, string $taxonomy, int $parent_id = 0, array $args = []): int
+    {
+        $name = trim($name);
+        if ($name === '') return 0;
+
+        $slug = isset($args['slug']) ? sanitize_title((string) $args['slug']) : '';
+        $has_description = array_key_exists('description', $args);
+
+        $term_id = $slug !== '' ? $this->find_term_id_by_parent_and_slug($taxonomy, $parent_id, $slug) : 0;
+        if (!$term_id) $term_id = $this->find_term_id_by_parent_and_name($taxonomy, $parent_id, $name);
+
+        if ($term_id)
+        {
+            $update_args = ['name' => $name];
+            if ($has_description) $update_args['description'] = (string) $args['description'];
+
+            if ($slug !== '') $update_args['slug'] = $slug;
+
+            wp_update_term($term_id, $taxonomy, $update_args);
+            return $term_id;
+        }
+
+        $insert_args = ['parent' => $parent_id];
+        if ($has_description) $insert_args['description'] = (string) $args['description'];
+        if ($slug !== '') $insert_args['slug'] = $slug;
+
+        $insert = wp_insert_term($name, $taxonomy, $insert_args);
+        if (!is_array($insert) || !isset($insert['term_id'])) return 0;
+
+        return (int) $insert['term_id'];
+    }
+
+    protected function find_term_id_by_parent_and_slug(string $taxonomy, int $parent_id, string $slug): int
+    {
+        $term = get_term_by('slug', $slug, $taxonomy);
+        if (!$term || is_wp_error($term)) return 0;
+
+        return (int) $term->parent === $parent_id ? (int) $term->term_id : 0;
+    }
+
+    protected function find_term_id_by_parent_and_name(string $taxonomy, int $parent_id, string $name): int
+    {
+        $terms = get_terms([
+            'taxonomy' => $taxonomy,
+            'hide_empty' => false,
+            'name' => $name,
+            'parent' => $parent_id,
+            'number' => 1,
+        ]);
+
+        if (!is_array($terms) || !count($terms)) return 0;
+
+        $term = $terms[0];
+        return isset($term->term_id) ? (int) $term->term_id : 0;
+    }
+
     public function save($listing)
     {
         $post = [
@@ -566,6 +712,7 @@ class LSD_IX extends LSD_Base
 
         // Import Taxonomies
         $taxonomies = isset($listing['taxonomies']) && is_array($listing['taxonomies']) ? $listing['taxonomies'] : [];
+        $primary_category_id = 0;
         foreach ($taxonomies as $taxonomy => $terms)
         {
             if (!is_array($terms) || !count($terms)) continue;
@@ -576,8 +723,34 @@ class LSD_IX extends LSD_Base
                 if (is_string($term)) $term = ['name' => $term];
                 if (!is_array($term)) continue;
 
+                if (isset($term['path']) && is_array($term['path']) && is_taxonomy_hierarchical($taxonomy))
+                {
+                    $path = $this->normalize_hierarchy_path($term['path']);
+                    if (!count($path)) continue;
+
+                    $path_ids = $this->upsert_term_path($path, $taxonomy, $term);
+                    if (!count($path_ids)) continue;
+
+                    $assign_full_path = apply_filters('lsd_ix_assign_full_hierarchy_path_terms', true, $taxonomy, $term, $listing);
+                    $assigned_ids = $assign_full_path ? $path_ids : [(int) end($path_ids)];
+
+                    foreach ($assigned_ids as $assigned_id)
+                    {
+                        if ($assigned_id) $t[] = (int) $assigned_id;
+                    }
+
+                    if ($taxonomy === LSD_Base::TAX_CATEGORY)
+                    {
+                        $leaf_category_id = (int) end($path_ids);
+                        if ($leaf_category_id) $primary_category_id = $leaf_category_id;
+                    }
+
+                    continue;
+                }
+
                 $term_name = isset($term['name']) ? trim($term['name']) : '';
                 $term_slug = isset($term['slug']) ? sanitize_title($term['slug']) : '';
+                $term_id = 0;
 
                 if ($term_slug)
                 {
@@ -590,6 +763,10 @@ class LSD_IX extends LSD_Base
                 if (is_array($exists) && isset($exists['term_id']))
                 {
                     $term_id = (int) $exists['term_id'];
+                }
+                else if ($exists)
+                {
+                    $term_id = (int) $exists;
                 }
                 else
                 {
@@ -604,30 +781,55 @@ class LSD_IX extends LSD_Base
                     $wpt = wp_insert_term($term_name, $taxonomy, $term_args);
 
                     // An Error Occurred
-                    if (!is_array($wpt) || !isset($wpt['term_id'])) continue;
-
-                    // Term ID
-                    $term_id = (int) $wpt['term_id'];
-
-                    // Import Term Meta
-                    if (isset($term['meta']) && is_array($term['meta']) && count($term['meta']))
+                    if (is_wp_error($wpt))
                     {
-                        foreach ($term['meta'] as $key => $value) update_term_meta($term_id, $key, $value);
+                        if ($wpt->get_error_code() === 'term_exists')
+                        {
+                            $existing_term_id = (int) $wpt->get_error_data('term_exists');
+                            if (!$existing_term_id) $existing_term_id = (int) $wpt->get_error_data();
+
+                            if ($existing_term_id) $term_id = $existing_term_id;
+                        }
+
+                        if (!$term_id) continue;
                     }
-
-                    // Import Image
-                    if (!empty($term['image']))
+                    else if (!is_array($wpt) || !isset($wpt['term_id']))
                     {
-                        $attachment_id = $this->attach($term['image']);
-                        if ($attachment_id) update_term_meta($term_id, 'lsd_image', $attachment_id);
+                        continue;
+                    }
+                    else
+                    {
+                        // Term ID
+                        $term_id = (int) $wpt['term_id'];
+
+                        // Import Term Meta
+                        if (isset($term['meta']) && is_array($term['meta']) && count($term['meta']))
+                        {
+                            foreach ($term['meta'] as $key => $value) update_term_meta($term_id, $key, $value);
+                        }
+
+                        // Import Image
+                        if (!empty($term['image']))
+                        {
+                            $attachment_id = $this->attach($term['image']);
+                            if ($attachment_id) update_term_meta($term_id, 'lsd_image', $attachment_id);
+                        }
                     }
                 }
 
-                if ($term_id) $t[] = $term_id;
+                if ($term_id)
+                {
+                    $t[] = $term_id;
+
+                    if ($taxonomy === LSD_Base::TAX_CATEGORY) $primary_category_id = $term_id;
+                }
             }
 
+            $t = array_values(array_unique(array_filter(array_map('intval', $t))));
             if (count($t)) wp_set_post_terms($post_id, $t, $taxonomy);
         }
+
+        if ($primary_category_id > 0) update_post_meta($post_id, 'lsd_primary_category', $primary_category_id);
 
         // Import Image
         if (isset($listing['image']) && trim($listing['image']))

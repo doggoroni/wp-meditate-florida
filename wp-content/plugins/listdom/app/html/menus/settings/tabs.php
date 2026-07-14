@@ -58,11 +58,8 @@ $payments_nav_tooltip = esc_html__('Save the settings to access this menu.', 'li
                 <?php esc_html_e('Frontend Dashboard', 'listdom'); ?>
             </a>
             <ul data-parent="frontend-dashboard" class="lsd-nav-sub-tabs lsd-tabs">
-                <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && ($this->subtab === 'general' || !$this->subtab) ? 'lsd-nav-tab-active' : ''; ?>" data-key="general"><?php esc_html_e('General', 'listdom'); ?></li>
+                <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && ($this->subtab === 'add-listing' || $this->subtab === 'general' || $this->subtab === 'guest-submission' || $this->subtab === 'fields' || $this->subtab === 'restrictions' || !$this->subtab) ? 'lsd-nav-tab-active' : ''; ?>" data-key="add-listing"><?php esc_html_e('Add Listing', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && $this->subtab === 'dashboard-menus' ? 'lsd-nav-tab-active' : ''; ?>" data-key="dashboard-menus"><?php esc_html_e('Dashboard Menus', 'listdom'); ?></li>
-                <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && $this->subtab === 'guest-submission' ? 'lsd-nav-tab-active' : ''; ?>" data-key="guest-submission"><?php esc_html_e('Guest Submission', 'listdom'); ?></li>
-                <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && $this->subtab === 'fields' ? 'lsd-nav-tab-active' : ''; ?>" data-key="fields"><?php esc_html_e('Fields', 'listdom'); ?></li>
-                <li class="lsd-nav-tab <?php echo $this->tab === 'frontend-dashboard' && $this->subtab === 'restrictions' ? 'lsd-nav-tab-active' : ''; ?>" data-key="restrictions"><?php esc_html_e('Restrictions', 'listdom'); ?></li>
             </ul>
         </li>
         <?php
@@ -82,7 +79,7 @@ $payments_nav_tooltip = esc_html__('Save the settings to access this menu.', 'li
                 <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'login' ? 'lsd-nav-tab-active' : ''; ?>" data-key="login"><?php esc_html_e('Login', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'register' ? 'lsd-nav-tab-active' : ''; ?>" data-key="register"><?php esc_html_e('Register', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'forgot-password' ? 'lsd-nav-tab-active' : ''; ?>" data-key="forgot-password"><?php esc_html_e('Forgot Password', 'listdom'); ?></li>
-                <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'profile-user-directory' ? 'lsd-nav-tab-active' : ''; ?>" data-key="profile-user-directory"><?php esc_html_e('Profile & User Directory', 'listdom'); ?></li>
+                <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && ($this->subtab === 'profile-user-directory' || $this->subtab === 'public-profile' || $this->subtab === 'edit-profile' || $this->subtab === 'user-directory') ? 'lsd-nav-tab-active' : ''; ?>" data-key="profile-user-directory"><?php esc_html_e('Profile & User Directory', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'logged-in-users' ? 'lsd-nav-tab-active' : ''; ?>" data-key="logged-in-users"><?php esc_html_e('Logged In Users', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'auth' && $this->subtab === 'block-admin-access' ? 'lsd-nav-tab-active' : ''; ?>" data-key="block-admin-access"><?php esc_html_e('Block Admin Access', 'listdom'); ?></li>
             </ul>
@@ -106,6 +103,7 @@ $payments_nav_tooltip = esc_html__('Save the settings to access this menu.', 'li
                 <li class="lsd-nav-tab <?php echo $this->tab === 'advanced' && ($this->subtab === 'assets-loading' || !$this->subtab) ? 'lsd-nav-tab-active' : ''; ?>" data-key="assets-loading"><?php esc_html_e('Assets Loading', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'advanced' && $this->subtab === 'custom-styles' ? 'lsd-nav-tab-active' : ''; ?>" data-key="custom-styles"><?php esc_html_e('Custom Styles', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'advanced' && $this->subtab === 'components' ? 'lsd-nav-tab-active' : ''; ?>" data-key="components"><?php esc_html_e('Components', 'listdom'); ?></li>
+                <li class="lsd-nav-tab <?php echo $this->tab === 'advanced' && $this->subtab === 'translations' ? 'lsd-nav-tab-active' : ''; ?>" data-key="translations"><?php esc_html_e('Translations', 'listdom'); ?></li>
                 <li class="lsd-nav-tab <?php echo $this->tab === 'advanced' && $this->subtab === 'import-export' ? 'lsd-nav-tab-active' : ''; ?>" data-key="import-export"><?php esc_html_e('Import / Export', 'listdom'); ?></li>
             </ul>
         </li>

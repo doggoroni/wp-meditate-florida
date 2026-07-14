@@ -3,7 +3,7 @@
  * Plugin Name: Listdomer Core
  * Plugin URI: https://api.webilia.com/go/listdomer
  * Description: Core Features of Listdomer Theme
- * Version: 4.0.1
+ * Version: 4.1.0
  * Author: Webilia
  * Author URI: https://webilia.com/
  * Requires at least: 4.2

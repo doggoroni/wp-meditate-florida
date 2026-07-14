@@ -185,6 +185,18 @@ class LSD_PTypes_Shortcode extends LSD_PTypes
                 $filter[$key] = array_diff($filter_values, $exclude[$key]);
         }
 
+        foreach ([
+            LSD_Base::TAX_CATEGORY,
+            LSD_Base::TAX_LOCATION,
+            LSD_Base::TAX_FEATURE,
+            LSD_Base::TAX_LABEL,
+            LSD_Base::TAX_TAG,
+        ] as $tax)
+        {
+            if (isset($filter[$tax])) $filter[$tax] = LSD_Taxonomies::ids_to_slugs($tax, $filter[$tax]);
+            if (isset($exclude[$tax])) $exclude[$tax] = LSD_Taxonomies::ids_to_slugs($tax, $exclude[$tax]);
+        }
+
         update_post_meta($post_id, 'lsd_filter', $filter);
         update_post_meta($post_id, 'lsd_exclude', $exclude);
 

@@ -21,6 +21,15 @@ class LSD_API_Routes extends LSD_API
             'permission_callback' => [$i18n, 'guest'],
         ]);
 
+        // Price Classes Controller
+        $price_classes = new LSD_API_Controllers_PriceClasses();
+
+        register_rest_route($this->namespace, 'price-classes', [
+            'methods' => 'GET',
+            'callback' => [$price_classes, 'get'],
+            'permission_callback' => [$price_classes, 'guest'],
+        ]);
+
         // Register Controller
         $register = new LSD_API_Controllers_Register();
 

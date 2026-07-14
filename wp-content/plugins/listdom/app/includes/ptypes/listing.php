@@ -119,9 +119,9 @@ class LSD_PTypes_Listing extends LSD_PTypes
         unset($columns['author']);
 
         $columns['address'] = esc_html__('Address', 'listdom');
-        $columns['category'] = esc_html__('Category', 'listdom');
-        $columns['location'] = esc_html__('Locations', 'listdom');
-        $columns['label'] = esc_html__('Labels', 'listdom');
+        $columns['category'] = esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY, 'singular'));
+        $columns['location'] = esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural'));
+        $columns['label'] = esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural'));
         $columns['author'] = $author;
         $columns['date'] = $date;
 

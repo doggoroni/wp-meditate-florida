@@ -730,9 +730,9 @@ $grecaptcha_status = isset($settings['grecaptcha_status'], $settings['grecaptcha
                 <div class="lsd-settings-fields-wrapper">
                     <div class="lsd-form-row">
                         <div class="lsd-col-3"></div>
-                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Author Profile', 'listdom'); ?></div>
-                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Listing Card', 'listdom'); ?></div>
-                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Single Listing', 'listdom'); ?></div>
+                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Single Listing Author', 'listdom'); ?></div>
+                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Listing Card Share', 'listdom'); ?></div>
+                        <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Single Listing Share', 'listdom'); ?></div>
                         <div class="lsd-col-2 lsd-fields-label"><?php esc_html_e('Listing Contact', 'listdom'); ?></div>
                     </div>
                     <div class="lsd-social-networks lsd-sortable">

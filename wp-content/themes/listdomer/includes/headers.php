@@ -40,6 +40,8 @@ class LSDR_Headers extends LSDR_Base
             'type3' => esc_html__('Type 3', 'listdomer'),
             'type4' => esc_html__('Type 4', 'listdomer'),
             'type5' => esc_html__('Type 5', 'listdomer'),
+            'type6' => esc_html__('Type 6', 'listdomer'),
+            'type7' => esc_html__('Type 7', 'listdomer'),
         ];
 
         $headers = apply_filters('lsdr_header_types', $headers);

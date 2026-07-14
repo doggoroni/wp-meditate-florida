@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Listdomer Core\n"
-"POT-Creation-Date: 2025-09-05 13:39-0700\n"
-"PO-Revision-Date: 2025-09-05 13:39-0700\n"
+"POT-Creation-Date: 2026-02-20 10:57-0800\n"
+"PO-Revision-Date: 2026-02-23 21:43+0330\n"
 "Last-Translator: Totalery <info@totalery.com>\n"
 "Language-Team: Webilia <info@webilia.com>\n"
 "Language: en_US\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-KeywordsList: "
 "__;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;esc_attr_e;esc_attr_x;_n;_nx\n"
 "X-Poedit-Basepath: ../..\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Listdomer Headers"
 msgstr ""
 
-#: app/includes/elementor.php:43 app/includes/hooks.php:102
+#: app/includes/elementor.php:43 app/includes/hooks.php:120
 #: app/includes/menus.php:15 app/includes/settings.php:39
 msgid "Listdomer"
 msgstr ""
@@ -92,7 +92,6 @@ msgstr ""
 #: app/includes/elementor/testimonials.php:85
 #: app/includes/elementor/testimonials.php:292
 #: app/includes/elementor/tiny.php:65 app/includes/settings/notfound.php:43
-#: app/includes/widgets/contact.php:74
 msgid "Title"
 msgstr ""
 
@@ -289,9 +288,9 @@ msgstr ""
 #: app/includes/settings/blog/single.php:113
 #: app/includes/settings/blog/single.php:122
 #: app/includes/settings/blog/single.php:131
-#: app/includes/settings/header.php:296 app/includes/settings/header.php:306
-#: app/includes/settings/header.php:324 app/includes/settings/headings.php:50
-#: app/includes/settings/headings.php:204
+#: app/includes/settings/header.php:289 app/includes/settings/header.php:337
+#: app/includes/settings/header.php:347 app/includes/settings/header.php:365
+#: app/includes/settings/headings.php:50 app/includes/settings/headings.php:204
 #: app/includes/settings/preloader.php:38
 msgid "Show"
 msgstr ""
@@ -305,9 +304,9 @@ msgstr ""
 #: app/includes/settings/blog/single.php:114
 #: app/includes/settings/blog/single.php:123
 #: app/includes/settings/blog/single.php:132
-#: app/includes/settings/header.php:297 app/includes/settings/header.php:307
-#: app/includes/settings/header.php:325 app/includes/settings/headings.php:51
-#: app/includes/settings/headings.php:205
+#: app/includes/settings/header.php:290 app/includes/settings/header.php:338
+#: app/includes/settings/header.php:348 app/includes/settings/header.php:366
+#: app/includes/settings/headings.php:51 app/includes/settings/headings.php:205
 #: app/includes/settings/preloader.php:39
 msgid "Hide"
 msgstr ""
@@ -385,8 +384,8 @@ msgstr ""
 #: app/includes/settings/colors/buttons.php:42
 #: app/includes/settings/colors/buttons.php:129
 #: app/includes/settings/colors/icons.php:22
-#: app/includes/settings/colors/tabs.php:30 app/includes/settings/footer.php:44
-#: app/includes/settings/header.php:263 app/includes/settings/headings.php:102
+#: app/includes/settings/colors/tabs.php:30 app/includes/settings/footer.php:46
+#: app/includes/settings/header.php:304 app/includes/settings/headings.php:102
 #: app/includes/settings/widgets.php:32
 msgid "Background Color"
 msgstr ""
@@ -530,24 +529,24 @@ msgstr ""
 msgid "Background Circle"
 msgstr ""
 
-#: app/includes/hooks.php:93
+#: app/includes/hooks.php:111
 msgid "Claim It Now!"
 msgstr ""
 
-#: app/includes/hooks.php:120
+#: app/includes/hooks.php:138
 msgid "Header"
 msgstr ""
 
-#: app/includes/hooks.php:125 app/includes/hooks.php:140
+#: app/includes/hooks.php:143 app/includes/hooks.php:158
 msgid "Inherit from global options"
 msgstr ""
 
-#: app/includes/hooks.php:135
+#: app/includes/hooks.php:153
 msgid "Footer"
 msgstr ""
 
-#: app/includes/menus.php:20 app/includes/ocdi.php:536
-#: app/includes/ocdi.php:537
+#: app/includes/menus.php:20 app/includes/ocdi.php:794
+#: app/includes/ocdi.php:795
 msgid "Demo Import"
 msgstr ""
 
@@ -599,26 +598,50 @@ msgstr ""
 msgid "Business Directory"
 msgstr ""
 
-#: app/includes/ocdi.php:156
+#: app/includes/ocdi.php:122
+msgid "Health Directory"
+msgstr ""
+
+#: app/includes/ocdi.php:124
+msgid "Health"
+msgstr ""
+
+#: app/includes/ocdi.php:144
+msgid "Travel Directory"
+msgstr ""
+
+#: app/includes/ocdi.php:146
+msgid "Tourism"
+msgstr ""
+
+#: app/includes/ocdi.php:166
+msgid "Service Directory"
+msgstr ""
+
+#: app/includes/ocdi.php:168
+msgid "Service"
+msgstr ""
+
+#: app/includes/ocdi.php:223
 msgid ""
 "A powerful toolkit that equips Listdom with real estate features for modern "
 "property listings."
 msgstr ""
 
-#: app/includes/ocdi.php:176
+#: app/includes/ocdi.php:236
 msgid ""
 "A feature-rich toolkit for building and customizing business and listing "
 "directories with Listdom."
 msgstr ""
 
-#: app/includes/ocdi.php:546
+#: app/includes/ocdi.php:804
 msgid ""
 "Importing demo data (post, pages, images, theme settings, etc.) is the "
 "quickest and easiest way to set up your new theme. It allows you to simply "
 "edit everything instead of creating content and layouts from scratch."
 msgstr ""
 
-#: app/includes/ocdi.php:554
+#: app/includes/ocdi.php:812
 msgid "Listdomer Demo Importer"
 msgstr ""
 
@@ -843,11 +866,11 @@ msgid "Show or hide the published date on blog posts."
 msgstr ""
 
 #: app/includes/settings/blog/single.php:128
-msgid "Display Navigations"
+msgid "Display Blog Navigation"
 msgstr ""
 
 #: app/includes/settings/blog/single.php:129
-msgid "Show or hide the post navigations."
+msgid "Show or hide navigation links on single blog posts."
 msgstr ""
 
 #: app/includes/settings/blog/single.php:137
@@ -892,7 +915,7 @@ msgstr ""
 #: app/includes/settings/colors/buttons.php:136
 #: app/includes/settings/colors/icons.php:28
 #: app/includes/settings/colors/tabs.php:37
-#: app/includes/settings/header.php:271
+#: app/includes/settings/header.php:312
 msgid "Text Color"
 msgstr ""
 
@@ -1032,7 +1055,7 @@ msgstr ""
 #: app/includes/settings/colors/buttons.php:70
 #: app/includes/settings/colors/buttons.php:150
 #: app/includes/settings/colors/tabs.php:51
-#: app/includes/settings/header.php:278
+#: app/includes/settings/header.php:319
 msgid "Hover Text Color"
 msgstr ""
 
@@ -1173,50 +1196,50 @@ msgstr ""
 msgid "Options for configuring the footer."
 msgstr ""
 
-#: app/includes/settings/footer.php:36
+#: app/includes/settings/footer.php:38
 msgid "Footer Type"
 msgstr ""
 
-#: app/includes/settings/footer.php:39
+#: app/includes/settings/footer.php:41
 msgid "You need listdomer pro version to see all footer types."
 msgstr ""
 
-#: app/includes/settings/footer.php:46
+#: app/includes/settings/footer.php:48
 msgid "Easily change footer background color."
 msgstr ""
 
-#: app/includes/settings/footer.php:51 app/includes/settings/widgets.php:39
+#: app/includes/settings/footer.php:53 app/includes/settings/widgets.php:39
 msgid "Title Text Color"
 msgstr ""
 
-#: app/includes/settings/footer.php:53
+#: app/includes/settings/footer.php:55
 msgid "Easily change footer text color."
 msgstr ""
 
-#: app/includes/settings/footer.php:58
+#: app/includes/settings/footer.php:60
 msgid "Footer Widgets"
 msgstr ""
 
-#: app/includes/settings/footer.php:60
+#: app/includes/settings/footer.php:62
 #, php-format
 msgid "Manage footer columns in the theme widgets. %sClick here%s."
 msgstr ""
 
-#: app/includes/settings/footer.php:67 app/includes/settings/header.php:236
+#: app/includes/settings/footer.php:69 app/includes/settings/header.php:248
 msgid "Select Menu"
 msgstr ""
 
-#: app/includes/settings/footer.php:71
+#: app/includes/settings/footer.php:73
 msgid ""
 "Select a menu for the sub-footer. Choosing a menu here will override the one "
 "selected in Appearance > Menus > Manage Locations."
 msgstr ""
 
-#: app/includes/settings/footer.php:79
+#: app/includes/settings/footer.php:81
 msgid "Footer Copyright Text"
 msgstr ""
 
-#: app/includes/settings/footer.php:81
+#: app/includes/settings/footer.php:83
 msgid ""
 "Enter the text for your footer copyright. This text will be displayed at the "
 "bottom of your footer."
@@ -1230,7 +1253,7 @@ msgstr ""
 msgid "General settings for the theme."
 msgstr ""
 
-#: app/includes/settings/general.php:34 app/includes/widgets/contact.php:40
+#: app/includes/settings/general.php:34 app/includes/widgets/contact.php:54
 msgid "Site Logo"
 msgstr ""
 
@@ -1246,65 +1269,65 @@ msgstr ""
 msgid "Options for configuring the header."
 msgstr ""
 
-#: app/includes/settings/header.php:35
+#: app/includes/settings/header.php:37
 msgid "Menu Search Form"
 msgstr ""
 
-#: app/includes/settings/header.php:41
+#: app/includes/settings/header.php:43
 msgid "Menu Search Sidebar"
 msgstr ""
 
-#: app/includes/settings/header.php:98
+#: app/includes/settings/header.php:102
 msgid "Text Search"
 msgstr ""
 
-#: app/includes/settings/header.php:152
+#: app/includes/settings/header.php:160
 msgid "Menu Search Grid"
 msgstr ""
 
-#: app/includes/settings/header.php:196
+#: app/includes/settings/header.php:206
 msgid "Menu Search Results"
 msgstr ""
 
-#: app/includes/settings/header.php:219
+#: app/includes/settings/header.php:231
 msgid "Header Type"
 msgstr ""
 
-#: app/includes/settings/header.php:222
+#: app/includes/settings/header.php:234
 msgid "You need listdomer pro version to see all header types."
 msgstr ""
 
-#: app/includes/settings/header.php:227
+#: app/includes/settings/header.php:239
 msgid "Search Shortcode"
 msgstr ""
 
-#: app/includes/settings/header.php:229
+#: app/includes/settings/header.php:241
 msgid "Select the search shortcode that will show up in the header"
 msgstr ""
 
-#: app/includes/settings/header.php:239
+#: app/includes/settings/header.php:251
 msgid ""
 "Choose a header menu. It overrides the menu assigned in Appearance > Menus. "
 "If left empty, the default menu is used."
 msgstr ""
 
-#: app/includes/settings/header.php:245
+#: app/includes/settings/header.php:257
 msgid "Dark Logo"
 msgstr ""
 
-#: app/includes/settings/header.php:247
+#: app/includes/settings/header.php:259
 msgid "Used in some special header types."
 msgstr ""
 
-#: app/includes/settings/header.php:253
+#: app/includes/settings/header.php:265
 msgid "Logo Background"
 msgstr ""
 
-#: app/includes/settings/header.php:255
+#: app/includes/settings/header.php:267
 msgid "If your logo doesn't stand out, disable its background color."
 msgstr ""
 
-#: app/includes/settings/header.php:256
+#: app/includes/settings/header.php:268
 #: app/includes/settings/headings/archive.php:54
 #: app/includes/settings/headings/archive.php:65
 #: app/includes/settings/headings/listings.php:59
@@ -1314,7 +1337,7 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: app/includes/settings/header.php:257
+#: app/includes/settings/header.php:269
 #: app/includes/settings/headings/archive.php:55
 #: app/includes/settings/headings/archive.php:66
 #: app/includes/settings/headings/archive.php:90
@@ -1327,80 +1350,104 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: app/includes/settings/header.php:265
-msgid "Easily change header background color."
+#: app/includes/settings/header.php:275
+msgid "Logo Width"
 msgstr ""
 
-#: app/includes/settings/header.php:273 app/includes/settings/header.php:280
-#: app/includes/settings/header.php:287
-msgid "Easily change header text color."
+#: app/includes/settings/header.php:277
+msgid "Set the logo width in pixels."
 msgstr ""
 
-#: app/includes/settings/header.php:285
-msgid "Active Text Color"
+#: app/includes/settings/header.php:286
+msgid "Header Tagline"
 msgstr ""
 
-#: app/includes/settings/header.php:293
-msgid "Language Switcher"
+#: app/includes/settings/header.php:288
+msgid "Show or hide the site description in the header."
 msgstr ""
 
 #: app/includes/settings/header.php:295
-msgid ""
-"Show the WPML language switcher in the header. It works only if WPML is "
-"installed and configured."
+msgid "Header Tagline Text Color"
 msgstr ""
 
-#: app/includes/settings/header.php:303
+#: app/includes/settings/header.php:297
+msgid "Change the color of the header tagline text."
+msgstr ""
+
+#: app/includes/settings/header.php:306
+msgid "Easily change header background color."
+msgstr ""
+
+#: app/includes/settings/header.php:314 app/includes/settings/header.php:321
+#: app/includes/settings/header.php:328
+msgid "Easily change header text color."
+msgstr ""
+
+#: app/includes/settings/header.php:326
+msgid "Active Text Color"
+msgstr ""
+
+#: app/includes/settings/header.php:334
+msgid "Language Switcher"
+msgstr ""
+
+#: app/includes/settings/header.php:336
+msgid ""
+"Show the WPML or Polylang language switcher in the header. It works only if "
+"those plugins are installed and configured."
+msgstr ""
+
+#: app/includes/settings/header.php:344
 msgid "Add Listing Button"
 msgstr ""
 
-#: app/includes/settings/header.php:305
+#: app/includes/settings/header.php:346
 msgid "Links to the add listing form."
 msgstr ""
 
-#: app/includes/settings/header.php:312
+#: app/includes/settings/header.php:353
 msgid "Add Listing Button Text"
 msgstr ""
 
-#: app/includes/settings/header.php:313
+#: app/includes/settings/header.php:354
 msgid "Add Listing"
 msgstr ""
 
-#: app/includes/settings/header.php:314
+#: app/includes/settings/header.php:355
 msgid "Text shown on the add listing button."
 msgstr ""
 
-#: app/includes/settings/header.php:321
+#: app/includes/settings/header.php:362
 msgid "Login & Register"
 msgstr ""
 
-#: app/includes/settings/header.php:323
+#: app/includes/settings/header.php:364
 msgid "Show the login and register form in the header."
 msgstr ""
 
-#: app/includes/settings/header.php:331
+#: app/includes/settings/header.php:372
 msgid "Login Redirection Page"
 msgstr ""
 
-#: app/includes/settings/header.php:333
+#: app/includes/settings/header.php:374
 msgid "Page to redirect users after login."
 msgstr ""
 
-#: app/includes/settings/header.php:340
+#: app/includes/settings/header.php:381
 msgid "Register Redirection Page"
 msgstr ""
 
-#: app/includes/settings/header.php:342
+#: app/includes/settings/header.php:383
 msgid ""
 "Page to redirect users after registration. Use it to thank them and guide "
 "them."
 msgstr ""
 
-#: app/includes/settings/header.php:348
+#: app/includes/settings/header.php:389
 msgid "Social Login Shortcode"
 msgstr ""
 
-#: app/includes/settings/header.php:350
+#: app/includes/settings/header.php:391
 msgid ""
 "Add social login shortcodes here. Configure the social plugin first or "
 "nothing will show."
@@ -1871,138 +1918,146 @@ msgstr ""
 msgid "Set the border radius of the widget container."
 msgstr ""
 
-#: app/includes/theme.php:10
+#: app/includes/theme.php:15
+msgid "Invalid request."
+msgstr ""
+
+#: app/includes/theme.php:23 app/includes/theme.php:289
+msgid "Security nonce is missing or invalid!"
+msgstr ""
+
+#: app/includes/theme.php:45 app/includes/theme.php:365
+msgid "Username or password is empty."
+msgstr ""
+
+#: app/includes/theme.php:78
+msgid "Signed in successfully."
+msgstr ""
+
+#: app/includes/theme.php:87
+msgid "Registration is disabled."
+msgstr ""
+
+#: app/includes/theme.php:125
+msgid "Registration completed. Please check your email."
+msgstr ""
+
+#: app/includes/theme.php:135
 msgid "Listdomer Two buttons"
 msgstr ""
 
-#: app/includes/theme.php:11
+#: app/includes/theme.php:136
 msgid "Two horizontal buttons. The left is filled and the right is outlined."
 msgstr ""
 
-#: app/includes/theme.php:12
+#: app/includes/theme.php:137
 msgid "Button One"
 msgstr ""
 
-#: app/includes/theme.php:12
+#: app/includes/theme.php:137
 msgid "Button Two"
 msgstr ""
 
-#: app/includes/theme.php:21
+#: app/includes/theme.php:146
 msgid "Listdomer Button"
 msgstr ""
 
-#: app/includes/theme.php:26
+#: app/includes/theme.php:151
 msgid "Listdomer Table"
 msgstr ""
 
-#: app/includes/theme.php:83
+#: app/includes/theme.php:209
 msgid "Listdomer user button"
 msgstr ""
 
-#: app/includes/theme.php:129 app/includes/theme.php:130
+#: app/includes/theme.php:261 app/includes/theme.php:262
 msgid "Show More"
 msgstr ""
 
-#: app/includes/theme.php:129
+#: app/includes/theme.php:261
 msgid "Show Less"
 msgstr ""
 
-#: app/includes/theme.php:206 app/includes/theme.php:207
-#: app/includes/theme.php:245 app/includes/theme.php:246
+#: app/includes/theme.php:405 app/includes/theme.php:406
+#: app/includes/theme.php:484 app/includes/theme.php:485
 msgid "Username"
 msgstr ""
 
-#: app/includes/theme.php:208 app/includes/theme.php:209
+#: app/includes/theme.php:407 app/includes/theme.php:408
 msgid "Password"
 msgstr ""
 
-#: app/includes/theme.php:213
+#: app/includes/theme.php:412
 msgid "Lost your password?"
 msgstr ""
 
-#: app/includes/theme.php:214
+#: app/includes/theme.php:413
 msgid "Remember Me"
 msgstr ""
 
-#: app/includes/theme.php:217
+#: app/includes/theme.php:416
 msgid "Sign In"
 msgstr ""
 
-#: app/includes/theme.php:221
+#: app/includes/theme.php:420
 msgid "Don't have an account?"
 msgstr ""
 
-#: app/includes/theme.php:222
+#: app/includes/theme.php:421
 msgid "Create Account"
 msgstr ""
 
-#: app/includes/theme.php:247 app/includes/theme.php:248
-#: app/includes/widgets/contact.php:48 app/includes/widgets/contact.php:79
+#: app/includes/theme.php:486 app/includes/theme.php:487
+#: app/includes/widgets/contact.php:68
 msgid "Email"
 msgstr ""
 
-#: app/includes/theme.php:251
+#: app/includes/theme.php:491
 msgid "Registration confirmation will be emailed to you."
 msgstr ""
 
-#: app/includes/theme.php:254
+#: app/includes/theme.php:494
 msgid "Register"
 msgstr ""
 
-#: app/includes/theme.php:257
+#: app/includes/theme.php:497
 msgid "Have an account?"
 msgstr ""
 
-#: app/includes/theme.php:258
+#: app/includes/theme.php:498
 msgid "Sign in"
 msgstr ""
 
-#: app/includes/theme.php:273
+#: app/includes/theme.php:513
 msgid "Or sign up with"
 msgstr ""
 
-#: app/includes/widgets/contact.php:7
+#: app/includes/widgets/contact.php:9
 msgid "(Listdomer) Contact"
 msgstr ""
 
-#: app/includes/widgets/contact.php:7
+#: app/includes/widgets/contact.php:10
 msgid "A simple contact details widget to include in footer"
 msgstr ""
 
-#: app/includes/widgets/contact.php:47 app/includes/widgets/contact.php:84
+#: app/includes/widgets/contact.php:67
 msgid "Phone"
 msgstr ""
 
-#: app/includes/widgets/contact.php:89
-msgid "Facebook"
+#: app/includes/widgets/contact.php:102
+msgid "Widget Title"
 msgstr ""
 
-#: app/includes/widgets/contact.php:94
-msgid "X"
+#: app/includes/widgets/contact.php:107
+msgid "Disable logo"
 msgstr ""
 
-#: app/includes/widgets/contact.php:99
-msgid "Instagram"
-msgstr ""
-
-#: app/includes/widgets/contact.php:104
-msgid "Linkedin"
-msgstr ""
-
-#: app/includes/widgets/contact.php:109
-msgid "Pinterest"
-msgstr ""
-
-#: app/includes/widgets/contact.php:114
-msgid "Youtube"
+#: app/includes/widgets/contact.php:113
+msgid "Contact Section Title"
 msgstr ""
 
 #: app/includes/widgets/contact.php:119
-msgid "WhatsApp"
-msgstr ""
-
-#: app/includes/widgets/contact.php:124
-msgid "Telegram"
+msgid "Social Section Title"
 msgstr ""
 
 #: templates/redux-templates/footer.tpl.php:65

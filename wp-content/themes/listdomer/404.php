@@ -21,7 +21,7 @@ $button_page = LSDR_Settings::get('listdomer_404_button_page');
 
 				<section class="error-404 not-found">
 					
-					<img src="<?php echo esc_url($page_image['url'] ?: get_template_directory_uri() . '/assets/img/404.png'); ?>" alt="<?php esc_attr_e('Not Found Page', 'listdomer'); ?>" />
+					<img src="<?php echo esc_url($page_image['url'] ?: get_template_directory_uri() . '/assets/img/404.png'); ?>" alt="<?php esc_attr_e('Page Not Found', 'listdomer'); ?>">
 					
 					<header role="banner" class="page-header">.
                         <h1 class="page-title"><?php echo $page_title ?: esc_html__('Oops! Error 404.', 'listdomer'); ?> </h1>

@@ -7,7 +7,7 @@ defined('ABSPATH') || die();
 $ids = $this->listings;
 ?>
 <?php foreach ($ids as $id): $listing = new LSD_Entity_Listing($id); ?>
-    <div class="lsd-accordion-item">
+    <div class="lsd-accordion-item" <?php echo lsd_schema()->scope()->type(null, $listing->get_data_category()); ?>>
         <div class="lsd-accordion-header" role="button" tabindex="0">
             <div class="lsd-listing-title-section">
                 <?php if ($this->display_title): ?>
@@ -39,7 +39,7 @@ $ids = $this->listings;
         </div>
 
         <div class="lsd-accordion-body" style="display: none;">
-            <div class="lsd-listing<?php if (!$this->display_image) echo ' lsd-listing-no-image'; ?>" <?php echo lsd_schema()->scope()->type(null, $listing->get_data_category()); ?>>
+            <div class="lsd-listing<?php if (!$this->display_image) echo ' lsd-listing-no-image'; ?>">
 
                 <div class="lsd-listing-body-wrapper">
                     <div class="lsd-listing-body">

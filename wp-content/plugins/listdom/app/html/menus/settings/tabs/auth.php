@@ -8,6 +8,12 @@ $auth = LSD_Options::auth();
 // Settings
 $settings = LSD_Options::settings();
 $privacy = LSD_Options::privacy();
+$profile_user_directory_subtabs = ['public-profile', 'edit-profile', 'user-directory'];
+$profile_user_directory_active = $this->subtab === 'profile-user-directory' || in_array($this->subtab, $profile_user_directory_subtabs, true);
+$profile_user_directory_subtab = in_array($this->subtab, $profile_user_directory_subtabs, true) ? $this->subtab : 'public-profile';
+$profile_fields = LSD_User::profile_edit_fields();
+$social_networks = LSD_Options::socials();
+$social_handler = new LSD_Socials();
 ?>
 <div class="lsd-auth-wrap">
     <form id="lsd_auth_form">
@@ -907,100 +913,289 @@ $privacy = LSD_Options::privacy();
             </div>
         </div>
 
-        <div id="lsd_panel_auth_profile-user-directory" class="lsd-auth-form-group lsd-tab-content<?php echo $this->subtab === 'profile-user-directory' ? ' lsd-tab-content-active' : ''; ?>">
-            <h3 class="lsd-mt-0 lsd-admin-title"><?php esc_html_e('Profile & User Directory', 'listdom'); ?></h3>
+        <div id="lsd_panel_auth_profile-user-directory" class="lsd-auth-form-group lsd-tab-content<?php echo $profile_user_directory_active ? ' lsd-tab-content-active' : ''; ?>">
+            <h3 class="lsd-admin-title lsd-mt-0 lsd-no-border lsd-mb-2"><?php esc_html_e('Profile & User Directory', 'listdom'); ?></h3>
+            <ul class="lsd-tab-switcher lsd-level-3-menu lsd-sub-tabs lsd-flex lsd-mb-4"
+                data-for=".lsd-auth-profile-user-directory-tab-switcher-content">
+                <li data-tab="auth-profile-user-directory-public-profile"
+                    class="<?php echo $profile_user_directory_subtab === 'public-profile' ? 'lsd-sub-tabs-active' : ''; ?>"><a
+                        href="#"><?php esc_html_e('Public Profile', 'listdom'); ?></a></li>
+                <li data-tab="auth-profile-user-directory-edit-profile"
+                    class="<?php echo $profile_user_directory_subtab === 'edit-profile' ? 'lsd-sub-tabs-active' : ''; ?>"><a
+                        href="#"><?php esc_html_e('Profile Settings Fields', 'listdom'); ?></a></li>
+                <li data-tab="auth-profile-user-directory-user-directory"
+                    class="<?php echo $profile_user_directory_subtab === 'user-directory' ? 'lsd-sub-tabs-active' : ''; ?>"><a
+                        href="#"><?php esc_html_e('User Directory', 'listdom'); ?></a></li>
+            </ul>
 
-            <div class="lsd-settings-group-wrapper">
-                <p class="lsd-admin-description lsd-m-0"><?php echo sprintf(
-                    /* translators: %s: Profile shortcode. */
-                    esc_html__('Insert the %s shortcode into any page to display the user profile.', 'listdom'),
-                    '<code>[listdom-profile]</code>'
-                ); ?></p>
-                <div class="lsd-settings-fields-wrapper">
-                    <h3 class="lsd-my-0 lsd-admin-title"><?php esc_html_e('User Profile', 'listdom'); ?></h3>
-                    <div class="lsd-form-row">
-                        <div class="lsd-col-3"><?php echo LSD_Form::label([
-                            'class' => 'lsd-fields-label',
-                            'title' => esc_html__('Profile Page', 'listdom'),
-                            'for' => 'lsd_author_profile_page',
-                        ]); ?></div>
-                        <div class="lsd-col-5">
-                            <?php echo LSD_Form::pages([
-                                'class' => 'lsd-admin-input',
-                                'id' => 'lsd_author_profile_page',
-                                'name' => 'lsd[profile][page]',
-                                'show_empty' => true,
-                                'value' => $auth['profile']['page']
-                            ]); ?>
+            <div
+                class="lsd-tab-switcher-content lsd-auth-profile-user-directory-tab-switcher-content<?php echo $profile_user_directory_subtab === 'public-profile' ? ' lsd-tab-switcher-content-active' : ''; ?>"
+                id="lsd-tab-switcher-auth-profile-user-directory-public-profile-content">
+                <div class="lsd-settings-group-wrapper">
+                    <div class="lsd-settings-fields-wrapper">
+                        <h3 class="lsd-my-0 lsd-admin-title"><?php esc_html_e('User Profile', 'listdom'); ?></h3>
+                        <p class="lsd-admin-description lsd-m-0"><?php echo sprintf(
+                            /* translators: %s: Profile shortcode. */
+                            esc_html__('Insert the %s shortcode into any page to display the user profile.', 'listdom'),
+                            '<code>[listdom-profile]</code>'
+                        ); ?></p>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                'class' => 'lsd-fields-label',
+                                'title' => esc_html__('Profile Page', 'listdom'),
+                                'for' => 'lsd_author_profile_page',
+                            ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::pages([
+                                    'class' => 'lsd-admin-input',
+                                    'id' => 'lsd_author_profile_page',
+                                    'name' => 'lsd[profile][page]',
+                                    'show_empty' => true,
+                                    'value' => $auth['profile']['page']
+                                ]); ?>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="lsd-form-row">
-                        <div class="lsd-col-3"><?php echo LSD_Form::label([
-                            'class' => 'lsd-fields-label',
-                            'title' => esc_html__('Author Listings Shortcode', 'listdom'),
-                            'for' => 'lsd_author_shortcode',
-                        ]); ?></div>
-                        <div class="lsd-col-5">
-                            <?php echo LSD_Form::shortcodes([
-                                'class' => 'lsd-admin-input',
-                                'id' => 'lsd_author_shortcode',
-                                'name' => 'lsd[profile][shortcode]',
-                                'value' => $auth['profile']['shortcode'] ?? '',
-                                'only_archive_skins' => true,
-                                'show_empty' => true,
-                            ]); ?>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                'class' => 'lsd-fields-label',
+                                'title' => esc_html__('Author Listings Shortcode', 'listdom'),
+                                'for' => 'lsd_author_shortcode',
+                            ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::shortcodes([
+                                    'class' => 'lsd-admin-input',
+                                    'id' => 'lsd_author_shortcode',
+                                    'name' => 'lsd[profile][shortcode]',
+                                    'value' => $auth['profile']['shortcode'] ?? '',
+                                    'only_archive_skins' => true,
+                                    'show_empty' => true,
+                                ]); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="lsd-settings-fields-wrapper">
-                    <h3 class="lsd-admin-title lsd-m-0"><?php esc_html_e('Privacy Consent', 'listdom'); ?></h3>
-                    <div class="lsd-form-row">
-                        <div class="lsd-col-3"><?php echo LSD_Form::label([
-                                'class' => 'lsd-fields-label',
-                                'title' => esc_html__('Enable', 'listdom'),
-                                'for' => 'lsd_auth_profile_pc_enabled',
-                            ]); ?></div>
-                        <div class="lsd-col-5">
-                            <?php echo LSD_Form::switcher([
-                                'id' => 'lsd_auth_profile_pc_enabled',
-                                'name' => 'lsd[profile][pc_enabled]',
-                                'value' => $auth['profile']['pc_enabled'],
-                                'toggle' => '#lsd_auth_profile_pc_label_row',
-                            ]); ?>
-                            <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('This control also depends on the global privacy consent setting.', 'listdom'); ?></p>
+            </div>
+
+            <div
+                class="lsd-tab-switcher-content lsd-auth-profile-user-directory-tab-switcher-content<?php echo $profile_user_directory_subtab === 'edit-profile' ? ' lsd-tab-switcher-content-active' : ''; ?>"
+                id="lsd-tab-switcher-auth-profile-user-directory-edit-profile-content">
+                <div class="lsd-settings-group-wrapper">
+                    <div class="lsd-settings-fields-wrapper">
+                        <h3 class="lsd-admin-title lsd-m-0"><?php esc_html_e('Fields', 'listdom'); ?></h3>
+                        <p class="lsd-admin-description lsd-m-0"><?php esc_html_e('Enable or disable profile edit fields. Disabled fields will be hidden from users in profile edit forms.', 'listdom'); ?></p>
+                        <div class="lsd-admin-section-heading">
+                            <h4 class="lsd-admin-title"><?php esc_html_e('About', 'listdom'); ?></h4>
                         </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Job Title', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_job_title',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_job_title',
+                                    'name' => 'lsd[profile][fields][job_title]',
+                                    'value' => $profile_fields['job_title'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Bio', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_bio',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_bio',
+                                    'name' => 'lsd[profile][fields][bio]',
+                                    'value' => $profile_fields['bio'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Profile Image', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_profile_image',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_profile_image',
+                                    'name' => 'lsd[profile][fields][profile_image]',
+                                    'value' => $profile_fields['profile_image'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Cover Image', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_hero_image',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_hero_image',
+                                    'name' => 'lsd[profile][fields][hero_image]',
+                                    'value' => $profile_fields['hero_image'],
+                                ]); ?>
+                            </div>
+                        </div>
+
+                        <div class="lsd-admin-section-heading">
+                            <h4 class="lsd-admin-title"><?php esc_html_e('Contact Info', 'listdom'); ?></h4>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Email', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_email',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_email',
+                                    'name' => 'lsd[profile][fields][email]',
+                                    'value' => $profile_fields['email'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Phone', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_phone',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_phone',
+                                    'name' => 'lsd[profile][fields][phone]',
+                                    'value' => $profile_fields['phone'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Mobile', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_mobile',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_mobile',
+                                    'name' => 'lsd[profile][fields][mobile]',
+                                    'value' => $profile_fields['mobile'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Website', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_website',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_website',
+                                    'name' => 'lsd[profile][fields][website]',
+                                    'value' => $profile_fields['website'],
+                                ]); ?>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Fax', 'listdom'),
+                                    'for' => 'lsd_auth_profile_fields_fax',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_fields_fax',
+                                    'name' => 'lsd[profile][fields][fax]',
+                                    'value' => $profile_fields['fax'],
+                                ]); ?>
+                            </div>
+                        </div>
+
+                        <div class="lsd-admin-section-heading">
+                            <h4 class="lsd-admin-title"><?php esc_html_e('Social', 'listdom'); ?></h4>
+                        </div>
+                        <?php foreach (LSD_User::profile_social_networks() as $network): ?>
+                            <?php
+                            $network_options = $social_networks[$network] ?? [];
+                            $social_object = $social_handler->get($network, is_array($network_options) ? $network_options : []);
+                            $label = $social_object ? $social_object->label() : ucwords(str_replace(['-', '_'], ' ', $network));
+                            ?>
+                            <div class="lsd-form-row">
+                                <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                        'class' => 'lsd-fields-label',
+                                        'title' => $label,
+                                        'for' => 'lsd_auth_profile_fields_social_' . esc_attr($network),
+                                    ]); ?></div>
+                                <div class="lsd-col-5">
+                                    <?php echo LSD_Form::switcher([
+                                        'id' => 'lsd_auth_profile_fields_social_' . esc_attr($network),
+                                        'name' => 'lsd[profile][fields][social][' . esc_attr($network) . ']',
+                                        'value' => $profile_fields['social'][$network] ?? 1,
+                                    ]); ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                    <div class="lsd-form-row<?php echo empty($auth['profile']['pc_enabled']) ? ' lsd-util-hide' : ''; ?>" id="lsd_auth_profile_pc_label_row">
-                        <div class="lsd-col-3"><?php echo LSD_Form::label([
-                                'class' => 'lsd-fields-label',
-                                'title' => esc_html__('Label', 'listdom'),
-                                'for' => 'lsd_auth_profile_pc_label',
-                            ]); ?></div>
-                        <div class="lsd-col-5">
-                            <?php echo LSD_Form::text([
-                                'class' => 'lsd-admin-input',
-                                'id' => 'lsd_auth_profile_pc_label',
-                                'name' => 'lsd[profile][pc_label]',
-                                'value' => $auth['profile']['pc_label'],
-                            ]); ?>
-                            <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('Leave empty to use the default label. Use {{privacy_policy}} to automatically include the default privacy policy page link.', 'listdom'); ?></p>
+                    <div class="lsd-settings-fields-wrapper">
+                        <h3 class="lsd-admin-title lsd-m-0"><?php esc_html_e('Privacy Consent', 'listdom'); ?></h3>
+                        <div class="lsd-form-row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Enable', 'listdom'),
+                                    'for' => 'lsd_auth_profile_pc_enabled',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::switcher([
+                                    'id' => 'lsd_auth_profile_pc_enabled',
+                                    'name' => 'lsd[profile][pc_enabled]',
+                                    'value' => $auth['profile']['pc_enabled'],
+                                    'toggle' => '#lsd_auth_profile_pc_label_row',
+                                ]); ?>
+                                <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('This control also depends on the global privacy consent setting.', 'listdom'); ?></p>
+                            </div>
+                        </div>
+                        <div class="lsd-form-row<?php echo empty($auth['profile']['pc_enabled']) ? ' lsd-util-hide' : ''; ?>" id="lsd_auth_profile_pc_label_row">
+                            <div class="lsd-col-3"><?php echo LSD_Form::label([
+                                    'class' => 'lsd-fields-label',
+                                    'title' => esc_html__('Label', 'listdom'),
+                                    'for' => 'lsd_auth_profile_pc_label',
+                                ]); ?></div>
+                            <div class="lsd-col-5">
+                                <?php echo LSD_Form::text([
+                                    'class' => 'lsd-admin-input',
+                                    'id' => 'lsd_auth_profile_pc_label',
+                                    'name' => 'lsd[profile][pc_label]',
+                                    'value' => $auth['profile']['pc_label'],
+                                ]); ?>
+                                <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('Leave empty to use the default label. Use {{privacy_policy}} to automatically include the default privacy policy page link.', 'listdom'); ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="lsd-settings-fields-wrapper">
-                    <div class="lsd-admin-section-heading">
-                        <h3 class="lsd-admin-title"><?php esc_html_e('User Directory', 'listdom'); ?></h3>
+            </div>
+
+            <div
+                class="lsd-tab-switcher-content lsd-auth-profile-user-directory-tab-switcher-content<?php echo $profile_user_directory_subtab === 'user-directory' ? ' lsd-tab-switcher-content-active' : ''; ?>"
+                id="lsd-tab-switcher-auth-profile-user-directory-user-directory-content">
+                <div class="lsd-settings-group-wrapper">
+                    <div class="lsd-settings-fields-wrapper">
                         <p class="lsd-admin-description lsd-m-0"><?php echo sprintf(
                             /* translators: %s: Users shortcode. */
                             esc_html__("Insert the %s shortcode on any page to display a user directory. It displays the users with the following roles: Administrator, Listdom Author, and Listdom Publisher. The shortcode supports both List and Grid styles. Feel free to use one of the following shortcodes:", 'listdom'),
                             '<code>[listdom-users]</code>'
                         ); ?></p>
+                        <ul class="lsd-m-0">
+                            <li>[listdom-users style="list" limit="24"]</li>
+                            <li>[listdom-users style="grid" limit="12" columns="3"]</li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li>[listdom-users style="list" limit="24"]</li>
-                        <li>[listdom-users style="grid" limit="12" columns="3"]</li>
-                    </ul>
                 </div>
             </div>
         </div>

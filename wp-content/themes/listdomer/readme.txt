@@ -2,10 +2,10 @@
 Contributors: webilia
 Tags: featured-images, portfolio, translation-ready, e-commerce, grid-layout, blog, one-column, two-columns, accessibility-ready, custom-colors, custom-logo, custom-menu, footer-widgets, rtl-language-support, theme-options
 Requires at least: 5.3
-Tested up to: 6.8.1
-Requires PHP: 7.2
-Stable tag: 3.2.0
-License: GPL-2.0-or-later
+Tested up to: 6.9
+Requires PHP: 7.4
+Stable tag: 4.2.0
+License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/license-list.html#GPLv2
 
 An awesome theme for listing directory and classified websites.
@@ -21,6 +21,55 @@ An awesome theme for listing directory and classified websites that uses Listdom
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+
+= 4.2.0 - February 25th, 2026 =
+* Maintenance updates.
+
+= 4.1.1 - February 1st, 2026 =
+* Fixed some issues in content of demos.
+
+= 4.1.0 - January 3rd, 2026 =
+* Added Health directory demo to import.
+* Added Travel & Tourism directory demo to import.
+* Added Service directory demo to import.
+* Updated existing demos.
+
+= 4.0.0 - November 28th, 2025 =
+* Maintenance updates.
+* Minimum required PHP is 7.4.
+
+= 3.9.0 - October 22nd, 2025 =
+* Added Footer Types 6 and 7.
+* Added Header Type 7.
+* Fixed various UI issues.
+
+= 3.8.0 - October 5th, 2025 =
+* Fixed various minor issues and bugs for better stability.
+* Miscellaneous fixes and style improvements.
+
+= 3.7.0 - September 5th, 2025 =
+* Added more social networks to the contact widget.
+
+= 3.6.0 - August 16th, 2025 =
+* Improved the demo importer.
+* Miscellaneous fixes and style improvements.
+
+= 3.5.0 - July 19th, 2025 =
+* Updated Font Awesome Icons.
+* Added translations for additional languages.
+* Fixed footer logo issues.
+* Resolved post widget arrow problems.
+* Miscellaneous fixes and style improvements.
+
+= 3.4.0 - June 14th, 2025 =
+* Added French translation.
+* Fixed various minor issues and bugs for better stability.
+
+= 3.3.0 - May 27th, 2025 =
+* Added new search control configuration options.
+* Fixed an issue in the demo importer process.
+* Enhanced the functionality and flexibility of the custom logo feature.
+* Improved the layout and behavior of the search results page.
 
 = 3.2.0 - May 11th, 2025 =
 * Added multiple preloader style options for enhanced loading experience.

@@ -13,6 +13,9 @@ class LSD_Shortcodes_OrderSummary extends LSD_Base
         $pre = apply_filters('lsd_pre_shortcode', '', $atts, 'listdom-order-summary');
         if (trim($pre)) return $pre;
 
+        // Listdom Bar
+        LSD_Payments_Helper::bar_menus();
+
         $atts = shortcode_atts([
             'invoice' => '1',
             'style' => 'list',

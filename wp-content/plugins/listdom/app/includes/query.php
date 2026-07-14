@@ -13,7 +13,7 @@ class LSD_Query extends LSD_Base
         else if ($id == 'acf_fields') $field = 'acf_fields';
         else $field = 'lsd_attribute_' . LSD_Main::get_attr_slug($id);
 
-        if ($id === 'rate' && !is_array($value) && is_numeric($value) && (float) $value <= 0) return false;
+        if ($id === 'rate' && is_numeric($value) && (float) $value <= 0) return false;
 
         $query = [];
         switch ($type)
@@ -115,27 +115,51 @@ class LSD_Query extends LSD_Base
 
             case 'in':
 
-                // Force to Array
-                if (!is_array($value)) $value = [$value];
+                $values = self::normalize_multi_values($value);
+                if (!count($values)) break;
 
                 $query = [
-                    'key' => $field,
-                    'value' => $value,
-                    'compare' => 'IN',
+                    'relation' => 'OR',
+                    [
+                        'key' => $field,
+                        'value' => $values,
+                        'compare' => 'IN',
+                    ],
                 ];
+
+                foreach ($values as $v)
+                {
+                    $query[] = [
+                        'key' => $field,
+                        'value' => self::regexp_csv_pattern($v),
+                        'compare' => 'REGEXP',
+                    ];
+                }
 
                 break;
 
             case 'nin':
 
-                // Force to Array
-                if (!is_array($value)) $value = [$value];
+                $values = self::normalize_multi_values($value);
+                if (!count($values)) break;
 
                 $query = [
-                    'key' => $field,
-                    'value' => $value,
-                    'compare' => 'NOT IN',
+                    'relation' => 'AND',
+                    [
+                        'key' => $field,
+                        'value' => $values,
+                        'compare' => 'NOT IN',
+                    ],
                 ];
+
+                foreach ($values as $v)
+                {
+                    $query[] = [
+                        'key' => $field,
+                        'value' => self::regexp_csv_pattern($v),
+                        'compare' => 'NOT REGEXP',
+                    ];
+                }
 
                 break;
 
@@ -231,8 +255,8 @@ class LSD_Query extends LSD_Base
                 foreach ($value as $v)
                 {
                     $query[] = [
-                        'key'     => $key_field,
-                        'value'   => $v,
+                        'key' => $key_field,
+                        'value' => $v,
                         'compare' => 'LIKE',
                     ];
                 }
@@ -254,5 +278,28 @@ class LSD_Query extends LSD_Base
         }
 
         return count($query) ? $query : false;
+    }
+
+    private static function normalize_multi_values($value): array
+    {
+        if (!is_array($value)) $value = [$value];
+
+        $normalized = [];
+        foreach ($value as $item)
+        {
+            if (!is_scalar($item)) continue;
+
+            $item = trim((string) $item);
+            if ($item === '') continue;
+
+            $normalized[] = $item;
+        }
+
+        return array_values(array_unique($normalized));
+    }
+
+    private static function regexp_csv_pattern(string $value): string
+    {
+        return '(^|,)' . preg_quote($value, '/') . '(,|$)';
     }
 }

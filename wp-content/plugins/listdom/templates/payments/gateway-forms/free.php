@@ -18,7 +18,7 @@ $comment = $payments['free_checkout_comment'] ?? '';
 
     <?php echo LSD_Privacy::consent_field([
         'id' => 'lsd_checkout_consent_' . uniqid(),
-        'name' => 'lsd_checkout_consent',
+        'name' => 'lsd_privacy_consent',
         'class' => 'lsd-privacy-consent-checkbox lsd-checkout-consent-input',
         'wrapper_class' => 'lsd-checkout-consent',
         'context' => 'checkout',

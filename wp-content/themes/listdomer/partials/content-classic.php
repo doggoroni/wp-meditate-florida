@@ -11,7 +11,7 @@
     <header role="banner" class="entry-header">
         <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
     </header>
-    <?php LSDR_Post::thumbnail(); ?>
+    <?php LSDR_Post::thumbnail([300, 300]); ?>
 
     <div class="entry-content">
         <?php

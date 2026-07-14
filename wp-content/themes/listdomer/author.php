@@ -12,42 +12,70 @@
  * @package Listdomer
  */
 get_header();
+
+$page_title = LSDR_Settings::get('listdomer_page_title_archive_display');
+$description_position = LSDR_Settings::get('listdomer_page_desc_archive_position');
+$breadcrumb = LSDR_Settings::get('listdomer_breadcrumb_display');
+$page_description = $description_position !== 'disable';
+
+$taxonomies = LSDR_Settings::get('listdomer_page_title_taxonomies');
+$author = is_array($taxonomies) && isset($taxonomies['author']) && $taxonomies['author'];
+$layout = LSDR_Settings::get('listdomer_archive_layout_type', 'list');
+$sidebar = LSDR_Settings::get('listdomer_archive_post_layout');
+$columns = LSDR_Settings::get('listdomer_archive_grid_columns', 2);
+
+$column_class = 'col-md-6';
+if ($columns == 1) $column_class = 'col-md-12';
+else if ($columns == 3) $column_class = 'col-md-4';
+else if ($columns == 4) $column_class = 'col-md-3';
 ?>
+<?php if ($author && ($page_title || $breadcrumb || ($page_description && $description_position === 'before'))): ?>
     <div class="listdomer-header">
-        <?php
-        the_archive_title('<h1 class="page-title">', '</h1>');
-        the_archive_description('<div class="archive-description"><p>', '</p></div>'); ?>
+        <?php if ($page_title): ?>
+            <?php the_archive_title('<h1 class="page-title">', '</h1>'); ?>
+        <?php endif; ?>
+        <?php if ($breadcrumb): ?>
+            <?php do_action('lsdr_breadcrumb'); ?>
+        <?php endif; ?>
+        <?php if ($page_description && $description_position === 'before'): ?>
+            <?php get_template_part('partials/archive/description'); ?>
+        <?php endif; ?>
     </div>
+<?php endif; ?>
     <div id="content" class="site-content container">
         <div class="row">
-            <?php if (LSDR_Settings::get('listdomer_archive_post_layout') === 'left') get_sidebar(); ?>
+            <?php if ($sidebar === 'left') get_sidebar(); ?>
 
-            <div class="<?php echo LSDR_Settings::get('listdomer_archive_post_layout') === 'full' ? 'col-lg-12' : 'col-lg-8'; ?>">
+            <div class="<?php echo $sidebar === 'full' ? 'col-lg-12' : 'col-lg-8'; ?> <?php echo $layout === 'grid' ? 'lsd-archive-grid' : ''; ?>">
                 <main role="main">
                     <?php
                     if (have_posts()):
 
-                        if (is_home() && !is_front_page()):
-                            ?>
+                        if (is_home() && !is_front_page()): ?>
                             <header role="banner">
                                 <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
                             </header>
-                        <?php
-                        endif;
+                        <?php endif; ?>
 
-                        /* Start the Loop */
+                        <?php if ($layout === 'grid'): ?>
+                        <div class="row">
+                            <?php while (have_posts()): the_post(); ?>
+                                <div class="lsd-col-equal-height <?php echo esc_attr($column_class); ?>">
+                                    <?php get_template_part('partials/content', get_post_type()); ?>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    <?php else: ?>
+                        <?php
                         while (have_posts())
                         {
                             the_post();
-
-                            /*
-                             * Include the Post-Type-specific template for the content.
-                             * If you want to override this in a child theme, then include a file
-                             * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-                             */
                             get_template_part('partials/content', get_post_type());
                         }
+                        ?>
+                    <?php endif; ?>
 
+                        <?php
                         // Print Pagination
                         LSDR_Theme::pagination();
 
@@ -61,8 +89,14 @@ get_header();
                 </main>
             </div>
 
-            <?php if (LSDR_Settings::get('listdomer_archive_post_layout') === 'right') get_sidebar(); ?>
+            <?php if ($sidebar === 'right') get_sidebar(); ?>
         </div>
+
+        <?php if ($page_description && $description_position === 'after'): ?>
+            <div class="lsd-page-archive-description">
+                <?php get_template_part('partials/archive/description'); ?>
+            </div>
+        <?php endif; ?>
     </div>
 <?php
 get_footer();

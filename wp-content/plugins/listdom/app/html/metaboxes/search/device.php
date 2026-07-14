@@ -42,7 +42,7 @@ $fields = $builder->getAvailableFields($device_fields);
     <?php endif; ?>
     <div id="lsd-search-sandbox-<?php echo esc_attr($device); ?>-wrapper" class="lsd-row <?php echo in_array($device, ['tablet', 'mobile']) && $inherit ? 'lsd-util-hide' : ''; ?>">
         <div class="lsd-col-9">
-            <div class="lsd-flex lsd-flex-row lsd-flex-content-start lsd-gap-4 lsd-my-3">
+            <div class="lsd-flex lsd-flex-row lsd-flex-content-start lsd-gap-4 lsd-my-3 lsd-search-device-background-box-toggle">
                 <div><?php echo LSD_Form::switcher([
                     'id' => 'lsd-devices-'.$device.'-box',
                     'name' => 'lsd[devices]['.$device.'][box]',

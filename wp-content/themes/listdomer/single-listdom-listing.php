@@ -24,11 +24,6 @@ $listing_style = method_exists('LSD_PTypes_Listing_Single', 'get_listing_style')
 
 						get_template_part('partials/content-listdom-listing', get_post_type());
 
-						the_post_navigation([
-							'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'listdomer') . '</span> <span class="nav-title">%title</span>',
-							'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'listdomer') . '</span> <span class="nav-title">%title</span>',
-						]);
-
 						// If comments are open, or we have at least one comment, load up the comment template.
 						if(comments_open() || get_comments_number())
 						{

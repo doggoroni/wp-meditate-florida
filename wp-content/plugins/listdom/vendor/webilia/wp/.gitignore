@@ -1,0 +1,6 @@
+/vendor/
+/dev/
+.idea
+
+# OS
+**/.DS_Store

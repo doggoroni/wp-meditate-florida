@@ -2,7 +2,7 @@
 
 class LSDR_Personalize extends LSDR_Base
 {
-    public static function generate()
+    private static function build(): string
     {
         // General colors
         $body_bg_color = sanitize_text_field(LSDR_Settings::get('listdomer_body_bg_color', '#e8f1ff'));
@@ -11,6 +11,11 @@ class LSDR_Personalize extends LSDR_Base
         $header_text_color = sanitize_text_field(LSDR_Settings::get('listdomer_header_text_color', '#000000'));
         $header_hover_color = sanitize_text_field(LSDR_Settings::get('listdomer_header_hover_text_color', '#0ab0fe'));
         $header_active_color = sanitize_text_field(LSDR_Settings::get('listdomer_header_active_text_color', '#0ab0fe'));
+        $header_description_color = sanitize_text_field(LSDR_Settings::get('listdomer_header_description_color', '#fff'));
+
+        $logo_width_value = LSDR_Settings::get('listdomer_logo_width', 160);
+        if (is_numeric($logo_width_value)) $logo_width = absint($logo_width_value) . 'px';
+        else $logo_width = sanitize_text_field($logo_width_value ?: '160px');
 
         $content_color = sanitize_text_field(LSDR_Settings::get('listdomer_content_color', '#66686b'));
 
@@ -55,13 +60,15 @@ class LSDR_Personalize extends LSDR_Base
         if (trim($icons_bg_color) === '') $icons_bg_color = 'transparent';
         $icons_text_color = sanitize_text_field(LSDR_Settings::get('listdomer_icons_text_color', '#0ab0fe'));
 
-        $raw = file_get_contents(get_template_directory() . '/assets/css/personalized.raw');
+        $raw = file_get_contents(get_template_directory() . '/assets/css/personalized.txt');
 
         $CSS = str_replace('((body_bg_color))', $body_bg_color, $raw);
         $CSS = str_replace('((header_bg_color))', $header_bg_color, $CSS);
         $CSS = str_replace('((header_text_color))', $header_text_color, $CSS);
         $CSS = str_replace('((header_hover_color))', $header_hover_color, $CSS);
         $CSS = str_replace('((header_active_color))', $header_active_color, $CSS);
+        $CSS = str_replace('((header_description_color))', $header_description_color, $CSS);
+        $CSS = str_replace('((logo_width))', $logo_width, $CSS);
         $CSS = str_replace('((content_color))', $content_color, $CSS);
         $CSS = str_replace('((content_a_color))', $content_a_color, $CSS);
         $CSS = str_replace('((content_a_active_color))', $content_a_active_color, $CSS);
@@ -103,11 +110,30 @@ class LSDR_Personalize extends LSDR_Base
         $CSS = LSDR_Personalize_Widgets::generate($CSS);
         $CSS = LSDR_Personalize_Headings::generate($CSS);
 
+        // Remove Comments & New Lines
+        $CSS = preg_replace('!/\*.*?\*/!s', '', $CSS);
+        return trim(preg_replace('/\s+/', ' ', $CSS));
+    }
+
+    public static function generate()
+    {
+        $CSS = self::build();
+
         // Blog ID
         $blog_id = get_current_blog_id();
 
         // Write the generated CSS file
-        file_put_contents(get_template_directory() . '/assets/css/personalized' . ($blog_id > 1 ? '-' . $blog_id : '') . '.css', $CSS);
+        if (!function_exists('WP_Filesystem')) require_once ABSPATH . 'wp-admin/includes/file.php';
+
+        $target_path = get_template_directory() . '/assets/css/personalized' . ($blog_id > 1 ? '-' . $blog_id : '') . '.css';
+
+        WP_Filesystem();
+
+        global $wp_filesystem;
+        if ($wp_filesystem)
+        {
+            $wp_filesystem->put_contents($target_path, $CSS, FS_CHMOD_FILE);
+        }
     }
 
     public static function assets()
@@ -129,9 +155,17 @@ class LSDR_Personalize extends LSDR_Base
         $blog_id = get_current_blog_id();
 
         // Blog CSS File
-        if ($blog_id > 1 && LSD_File::exists(get_template_directory() . '/assets/css/personalized-' . $blog_id . '.css')) $css = get_template_directory_uri() . '/assets/css/personalized-' . $blog_id . '.css';
+        if ($blog_id > 1)
+        {
+            $blog_css_path = get_template_directory() . '/assets/css/personalized-' . $blog_id . '.css';
+            $blog_css_exists = class_exists('LSD_File') ? LSD_File::exists($blog_css_path) : file_exists($blog_css_path);
+
+            if ($blog_css_exists) $css = get_template_directory_uri() . '/assets/css/personalized-' . $blog_id . '.css';
+        }
 
         // Include Listdomer personalized CSS file
         wp_enqueue_style('listdomer-personalized', $css, ['listdomer'], LSDR_Assets::version());
+
+        if (is_customize_preview()) wp_add_inline_style('listdomer-personalized', self::build());
     }
 }

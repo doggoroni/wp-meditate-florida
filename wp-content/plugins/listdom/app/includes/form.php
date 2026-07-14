@@ -266,6 +266,68 @@ class LSD_Form extends LSD_Base
     {
         if (!count($args)) return false;
 
+        $multiple = isset($args['multiple']) && $args['multiple'];
+        $type = isset($args['type']) && $args['type'] === 'file' ? 'file' : 'image';
+        $use_file_input = $multiple || $type === 'file' || (isset($args['file']) && $args['file']);
+
+        if ($use_file_input)
+        {
+            $is_file = $type === 'file';
+            $empty_text = $args['empty_text'] ?? ($multiple ? ($is_file ? esc_html__('No files selected', 'listdom') : esc_html__('No images selected', 'listdom')) : ($is_file ? esc_html__('No file selected', 'listdom') : esc_html__('No image selected', 'listdom')));
+            $select_text = $args['select_text'] ?? ($multiple ? ($is_file ? esc_html__('Upload/Select files', 'listdom') : esc_html__('Upload/Select images', 'listdom')) : ($is_file ? esc_html__('Upload/Select file', 'listdom') : esc_html__('Upload/Select image', 'listdom')));
+            $add_text = $args['add_text'] ?? ($is_file ? esc_html__('Add files', 'listdom') : esc_html__('Add images', 'listdom'));
+            $remove_text = $args['remove_text'] ?? ($multiple ? ($is_file ? esc_html__('Remove files', 'listdom') : esc_html__('Remove images', 'listdom')) : ($is_file ? esc_html__('Remove file', 'listdom') : esc_html__('Remove image', 'listdom')));
+
+            $attributes = '';
+            $has_multiple_attribute = false;
+            if (isset($args['attributes']) && is_array($args['attributes']))
+            {
+                foreach ($args['attributes'] as $key => $value)
+                {
+                    if ($key === 'multiple') $has_multiple_attribute = true;
+                    $attributes .= ' ' . esc_attr($key) . '="' . esc_attr($value) . '"';
+                }
+            }
+
+            if ($multiple && !$has_multiple_attribute) $attributes .= ' multiple="multiple"';
+
+            $class = isset($args['class']) ? esc_attr($args['class']) : '';
+            $field_id = isset($args['id']) ? (string) $args['id'] : '';
+            if (trim($field_id) === '') $field_id = uniqid('lsd_imagepicker_');
+
+            $id = esc_attr($field_id);
+            $name = $args['name'] ?? '';
+            $required = isset($args['required']) && $args['required'];
+
+            $placeholder = self::image_placeholder_data('large');
+            $placeholder_src = $placeholder['src'] ?? '';
+
+            $input_class = 'lsd-imagepicker-file-input lsd-util-hide' . ($class ? ' ' . $class : '');
+            $button_class = isset($args['button_class']) ? ' ' . esc_attr($args['button_class']) : '';
+
+            $output  = '<div class="lsd-imagepicker-wrapper' . ($multiple ? ' lsd-imagepicker-multiple' : '') . '">';
+            $output .= '<div id="' . $id . '_img" class="lsd-image-placeholder lsd-imagepicker-image-placeholder lsd-mb-2" data-placeholder="' . esc_attr($placeholder_src) . '">';
+            $output .= '<div class="lsd-image-placeholder-inner">';
+            $output .= '<div class="lsd-image-placeholder-preview lsd-imagepicker-multiple-preview lsd-util-hide">';
+            $output .= '<ul class="lsd-imagepicker-multiple-list lsd-flex lsd-flex-row lsd-m-0 lsd-p-0"></ul>';
+            $output .= '</div>';
+            $output .= '<div class="lsd-image-placeholder-empty">';
+            $output .= '<p class="lsd-image-placeholder-text">' . esc_html($empty_text) . '</p>';
+            $output .= '<button type="button" class="lsd-choose-file lsd-select-image-files-button lsd-w-auto lsd-neutral-button lsd-light-button' . $button_class . '" data-for="#' . $id . '">' . esc_html($select_text) . '</button>';
+            $output .= '</div>';
+            $output .= '</div>';
+            $output .= '</div>';
+            $output .= '<input type="file" name="' . esc_attr($name) . '" id="' . $id . '" class="' . $input_class . '"' . $attributes . ($required ? ' required' : '') . '>';
+            if ($multiple)
+            {
+                $output .= '<button type="button" class="lsd-choose-file lsd-add-images-button lsd-w-auto lsd-neutral-button lsd-light-button lsd-util-hide' . $button_class . '" data-for="#' . $id . '">' . esc_html($add_text) . '</button>';
+            }
+            $output .= '<button type="button" class="lsd-choose-file lsd-remove-images-button lsd-w-auto lsd-text-button lsd-util-hide' . $button_class . '" data-for="#' . $id . '">' . esc_html($remove_text) . '</button>';
+            $output .= '</div>';
+
+            return $output;
+        }
+
         $image_id = isset($args['value']) ? (int) $args['value'] : 0;
         $image_html = $image_id ? wp_get_attachment_image($image_id, ['400', '266'], false, ['class' => 'lsd-image-placeholder-preview-image']) : '';
         $has_image = trim($image_html) !== '';
@@ -517,6 +579,7 @@ class LSD_Form extends LSD_Base
         if (!count($args)) return false;
 
         $options = '';
+        $form_style = isset($args['form_style']) ? sanitize_key((string) $args['form_style']) : '';
 
         $query = ['post_type' => LSD_Base::PTYPE_SEARCH, 'posts_per_page' => '-1'];
         $searches = get_posts($query);
@@ -527,7 +590,18 @@ class LSD_Form extends LSD_Base
             $options .= '<option value="" ' . ((isset($args['value']) and esc_attr($args['value']) == '') ? 'selected="selected"' : '') . '>' . ((isset($args['empty_label']) and trim($args['empty_label'])) ? esc_html($args['empty_label']) : '-----') . '</option>';
         }
 
-        foreach ($searches as $search) $options .= '<option value="' . esc_attr($search->ID) . '" ' . ((isset($args['value']) and $args['value'] == $search->ID) ? 'selected="selected"' : '') . '>' . esc_html($search->post_title) . '</option>';
+        foreach ($searches as $search)
+        {
+            if ($form_style)
+            {
+                $form = get_post_meta($search->ID, 'lsd_form', true);
+                $style = is_array($form) && isset($form['style']) ? sanitize_key((string) $form['style']) : 'default';
+
+                if ($style !== $form_style) continue;
+            }
+
+            $options .= '<option value="' . esc_attr($search->ID) . '" ' . ((isset($args['value']) and $args['value'] == $search->ID) ? 'selected="selected"' : '') . '>' . esc_html($search->post_title) . '</option>';
+        }
 
         return '<select name="' . esc_attr($args['name']) . '" id="' . (isset($args['id']) ? esc_attr($args['id']) : '') . '" class="' . (isset($args['class']) ? esc_attr($args['class']) : 'lsd-search') . '">
             ' . $options . '                       

@@ -12,10 +12,24 @@
  * @package Listdomer
  */
 get_header();
+$page_title = LSDR_Settings::get('listdomer_page_title_pages_display');
+$description_position = LSDR_Settings::get('listdomer_page_desc_pages_position');
+$breadcrumb = LSDR_Settings::get('listdomer_pages_breadcrumb_display');
+$page_description = $description_position !== 'disable';
 ?>
-	<div class="listdomer-header listdomer-header-no-semi-circle">
-		<h1><?php the_title(); ?></h1>
-	</div>
+    <?php if ($page_title || $breadcrumb || ($page_description && $description_position === 'before')): ?>
+        <div class="listdomer-header listdomer-header-no-semi-circle">
+            <?php if($page_title): ?>
+                <h1><?php the_title(); ?></h1>
+            <?php endif; ?>
+            <?php if($breadcrumb): ?>
+                <?php do_action('lsdr_breadcrumb'); ?>
+            <?php endif; ?>
+            <?php if ($page_description && $description_position === 'before'): ?>
+                <?php get_template_part('partials/archive/description'); ?>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
 	<main role="main" class="site-main">
 		<?php
 			while(have_posts())
@@ -31,6 +45,11 @@ get_header();
 				}
 			}
 		?>
+        <?php if ($page_description && $description_position === 'after'): ?>
+            <div class="lsd-page-archive-description">
+                <?php get_template_part('partials/archive/description'); ?>
+            </div>
+        <?php endif; ?>
 	</main>			
 <?php
 get_footer();

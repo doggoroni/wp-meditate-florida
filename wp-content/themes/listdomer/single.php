@@ -17,6 +17,9 @@ $prev = $words_limit > 0 && $prev_post ? wp_trim_words(get_the_title($prev_post-
 $next = $words_limit > 0 && $next_post ? wp_trim_words(get_the_title($next_post->ID), $words_limit, '...') : '%title';
 ?>
 <div id="content" class="site-content container">
+    <div class="lsdr-breadcrumb-wrapper">
+        <?php do_action('lsdr_breadcrumb'); ?>
+    </div>
 	<div class="row">
         <?php if (LSDR_Settings::get('listdomer_single_post_layout') === 'left') get_sidebar(); ?>
 

@@ -35,7 +35,7 @@ jQuery(document).ready(function()
 ?>
 <div class="lsd-register-wrapper">
     <div id="<?php echo esc_attr('lsd_register_form_message_' . $instance_id); ?>" class="lsd-register-form-message"></div>
-    <form id="<?php echo esc_attr('lsd-registration-form-' . $instance_id); ?>" method="post">
+    <form id="<?php echo esc_attr('lsd-registration-form-' . $instance_id); ?>" method="post" class="lsd-registration-form">
         <?php LSD_Form::nonce('lsd_register_nonce', 'lsd_register_nonce'); ?>
         <div class="form-group">
             <?php
@@ -83,15 +83,73 @@ jQuery(document).ready(function()
                 'placeholder' => $auth['register']['password_placeholder']
             ], 'password');
             ?>
-            <div class="lsd-register-password-rules lsd-alert lsd-info">
-                <div class="lsd-mb-4"><?php esc_html_e('Password must contain at least:', 'listdom'); ?></div>
-                <ul>
-                    <li><?php esc_html_e('An uppercase letter','listdom'); ?></li>
-                    <li><?php esc_html_e('A lowercase letter','listdom'); ?></li>
-                    <li><?php esc_html_e('A number','listdom'); ?></li>
-                    <li><?php esc_html_e('A special character e.g. ~`! @#$%^&*()-_+={}[]|;:"<>,./?','listdom'); ?></li>
-                </ul>
-            </div>
+            <?php if ($auth['register']['strong_password']): ?>
+                <?php
+                $length = isset($auth['register']['password_length']) ? intval($auth['register']['password_length']) : 8;
+                $contain_uppercase = isset($auth['register']['contain_uppercase']) && $auth['register']['contain_uppercase'];
+                $contain_lowercase = isset($auth['register']['contain_lowercase']) && $auth['register']['contain_lowercase'];
+                $contain_numbers = isset($auth['register']['contain_numbers']) && $auth['register']['contain_numbers'];
+                $contain_specials = isset($auth['register']['contain_specials']) && $auth['register']['contain_specials'];
+
+                $password_rules = [];
+                if ($length > 0)
+                {
+                    $password_rules[] = [
+                        'rule' => 'length',
+                        'min_length' => $length,
+                        'label' => sprintf(
+                            /* translators: %s: Minimum required password length. */
+                            esc_html__('%s characters long', 'listdom'),
+                            $length
+                        ),
+                    ];
+                }
+                if ($contain_uppercase)
+                {
+                    $password_rules[] = [
+                        'rule' => 'uppercase',
+                        'label' => esc_html__('one uppercase letter', 'listdom'),
+                    ];
+                }
+                if ($contain_lowercase)
+                {
+                    $password_rules[] = [
+                        'rule' => 'lowercase',
+                        'label' => esc_html__('one lowercase letter', 'listdom'),
+                    ];
+                }
+                if ($contain_numbers)
+                {
+                    $password_rules[] = [
+                        'rule' => 'number',
+                        'label' => esc_html__('one number', 'listdom'),
+                    ];
+                }
+                if ($contain_specials)
+                {
+                    $password_rules[] = [
+                        'rule' => 'special',
+                        'label' => esc_html__('one special character', 'listdom'),
+                    ];
+                }
+                ?>
+                <?php if ($password_rules): ?>
+                    <div class="lsd-register-password-rules">
+                        <?php if ($contain_uppercase || $contain_lowercase || $contain_numbers || $contain_specials): ?>
+                            <p class="lsd-fe-description-tiny">
+                                <?php esc_html_e('Password must contain at least:', 'listdom'); ?>
+                            </p>
+                        <?php endif; ?>
+                        <div class="lsd-register-password-rule-list">
+                            <?php foreach ($password_rules as $rule): ?>
+                                <span class="lsd-register-password-rule" data-rule="<?php echo esc_attr($rule['rule']); ?>"<?php echo isset($rule['min_length']) ? ' data-min-length="' . esc_attr($rule['min_length']) . '"' : ''; ?>>
+                                    <?php echo esc_html($rule['label']); ?>
+                                </span>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
 
         <?php

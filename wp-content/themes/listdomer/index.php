@@ -40,7 +40,7 @@ else if ($columns == 4) $column_class = 'col-md-3';
 					<?php if ($layout === 'grid'): ?>
 						<div class="row">
 							<?php while (have_posts()): the_post(); ?>
-								<div class="<?php echo esc_attr($column_class); ?>">
+								<div class="lsd-col-equal-height <?php echo esc_attr($column_class); ?>">
 									<?php get_template_part('partials/content', get_post_type()); ?>
 								</div>
 							<?php endwhile; ?>

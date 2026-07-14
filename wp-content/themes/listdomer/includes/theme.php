@@ -13,6 +13,8 @@ class LSDR_Theme extends LSDR_Base
 
         add_action('pre_get_posts', [$this, 'posts_number_per_page']);
         add_filter('get_the_archive_title', [$this, 'filter_archive_title']);
+
+        add_filter('wpml_display_language_names', '__return_false');
     }
 
     public function setup()
@@ -127,16 +129,19 @@ class LSDR_Theme extends LSDR_Base
         $listdomer_logo = LSDR_Settings::get('site_logo');
 
         if ($dark) $logo = LSDR_Theme::get_dark_logo();
-        else if (isset($listdomer_logo['url']) && trim($listdomer_logo['url'])) $logo = '<img class="listdomer-custom-logo" src="' . esc_url_raw($listdomer_logo['url']) . '">';
+        else if (isset($listdomer_logo['url']) && trim($listdomer_logo['url']))
+        {
+            if ((is_front_page() || is_home()) && !is_paged()) $logo = '<img class="listdomer-custom-logo" src="' . esc_url($listdomer_logo['url']) . '" alt="">';
+            else $logo = '<a href="' . esc_url(home_url()) . '"><img class="listdomer-custom-logo" src="' . esc_url($listdomer_logo['url']) . '" alt=""></a>';
+        }
         else $logo = get_custom_logo();
 
-        if ((is_front_page() || is_home()) && !is_page()) return '<h1 class="site-logo">' . $logo . '</h1>';
-        else return '<div class="site-logo">' . $logo . '</div>';
+        return '<div class="site-logo">' . $logo . '</div>';
     }
 
     public static function has_dark_logo(): bool
     {
-        return (boolean) get_theme_mod('listdomer_dark_logo');
+        return (boolean) LSDR_Settings::get('listdomer_dark_logo');
     }
 
     public static function get_dark_logo($blog_id = 0): string
@@ -149,7 +154,9 @@ class LSDR_Theme extends LSDR_Base
         }
 
         $html = '';
-        $dark_logo = get_theme_mod('listdomer_dark_logo');
+
+        $dark_logo = LSDR_Settings::get('listdomer_dark_logo');
+        if (is_array($dark_logo) && isset($dark_logo['url'])) $dark_logo = $dark_logo['url'];
 
         // We have a logo. Logo is go.
         if ($dark_logo)
@@ -210,7 +217,7 @@ class LSDR_Theme extends LSDR_Base
         else if (is_customize_preview())
         {
             // If no logo is set, but we're in the Customizer, leave a placeholder (needed for the live preview).
-            $html = sprintf('<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo" alt="" /></a>', esc_url(home_url('/')));
+            $html = sprintf('<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo" alt=""></a>', esc_url(home_url('/')));
         }
 
         // Switch Back
@@ -259,11 +266,11 @@ class LSDR_Theme extends LSDR_Base
             'total' => $query->max_num_pages,
             'type' => $type,
             'prev_next' => true,
-            'prev_text' => '<span>' . __('Previous', 'listdomer') . '</span>',
-            'next_text' => '<span>' . __('Next', 'listdomer') . '</span>',
+            'prev_text' => '<span>' . esc_html__('Previous', 'listdomer') . '</span>',
+            'next_text' => '<span>' . esc_html__('Next', 'listdomer') . '</span>',
         ];
 
-        return paginate_links($args);
+        return '<div class="lsdr-pagination">' . paginate_links($args) . '</div>';
     }
 
     public function filter_archive_title($title)
@@ -302,10 +309,21 @@ class LSDR_Theme extends LSDR_Base
     {
         if (!$query->is_main_query() || is_admin()) return;
 
-        if (is_archive() || is_home())
+        if (is_archive() || is_home() || $query->is_search())
         {
             $posts_per_page = LSDR_Settings::get('listdomer_blog_posts_per_page', 6);
             $query->set('posts_per_page', $posts_per_page);
+        }
+
+        if ($query->is_search() && !LSDR_Settings::get('listdomer_search_default'))
+        {
+            $post_types = [];
+            foreach (LSDR_Settings::get('listdomer_search_post_types') as $key => $value)
+            {
+                if ($value) $post_types[$key] = $key;
+            }
+
+            $query->set('post_type', $post_types);
         }
     }
 }

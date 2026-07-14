@@ -2,9 +2,15 @@ import { memo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import Modal from './modal';
 import { ExclamationTriangleColorfulIcon } from '../ui/icons';
+import LoadingSpinner from './loading-spinner';
 import Button from './button';
 
-const SkipImagesModal = ( { open, setOpen, onConfirmSkip } ) => {
+const SkipImagesModal = ( {
+	open,
+	setOpen,
+	onConfirmSkip,
+	loadingNextStep,
+} ) => {
 	const handleNo = () => {
 		setOpen( false );
 	};
@@ -13,7 +19,6 @@ const SkipImagesModal = ( { open, setOpen, onConfirmSkip } ) => {
 		if ( typeof onConfirmSkip !== 'function' ) {
 			return;
 		}
-		setOpen( false );
 		onConfirmSkip();
 	};
 
@@ -47,6 +52,7 @@ const SkipImagesModal = ( { open, setOpen, onConfirmSkip } ) => {
 							size="medium"
 							className="min-w-[206px] text-sm font-semibold leading-5 w-full xs:w-auto"
 							onClick={ handleNo }
+							disabled={ loadingNextStep }
 						>
 							{ __( "No, I'll Select", 'ai-builder' ) }
 						</Button>
@@ -55,8 +61,15 @@ const SkipImagesModal = ( { open, setOpen, onConfirmSkip } ) => {
 							size="medium"
 							className="min-w-[206px] text-sm font-semibold leading-5 px-5 w-full xs:w-auto"
 							onClick={ handleYes }
+							disabled={ loadingNextStep }
 						>
-							{ __( 'Yes, Skip', 'ai-builder' ) }
+							{ loadingNextStep ? (
+								<span className="inset-0 flex items-center justify-center">
+									<LoadingSpinner />
+								</span>
+							) : (
+								__( 'Yes, Skip', 'ai-builder' )
+							) }
 						</Button>
 					</div>
 				</div>

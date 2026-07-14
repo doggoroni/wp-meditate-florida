@@ -1,0 +1,654 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Listdomer\n"
+"POT-Creation-Date: 2026-02-20 10:58-0800\n"
+"PO-Revision-Date: 2026-02-23 21:15+0330\n"
+"Last-Translator: Totalery <info@totalery.com>\n"
+"Language-Team: Webilia <info@webilia.com>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: "
+"__;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;esc_attr_e;esc_attr_x;_n;_nx\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: .sass-cache\n"
+"X-Poedit-SearchPathExcluded-2: assets\n"
+
+#: 404.php:24
+msgid "Page Not Found"
+msgstr "Pagina niet gevonden"
+
+#: 404.php:27
+msgid "Oops! Error 404."
+msgstr "Oeps! Fout 404."
+
+#: 404.php:33
+msgid "Go to Home"
+msgstr "Ga naar Thuis"
+
+#: comments.php:37
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr "Eén gedachte over &ldquo;%1$s&rdquo;"
+
+#: comments.php:45
+#, php-format
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgstr "%1$s dacht aan &ldquo;%2$s&rdquo;"
+
+#: comments.php:70
+msgid "Comments are closed."
+msgstr "Reacties zijn gesloten."
+
+#: header-blank.php:25 header.php:29
+msgid "Skip to content"
+msgstr "Ga naar de inhoud"
+
+#: header.php:36
+msgid "Preloader Icon"
+msgstr "Voorlader-pictogram"
+
+#: includes/breadcrumb.php:24
+msgid "Breadcrumb"
+msgstr "Broodkruimel"
+
+#: includes/dependencies.php:54
+#, php-format
+msgid ""
+"To use all features of %s theme. You need to install and activate following "
+"plugins."
+msgstr ""
+"Om alle functies van het %s thema te gebruiken. U moet de volgende plug-ins "
+"installeren en activeren."
+
+#: includes/dependencies.php:56 includes/dependencies.php:57
+msgid "Listdomer Plugins"
+msgstr "Listdomer-plug-ins"
+
+#: includes/footers.php:25
+msgid "Footer Type"
+msgstr "Voetteksttype"
+
+#: includes/footers.php:37 includes/headers.php:38
+msgid "Type 1"
+msgstr "Type 1"
+
+#: includes/footers.php:38 includes/headers.php:39
+msgid "Type 2"
+msgstr "Type 2"
+
+#: includes/footers.php:39 includes/headers.php:40
+msgid "Type 3"
+msgstr "Type 3"
+
+#: includes/footers.php:40 includes/headers.php:41
+msgid "Type 4"
+msgstr "Type 4"
+
+#: includes/footers.php:41 includes/headers.php:42
+msgid "Type 5"
+msgstr "Typ 5"
+
+#: includes/footers.php:42 includes/headers.php:43
+msgid "Type 6"
+msgstr "Typ 6"
+
+#: includes/footers.php:43 includes/headers.php:44
+msgid "Type 7"
+msgstr "Typ 7"
+
+#: includes/footers.php:44
+msgid "Tiny"
+msgstr "Klein"
+
+#: includes/footers.php:48 includes/headers.php:48
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: includes/headers.php:25
+msgid "Header Type"
+msgstr "Kopteksttype"
+
+#: includes/headers.php:28
+msgid "You need listdomer pro version to see all header types."
+msgstr "Je hebt de listdomer pro-versie nodig om alle headertypen te zien."
+
+#: includes/navs.php:13 partials/headers/header-type2.php:29
+#: partials/headers/header-type3.php:31 partials/headers/header-type4.php:29
+#: partials/headers/header-type5.php:28 partials/headers/header-type6.php:36
+#: partials/headers/header-type7.php:32 partials/headers/header.php:31
+msgid "Primary"
+msgstr "Primair"
+
+#: includes/navs.php:14
+msgid "Sub-footer"
+msgstr "Sub-voettekst"
+
+#: includes/post.php:74
+msgid ", "
+msgstr ","
+
+#: includes/post.php:78
+#, php-format
+msgid "Posted in %1$s"
+msgstr "Geplaatst in %1$s"
+
+#: includes/post.php:93
+msgid "Tags:"
+msgstr "Tags:"
+
+#: includes/sidebars.php:13
+msgid "Sidebar"
+msgstr "Zijbalk"
+
+#: includes/sidebars.php:15
+msgid "Blog Sidebar"
+msgstr "Blogzijbalk"
+
+#: includes/sidebars.php:23
+msgid "Footer 1"
+msgstr "Voettekst 1"
+
+#: includes/sidebars.php:25 includes/sidebars.php:35 includes/sidebars.php:45
+#: includes/sidebars.php:55
+msgid "Footer Sidebar"
+msgstr "Voettekst zijbalk"
+
+#: includes/sidebars.php:33
+msgid "Footer 2"
+msgstr "Voettekst 2"
+
+#: includes/sidebars.php:43
+msgid "Footer 3"
+msgstr "Voettekst 3"
+
+#: includes/sidebars.php:53
+msgid "Footer 4"
+msgstr "Voettekst 4"
+
+#: includes/tgmpa/core.php:327
+msgid "Install Required Plugins"
+msgstr "Installeer de vereiste plug-ins"
+
+#: includes/tgmpa/core.php:328
+msgid "Install Plugins"
+msgstr "Installeer plug-ins"
+
+#: includes/tgmpa/core.php:330
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr "Plug-in installeren: %s"
+
+#: includes/tgmpa/core.php:332
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr "Plug-in bijwerken: %s"
+
+#: includes/tgmpa/core.php:333
+msgid "Something went wrong with the plugin API."
+msgstr "Er is iets misgegaan met de plug-in-API."
+
+#: includes/tgmpa/core.php:385
+msgid "Return to Required Plugins Installer"
+msgstr "Ga terug naar het vereiste installatieprogramma voor plug-ins"
+
+#: includes/tgmpa/core.php:386 includes/tgmpa/core.php:827
+#: includes/tgmpa/core.php:2533 includes/tgmpa/core.php:3580
+msgid "Return to the Dashboard"
+msgstr "Keer terug naar het Dashboard"
+
+#: includes/tgmpa/core.php:387 includes/tgmpa/core.php:3159
+msgid "Plugin activated successfully."
+msgstr "Plug-in succesvol geactiveerd."
+
+#: includes/tgmpa/core.php:388 includes/tgmpa/core.php:2952
+msgid "The following plugin was activated successfully:"
+msgstr "De volgende plug-in is succesvol geactiveerd:"
+
+#: includes/tgmpa/core.php:390
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr "Geen actie ondernomen. Plug-in %1$s was al actief."
+
+#: includes/tgmpa/core.php:392
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. Please "
+"update the plugin."
+msgstr ""
+"Plug-in niet geactiveerd. Voor dit thema is een hogere versie van %s nodig. "
+"Update de plug-in."
+
+#: includes/tgmpa/core.php:394
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "Alle plug-ins zijn succesvol geïnstalleerd en geactiveerd. %1$s"
+
+#: includes/tgmpa/core.php:395
+msgid "Dismiss this notice"
+msgstr "Negeer deze melding"
+
+#: includes/tgmpa/core.php:396
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+"Er zijn een of meer vereiste of aanbevolen plug-ins die u moet installeren, "
+"bijwerken of activeren."
+
+#: includes/tgmpa/core.php:397
+msgid "Please contact the administrator of this site for help."
+msgstr "Neem voor hulp contact op met de beheerder van deze site."
+
+#: includes/tgmpa/core.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr "Deze plug-in moet worden bijgewerkt om compatibel te zijn met uw thema."
+
+#: includes/tgmpa/core.php:523
+msgid "Update Required"
+msgstr "Update vereist"
+
+#: includes/tgmpa/core.php:934
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug and "
+"renaming did not work."
+msgstr ""
+"Het externe plug-inpakket bevat geen map met de gewenste slug en het "
+"hernoemen werkte niet."
+
+#: includes/tgmpa/core.php:934 includes/tgmpa/core.php:937
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+"Neem contact op met de plug-inprovider en vraag hen om hun plug-in te "
+"verpakken volgens de WordPress-richtlijnen."
+
+#: includes/tgmpa/core.php:937
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+"Het externe plug-inpakket bestaat uit meer dan één bestand, maar de bestanden "
+"zijn niet in een map verpakt."
+
+#: includes/tgmpa/core.php:1982
+#, php-format
+msgid "TGMPA v%s"
+msgstr "TGMPA v%s"
+
+#: includes/tgmpa/core.php:2273
+msgid "Required"
+msgstr "Vereist"
+
+#: includes/tgmpa/core.php:2276
+msgid "Recommended"
+msgstr "Aanbevolen"
+
+#: includes/tgmpa/core.php:2292
+msgid "WordPress Repository"
+msgstr "WordPress-opslagplaats"
+
+#: includes/tgmpa/core.php:2295
+msgid "External Source"
+msgstr "Externe bron"
+
+#: includes/tgmpa/core.php:2298
+msgid "Pre-Packaged"
+msgstr "Voorverpakt"
+
+#: includes/tgmpa/core.php:2315
+msgid "Not Installed"
+msgstr "Listdom Add-ons"
+
+#: includes/tgmpa/core.php:2319
+msgid "Installed But Not Activated"
+msgstr "Geïnstalleerd maar niet geactiveerd"
+
+#: includes/tgmpa/core.php:2321
+msgid "Active"
+msgstr "Actief"
+
+#: includes/tgmpa/core.php:2327
+msgid "Required Update not Available"
+msgstr "Vereiste update niet beschikbaar"
+
+#: includes/tgmpa/core.php:2330
+msgid "Requires Update"
+msgstr "Vereist update"
+
+#: includes/tgmpa/core.php:2333
+msgid "Update recommended"
+msgstr "Update aanbevolen"
+
+#: includes/tgmpa/core.php:2342
+#, php-format
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#: includes/tgmpa/core.php:2388
+#, php-format
+msgid "All <span class=\"count\">(%s)</span>"
+msgstr "Alles <span class=\"count\">(%s)</span>"
+
+#: includes/tgmpa/core.php:2392
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr "Installeren van <span class=\"count\">(%s)</span>"
+
+#: includes/tgmpa/core.php:2396
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr "Update beschikbaar <span class=\"count\">(%s)</span>"
+
+#: includes/tgmpa/core.php:2400
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr "Om <span class=\"count\">(%s)</span> te activeren"
+
+#: includes/tgmpa/core.php:2482
+msgid "unknown"
+msgstr "onbekend"
+
+#: includes/tgmpa/core.php:2490
+msgid "Installed version:"
+msgstr "Geïnstalleerde versie:"
+
+#: includes/tgmpa/core.php:2498
+msgid "Minimum required version:"
+msgstr "Minimaal vereiste versie:"
+
+#: includes/tgmpa/core.php:2510
+msgid "Available version:"
+msgstr "Beschikbare versie:"
+
+#: includes/tgmpa/core.php:2533
+msgid "No plugins to install, update or activate."
+msgstr "Geen plug-ins om te installeren, updaten of activeren."
+
+#: includes/tgmpa/core.php:2547
+msgid "Plugin"
+msgstr "Plug-in"
+
+#: includes/tgmpa/core.php:2548
+msgid "Source"
+msgstr "Bron"
+
+#: includes/tgmpa/core.php:2549
+msgid "Type"
+msgstr "Type"
+
+#: includes/tgmpa/core.php:2553
+msgid "Version"
+msgstr "Versie"
+
+#: includes/tgmpa/core.php:2554
+msgid "Status"
+msgstr "Status"
+
+#: includes/tgmpa/core.php:2603
+#, php-format
+msgid "Install %2$s"
+msgstr "Installeer %2$s"
+
+#: includes/tgmpa/core.php:2608
+#, php-format
+msgid "Update %2$s"
+msgstr "Update %2$s"
+
+#: includes/tgmpa/core.php:2614
+#, php-format
+msgid "Activate %2$s"
+msgstr "Activeer %2$s"
+
+#: includes/tgmpa/core.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr "Upgradebericht van de auteur van de plug-in:"
+
+#: includes/tgmpa/core.php:2717
+msgid "Install"
+msgstr "Installeren"
+
+#: includes/tgmpa/core.php:2723
+msgid "Update"
+msgstr "Tag bijwerken"
+
+#: includes/tgmpa/core.php:2726
+msgid "Activate"
+msgstr "Activeren"
+
+#: includes/tgmpa/core.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+"Er zijn geen plug-ins geselecteerd om te worden geïnstalleerd. Geen actie "
+"ondernomen."
+
+#: includes/tgmpa/core.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+"Er zijn geen plug-ins geselecteerd om te worden bijgewerkt. Geen actie "
+"ondernomen."
+
+#: includes/tgmpa/core.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+"Er zijn momenteel geen plug-ins beschikbaar die kunnen worden geïnstalleerd."
+
+#: includes/tgmpa/core.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+"Er zijn momenteel geen plug-ins beschikbaar die kunnen worden bijgewerkt."
+
+#: includes/tgmpa/core.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+"Er zijn geen plug-ins geselecteerd om te activeren. Geen actie ondernomen."
+
+#: includes/tgmpa/core.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+"Er zijn momenteel geen plug-ins beschikbaar die kunnen worden geactiveerd."
+
+#: includes/tgmpa/core.php:3158
+msgid "Plugin activation failed."
+msgstr "Activering van plug-in mislukt."
+
+#: includes/tgmpa/core.php:3498
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr "Plug-in bijwerken %1$s (%2$d/%3$d)"
+
+#: includes/tgmpa/core.php:3501
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+"Er is een fout opgetreden tijdens het installeren van %1$s: <strong>%2$s</"
+"strong>."
+
+#: includes/tgmpa/core.php:3503
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr "De installatie van %1$s is mislukt."
+
+#: includes/tgmpa/core.php:3507
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+"Het installatie- en activeringsproces begint. Bij sommige hosts kan dit "
+"proces enige tijd duren, dus wees geduldig."
+
+#: includes/tgmpa/core.php:3509
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s is succesvol geïnstalleerd en geactiveerd."
+
+#: includes/tgmpa/core.php:3510
+msgid "All installations and activations have been completed."
+msgstr "Alle installaties en activeringen zijn voltooid."
+
+#: includes/tgmpa/core.php:3512
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "Plug-in %1$s (%2$d/%3$d) installeren en activeren"
+
+#: includes/tgmpa/core.php:3515
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+"Het installatieproces begint. Bij sommige hosts kan dit proces enige tijd "
+"duren, dus wees geduldig."
+
+#: includes/tgmpa/core.php:3517
+#, php-format
+msgid "%1$s installed successfully."
+msgstr "%1$s is succesvol geïnstalleerd."
+
+#: includes/tgmpa/core.php:3518
+msgid "All installations have been completed."
+msgstr "Alle installaties zijn voltooid."
+
+#: includes/tgmpa/core.php:3520
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "Plug-in %1$s (%2$d/%3$d) installeren"
+
+#: includes/theme.php:269
+msgid "Previous"
+msgstr "Vorig"
+
+#: includes/theme.php:270
+msgid "Next"
+msgstr "Volgende"
+
+#: partials/archive/description.php:32 partials/archive/description.php:35
+msgid "Show More"
+msgstr "Toon meer"
+
+#: partials/archive/description.php:33
+msgid "Show Less"
+msgstr "Toon minder"
+
+#: partials/content-classic.php:21 partials/content-page-no-header.php:16
+#: partials/content-page.php:18 partials/content.php:53
+msgid "Pages:"
+msgstr "Pagina's:"
+
+#: partials/content-listdom-listing.php:16
+#: partials/content-listdom-listing.php:37 partials/content.php:43
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Lees verder<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: partials/content-none.php:12
+msgid "Nothing Found"
+msgstr "Niets gevonden"
+
+#: partials/content-none.php:24
+#, php-format
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+"Klaar om je eerste bericht te publiceren? <a href=\"%1$s\">Ga hier aan de "
+"slag</a>."
+
+#: partials/content-none.php:38
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Sorry, maar niets kwam overeen met uw zoektermen. Probeer het opnieuw met een "
+"aantal andere zoekwoorden."
+
+#: partials/content-none.php:45
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching "
+"can help."
+msgstr ""
+"Het lijkt erop dat we&rsquo;niet kunnen vinden wat je&rsquo; zoekt. Misschien "
+"kan zoeken helpen."
+
+#: partials/headers/header-type2.php:30 partials/headers/header-type3.php:32
+#: partials/headers/header-type4.php:30 partials/headers/header-type5.php:30
+#: partials/headers/header-type6.php:37 partials/headers/header-type7.php:33
+#: partials/headers/header.php:32
+msgid "Navigation Close"
+msgstr "Navigatie Sluiten"
+
+#: partials/headers/header-type2.php:31 partials/headers/header-type3.php:33
+#: partials/headers/header-type4.php:31 partials/headers/header-type5.php:31
+#: partials/headers/header-type6.php:38 partials/headers/header-type7.php:34
+#: partials/headers/header.php:33
+msgid "Close"
+msgstr "Dichtbij"
+
+#: partials/headers/header-type2.php:45 partials/headers/header-type4.php:45
+#: partials/headers/header-type5.php:45 partials/headers/header-type6.php:52
+#: partials/headers/header-type7.php:48 partials/headers/header.php:47
+msgid "Responsive sidebar menu"
+msgstr "Responsief zijbalkmenu"
+
+#: partials/headers/header-type3.php:47
+msgid "Responsive Sidebar Menu"
+msgstr "Responsief zijbalkmenu"
+
+#: partials/sub-footer.php:22
+msgid "Sub Footer "
+msgstr "Subvoettekst"
+
+#: partials/sub-footer.php:28
+#, php-format
+msgid "%1$s %2$s %3$s. All rights reserved."
+msgstr "%1$s %2$s %3$s. Alle rechten voorbehouden."
+
+#: search.php:35
+#, php-format
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#: single.php:38
+msgid "Previous:"
+msgstr "Vorig:"
+
+#: single.php:39
+msgid "Next:"
+msgstr "Volgende:"
+
+#: woocommerce/checkout/form-checkout.php:26
+msgid "You must be logged in to checkout."
+msgstr "U moet ingelogd zijn om af te rekenen."
+
+#: woocommerce/checkout/form-checkout.php:57
+msgid "Your order"
+msgstr "Uw bestelling"
+
+#: woocommerce/checkout/form-coupon.php:27
+msgid "Have a coupon?"
+msgstr "Heeft u een kortingsbon?"
+
+#: woocommerce/checkout/form-coupon.php:27
+msgid "Click here to enter your code"
+msgstr "Klik hier om uw code in te voeren"
+
+#: woocommerce/checkout/form-coupon.php:32
+msgid "If you have a coupon code, please apply it below."
+msgstr "Als u een couponcode heeft, kunt u deze hieronder toepassen."
+
+#: woocommerce/checkout/form-coupon.php:35
+msgid "Coupon:"
+msgstr "Coupon:"
+
+#: woocommerce/checkout/form-coupon.php:36
+msgid "Coupon code"
+msgstr "Couponcode"
+
+#: woocommerce/checkout/form-coupon.php:40
+msgid "Apply coupon"
+msgstr "Kortingsbon toepassen"

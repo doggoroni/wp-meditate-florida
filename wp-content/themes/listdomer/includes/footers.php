@@ -25,7 +25,6 @@ class LSDR_Footers extends LSDR_Base
                 'label' => esc_html__('Footer Type', 'listdomer'),
                 'settings' => 'listdomer_footer_type',
                 'section' => 'listdomer_footer',
-                'description' => esc_html__('You need listdomer pro version to see all footer types.', 'listdomer'),
                 'type' => 'select',
                 'choices' => LSDR_Footers::all(),
             ]
@@ -40,6 +39,8 @@ class LSDR_Footers extends LSDR_Base
             'type3' => esc_html__('Type 3', 'listdomer'),
             'type4' => esc_html__('Type 4', 'listdomer'),
             'type5' => esc_html__('Type 5', 'listdomer'),
+            'type6' => esc_html__('Type 6', 'listdomer'),
+            'type7' => esc_html__('Type 7', 'listdomer'),
             'tiny' => esc_html__('Tiny', 'listdomer'),
         ];
 

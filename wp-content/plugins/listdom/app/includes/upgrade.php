@@ -40,6 +40,10 @@ class LSD_Upgrade extends LSD_Base
         if (version_compare($version, '4.5.0', '<')) $this->v450();
         if (version_compare($version, '4.8.0', '<')) $this->v480();
         if (version_compare($version, '5.2.1', '<')) $this->v521();
+        if (version_compare($version, '5.3.0', '<')) $this->v530();
+
+        // Regenerate personalized CSS after any update
+        LSD_Personalize::generate();
     }
 
     private function socials()
@@ -931,6 +935,64 @@ class LSD_Upgrade extends LSD_Base
                     update_post_meta($listing_id, 'lsd_package', $package_id);
                 }
             }
+        }
+    }
+
+    private function v530()
+    {
+        $shortcode_ids = get_posts([
+            'post_type' => LSD_Base::PTYPE_SHORTCODE,
+            'posts_per_page' => -1,
+            'fields' => 'ids',
+            'post_status' => ['publish', 'pending', 'draft', 'auto-draft', 'future', 'inherit', 'trash'],
+        ]);
+
+        if (!is_array($shortcode_ids) || !count($shortcode_ids)) return;
+
+        $taxonomies = [
+            LSD_Base::TAX_CATEGORY,
+            LSD_Base::TAX_LOCATION,
+            LSD_Base::TAX_FEATURE,
+            LSD_Base::TAX_LABEL,
+            LSD_Base::TAX_TAG,
+        ];
+
+        foreach ($shortcode_ids as $shortcode_id)
+        {
+            $filter = get_post_meta($shortcode_id, 'lsd_filter', true);
+            $exclude = get_post_meta($shortcode_id, 'lsd_exclude', true);
+
+            $filter_changed = false;
+            $exclude_changed = false;
+
+            if (is_array($filter))
+            {
+                foreach ($taxonomies as $tax)
+                {
+                    if (!isset($filter[$tax])) continue;
+
+                    $original = $filter[$tax];
+                    $filter[$tax] = LSD_Taxonomies::ids_to_slugs($tax, $filter[$tax]);
+
+                    if ($filter[$tax] !== $original) $filter_changed = true;
+                }
+            }
+
+            if (is_array($exclude))
+            {
+                foreach ($taxonomies as $tax)
+                {
+                    if (!isset($exclude[$tax])) continue;
+
+                    $original = $exclude[$tax];
+                    $exclude[$tax] = LSD_Taxonomies::ids_to_slugs($tax, $exclude[$tax]);
+
+                    if ($exclude[$tax] !== $original) $exclude_changed = true;
+                }
+            }
+
+            if ($filter_changed) update_post_meta($shortcode_id, 'lsd_filter', $filter);
+            if ($exclude_changed) update_post_meta($shortcode_id, 'lsd_exclude', $exclude);
         }
     }
 }

@@ -11,7 +11,7 @@ class LSDR_Personalize_Buttons extends LSDR_Personalize
      */
     public static function generate(string $CSS = ''): string
     {
-        if (!$CSS) $CSS = file_get_contents(get_template_directory() . '/assets/css/personalized.raw');
+        if (!$CSS) $CSS = file_get_contents(get_template_directory() . '/assets/css/personalized.txt');
 
         $buttons_settings = [
             'primary' => self::buttons('primary'),

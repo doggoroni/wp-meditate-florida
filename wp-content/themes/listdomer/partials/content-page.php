@@ -8,7 +8,7 @@
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <?php LSDR_Post::thumbnail(); ?>
+    <?php LSDR_Post::thumbnail([300, 300]); ?>
 
     <div class="entry-content">
         <?php

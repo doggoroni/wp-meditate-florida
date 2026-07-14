@@ -41,9 +41,12 @@ class LSDRC_Hooks extends LSDRC_Base
     {
         add_action('after_setup_theme', [$this->theme, 'register_block_style']);
         add_action('init', [$this->theme, 'register_block_pattern']);
+        add_action('wp_enqueue_scripts', [$this, 'frontend_assets']);
 
         // Header Button
         add_action('listdomer_header_buttons', [$this->theme, 'header_buttons']);
+        add_action('wp_ajax_lsdrc_logister', [$this->theme, 'ajax_logister']);
+        add_action('wp_ajax_nopriv_lsdrc_logister', [$this->theme, 'ajax_logister']);
 
         // Archive Description
         if (class_exists(LSD_Base::class))
@@ -82,6 +85,21 @@ class LSDRC_Hooks extends LSDRC_Base
 
         add_action('add_meta_boxes', [$this, 'register']);
         add_action('save_post', [$this, 'save'], 10, 2);
+    }
+
+    public function frontend_assets()
+    {
+        wp_enqueue_script(
+            'lsdrc-logister',
+            get_theme_file_uri('/assets/js/logister.min.js'),
+            ['jquery'],
+            LSDRC_VERSION,
+            true
+        );
+
+        wp_localize_script('lsdrc-logister', 'lsdrcLogister', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+        ]);
     }
 
     public function filters()

@@ -1,3 +1,11 @@
+v1.1.26 - 16-February-2026
+- Improvement: Added compatibility for SureCart Product List and Buy Button blocks.
+- Improvement: Enhanced compatibility for Custom Link menu items.
+- Improvement: Resolved image duplication occurring on AI template imports by implementing proper duplicate detection and handling mechanisms.
+
+v1.1.25 - 03-February-2026
+- Improvement: Improved import process logging for better traceability.
+
 v1.1.24 - 30-December-2025
 - Improvement: Implemented mechanism to prevent duplicate WXR import requests, ensuring data integrity and avoiding content duplication.
 - Improvement: Enhanced error handling for site content import.

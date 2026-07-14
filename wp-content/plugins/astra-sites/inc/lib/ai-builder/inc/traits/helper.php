@@ -162,6 +162,8 @@ class Helper {
 			'woo-cart-abandonment-recovery/woo-cart-abandonment-recovery.php',
 			'modern-cart',
 			'modern-cart/modern-cart.php',
+			'power-coupons',
+			'power-coupons/power-coupons.php',
 		);
 
 		return in_array( $plugin, $wc_plugins, true );
@@ -226,13 +228,8 @@ class Helper {
 	 * @return void
 	 */
 	public static function filesystem_permission() {
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		self::verify_ajax_request( 'customize', __( 'You do not have permission to perform this action.', 'astra-sites' ) );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You do not have permission to perform this action.', 'astra-sites' ) );
-			}
-		}
 		$wp_upload_path = wp_upload_dir();
 		$permissions    = array(
 			'is_readable' => false,
@@ -274,18 +271,8 @@ class Helper {
 	 * @return mixed
 	 */
 	public static function required_plugins( $required_plugins = array(), $options = array(), $enabled_extensions = array() ) {
-
-		// Verify Nonce.
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				wp_send_json_error(
-					array(
-						'error' => __( 'Permission Denied!', 'astra-sites' ),
-					)
-				);
-			}
-		}
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification is done in verify_ajax_request().
+		self::verify_ajax_request( 'edit_posts', __( 'Permission Denied!', 'astra-sites' ) );
 
 		$response = array(
 			'active'       => array(),
@@ -333,6 +320,7 @@ class Helper {
 
 		self::success_response( $data );
 		return $data;
+		// phpcs:enable
 	}
 
 	/**
@@ -573,18 +561,18 @@ class Helper {
 	 * @return void
 	 */
 	public static function required_plugin_activate( $init = '', $options = array(), $enabled_extensions = array() ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification is done in verify_ajax_request().
+		self::verify_ajax_request( 'activate_plugins', __( "Error: You don't have the required permissions to activate plugins.", 'astra-sites' ) );
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-			if ( ! current_user_can( 'activate_plugins' ) || ! isset( $_POST['init'] ) || ! sanitize_text_field( $_POST['init'] ) ) {
-				wp_send_json_error(
-					array(
-						'success' => false,
-						'message' => __( "Error: You don't have the required permissions to activate plugins.", 'astra-sites' ),
-					)
-				);
-			}
+		// Additional validation for AJAX requests.
+		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() && ( ! isset( $_POST['init'] ) || ! sanitize_text_field( $_POST['init'] ) ) ) {
+			self::error_response(
+				array(
+					'success' => false,
+					'error'   => __( 'Error: Missing or invalid plugin initialization parameter.', 'astra-sites' ),
+				)
+			);
+			return;
 		}
 
 		Ai_Builder_Error_Handler::Instance()->start_error_handler();
@@ -660,6 +648,7 @@ class Helper {
 		);
 
 		self::success_response( $success_data );
+		// phpcs:enable
 	}
 
 	/**
@@ -669,13 +658,9 @@ class Helper {
 	 */
 	public static function backup_settings() {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Ai_Builder_Importer_Log::add( 'Backing up existing settings', 'info' );
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json_error( __( 'User does not have permission!', 'astra-sites' ) );
-			}
-		}
+		self::verify_ajax_request( 'manage_options', __( 'User does not have permission!', 'astra-sites' ) );
 
 		if ( ! class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			self::error_response( __( 'Required class not found.', 'astra-sites' ) );
@@ -683,6 +668,8 @@ class Helper {
 		}
 
 		$log_file_path = ST_Resetter::backup_settings();
+
+		Ai_Builder_Importer_Log::add( 'Backup completed successfully', 'success', array( 'backup_file' => $log_file_path ) );
 
 		// translators: %s: Log file path.
 		self::success_response( sprintf( __( 'File generated at %s', 'astra-sites' ), $log_file_path ) );
@@ -699,14 +686,10 @@ class Helper {
 	 */
 	public static function import_options( $options_data = array() ) {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Ai_Builder_Importer_Log::add( 'Importing site options', 'info', array( 'options' => $options_data ) );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		self::verify_ajax_request( 'customize' );
+
 		if ( empty( $options_data ) ) {
 			$options_data = astra_get_site_data( 'astra-site-options-data' );
 		}
@@ -737,14 +720,9 @@ class Helper {
 	 */
 	public static function import_widgets( $widgets_data = '' ) {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Ai_Builder_Importer_Log::add( 'Importing widgets', 'info' );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		self::verify_ajax_request( 'customize' );
 
 		$data = astra_get_site_data( 'astra-site-widgets-data' );
 
@@ -775,14 +753,9 @@ class Helper {
 	 */
 	public static function import_end() {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Ai_Builder_Importer_Log::add( 'Finalizing import process', 'info' );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( "Permission denied: You don't have sufficient permissions to import. Please contact your site administrator.", 'astra-sites' ) );
-			}
-		}
+		self::verify_ajax_request( 'customize', __( "Permission denied: You don't have sufficient permissions to import. Please contact your site administrator.", 'astra-sites' ) );
 
 		if ( ! class_exists( 'STImporter\Importer\ST_Importer_File_System' ) ) {
 			self::error_response( __( 'Import failed: ST_Importer_File_System class not found. Please ensure the importer is properly loaded.', 'astra-sites' ) );
@@ -807,14 +780,17 @@ class Helper {
 		}
 
 		// Set permalink structure to use post name.
+		Ai_Builder_Importer_Log::add( 'Setting permalink structure to post name', 'info' );
 		update_option( 'permalink_structure', '/%postname%/' );
 		update_option( 'astra-site-permalink-update-status', 'no' );
 
 		// Safely execute import complete action.
 		try {
+			Ai_Builder_Importer_Log::add( 'Executing import complete actions', 'info' );
 			do_action( 'astra_sites_import_complete', $demo_data );
 		} catch ( \Exception $e ) {
 			astra_sites_error_log( 'Import End: Exception in import_complete action - ' . $e->getMessage() );
+			Ai_Builder_Importer_Log::add( 'Warning: Exception in import_complete action - ' . $e->getMessage(), 'warning' );
 			// Continue execution - don't fail the entire import for hook issues.
 		}
 
@@ -829,16 +805,11 @@ class Helper {
 	 */
 	public static function reset_customizer_data() {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		$customizer_settings = get_option( 'astra-settings', array() );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( 'Resetting customizer data', 'info', array( 'settings_count' => is_array( $customizer_settings ) ? count( $customizer_settings ) : 0 ) );
 
-		Ai_Builder_Importer_Log::add( 'Deleted customizer Settings ' . wp_json_encode( get_option( 'astra-settings', array() ) ) );
+		self::verify_ajax_request( 'customize' );
 
 		if ( ! class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			self::error_response( __( 'Required class not found.', 'astra-sites' ) );
@@ -858,18 +829,11 @@ class Helper {
 	 */
 	public static function reset_site_options() {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
-
 		$options = get_option( '_astra_sites_old_site_options', array() );
 
-		Ai_Builder_Importer_Log::add( 'Deleted - Site Options ' . wp_json_encode( $options ) );
+		Ai_Builder_Importer_Log::add( 'Resetting site options', 'info', array( 'options_count' => is_array( $options ) ? count( $options ) : 0 ) );
+
+		self::verify_ajax_request( 'customize' );
 
 		if ( ! class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			self::error_response( __( 'Required class not found.', 'astra-sites' ) );
@@ -889,17 +853,12 @@ class Helper {
 	 */
 	public static function reset_widgets_data() {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
-
 		// Get all old widget ids.
 		$old_widgets_data = (array) get_option( '_astra_sites_old_widgets_data', array() );
+
+		Ai_Builder_Importer_Log::add( 'Resetting widgets data', 'info', array( 'widgets_count' => count( $old_widgets_data ) ) );
+
+		self::verify_ajax_request( 'customize' );
 
 		if ( ! class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			self::error_response( __( 'Required class not found.', 'astra-sites' ) );
@@ -922,17 +881,13 @@ class Helper {
 	 */
 	public static function import_customizer_settings( $customizer_data = array() ) {
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Ai_Builder_Importer_Log::add( 'Importing customizer settings', 'info', array( 'settings_count' => count( $customizer_data ) ) );
 
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		self::verify_ajax_request( 'customize' );
 
 		if ( empty( $customizer_data ) ) {
 			$customizer_data = astra_get_site_data( 'astra-site-customizer-data' );
+			Ai_Builder_Importer_Log::add( 'Fetched customizer data from site data', 'info', array( 'settings_count' => is_array( $customizer_data ) ? count( $customizer_data ) : 0 ) );
 		}
 
 		if ( empty( $customizer_data ) ) {
@@ -952,7 +907,42 @@ class Helper {
 			return;
 		}
 
+		Ai_Builder_Importer_Log::add( 'Customizer settings imported successfully', 'success' );
+
 		self::success_response();
+	}
+
+	/**
+	 * Verify AJAX request nonce and user capabilities.
+	 *
+	 * This method performs security checks for AJAX requests by verifying the nonce
+	 * and checking if the current user has the required capability.
+	 *
+	 * @param string $capability The required capability. Default 'manage_options'.
+	 * @param string $error_message Custom error message. Default 'You are not allowed to perform this action'.
+	 * @since 1.2.70
+	 * @return void Exits with error response if checks fail.
+	 */
+	public static function verify_ajax_request( $capability = 'manage_options', $error_message = '' ) {
+		// Skip checks if running in WP-CLI.
+		if ( defined( 'WP_CLI' ) || ! wp_doing_ajax() ) {
+			return;
+		}
+
+		// Verify nonce.
+		check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+
+		// Check user capability.
+		if ( ! current_user_can( $capability ) ) {
+			if ( empty( $error_message ) ) {
+				$error_message = __( 'You are not allowed to perform this action', 'astra-sites' );
+			}
+
+			// Log the error.
+			Ai_Builder_Importer_Log::add( $error_message, 'error' );
+
+			wp_send_json_error( $error_message );
+		}
 	}
 
 	/**
@@ -964,6 +954,32 @@ class Helper {
 	 * @return void
 	 */
 	public static function error_response( $data = null ) {
+		// Extract error message for logging.
+		$error_message = '';
+		$context       = array();
+
+		if ( is_array( $data ) ) {
+			if ( isset( $data['error'] ) ) {
+				$error_message = is_string( $data['error'] ) ? $data['error'] : wp_json_encode( $data['error'] );
+			} elseif ( isset( $data['message'] ) ) {
+				$error_message = is_string( $data['message'] ) ? $data['message'] : wp_json_encode( $data['message'] );
+			} elseif ( isset( $data['data'] ) ) {
+				$error_message = is_string( $data['data'] ) ? $data['data'] : wp_json_encode( $data['data'] );
+			} else {
+				$error_message = wp_json_encode( $data );
+			}
+			$context = $data;
+		} else {
+			$error_message = is_string( $data ) ? $data : wp_json_encode( $data );
+		}
+
+		// Determine severity based on error code.
+		$severity      = is_array( $data ) && isset( $data['code'] ) && str_contains( $data['code'], 'fatal' ) ? 'fatal' : 'error';
+		$error_message = $error_message ? $error_message : 'An unknown error occurred.';
+
+		// Log the error with context.
+		Ai_Builder_Importer_Log::add( $error_message, $severity, $context );
+
 		if ( defined( 'WP_CLI' ) ) {
 			$error = is_array( $data ) && isset( $data['error'] ) ? $data['error'] : $data;
 			$error = is_array( $error ) ? wp_json_encode( $error ) : $error;
@@ -983,6 +999,28 @@ class Helper {
 	 * @return void
 	 */
 	public static function success_response( $data = null ) {
+		// Extract success message for logging.
+		$success_message = '';
+		$context         = array();
+
+		if ( is_array( $data ) ) {
+			if ( isset( $data['message'] ) ) {
+				$success_message = is_string( $data['message'] ) ? $data['message'] : wp_json_encode( $data['message'] );
+			} elseif ( isset( $data['data'] ) ) {
+				$success_message = is_string( $data['data'] ) ? $data['data'] : wp_json_encode( $data['data'] );
+			} else {
+				$success_message = wp_json_encode( $data );
+			}
+			$context = $data;
+		} else {
+			$success_message = is_string( $data ) ? $data : wp_json_encode( $data );
+		}
+
+		// Log the success with context.
+		if ( $success_message && 'null' !== $success_message ) {
+			Ai_Builder_Importer_Log::add( $success_message, 'success', $context );
+		}
+
 		if ( defined( 'WP_CLI' ) ) {
 			$message = is_array( $data ) && isset( $data['message'] ) ? $data['message'] : $data;
 			$message = is_array( $message ) ? wp_json_encode( $message ) : $message;

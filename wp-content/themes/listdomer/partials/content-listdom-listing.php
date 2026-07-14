@@ -25,7 +25,7 @@
 </article>
 <?php else: ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class((post_password_required() || !has_post_thumbnail()) ? 'lsdr-no-image' : ''); ?>>
-    <?php LSDR_Post::thumbnail(); ?>
+    <?php LSDR_Post::thumbnail([300, 300]); ?>
 
     <div class="entry-content">
         <header role="banner" class="entry-header">

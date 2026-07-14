@@ -324,13 +324,13 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 			// Load class strings.
 			$this->strings = array(
-				'page_title'                      => __( 'Install Required Plugins', 'listdomer' ),
-				'menu_title'                      => __( 'Install Plugins', 'listdomer' ),
+				'page_title'                      => esc_html__( 'Install Required Plugins', 'listdomer' ),
+				'menu_title'                      => esc_html__( 'Install Plugins', 'listdomer' ),
 				/* translators: %s: plugin name. */
-				'installing'                      => __( 'Installing Plugin: %s', 'listdomer' ),
+				'installing'                      => esc_html__( 'Installing Plugin: %s', 'listdomer' ),
 				/* translators: %s: plugin name. */
-				'updating'                        => __( 'Updating Plugin: %s', 'listdomer' ),
-				'oops'                            => __( 'Something went wrong with the plugin API.', 'listdomer' ),
+				'updating'                        => esc_html__( 'Updating Plugin: %s', 'listdomer' ),
+				'oops'                            => esc_html__( 'Something went wrong with the plugin API.', 'listdomer' ),
                 /* translators: 1: plugin name(s). */
                 'notice_can_install_required'     => _n_noop(
 					'This theme requires the following plugin: %1$s.',
@@ -382,19 +382,19 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 					'Begin activating plugins',
 					'listdomer'
 				),
-				'return'                          => __( 'Return to Required Plugins Installer', 'listdomer' ),
-				'dashboard'                       => __( 'Return to the Dashboard', 'listdomer' ),
-				'plugin_activated'                => __( 'Plugin activated successfully.', 'listdomer' ),
-				'activated_successfully'          => __( 'The following plugin was activated successfully:', 'listdomer' ),
+				'return'                          => esc_html__( 'Return to Required Plugins Installer', 'listdomer' ),
+				'dashboard'                       => esc_html__( 'Return to the Dashboard', 'listdomer' ),
+				'plugin_activated'                => esc_html__( 'Plugin activated successfully.', 'listdomer' ),
+				'activated_successfully'          => esc_html__( 'The following plugin was activated successfully:', 'listdomer' ),
 				/* translators: 1: plugin name. */
-				'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'listdomer' ),
+				'plugin_already_active'           => esc_html__( 'No action taken. Plugin %1$s was already active.', 'listdomer' ),
 				/* translators: 1: plugin name. */
-				'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'listdomer' ),
+				'plugin_needs_higher_version'     => esc_html__( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'listdomer' ),
 				/* translators: 1: dashboard link. */
-				'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'listdomer' ),
-				'dismiss'                         => __( 'Dismiss this notice', 'listdomer' ),
-				'notice_cannot_install_activate'  => __( 'There are one or more required or recommended plugins to install, update or activate.', 'listdomer' ),
-				'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'listdomer' ),
+				'complete'                        => esc_html__( 'All plugins installed and activated successfully. %1$s', 'listdomer' ),
+				'dismiss'                         => esc_html__( 'Dismiss this notice', 'listdomer' ),
+				'notice_cannot_install_activate'  => esc_html__( 'There are one or more required or recommended plugins to install, update or activate.', 'listdomer' ),
+				'contact_admin'                   => esc_html__( 'Please contact the administrator of this site for help.', 'listdomer' ),
 			);
 
 			do_action( 'tgmpa_register' ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
@@ -675,8 +675,8 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				<?php $plugin_table->views(); ?>
 
 				<form id="tgmpa-plugins" action="" method="post">
-					<input type="hidden" name="tgmpa-page" value="<?php echo esc_attr( $this->menu ); ?>" />
-					<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>" />
+					<input type="hidden" name="tgmpa-page" value="<?php echo esc_attr( $this->menu ); ?>">
+					<input type="hidden" name="plugin_status" value="<?php echo esc_attr( $plugin_table->view_context ); ?>">
 					<?php $plugin_table->display(); ?>
 				</form>
 			</div>
@@ -1979,7 +1979,7 @@ if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 				esc_html(
 					sprintf(
 						/* translators: %s: version number */
-						__( 'TGMPA v%s', 'listdomer' ),
+						esc_html__( 'TGMPA v%s', 'listdomer' ),
 						self::TGMPA_VERSION
 					)
 				),
@@ -2270,10 +2270,10 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		protected function get_plugin_advise_type_text( $required ) {
 			if ( true === $required ) {
-				return __( 'Required', 'listdomer' );
+				return esc_html__( 'Required', 'listdomer' );
 			}
 
-			return __( 'Recommended', 'listdomer' );
+			return esc_html__( 'Recommended', 'listdomer' );
 		}
 
 		/**
@@ -2289,13 +2289,13 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			switch ( $type ) {
 				case 'repo':
-					$string = __( 'WordPress Repository', 'listdomer' );
+					$string = esc_html__( 'WordPress Repository', 'listdomer' );
 					break;
 				case 'external':
-					$string = __( 'External Source', 'listdomer' );
+					$string = esc_html__( 'External Source', 'listdomer' );
 					break;
 				case 'bundled':
-					$string = __( 'Pre-Packaged', 'listdomer' );
+					$string = esc_html__( 'Pre-Packaged', 'listdomer' );
 					break;
 			}
 
@@ -2312,25 +2312,25 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		protected function get_plugin_status_text( $slug ) {
 			if ( ! $this->tgmpa->is_plugin_installed( $slug ) ) {
-				return __( 'Not Installed', 'listdomer' );
+				return esc_html__( 'Not Installed', 'listdomer' );
 			}
 
 			if ( ! $this->tgmpa->is_plugin_active( $slug ) ) {
-				$install_status = __( 'Installed But Not Activated', 'listdomer' );
+				$install_status = esc_html__( 'Installed But Not Activated', 'listdomer' );
 			} else {
-				$install_status = __( 'Active', 'listdomer' );
+				$install_status = esc_html__( 'Active', 'listdomer' );
 			}
 
 			$update_status = '';
 
 			if ( $this->tgmpa->does_plugin_require_update( $slug ) && false === $this->tgmpa->does_plugin_have_update( $slug ) ) {
-				$update_status = __( 'Required Update not Available', 'listdomer' );
+				$update_status = esc_html__( 'Required Update not Available', 'listdomer' );
 
 			} elseif ( $this->tgmpa->does_plugin_require_update( $slug ) ) {
-				$update_status = __( 'Requires Update', 'listdomer' );
+				$update_status = esc_html__( 'Requires Update', 'listdomer' );
 
 			} elseif ( false !== $this->tgmpa->does_plugin_have_update( $slug ) ) {
-				$update_status = __( 'Update recommended', 'listdomer' );
+				$update_status = esc_html__( 'Update recommended', 'listdomer' );
 			}
 
 			if ( '' === $update_status ) {
@@ -2444,7 +2444,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		public function column_cb( $item ) {
 			return sprintf(
-				'<input type="checkbox" name="%1$s[]" value="%2$s" id="%3$s" />',
+				'<input type="checkbox" name="%1$s[]" value="%2$s" id="%3$s">',
 				esc_attr( $this->_args['singular'] ),
 				esc_attr( $item['slug'] ),
 				esc_attr( $item['sanitized_plugin'] )
@@ -2487,7 +2487,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				}
 
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . __( 'Installed version:', 'listdomer' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Installed version:', 'listdomer' ) . '</p>',
 					$color,
 					$installed
 				);
@@ -2495,7 +2495,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			if ( ! empty( $item['minimum_version'] ) ) {
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;">%1$s</span>' . __( 'Minimum required version:', 'listdomer' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;">%1$s</span>' . esc_html__( 'Minimum required version:', 'listdomer' ) . '</p>',
 					$item['minimum_version']
 				);
 			}
@@ -2507,7 +2507,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				}
 
 				$output[] = sprintf(
-					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . __( 'Available version:', 'listdomer' ) . '</p>',
+					'<p><span style="min-width: 32px; text-align: right; float: right;%1$s">%2$s</span>' . esc_html__( 'Available version:', 'listdomer' ) . '</p>',
 					$color,
 					$item['available_version']
 				);
@@ -2543,15 +2543,15 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 		 */
 		public function get_columns() {
 			$columns = array(
-				'cb'     => '<input type="checkbox" />',
-				'plugin' => __( 'Plugin', 'listdomer' ),
-				'source' => __( 'Source', 'listdomer' ),
-				'type'   => __( 'Type', 'listdomer' ),
+				'cb'     => '<input type="checkbox">',
+				'plugin' => esc_html__( 'Plugin', 'listdomer' ),
+				'source' => esc_html__( 'Source', 'listdomer' ),
+				'type'   => esc_html__( 'Type', 'listdomer' ),
 			);
 
 			if ( 'all' === $this->view_context || 'update' === $this->view_context ) {
-				$columns['version'] = __( 'Version', 'listdomer' );
-				$columns['status']  = __( 'Status', 'listdomer' );
+				$columns['version'] = esc_html__( 'Version', 'listdomer' );
+				$columns['status']  = esc_html__( 'Status', 'listdomer' );
 			}
 
 			return apply_filters( 'tgmpa_table_columns', $columns ); // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
@@ -2600,18 +2600,18 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			// Display the 'Install' action link if the plugin is not yet available.
 			if ( ! $this->tgmpa->is_plugin_installed( $item['slug'] ) ) {
 				/* translators: %2$s: plugin name in screen reader markup */
-				$actions['install'] = __( 'Install %2$s', 'listdomer' );
+				$actions['install'] = esc_html__( 'Install %2$s', 'listdomer' );
 			} else {
 				// Display the 'Update' action link if an update is available and WP complies with plugin minimum.
 				if ( false !== $this->tgmpa->does_plugin_have_update( $item['slug'] ) && $this->tgmpa->can_plugin_update( $item['slug'] ) ) {
 					/* translators: %2$s: plugin name in screen reader markup */
-					$actions['update'] = __( 'Update %2$s', 'listdomer' );
+					$actions['update'] = esc_html__( 'Update %2$s', 'listdomer' );
 				}
 
 				// Display the 'Activate' action link, but only if the plugin meets the minimum version.
 				if ( $this->tgmpa->can_plugin_activate( $item['slug'] ) ) {
 					/* translators: %2$s: plugin name in screen reader markup */
-					$actions['activate'] = __( 'Activate %2$s', 'listdomer' );
+					$actions['activate'] = esc_html__( 'Activate %2$s', 'listdomer' );
 				}
 			}
 
@@ -2714,16 +2714,16 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			if ( 'update' !== $this->view_context && 'activate' !== $this->view_context ) {
 				if ( current_user_can( 'install_plugins' ) ) {
-					$actions['tgmpa-bulk-install'] = __( 'Install', 'listdomer' );
+					$actions['tgmpa-bulk-install'] = esc_html__( 'Install', 'listdomer' );
 				}
 			}
 
 			if ( 'install' !== $this->view_context ) {
 				if ( current_user_can( 'update_plugins' ) ) {
-					$actions['tgmpa-bulk-update'] = __( 'Update', 'listdomer' );
+					$actions['tgmpa-bulk-update'] = esc_html__( 'Update', 'listdomer' );
 				}
 				if ( current_user_can( 'activate_plugins' ) ) {
-					$actions['tgmpa-bulk-activate'] = __( 'Activate', 'listdomer' );
+					$actions['tgmpa-bulk-activate'] = esc_html__( 'Activate', 'listdomer' );
 				}
 			}
 
@@ -2754,9 +2754,9 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				// Did user actually select any plugins to install/update ?
 				if ( empty( $_POST['plugin'] ) ) {
 					if ( 'install' === $install_type ) {
-						$message = __( 'No plugins were selected to be installed. No action taken.', 'listdomer' );
+						$message = esc_html__( 'No plugins were selected to be installed. No action taken.', 'listdomer' );
 					} else {
-						$message = __( 'No plugins were selected to be updated. No action taken.', 'listdomer' );
+						$message = esc_html__( 'No plugins were selected to be updated. No action taken.', 'listdomer' );
 					}
 
 					echo '<div id="message" class="error"><p>', esc_html( $message ), '</p></div>';
@@ -2797,9 +2797,9 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				// No need to proceed further if we have no plugins to handle.
 				if ( empty( $plugins_to_install ) ) {
 					if ( 'install' === $install_type ) {
-						$message = __( 'No plugins are available to be installed at this time.', 'listdomer' );
+						$message = esc_html__( 'No plugins are available to be installed at this time.', 'listdomer' );
 					} else {
-						$message = __( 'No plugins are available to be updated at this time.', 'listdomer' );
+						$message = esc_html__( 'No plugins are available to be updated at this time.', 'listdomer' );
 					}
 
 					echo '<div id="message" class="error"><p>', esc_html( $message ), '</p></div>';
@@ -3155,8 +3155,8 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 					 * @since 2.2.0
 					 */
 					public function activate_strings() {
-						$this->strings['activation_failed']  = __( 'Plugin activation failed.', 'listdomer' );
-						$this->strings['activation_success'] = __( 'Plugin activated successfully.', 'listdomer' );
+						$this->strings['activation_failed']  = esc_html__( 'Plugin activation failed.', 'listdomer' );
+						$this->strings['activation_success'] = esc_html__( 'Plugin activated successfully.', 'listdomer' );
 					}
 
 					/**
@@ -3311,7 +3311,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						 *     @type string $action   Type of action. Default 'update'.
 						 *     @type string $type     Type of update process. Accepts 'plugin', 'theme', or 'core'.
 						 *     @type bool   $bulk     Whether the update process is a bulk update. Default true.
-						 *     @type array  $packages Array of plugin, theme, or core packages to update.
+                                                 *     @type array  $plugins  Array of plugin packages to update.
 						 * }
 						 */
 						do_action( 'upgrader_process_complete', $this, array( // phpcs:ignore WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound
@@ -3383,7 +3383,7 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 								$activate = activate_plugin( $plugin_info );
 
 								// Adjust the success string based on the activation result.
-								$this->strings['process_success'] = $this->strings['process_success'] . "<br />\n";
+								$this->strings['process_success'] = $this->strings['process_success'] . "<br>\n";
 
 								if ( is_wp_error( $activate ) ) {
 									$this->skin->error( $activate );
@@ -3495,29 +3495,29 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						if ( 'update' === $this->options['install_type'] ) {
 							parent::add_strings();
 							/* translators: 1: plugin name, 2: action number 3: total number of actions. */
-							$this->upgrader->strings['skin_before_update_header'] = __( 'Updating Plugin %1$s (%2$d/%3$d)', 'listdomer' );
+							$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Updating Plugin %1$s (%2$d/%3$d)', 'listdomer' );
 						} else {
-							/* translators: 1: plugin name, 2: error message. */
-							$this->upgrader->strings['skin_update_failed_error'] = __( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'listdomer' );
+                                                        /* translators: 1: plugin name, 2: error message. */
+                                                        $this->upgrader->strings['skin_update_failed_error'] = wp_kses_post( __( 'An error occurred while installing %1$s: <strong>%2$s</strong>.', 'listdomer' ) );
 							/* translators: 1: plugin name. */
-							$this->upgrader->strings['skin_update_failed'] = __( 'The installation of %1$s failed.', 'listdomer' );
+							$this->upgrader->strings['skin_update_failed'] = esc_html__( 'The installation of %1$s failed.', 'listdomer' );
 
 							if ( $this->tgmpa->is_automatic ) {
 								// Automatic activation strings.
-								$this->upgrader->strings['skin_upgrade_start'] = __( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'listdomer' );
+								$this->upgrader->strings['skin_upgrade_start'] = esc_html__( 'The installation and activation process is starting. This process may take a while on some hosts, so please be patient.', 'listdomer' );
 								/* translators: 1: plugin name. */
-								$this->upgrader->strings['skin_update_successful'] = __( '%1$s installed and activated successfully.', 'listdomer' );
-								$this->upgrader->strings['skin_upgrade_end']       = __( 'All installations and activations have been completed.', 'listdomer' );
+								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%1$s installed and activated successfully.', 'listdomer' );
+								$this->upgrader->strings['skin_upgrade_end']       = esc_html__( 'All installations and activations have been completed.', 'listdomer' );
 								/* translators: 1: plugin name, 2: action number 3: total number of actions. */
-								$this->upgrader->strings['skin_before_update_header'] = __( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'listdomer' );
+								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing and Activating Plugin %1$s (%2$d/%3$d)', 'listdomer' );
 							} else {
 								// Default installation strings.
-								$this->upgrader->strings['skin_upgrade_start'] = __( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'listdomer' );
+								$this->upgrader->strings['skin_upgrade_start'] = esc_html__( 'The installation process is starting. This process may take a while on some hosts, so please be patient.', 'listdomer' );
 								/* translators: 1: plugin name. */
 								$this->upgrader->strings['skin_update_successful'] = esc_html__( '%1$s installed successfully.', 'listdomer' );
-								$this->upgrader->strings['skin_upgrade_end']       = __( 'All installations have been completed.', 'listdomer' );
+								$this->upgrader->strings['skin_upgrade_end']       = esc_html__( 'All installations have been completed.', 'listdomer' );
 								/* translators: 1: plugin name, 2: action number 3: total number of actions. */
-								$this->upgrader->strings['skin_before_update_header'] = __( 'Installing Plugin %1$s (%2$d/%3$d)', 'listdomer' );
+								$this->upgrader->strings['skin_before_update_header'] = esc_html__( 'Installing Plugin %1$s (%2$d/%3$d)', 'listdomer' );
 							}
 						}
 					}

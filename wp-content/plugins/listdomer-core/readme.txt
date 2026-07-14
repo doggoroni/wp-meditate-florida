@@ -5,7 +5,7 @@ Tags: Business Directory, Listings, Classifieds, Listdom, Listdomer
 Requires at least: 4.2
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: 4.0.1
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,10 @@ For installing Listdomer Core please follow below steps:
 2. Home Page
 
 == Changelog ==
+
+= 4.1.0 - February 25th, 2026 =
+* Added City Portal demo.
+* Updated all existing demos.
 
 = 4.0.1 - February 1st, 2026 =
 * Fixed some issues in content of demos.

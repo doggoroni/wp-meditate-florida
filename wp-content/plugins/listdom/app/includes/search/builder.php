@@ -39,7 +39,7 @@ class LSD_Search_Builder extends LSD_Base
         if (!in_array(LSD_Base::TAX_CATEGORY, $existings)) $fields[] = [
             'type' => 'taxonomy',
             'key' => LSD_Base::TAX_CATEGORY,
-            'title' => esc_html__('Categories', 'listdom'),
+            'title' => esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY, 'plural')),
             'methods' => $this->getFieldMethods('taxonomy', LSD_Base::TAX_CATEGORY),
         ];
 
@@ -47,7 +47,7 @@ class LSD_Search_Builder extends LSD_Base
         if (!in_array(LSD_Base::TAX_LOCATION, $existings)) $fields[] = [
             'type' => 'taxonomy',
             'key' => LSD_Base::TAX_LOCATION,
-            'title' => esc_html__('Locations', 'listdom'),
+            'title' => esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural')),
             'methods' => $this->getFieldMethods('taxonomy', LSD_Base::TAX_LOCATION),
         ];
 
@@ -55,7 +55,7 @@ class LSD_Search_Builder extends LSD_Base
         if (!in_array(LSD_Base::TAX_TAG, $existings)) $fields[] = [
             'type' => 'taxonomy',
             'key' => LSD_Base::TAX_TAG,
-            'title' => esc_html__('Tags', 'listdom'),
+            'title' => esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')),
             'methods' => $this->getFieldMethods('taxonomy', LSD_Base::TAX_TAG),
         ];
 
@@ -63,7 +63,7 @@ class LSD_Search_Builder extends LSD_Base
         if (!in_array(LSD_Base::TAX_FEATURE, $existings)) $fields[] = [
             'type' => 'taxonomy',
             'key' => LSD_Base::TAX_FEATURE,
-            'title' => esc_html__('Features', 'listdom'),
+            'title' => esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')),
             'methods' => $this->getFieldMethods('taxonomy', LSD_Base::TAX_FEATURE),
         ];
 
@@ -71,7 +71,7 @@ class LSD_Search_Builder extends LSD_Base
         if (!in_array(LSD_Base::TAX_LABEL, $existings)) $fields[] = [
             'type' => 'taxonomy',
             'key' => LSD_Base::TAX_LABEL,
-            'title' => esc_html__('Labels', 'listdom'),
+            'title' => esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')),
             'methods' => $this->getFieldMethods('taxonomy', LSD_Base::TAX_LABEL),
         ];
 

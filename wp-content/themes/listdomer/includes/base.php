@@ -11,12 +11,12 @@ class LSDR_Base
      * @return array {
      *  @type string $short The truncated or original description.
      *  @type string $full The original full description.
-     *  @type bool $show_more_needed Whether "Show More" is needed.
+     *  @type bool $is_show_more Whether "Show More" is needed.
      * }
      */
     public static function lsd_get_trimmed_description(string $description, int $max_chars = 300): array
     {
-        $plain_text = strip_tags($description);
+        $plain_text = wp_strip_all_tags($description);
         $needs_truncation = mb_strlen($plain_text) > $max_chars;
 
         return [

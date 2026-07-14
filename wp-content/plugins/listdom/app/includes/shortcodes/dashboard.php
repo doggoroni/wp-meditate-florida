@@ -420,6 +420,14 @@ class LSD_Shortcodes_Dashboard extends LSD_Shortcodes
         // Field is required
         if (isset($this->settings['submission_fields'][$field]['required']) && $this->settings['submission_fields'][$field]['required']) $required = true;
 
+        if ($required && isset($this->settings['submission_contact_fields']) && is_array($this->settings['submission_contact_fields']))
+        {
+            $contact_fields = $this->settings['submission_contact_fields'];
+            $contact_field_keys = ['email', 'phone', 'website', 'contact_address'];
+
+            if (in_array($field, $contact_field_keys, true) && isset($contact_fields[$field]) && !$contact_fields[$field]) $required = false;
+        }
+
         // Apply Filters
         return apply_filters('lsd_dashboard_field_required', $required, $field);
     }
@@ -690,9 +698,13 @@ class LSD_Shortcodes_Dashboard extends LSD_Shortcodes
         $lsd = $_POST['lsd'] ?? [];
         $social = $lsd['sc'] ?? []; // Social
         $tax = isset($_POST['tax_input']) && is_array($_POST['tax_input']) ? $_POST['tax_input'] : [];
-        $lsd['listing_categories'] = isset($lsd['listing_categories']) && is_array($lsd['listing_categories'])
+        $listing_categories = isset($lsd['listing_categories']) && is_array($lsd['listing_categories'])
             ? array_values(array_filter(array_map('intval', $lsd['listing_categories'])))
             : [];
+        $additional_categories = isset($lsd['additional_categories']) && is_array($lsd['additional_categories'])
+            ? array_values(array_filter(array_map('intval', $lsd['additional_categories'])))
+            : [];
+        $lsd['listing_categories'] = array_values(array_unique(array_merge($listing_categories, $additional_categories)));
 
         $consent = isset($lsd['privacy_consent']) ? sanitize_text_field($lsd['privacy_consent']) : '';
         $consent_enabled = LSD_Privacy::is_consent_enabled('dashboard');
@@ -1121,35 +1133,50 @@ class LSD_Shortcodes_Dashboard extends LSD_Shortcodes
         // Sanitization
         array_walk_recursive($lsd, 'sanitize_text_field');
 
+        $profile_fields = LSD_User::profile_edit_fields();
+        $current_user = get_userdata($user_id);
+        if (!($current_user instanceof WP_User)) $this->response(['success' => 0, 'message' => esc_html__('User not found!', 'listdom')]);
+
         // Save the Data
         $user_data = [
             'ID' => $user_id,
             'first_name' => $lsd['first_name'] ?? '',
             'last_name' => $lsd['last_name'] ?? '',
-            'description' => $lsd['bio'] ?? '',
-            'user_email' => $lsd['email'] ?? '',
+            'description' => !empty($profile_fields['bio']) ? ($lsd['bio'] ?? '') : $current_user->description,
+            'user_email' => !empty($profile_fields['email']) ? ($lsd['email'] ?? '') : $current_user->user_email,
         ];
 
         // Update core user fields
         wp_update_user($user_data);
 
-        $meta_keys = [
-            'lsd_job_title' => 'job_title',
-            'lsd_profile_image' => 'profile_image',
-            'lsd_hero_image' => 'hero_image',
-            'lsd_phone' => 'phone',
-            'lsd_mobile' => 'mobile',
-            'lsd_website' => 'website',
-            'lsd_fax' => 'fax',
-            'lsd_facebook' => 'facebook',
-            'lsd_twitter' => 'twitter',
-            'lsd_pinterest' => 'pinterest',
-            'lsd_linkedin' => 'linkedin',
-            'lsd_instagram' => 'instagram',
-            'lsd_whatsapp' => 'whatsapp',
-            'lsd_youtube' => 'youtube',
-            'lsd_tiktok' => 'tiktok',
-            'lsd_telegram' => 'telegram',
+        $meta_keys = [];
+
+        if (!empty($profile_fields['profile_image'])) $meta_keys['lsd_profile_image'] = 'profile_image';
+        if (!empty($profile_fields['hero_image'])) $meta_keys['lsd_hero_image'] = 'hero_image';
+        if (!empty($profile_fields['job_title'])) $meta_keys['lsd_job_title'] = 'job_title';
+        if (!empty($profile_fields['phone'])) $meta_keys['lsd_phone'] = 'phone';
+        if (!empty($profile_fields['mobile'])) $meta_keys['lsd_mobile'] = 'mobile';
+        if (!empty($profile_fields['website'])) $meta_keys['lsd_website'] = 'website';
+        if (!empty($profile_fields['fax'])) $meta_keys['lsd_fax'] = 'fax';
+
+        $social_fields = isset($profile_fields['social']) && is_array($profile_fields['social']) ? $profile_fields['social'] : [];
+
+        foreach ($social_fields as $network => $enabled)
+        {
+            if ((int) $enabled !== 1) continue;
+
+            $network = sanitize_key($network);
+            if ($network === '') continue;
+
+            $field_name = $network;
+            if ($network === 'tiktok' && !isset($lsd[$field_name]) && isset($lsd['Tiktok'])) $field_name = 'Tiktok';
+
+            $meta_keys['lsd_' . $network] = $field_name;
+        }
+
+        $image_meta_keys = [
+            'lsd_profile_image',
+            'lsd_hero_image',
         ];
 
         // Update user meta
@@ -1160,24 +1187,16 @@ class LSD_Shortcodes_Dashboard extends LSD_Shortcodes
                 $value = $lsd[$field_name];
                 update_user_meta($user_id, $meta_key, $value);
 
-                if (in_array($meta_key, ['lsd_profile_image', 'lsd_hero_image'], true))
+                if (in_array($meta_key, $image_meta_keys, true))
                 {
                     if (trim($value) !== '')
                     {
                         $attachment_id = absint($value);
                         $image_url = $attachment_id ? wp_get_attachment_url($attachment_id) : '';
 
-                        if ($image_url)
-                        {
-                            update_user_meta($user_id, $meta_key . '_blog_id', get_current_blog_id());
-                            update_user_meta($user_id, $meta_key . '_url', $image_url);
-                        }
+                        if ($image_url) update_user_meta($user_id, $meta_key . '_url', $image_url);
                     }
-                    else
-                    {
-                        delete_user_meta($user_id, $meta_key . '_blog_id');
-                        delete_user_meta($user_id, $meta_key . '_url');
-                    }
+                    else delete_user_meta($user_id, $meta_key . '_url');
                 }
             }
         }

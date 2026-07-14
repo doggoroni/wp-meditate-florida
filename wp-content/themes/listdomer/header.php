@@ -33,7 +33,7 @@ $loading_style = LSDR_Settings::get('listdomer_preloader_loading_style');
     <div id="listdomer-preloader-box">
         <div id="listdomer-preloader">
             <?php if (is_array($preloader_logo) && isset($preloader_logo['url']) && trim($preloader_logo['url'])): ?>
-                <img src="<?php echo esc_url_raw($preloader_logo['url']); ?>" alt="<?php esc_attr_e('Preloader Icon', 'listdomer'); ?>">
+                <img src="<?php echo esc_url($preloader_logo['url']); ?>" alt="<?php esc_attr_e('Preloader Icon', 'listdomer'); ?>">
             <?php endif; ?>
 
             <?php if ($loading_style === 'spinner'): ?>

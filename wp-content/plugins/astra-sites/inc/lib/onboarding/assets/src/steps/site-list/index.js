@@ -331,7 +331,7 @@ const SiteList = () => {
 				syncPageCount: 0,
 				allSitesData: sites ?? null,
 				categories: categories ?? null,
-				categoriesAndTags: categoriesAndTags,
+				categoriesAndTags: categoriesAndTags ?? null,
 			};
 
 			dispatch( {

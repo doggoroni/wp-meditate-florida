@@ -150,6 +150,46 @@ class LSD_Skins extends LSD_Base
 
         $this->exclude_options = $this->atts['lsd_exclude'] ?? [];
 
+        foreach ([
+            LSD_Base::TAX_CATEGORY,
+            LSD_Base::TAX_LOCATION,
+            LSD_Base::TAX_FEATURE,
+            LSD_Base::TAX_LABEL,
+        ] as $tax)
+        {
+            if (isset($this->filter_options[$tax]))
+            {
+                $this->filter_options[$tax] = LSD_Taxonomies::resolve_term_ids($tax, $this->filter_options[$tax]);
+            }
+
+            if (isset($this->exclude_options[$tax]))
+            {
+                $this->exclude_options[$tax] = LSD_Taxonomies::resolve_term_ids($tax, $this->exclude_options[$tax]);
+            }
+        }
+
+        if (isset($this->filter_options[LSD_Base::TAX_TAG]))
+        {
+            if (is_array($this->filter_options[LSD_Base::TAX_TAG]) || is_numeric($this->filter_options[LSD_Base::TAX_TAG]))
+            {
+                $this->filter_options[LSD_Base::TAX_TAG] = LSD_Taxonomies::resolve_term_ids(
+                    LSD_Base::TAX_TAG,
+                    $this->filter_options[LSD_Base::TAX_TAG]
+                );
+            }
+        }
+
+        if (isset($this->exclude_options[LSD_Base::TAX_TAG]))
+        {
+            if (is_array($this->exclude_options[LSD_Base::TAX_TAG]) || is_numeric($this->exclude_options[LSD_Base::TAX_TAG]))
+            {
+                $this->exclude_options[LSD_Base::TAX_TAG] = LSD_Taxonomies::resolve_term_ids(
+                    LSD_Base::TAX_TAG,
+                    $this->exclude_options[LSD_Base::TAX_TAG]
+                );
+            }
+        }
+
         // Map Controls Options
         $this->mapcontrols = $this->atts['lsd_mapcontrols'] ?? [];
 
@@ -347,77 +387,59 @@ class LSD_Skins extends LSD_Base
     {
         $tax_query = ['relation' => 'AND'];
 
+        $normalize_terms = function (string $taxonomy, $values): array
+        {
+            if (is_array($values))
+            {
+                return LSD_Taxonomies::resolve_term_ids($taxonomy, $values);
+            }
+
+            if (is_scalar($values))
+            {
+                $value = trim((string) $values);
+                if ($value === '') return [];
+
+                $parts = array_map('trim', explode(',', $value));
+                return LSD_Taxonomies::resolve_term_ids($taxonomy, $parts);
+            }
+
+            return [];
+        };
+
         foreach ([
             LSD_Base::TAX_CATEGORY,
             LSD_Base::TAX_LOCATION,
             LSD_Base::TAX_FEATURE,
             LSD_Base::TAX_LABEL,
+            LSD_Base::TAX_TAG,
         ] as $tax)
         {
-            if (isset($this->filter_options[$tax]) && is_array($this->filter_options[$tax]) && count($this->filter_options[$tax]))
+            if (isset($this->filter_options[$tax]))
             {
-                $tax_query[] = [
-                    'taxonomy' => $tax,
-                    'field' => 'term_id',
-                    'terms' => $this->filter_options[$tax],
-                    'operator' => apply_filters('lsd_search_' . $tax . '_operator', 'IN', $tax),
-                ];
+                $terms = $normalize_terms($tax, $this->filter_options[$tax]);
+                if (count($terms))
+                {
+                    $tax_query[] = [
+                        'taxonomy' => $tax,
+                        'field' => 'term_id',
+                        'terms' => $terms,
+                        'operator' => apply_filters('lsd_search_' . $tax . '_operator', 'IN', $tax),
+                    ];
+                }
             }
 
-            if (isset($this->exclude_options[$tax]) && is_array($this->exclude_options[$tax]) && count($this->exclude_options[$tax]))
+            if (isset($this->exclude_options[$tax]))
             {
-                $tax_query[] = [
-                    'taxonomy' => $tax,
-                    'field' => 'term_id',
-                    'terms' => $this->exclude_options[$tax],
-                    'operator' => apply_filters('lsd_search_' . $tax . '_exclude_operator', 'NOT IN', $tax),
-                ];
-            }
-        }
-
-        // Tags Include
-        if (isset($this->filter_options[LSD_Base::TAX_TAG]))
-        {
-            if (is_array($this->filter_options[LSD_Base::TAX_TAG]))
-            {
-                $tax_query[] = [
-                    'taxonomy' => LSD_Base::TAX_TAG,
-                    'field' => 'term_id',
-                    'terms' => $this->filter_options[LSD_Base::TAX_TAG],
-                    'operator' => apply_filters('lsd_search_' . LSD_Base::TAX_TAG . '_operator', 'IN', LSD_Base::TAX_TAG),
-                ];
-            }
-            else if (trim($this->filter_options[LSD_Base::TAX_TAG]))
-            {
-                $tax_query[] = [
-                    'taxonomy' => LSD_Base::TAX_TAG,
-                    'field' => 'name',
-                    'terms' => explode(',', sanitize_text_field(trim($this->filter_options[LSD_Base::TAX_TAG], ', '))),
-                    'operator' => apply_filters('lsd_search_' . LSD_Base::TAX_TAG . '_operator', 'IN', LSD_Base::TAX_TAG),
-                ];
-            }
-        }
-
-        // Tags Exclude
-        if (isset($this->exclude_options[LSD_Base::TAX_TAG]))
-        {
-            if (is_array($this->exclude_options[LSD_Base::TAX_TAG]))
-            {
-                $tax_query[] = [
-                    'taxonomy' => LSD_Base::TAX_TAG,
-                    'field' => 'term_id',
-                    'terms' => $this->exclude_options[LSD_Base::TAX_TAG],
-                    'operator' => apply_filters('lsd_search_' . LSD_Base::TAX_TAG . '_exclude_operator', 'NOT IN', LSD_Base::TAX_TAG),
-                ];
-            }
-            else if (trim($this->exclude_options[LSD_Base::TAX_TAG]))
-            {
-                $tax_query[] = [
-                    'taxonomy' => LSD_Base::TAX_TAG,
-                    'field' => 'name',
-                    'terms' => explode(',', sanitize_text_field(trim($this->exclude_options[LSD_Base::TAX_TAG], ', '))),
-                    'operator' => apply_filters('lsd_search_' . LSD_Base::TAX_TAG . '_exclude_operator', 'NOT IN', LSD_Base::TAX_TAG),
-                ];
+                $terms = $normalize_terms($tax, $this->exclude_options[$tax]);
+                if (count($terms))
+                {
+                    $tax_query[] = [
+                        'taxonomy' => $tax,
+                        'field' => 'term_id',
+                        'terms' => $terms,
+                        'operator' => apply_filters('lsd_search_' . $tax . '_exclude_operator', 'NOT IN', $tax),
+                    ];
+                }
             }
         }
 
@@ -1226,9 +1248,20 @@ class LSD_Skins extends LSD_Base
 
     public function get_not_found_message(): string
     {
-        if (isset($this->settings['no_listings_message']) && trim($this->settings['no_listings_message'])) return do_shortcode(stripslashes($this->settings['no_listings_message']));
+        if (isset($this->settings['no_listings_message']) && trim($this->settings['no_listings_message'])) $message = do_shortcode(stripslashes($this->settings['no_listings_message']));
+        else $message = $this->alert(esc_html__('No Listing Found!', 'listdom'));
 
-        return $this->alert(esc_html__('No Listing Found!', 'listdom'));
+        if ($this->skin === 'table' && method_exists($this, 'get_table_columns_display'))
+        {
+            $display = $this->get_table_columns_display();
+
+            $colspan = isset($display['columns_union']) ? count($display['columns_union']) : 1;
+            if ($colspan < 1) $colspan = 1;
+
+            return '<tr class="lsd-no-listing"><td class="lsd-table-no-listing" colspan="' . esc_attr($colspan) . '">' . $message . '</td></tr>';
+        }
+
+        return $message;
     }
 
     public function get_listing_link_method()

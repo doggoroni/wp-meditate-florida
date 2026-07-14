@@ -167,38 +167,58 @@ class LSD_IX_Mapping extends LSD_IX
                 'default' => [$default, 'url'],
             ],
             LSD_Base::TAX_CATEGORY => [
-                'label' => esc_html__('Listing Category', 'listdom'),
+                'label' => sprintf(esc_html__('Listing %s', 'listdom'), esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY, 'singular'))),
                 'type' => 'text',
                 'mandatory' => false,
-                'description' => esc_html__("A text field should be mapped. Listdom will create a category using the text if one does not exist and assign the listing to that category.", 'listdom'),
+                'description' => sprintf(
+                    esc_html__("A text field should be mapped. Listdom will create a %s using the text if one does not exist and assign the listing to that %s.", 'listdom'),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_CATEGORY, 'singular')),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_CATEGORY, 'singular'))
+                ),
                 'default' => [$default, 'text'],
             ],
             LSD_Base::TAX_LOCATION => [
-                'label' => esc_html__('Listing Locations', 'listdom'),
+                'label' => sprintf(esc_html__('Listing %s', 'listdom'), esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural'))),
                 'type' => 'text',
                 'mandatory' => false,
-                'description' => esc_html__("A text field should be mapped. Listdom will create a location using the text if one does not exist and assign the listing to that location.", 'listdom'),
+                'description' => sprintf(
+                    esc_html__("A text field should be mapped. Listdom will create a %s using the text if one does not exist and assign the listing to that %s.", 'listdom'),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_LOCATION, 'singular')),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_LOCATION, 'singular'))
+                ),
                 'default' => [$default, 'text'],
             ],
             LSD_Base::TAX_TAG => [
-                'label' => esc_html__('Listing Tags', 'listdom'),
+                'label' => sprintf(esc_html__('Listing %s', 'listdom'), esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural'))),
                 'type' => 'text',
                 'mandatory' => false,
-                'description' => esc_html__("A text field should be mapped. Listdom will create a tag using the text if one does not exist and assign the listing to that tag.", 'listdom'),
+                'description' => sprintf(
+                    esc_html__("A text field should be mapped. Listdom will create a %s using the text if one does not exist and assign the listing to that %s.", 'listdom'),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_TAG, 'singular')),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_TAG, 'singular'))
+                ),
                 'default' => [$default, 'text'],
             ],
             LSD_Base::TAX_FEATURE => [
-                'label' => esc_html__('Listing Features', 'listdom'),
+                'label' => sprintf(esc_html__('Listing %s', 'listdom'), esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural'))),
                 'type' => 'text',
                 'mandatory' => false,
-                'description' => esc_html__("A text field should be mapped. Listdom will create a feature using the text if one does not exist and assign the listing to that feature.", 'listdom'),
+                'description' => sprintf(
+                    esc_html__("A text field should be mapped. Listdom will create a %s using the text if one does not exist and assign the listing to that %s.", 'listdom'),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_FEATURE, 'singular')),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_FEATURE, 'singular'))
+                ),
                 'default' => [$default, 'text'],
             ],
             LSD_Base::TAX_LABEL => [
-                'label' => esc_html__('Listing Labels', 'listdom'),
+                'label' => sprintf(esc_html__('Listing %s', 'listdom'), esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural'))),
                 'type' => 'text',
                 'mandatory' => false,
-                'description' => esc_html__("A text field should be mapped. Listdom will create a label using the text if one does not exist and assign the listing to that label.", 'listdom'),
+                'description' => sprintf(
+                    esc_html__("A text field should be mapped. Listdom will create a %s using the text if one does not exist and assign the listing to that %s.", 'listdom'),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_LABEL, 'singular')),
+                    esc_html(lsd_t_label_lc(LSD_Base::TAX_LABEL, 'singular'))
+                ),
                 'default' => [$default, 'text'],
             ],
         ];

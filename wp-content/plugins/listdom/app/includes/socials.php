@@ -95,6 +95,7 @@ class LSD_Socials extends LSD_Base
 
             // Social Network is not Enabled
             if (!$obj || !$obj->option('profile')) continue;
+            if (!LSD_User::is_profile_social_field_enabled($obj->key())) continue;
 
             echo '<tr>';
             echo '<th><label for="lsd_' . $obj->key() . '">' . $obj->label() . '</label></th>';
@@ -114,6 +115,7 @@ class LSD_Socials extends LSD_Base
 
             // Social Network is not Enabled
             if (!$obj || !$obj->option('profile')) continue;
+            if (!LSD_User::is_profile_social_field_enabled($obj->key())) continue;
 
             // Not Set
             if (!isset($_POST['lsd_' . $obj->key()])) continue;

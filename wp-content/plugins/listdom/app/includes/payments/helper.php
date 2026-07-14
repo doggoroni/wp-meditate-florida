@@ -202,4 +202,38 @@ class LSD_Payments_Helper extends LSD_Base
         $stripe = new LSD_Payments_Gateways_Stripe();
         return $stripe->enabled();
     }
+
+    public static function bar_menus()
+    {
+        $bar = LSD_Bar::instance();
+
+        $bar->menu(
+            admin_url('admin.php?page=listdom-settings&tab=payments'),
+            esc_html__('Payment Settings', 'listdom')
+        );
+
+        $bar->menu(
+            admin_url('edit.php?post_type=' . LSD_Base::PTYPE_ORDER),
+            esc_html__('Orders', 'listdom')
+        );
+
+        $bar->menu(
+            admin_url('edit.php?post_type=' . LSD_Base::PTYPE_PLAN),
+            esc_html__('Plans', 'listdom')
+        );
+
+        $bar->menu(
+            admin_url('edit.php?post_type=' . LSD_Base::PTYPE_COUPON),
+            esc_html__('Coupons', 'listdom')
+        );
+
+        $tax = new LSD_Payments_Tax();
+        if ($tax->enabled())
+        {
+            $bar->menu(
+                admin_url('edit-tags.php?taxonomy=' . LSD_Base::TAX_TAX . '&post_type=' . LSD_Base::PTYPE_ORDER),
+                esc_html__('Tax', 'listdom')
+            );
+        }
+    }
 }

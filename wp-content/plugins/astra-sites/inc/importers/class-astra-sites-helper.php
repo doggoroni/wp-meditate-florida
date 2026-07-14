@@ -298,6 +298,32 @@ if ( ! class_exists( 'Astra_Sites_Helper' ) ) :
 		 * @return void
 		 */
 		public static function error_response( $data = null ) {
+			// Extract error message for logging.
+			$error_message = '';
+			$context       = array();
+
+			if ( is_array( $data ) ) {
+				if ( isset( $data['error'] ) ) {
+					$error_message = is_string( $data['error'] ) ? $data['error'] : wp_json_encode( $data['error'] );
+				} elseif ( isset( $data['message'] ) ) {
+					$error_message = is_string( $data['message'] ) ? $data['message'] : wp_json_encode( $data['message'] );
+				} elseif ( isset( $data['data'] ) ) {
+					$error_message = is_string( $data['data'] ) ? $data['data'] : wp_json_encode( $data['data'] );
+				} else {
+					$error_message = wp_json_encode( $data );
+				}
+				$context = $data;
+			} else {
+				$error_message = is_string( $data ) ? $data : wp_json_encode( $data );
+			}
+
+			// Determine severity based on error code.
+			$severity      = is_array( $data ) && isset( $data['code'] ) && str_contains( $data['code'], 'fatal' ) ? 'fatal' : 'error';
+			$error_message = $error_message ? $error_message : 'An unknown error occurred.';
+
+			// Log the error with context.
+			Astra_Sites_Importer_Log::add( $error_message, $severity, $context );
+
 			if ( defined( 'WP_CLI' ) ) {
 				$error = is_array( $data ) && isset( $data['error'] ) ? $data['error'] : $data;
 				$error = is_array( $error ) ? wp_json_encode( $error ) : $error;
@@ -317,6 +343,28 @@ if ( ! class_exists( 'Astra_Sites_Helper' ) ) :
 		 * @return void
 		 */
 		public static function success_response( $data = null ) {
+			// Extract success message for logging.
+			$success_message = '';
+			$context         = array();
+
+			if ( is_array( $data ) ) {
+				if ( isset( $data['message'] ) ) {
+					$success_message = is_string( $data['message'] ) ? $data['message'] : wp_json_encode( $data['message'] );
+				} elseif ( isset( $data['data'] ) ) {
+					$success_message = is_string( $data['data'] ) ? $data['data'] : wp_json_encode( $data['data'] );
+				} else {
+					$success_message = wp_json_encode( $data );
+				}
+				$context = $data;
+			} else {
+				$success_message = is_string( $data ) ? $data : wp_json_encode( $data );
+			}
+
+			// Log the success with context.
+			if ( $success_message && 'null' !== $success_message ) {
+				Astra_Sites_Importer_Log::add( $success_message, 'success', $context );
+			}
+
 			if ( defined( 'WP_CLI' ) ) {
 				$message = is_array( $data ) && isset( $data['message'] ) ? $data['message'] : $data;
 				$message = is_array( $message ) ? wp_json_encode( $message ) : $message;

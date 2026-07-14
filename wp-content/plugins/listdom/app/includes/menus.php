@@ -2,12 +2,12 @@
 
 class LSD_Menus extends LSD_Base
 {
-    protected $dashboard;
-    protected $settings;
-    protected $ix;
-    protected $addons;
-    protected $welcome;
-    protected $licenses;
+    protected LSD_Menus_Dashboard $dashboard;
+    protected LSD_Menus_Settings $settings;
+    protected LSD_Menus_IX $ix;
+    protected LSD_Menus_Addons $addons;
+    protected LSD_Menus_Welcome $welcome;
+    protected LSD_Activation $licenses;
     public $tab;
 
     public function init()
@@ -54,7 +54,7 @@ class LSD_Menus extends LSD_Base
             $payments = esc_html__('Payments', 'listdom');
             if ($pending) $payments .= ' <span class="update-plugins count-' . esc_attr($pending) . '"><span class="update-count">' . esc_html($pending) . '</span></span>';
 
-            add_submenu_page('listdom', esc_html__('Payments', 'listdom'), $payments, 'manage_options', 'edit.php?post_type=' . LSD_Base::PTYPE_ORDER, null, 4.1);
+            add_submenu_page('listdom', esc_html__('Payments', 'listdom'), $payments, 'manage_options', $this->payments_submenu_url(), null, 4.1);
         }
 
         add_submenu_page('listdom', esc_html__('Settings', 'listdom'), esc_html__('Settings', 'listdom'), 'manage_options', 'listdom-settings', [$this->settings, 'output'], 5);
@@ -73,8 +73,8 @@ class LSD_Menus extends LSD_Base
     }
 
     /**
-     * @param $parent_file
-     * @return null|string
+     * @param mixed $parent_file
+     * @return mixed
      */
     public function mainmenu_selection($parent_file)
     {
@@ -97,12 +97,18 @@ class LSD_Menus extends LSD_Base
     }
 
     /**
-     * @param $submenu_file
-     * @return null|string
+     * @param mixed $submenu_file
+     * @return mixed
      */
     public function submenu_selection($submenu_file)
     {
         global $current_screen;
+
+        $post_type = $current_screen->post_type ?? '';
+        $taxonomy = $current_screen->taxonomy ?? '';
+
+        if ($taxonomy === LSD_Base::TAX_TAX)
+            return 'edit-tags.php?taxonomy=' . LSD_Base::TAX_TAX . '&post_type=' . LSD_Base::PTYPE_ORDER;
 
         // Don't do anything if the post type is not Listdom Post Type
         $post_types = [
@@ -115,14 +121,43 @@ class LSD_Menus extends LSD_Base
             LSD_Base::PTYPE_RECURRING,
         ];
 
-        if (!in_array($current_screen->post_type, $post_types, true)) return $submenu_file;
-
-        $post_type = $current_screen->post_type;
-
-        if (in_array($post_type, [LSD_Base::PTYPE_PLAN, LSD_Base::PTYPE_COUPON, LSD_Base::PTYPE_RECURRING], true))
-            return 'edit.php?post_type=' . LSD_Base::PTYPE_ORDER;
+        if (!in_array($post_type, $post_types, true)) return $submenu_file;
 
         return 'edit.php?post_type=' . $post_type;
+    }
+
+    protected function payments_submenu_url(): string
+    {
+        $taxonomy = isset($_GET['taxonomy']) ? sanitize_key(wp_unslash($_GET['taxonomy'])) : '';
+        if ($taxonomy === LSD_Base::TAX_TAX) return 'edit-tags.php?taxonomy=' . LSD_Base::TAX_TAX . '&post_type=' . LSD_Base::PTYPE_ORDER;
+
+        $post_type = $this->payment_post_type_from_request();
+        if ($post_type !== '') return 'edit.php?post_type=' . $post_type;
+
+        return 'edit.php?post_type=' . LSD_Base::PTYPE_ORDER;
+    }
+
+    protected function payment_post_type_from_request(): string
+    {
+        $post_type = isset($_GET['post_type']) ? sanitize_key(wp_unslash($_GET['post_type'])) : '';
+        if ($post_type === '' && isset($_GET['post']))
+        {
+            $post_id = absint(wp_unslash($_GET['post']));
+            if ($post_id)
+            {
+                $detected = get_post_type($post_id);
+                if (is_string($detected)) $post_type = $detected;
+            }
+        }
+
+        if (in_array($post_type, [
+            LSD_Base::PTYPE_PLAN,
+            LSD_Base::PTYPE_ORDER,
+            LSD_Base::PTYPE_COUPON,
+            LSD_Base::PTYPE_RECURRING,
+        ], true)) return $post_type;
+
+        return '';
     }
 
     public function add_separators(): bool

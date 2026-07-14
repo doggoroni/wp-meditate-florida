@@ -5,7 +5,7 @@ Tags: elementor, elementor page builder, elementor addons, elementor widget, ele
 Requires at least: 5.0
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,10 @@ Yes, the free version can be used on unlimited websites. If you're using a premi
 6. Wrapper Link
 
 == Changelog ==
+
+= 1.6.4 =
+* Fixed : Inline script type handling in the Custom CSS/JS Extension.
+* Fixed : Guarded Pro widgets usage in the dashboard.
 
 = 1.6.3 =
 * Fixed : Authentication Error Display Issue.

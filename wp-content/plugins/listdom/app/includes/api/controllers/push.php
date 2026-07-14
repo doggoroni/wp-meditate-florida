@@ -222,6 +222,7 @@ class LSD_API_Controllers_Push extends LSD_API_Controller
                 'message' => $message,
                 'listing' => [
                     'id' => $id,
+                    'url' => get_permalink($id),
                 ],
             ],
             'status' => 200,

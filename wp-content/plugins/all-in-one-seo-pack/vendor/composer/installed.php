@@ -3,7 +3,7 @@
         'name' => 'awesomemotive/all-in-one-seo-pack-pro',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '659de8f83ce225ae3da75026338894f551db36ee',
+        'reference' => '431deb20ad7acd3d6bafb9ef47c7cc1576719a50',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'awesomemotive/all-in-one-seo-pack-pro' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '659de8f83ce225ae3da75026338894f551db36ee',
+            'reference' => '431deb20ad7acd3d6bafb9ef47c7cc1576719a50',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -38,30 +38,6 @@
             'install_path' => __DIR__ . '/../league/html-to-markdown',
             'aliases' => array(),
             'dev_requirement' => false,
-        ),
-        'monolog/monolog' => array(
-            'pretty_version' => '1.27.1',
-            'version' => '1.27.1.0',
-            'reference' => '904713c5929655dc9b97288b69cfeedad610c9a1',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../monolog/monolog',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'psr/log' => array(
-            'pretty_version' => '1.1.4',
-            'version' => '1.1.4.0',
-            'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/log',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'psr/log-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0.0',
-            ),
         ),
         'woocommerce/action-scheduler' => array(
             'pretty_version' => '3.9.3',

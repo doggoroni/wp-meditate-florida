@@ -2,6 +2,131 @@
 
 class LSDRC_Theme extends LSDRC_Base
 {
+    protected $logister_has_errors = false;
+
+    public function ajax_logister()
+    {
+        $logister_errors = new WP_Error();
+        $action = isset($_POST['listdomer_action']) ? sanitize_text_field(wp_unslash($_POST['listdomer_action'])) : '';
+
+        if (!in_array($action, ['login', 'register'], true))
+        {
+            wp_send_json_error([
+                'message' => esc_html__('Invalid request.', 'listdomer-core'),
+            ]);
+        }
+
+        $nonce = isset($_POST['listdomer_logister_nonce']) ? sanitize_text_field(wp_unslash($_POST['listdomer_logister_nonce'])) : '';
+        if (!$nonce || !wp_verify_nonce($nonce, 'listdomer_logister'))
+        {
+            wp_send_json_error([
+                'message' => esc_html__('Security nonce is missing or invalid!', 'listdomer-core'),
+            ]);
+        }
+
+        $current_url = home_url(wp_unslash($_SERVER['REQUEST_URI'] ?? ''));
+        $defaults = [];
+        $args = wp_parse_args([], apply_filters('login_form_defaults', $defaults));
+
+        if ($action === 'login')
+        {
+            $login_redirect_page = LSDRC_Settings::get('listdomer_login_redirect');
+            if ($login_redirect_page) $login_redirect = get_permalink($login_redirect_page);
+            else $login_redirect = '';
+
+            if (!$login_redirect && isset($args['redirect']) && trim($args['redirect'])) $login_redirect = $args['redirect'];
+            if (!$login_redirect) $login_redirect = $current_url;
+
+            $user_login = isset($_POST['log']) ? wp_unslash($_POST['log']) : '';
+            $user_password = isset($_POST['pwd']) ? wp_unslash($_POST['pwd']) : '';
+
+            if ($user_login === '' || $user_password === '')
+            {
+                $logister_errors->add('empty_credentials', esc_html__('Username or password is empty.', 'listdomer-core'));
+            }
+            else
+            {
+                $credentials = [
+                    'user_login' => sanitize_text_field($user_login),
+                    'user_password' => $user_password,
+                    'remember' => isset($_POST['rememberme']),
+                ];
+
+                $user = wp_signon($credentials, is_ssl());
+                if (is_wp_error($user)) $logister_errors = $user;
+            }
+
+            if ($logister_errors->has_errors())
+            {
+                $messages = array_map('wp_kses_post', $logister_errors->get_error_messages());
+                wp_send_json_error([
+                    'message' => implode('<br>', $messages),
+                    'action' => 'login',
+                ]);
+            }
+
+            $requested_redirect_to = isset($_POST['redirect_to']) ? trim(wp_unslash($_POST['redirect_to'])) : '';
+            $redirect_to = $requested_redirect_to !== ''
+                ? wp_validate_redirect($requested_redirect_to, $login_redirect)
+                : $login_redirect;
+
+            // Keep compatibility with plugins/themes that customize post-login routing.
+            $redirect_to = apply_filters('login_redirect', $redirect_to, $requested_redirect_to, $user);
+            $redirect_to = wp_validate_redirect($redirect_to, $login_redirect);
+
+            wp_send_json_success([
+                'message' => esc_html__('Signed in successfully.', 'listdomer-core'),
+                'redirect' => $redirect_to,
+                'action' => 'login',
+            ]);
+        }
+
+        if (!get_option('users_can_register'))
+        {
+            wp_send_json_error([
+                'message' => esc_html__('Registration is disabled.', 'listdomer-core'),
+                'action' => 'register',
+            ]);
+        }
+
+        $register_redirect_page = LSDRC_Settings::get('listdomer_register_redirect');
+        if ($register_redirect_page) $register_redirect = get_permalink($register_redirect_page);
+        else $register_redirect = '';
+
+        if (!$register_redirect && isset($args['redirect']) && trim($args['redirect'])) $register_redirect = $args['redirect'];
+        if (!$register_redirect) $register_redirect = $current_url;
+
+        $user_login = isset($_POST['user_login']) ? wp_unslash($_POST['user_login']) : '';
+        $user_email = isset($_POST['user_email']) ? wp_unslash($_POST['user_email']) : '';
+
+        if (class_exists('LSD_User') && method_exists('LSD_User', 'register'))
+        {
+            $registered = LSD_User::register($user_login, $user_email);
+        }
+        else
+        {
+            $registered = register_new_user($user_login, $user_email);
+        }
+
+        if (is_wp_error($registered))
+        {
+            $messages = array_map('wp_kses_post', $registered->get_error_messages());
+            wp_send_json_error([
+                'message' => implode('<br>', $messages),
+                'action' => 'register',
+            ]);
+        }
+
+        $redirect_to = isset($_POST['redirect_to']) && trim((string) $_POST['redirect_to'])
+            ? wp_validate_redirect(wp_unslash($_POST['redirect_to']), $register_redirect)
+            : $register_redirect;
+
+        wp_send_json_success([
+            'message' => esc_html__('Registration completed. Please check your email.', 'listdomer-core'),
+            'redirect' => $redirect_to,
+            'action' => 'register',
+        ]);
+    }
     public function register_block_pattern()
     {
         register_block_pattern(
@@ -82,7 +207,10 @@ class LSDRC_Theme extends LSDRC_Base
         {
             echo '<div class="listdomer-user">';
             echo '<button class="listdomer-user-button" id="listdomer-user-button" aria-label="' . esc_attr__('Listdomer user button', 'listdomer-core') . '"><span><i class="far fa-user"></i></span></button>';
-            echo '<div class="listdomer-user-logister-wrapper">' . LSDRC_Base::kses($this->logister()) . '</div>';
+            $logister = $this->logister();
+            $logister_class = 'listdomer-user-logister-wrapper';
+            if ($this->logister_has_errors) $logister_class .= ' listdomer-util-show';
+            echo '<div class="' . esc_attr($logister_class) . '">' . LSDRC_Base::kses($logister) . '</div>';
             echo '</div>';
         }
 
@@ -142,6 +270,27 @@ class LSDRC_Theme extends LSDRC_Base
 
     public function logister()
     {
+        $logister_errors = new WP_Error();
+        $logister_action = '';
+        $show_register = false;
+        $request_method = isset($_SERVER['REQUEST_METHOD']) ? sanitize_text_field(wp_unslash($_SERVER['REQUEST_METHOD'])) : '';
+        $current_url = home_url(wp_unslash($_SERVER['REQUEST_URI'] ?? ''));
+
+        if ($request_method === 'POST' && isset($_POST['listdomer_action']))
+        {
+            $logister_action = sanitize_text_field(wp_unslash($_POST['listdomer_action']));
+            if (!in_array($logister_action, ['login', 'register'], true)) $logister_action = '';
+
+            if ($logister_action)
+            {
+                $nonce = isset($_POST['listdomer_logister_nonce']) ? sanitize_text_field(wp_unslash($_POST['listdomer_logister_nonce'])) : '';
+                if (!$nonce || !wp_verify_nonce($nonce, 'listdomer_logister'))
+                {
+                    $logister_errors->add('invalid_nonce', esc_html__('Security nonce is missing or invalid!', 'listdomer-core'));
+                }
+            }
+        }
+
         $defaults = [];
 
         /**
@@ -204,8 +353,54 @@ class LSDRC_Theme extends LSDRC_Base
 
         if (!$login_redirect && isset($args['redirect']) && trim($args['redirect'])) $login_redirect = $args['redirect'];
 
-        $login = '<form name="listdomer-loginform" action="' . esc_url(site_url('wp-login.php', 'login_post')) . '" method="post">
+        if (!$login_redirect) $login_redirect = $current_url;
+
+        if ($logister_action === 'login' && !$logister_errors->has_errors())
+        {
+            $user_login = isset($_POST['log']) ? wp_unslash($_POST['log']) : '';
+            $user_password = isset($_POST['pwd']) ? wp_unslash($_POST['pwd']) : '';
+
+            if ($user_login === '' || $user_password === '')
+            {
+                $logister_errors->add('empty_credentials', esc_html__('Username or password is empty.', 'listdomer-core'));
+            }
+            else
+            {
+                $credentials = [
+                    'user_login' => sanitize_text_field($user_login),
+                    'user_password' => $user_password,
+                    'remember' => isset($_POST['rememberme']),
+                ];
+
+                $user = wp_signon($credentials, is_ssl());
+
+                if (is_wp_error($user)) $logister_errors = $user;
+                else
+                {
+                    $redirect_to = isset($_POST['redirect_to']) && trim((string) $_POST['redirect_to'])
+                        ? wp_validate_redirect(wp_unslash($_POST['redirect_to']), $login_redirect)
+                        : $login_redirect;
+
+                    wp_safe_redirect($redirect_to);
+                    exit;
+                }
+            }
+        }
+
+        $login_form_class = ($logister_action === 'register' && $logister_errors->has_errors()) ? ' class="listdomer-util-hide"' : '';
+        $login_error = '';
+        if ($logister_action === 'login' && $logister_errors->has_errors())
+        {
+            $messages = array_map('wp_kses_post', $logister_errors->get_error_messages());
+            $login_error = '<div class="lsdr-alert lsdr-error">' . implode('<br>', $messages) . '</div>';
+        }
+
+        $login = '<form name="listdomer-loginform"' . $login_form_class . ' action="' . esc_url($current_url) . '" method="post">
+			<input type="hidden" name="listdomer_action" value="login">
+			<input type="hidden" name="listdomer_logister_nonce" value="' . esc_attr(wp_create_nonce('listdomer_logister')) . '">
 			' . $login_form_top . '
+            <div class="listdomer-logister-message"></div>
+			' . $login_error . '
 			
                         <label for="listdomer_header_login_username" class="screen-reader-text">' . esc_html__('Username', 'listdomer-core') . '</label>
 			<input type="text" id="listdomer_header_login_username" name="log" placeholder="' . esc_attr__('Username', 'listdomer-core') . '" value="" size="20">
@@ -244,7 +439,47 @@ class LSDRC_Theme extends LSDRC_Base
 
         if (!$register_redirect && isset($args['redirect']) && trim($args['redirect'])) $register_redirect = $args['redirect'];
 
-        $register = '<form name="listdomer-registerform" class="listdomer-util-hide" action="' . esc_url(site_url('wp-login.php?action=register', 'login_post')) . '" method="post" novalidate="novalidate">
+        if (!$register_redirect) $register_redirect = $current_url;
+
+        if ($logister_action === 'register' && !$logister_errors->has_errors())
+        {
+            $show_register = true;
+            $user_login = isset($_POST['user_login']) ? wp_unslash($_POST['user_login']) : '';
+            $user_email = isset($_POST['user_email']) ? wp_unslash($_POST['user_email']) : '';
+
+            if (class_exists('LSD_User') && method_exists('LSD_User', 'register'))
+            {
+                $registered = LSD_User::register($user_login, $user_email);
+            }
+            else
+            {
+                $registered = register_new_user($user_login, $user_email);
+            }
+
+            if (is_wp_error($registered)) $logister_errors = $registered;
+            else
+            {
+                $redirect_to = isset($_POST['redirect_to']) && trim((string) $_POST['redirect_to'])
+                    ? wp_validate_redirect(wp_unslash($_POST['redirect_to']), $register_redirect)
+                    : $register_redirect;
+
+                wp_safe_redirect($redirect_to);
+                exit;
+            }
+        }
+
+        $register_form_class = ($show_register || ($logister_action === 'register' && $logister_errors->has_errors())) ? '' : ' listdomer-util-hide';
+        $register_error = '';
+        if ($logister_action === 'register' && $logister_errors->has_errors())
+        {
+            $messages = array_map('wp_kses_post', $logister_errors->get_error_messages());
+            $register_error = '<div class="lsdr-alert lsdr-error">' . implode('<br>', $messages) . '</div>';
+        }
+
+        $register = '<form name="listdomer-registerform" class="' . esc_attr(trim($register_form_class)) . '" action="' . esc_url($current_url) . '" method="post" novalidate="novalidate">
+            <input type="hidden" name="listdomer_action" value="register">
+            <input type="hidden" name="listdomer_logister_nonce" value="' . esc_attr(wp_create_nonce('listdomer_logister')) . '">
+            <div class="listdomer-logister-message"></div>
             
             <label for="listdomer_header_register_username" class="screen-reader-text">' . esc_html__('Username', 'listdomer-core') . '</label>
 			<input type="text" id="listdomer_header_register_username" name="user_login" value="" size="20" autocapitalize="off" placeholder="' . esc_attr__('Username', 'listdomer-core') . '">
@@ -252,7 +487,8 @@ class LSDRC_Theme extends LSDRC_Base
 			<input type="email" id="listdomer_header_register_email" name="user_email" value="" size="25" placeholder="' . esc_attr__('Email', 'listdomer-core') . '">
 			
 			' . $hook . '
-			<div class="listdomer-login-info-box">' . esc_html__('Registration confirmation will be emailed to you.', 'listdomer-core') . '</div>
+			' . $register_error . '
+			<div class="lsdr-alert lsdr-info">' . esc_html__('Registration confirmation will be emailed to you.', 'listdomer-core') . '</div>
 			
 			<input type="hidden" name="redirect_to" value="' . esc_url($register_redirect) . '">
 			<input type="submit" name="wp-submit" value="' . esc_attr__('Register', 'listdomer-core') . '">
@@ -283,6 +519,8 @@ class LSDRC_Theme extends LSDRC_Base
 
         // Filter Social Logins
         $social = apply_filters('lsdrc_header_social_logins', $social);
+
+        $this->logister_has_errors = $logister_errors->has_errors();
 
         return trim($login . $register . $social);
     }

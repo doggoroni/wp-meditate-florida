@@ -246,6 +246,9 @@ class LSD_Menus_IX_CSV extends LSD_Base
         // Offset & Limit
         $offset = $ix['offset'] ?? 0;
         $limit = $ix['size'] ?? 20;
+        $options = [
+            'hierarchical_terms' => !empty($ix['hierarchical_terms']),
+        ];
 
         $templates = '';
         $dropdown = '';
@@ -273,7 +276,7 @@ class LSD_Menus_IX_CSV extends LSD_Base
         }
 
         $csv = new LSD_IX_CSV();
-        [$count] = $csv->import_by_mapping($path, $ix['mapping'], $offset, $limit, $type);
+        [$count] = $csv->import_by_mapping($path, $ix['mapping'], $offset, $limit, $type, $options);
 
         // Message
         $message = sprintf(

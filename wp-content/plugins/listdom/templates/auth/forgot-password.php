@@ -63,7 +63,7 @@ else
 <?php if ($show_reset): ?>
     <div class="lsd-reset-password-wrapper">
         <div id="<?php echo esc_attr('lsd_reset_password_form_message_' . $instance_id); ?>" class="lsd-reset-password-form-message"></div>
-        <form id="<?php echo esc_attr('lsd-reset-password-' . $instance_id); ?>" method="post">
+        <form id="<?php echo esc_attr('lsd-reset-password-' . $instance_id); ?>" class="lsd-reset-password-form" method="post">
             <?php LSD_Form::nonce('lsd_reset_password_nonce', 'lsd_reset_password_nonce'); ?>
             <?php
             echo LSD_Form::hidden([
@@ -121,7 +121,7 @@ else
 <?php else: ?>
     <div class="lsd-forgot-password-wrapper">
         <div id="<?php echo esc_attr('lsd_forgot_password_form_message_' . $instance_id); ?>" class="lsd-forgot-password-form-message"></div>
-        <form name="lsd-forgot-password" id="<?php echo esc_attr('lsd-forgot-password-' . $instance_id); ?>" method="post">
+        <form name="lsd-forgot-password" id="<?php echo esc_attr('lsd-forgot-password-' . $instance_id); ?>" class="lsd-forgot-password-form" method="post">
             <?php LSD_Form::nonce('lsd_forgot_password_nonce', 'lsd_forgot_password_nonce'); ?>
             <div class="form-group">
                 <?php

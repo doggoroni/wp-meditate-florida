@@ -45,6 +45,7 @@ function ListdomButtonLoader($button) {
         // HTML Elements
         const $wrapper = $(".lsd-search-fields-metabox");
         const $search_style = $('#lsd_search_form_style');
+        const $body = $('body');
         const $btn_add_row = $('#lsd_search_add_row');
         const $btn_more_options = $("#lsd_search_more_options");
         const $btn_delete_row = $('.lsd-search-row-actions-delete');
@@ -59,6 +60,68 @@ function ListdomButtonLoader($button) {
 
         // Disable More Options
         if ($device.find($(".lsd-search-more-options")).length) $btn_more_options.prop('disabled', 'disabled');
+
+        function apply_search_style_classes()
+        {
+            const style = ($search_style.val() || 'default').toString();
+
+            if (style === 'mobile_app')
+            {
+                const active_device = ($builder.data('active-device') || 'desktop').toString();
+                if (active_device !== 'desktop') show_device('desktop', false);
+            }
+
+            const clear_style_classes = function ($element)
+            {
+                const classes = ($element.attr('class') || '')
+                    .split(/\s+/)
+                    .filter((class_name) => class_name && class_name.indexOf('lsd-search-style-') !== 0);
+
+                $element.attr('class', classes.join(' '));
+            };
+
+            clear_style_classes($builder);
+            clear_style_classes($body);
+
+            $builder.addClass('lsd-search-style-' + style);
+            $body.addClass('lsd-search-style-' + style.replace(/_/g, '-'));
+
+            sync_mobile_app_method_options();
+        }
+
+        function sync_mobile_app_method_options($context)
+        {
+            const style = ($search_style.val() || 'default').toString();
+            const is_mobile_app = style === 'mobile_app';
+            const $root = ($context && $context.length) ? $context : $builder;
+
+            $root.find('.lsd-search-method').each(function ()
+            {
+                const $method = $(this);
+                const previous_method = ($method.val() || '').toString();
+                const method_options = $method.data('lsd-method-options') || $method.html();
+
+                if (!$method.data('lsd-method-options')) $method.data('lsd-method-options', method_options);
+
+                $method.html(method_options);
+
+                if (is_mobile_app)
+                {
+                    ['hierarchical', 'dropdown-multiple', 'radio'].forEach(function (method)
+                    {
+                        $method.find('option[value="' + method + '"]').remove();
+                    });
+                }
+
+                if ($method.find('option[value="' + previous_method + '"]').length)
+                {
+                    $method.val(previous_method);
+                    return;
+                }
+
+                if ($method.find('option').length) $method.prop('selectedIndex', 0).trigger('change');
+            });
+        }
 
         function sortable_listeners()
         {
@@ -85,10 +148,7 @@ function ListdomButtonLoader($button) {
         {
             $search_style.off('change').on('change', function ()
             {
-                const style = $search_style.val();
-
-                if (style === 'sidebar') $builder.addClass('lsd-search-style-sidebar');
-                else $builder.removeClass('lsd-search-style-sidebar');
+                apply_search_style_classes();
             }).trigger('change');
 
             $btn_add_row.off('click').on('click', function ()
@@ -164,7 +224,10 @@ function ListdomButtonLoader($button) {
             $field_method.off('change').on('change', function ()
             {
                 method_changed($(this));
-            }).trigger('change');
+            });
+
+            sync_mobile_app_method_options();
+            $field_method.trigger('change');
 
             $all_terms_dropdowns.off('change').on('change', function ()
             {
@@ -337,7 +400,7 @@ function ListdomButtonLoader($button) {
                 });
         }
 
-        function show_device(device)
+        function show_device(device, reset_listeners = true)
         {
             // Device
             $device = $('.lsd-search-fields-device-' + device);
@@ -364,7 +427,7 @@ function ListdomButtonLoader($button) {
             if ($device.find($(".lsd-search-more-options")).length) $btn_more_options.attr('disabled', 'disabled');
             else $btn_more_options.removeAttr('disabled');
 
-            setListeners();
+            if (reset_listeners) setListeners();
         }
 
         function add_field($row, $field)
@@ -414,7 +477,10 @@ function ListdomButtonLoader($button) {
                             $field.find('.lsd-search-method').on('change', function ()
                             {
                                 method_changed($(this));
-                            }).trigger('change');
+                            });
+
+                            sync_mobile_app_method_options($field);
+                            $field.find('.lsd-search-method').trigger('change');
 
                             $field.find($('.lsd-search-field-all-terms select')).on('change', function ()
                             {

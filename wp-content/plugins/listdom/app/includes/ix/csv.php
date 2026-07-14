@@ -173,7 +173,7 @@ class LSD_IX_CSV extends LSD_IX_Array
         return ucwords($label);
     }
 
-    public function import_by_mapping(string $file, array $mappings, int $offset = 0, int $limit = -1, string $type = 'listings'): array
+    public function import_by_mapping(string $file, array $mappings, int $offset = 0, int $limit = -1, string $type = 'listings', array $options = []): array
     {
         // Libraries
         $importer = new LSD_IX();
@@ -218,7 +218,7 @@ class LSD_IX_CSV extends LSD_IX_Array
             $i++;
 
             // Map Data
-            $results = $taxonomy ? LSD_IX_Array::map_term($row, $mappings, $taxonomy) : LSD_IX_Array::map($row, $mappings);
+            $results = $taxonomy ? LSD_IX_Array::map_term($row, $mappings, $taxonomy, $options) : LSD_IX_Array::map($row, $mappings, $options);
             if (!count($results)) continue;
 
             if ($taxonomy)
@@ -243,7 +243,7 @@ class LSD_IX_CSV extends LSD_IX_Array
 
         if ($taxonomy && count($terms_to_import))
         {
-            $imported_terms = $importer->import_term_collection($terms_to_import, $taxonomy);
+            $imported_terms = $importer->import_term_collection($terms_to_import, $taxonomy, $options);
 
             foreach ($imported_terms as $index => $term_id)
             {

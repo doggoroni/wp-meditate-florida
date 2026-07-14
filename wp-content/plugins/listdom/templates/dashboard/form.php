@@ -26,6 +26,15 @@ $selected_category_id = $category && isset($category->term_id)
 $postType = new LSD_PTypes_Listing();
 
 $gallery_max_size = $this->settings['submission_max_image_upload_size'] ?? '';
+$image_aspect_ratio = $this->settings['submission_image_aspect_ratio'] ?? '';
+$image_aspect_ratio = is_string($image_aspect_ratio) ? trim($image_aspect_ratio) : '';
+$image_aspect_ratio_message = $image_aspect_ratio !== ''
+    ? sprintf(
+        /* translators: %s: Required aspect ratio for images. */
+        esc_html__('Please upload an image with an aspect ratio close to %s.', 'listdom'),
+        $image_aspect_ratio
+    )
+    : '';
 $image_placeholder = LSD_Form::image_placeholder_data('large');
 $image_placeholder_src = $image_placeholder['src'] ?? '';
 
@@ -395,11 +404,13 @@ jQuery(document).ready(function()
                                 </p>
                             </div>
                             <div class="lsd-fe-subsections">
-                                <p class="lsd-fe-description"><?php sprintf(
+                                <?php if ($gallery_max_size): ?>
+                                <p class="lsd-fe-description"><?php echo sprintf(
                                     /* translators: %s: Maximum allowed image size in kilobytes. */
-                                        esc_html__('The uploaded image exceeds the maximum allowed size of %s KB.', 'listdom'),
+                                        esc_html__('The uploaded images cannot exceed the maximum allowed size of %s KB.', 'listdom'),
                                         $gallery_max_size
                                     ); ?></p>
+                                <?php endif; ?>
                                 <?php
                                     $attachment_id = get_post_thumbnail_id($this->post->ID);
 
@@ -407,7 +418,7 @@ jQuery(document).ready(function()
                                     $featured_image = $featured_image[0] ?? '';
                                     $has_featured_image = trim($featured_image) !== '';
                                 ?>
-                                <div class="lsd-col-12" id="lsd_listing_featured_image_message"></div>
+                                <div id="lsd_listing_featured_image_message"></div>
                                 <div id="lsd_dashboard_featured_image_placeholder" class="lsd-image-placeholder<?php echo $has_featured_image ? ' lsd-image-placeholder-has-image' : ''; ?>" data-placeholder="<?php echo esc_attr($image_placeholder_src); ?>">
                                     <div class="lsd-image-placeholder-inner">
                                         <div id="lsd_dashboard_featured_image_preview" class="lsd-image-placeholder-preview<?php echo $has_featured_image ? '' : ' lsd-util-hide'; ?>">
@@ -422,7 +433,7 @@ jQuery(document).ready(function()
                                     </div>
                                 </div>
                                 <input type="hidden" id="lsd_featured_image" name="lsd[featured_image]" value="<?php echo esc_attr($attachment_id); ?>">
-                                <input class="lsd-util-hide" type="file" id="lsd_featured_image_file">
+                                <input class="lsd-util-hide" type="file" id="lsd_featured_image_file" data-aspect-ratio="<?php echo esc_attr($image_aspect_ratio); ?>"<?php echo $image_aspect_ratio_message !== '' ? ' data-aspect-message="' . esc_attr($image_aspect_ratio_message) . '"' : ''; ?>>
                                 <div class="lsd-dashboard-feature-image-remove-wrapper lsd-mt-3">
                                     <span id="lsd_featured_image_remove_button" class="lsd-remove-image-button <?php echo esc_attr($this->get_text_class()); ?> <?php echo $has_featured_image ? '' : 'lsd-util-hide'; ?>">
                                         <?php esc_html_e('Remove Image', 'listdom'); ?>

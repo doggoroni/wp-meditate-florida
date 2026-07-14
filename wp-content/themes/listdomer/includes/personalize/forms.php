@@ -10,7 +10,7 @@ class LSDR_Personalize_Forms extends LSDR_Personalize
      */
     public static function generate(string $CSS = ''): string
     {
-        if (!$CSS) $CSS = file_get_contents(get_template_directory() . '/assets/css/personalized.raw');
+        if (!$CSS) $CSS = file_get_contents(get_template_directory() . '/assets/css/personalized.txt');
 
         $forms_settings = [
             'comment' => self::forms('comment'),

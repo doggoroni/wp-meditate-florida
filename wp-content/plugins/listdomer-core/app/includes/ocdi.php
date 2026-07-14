@@ -14,6 +14,7 @@ class LSDRC_OCDI extends LSDRC_Base
 
         // Before Import
         add_action('ocdi/before_widgets_import', [$this, 'prepare']);
+        add_action('ocdi/before_content_import', [$this, 'listdom']);
 
         // After Import
         add_action('ocdi/after_import', [$this, 'config'], 10);
@@ -57,21 +58,21 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('General', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d1/v2/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d1/v2/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d1/v2/customizer.dat',
+                'import_file_url' => $this->cdn . '/d1/v3/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d1/v3/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d1/v3/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d1/v2/redux.json',
+                        'file_url' => $this->cdn . '/d1/v3/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d1/v2/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d1/v3/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/listdomer-demo',
-                'logo' => $this->cdn . '/d1/v2/logo.png',
-                'site_icon' => $this->cdn . '/d1/v2/site-icon.webp',
-                'listdom' => $this->cdn . '/d1/v2/listdom.json',
-                'elementor' => $this->cdn . '/d1/v2/elementor-kit.zip',
+                'logo' => $this->cdn . '/d1/v3/logo.png',
+                'site_icon' => $this->cdn . '/d1/v3/site-icon.webp',
+                'listdom' => $this->cdn . '/d1/v3/listdom.json',
+                'elementor' => $this->cdn . '/d1/v3/elementor-kit.zip',
             ],
             [
                 'key' => 'demo2',
@@ -79,21 +80,21 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('Real Estate', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d2/v2/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d2/v2/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d2/v2/customizer.dat',
+                'import_file_url' => $this->cdn . '/d2/v3/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d2/v3/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d2/v3/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d2/v2/redux.json',
+                        'file_url' => $this->cdn . '/d2/v3/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d2/v2/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d2/v3/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/real-estate-demo',
-                'logo' => $this->cdn . '/d2/v2/logo.png',
-                'site_icon' => $this->cdn . '/d2/v2/site-icon.webp',
-                'listdom' => $this->cdn . '/d2/v2/listdom.json',
-                'elementor' => $this->cdn . '/d2/v2/elementor-kit.zip',
+                'logo' => $this->cdn . '/d2/v3/logo.png',
+                'site_icon' => $this->cdn . '/d2/v3/site-icon.webp',
+                'listdom' => $this->cdn . '/d2/v3/listdom.json',
+                'elementor' => $this->cdn . '/d2/v3/elementor-kit.zip',
             ],
             [
                 'key' => 'demo3',
@@ -101,21 +102,21 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('General', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d3/v2/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d3/v2/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d3/v2/customizer.dat',
+                'import_file_url' => $this->cdn . '/d3/v3/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d3/v3/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d3/v3/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d3/v2/redux.json',
+                        'file_url' => $this->cdn . '/d3/v3/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d3/v2/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d3/v3/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/business-directory-demo',
-                'logo' => $this->cdn . '/d3/v2/logo.png',
-                'site_icon' => $this->cdn . '/d3/v2/site-icon.webp',
-                'listdom' => $this->cdn . '/d3/v2/listdom.json',
-                'elementor' => $this->cdn . '/d3/v2/elementor-kit.zip',
+                'logo' => $this->cdn . '/d3/v3/logo.png',
+                'site_icon' => $this->cdn . '/d3/v3/site-icon.webp',
+                'listdom' => $this->cdn . '/d3/v3/listdom.json',
+                'elementor' => $this->cdn . '/d3/v3/elementor-kit.zip',
             ],
             [
                 'key' => 'demo4',
@@ -123,21 +124,21 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('Health', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d4/v1/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d4/v1/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d4/v1/customizer.dat',
+                'import_file_url' => $this->cdn . '/d4/v2/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d4/v2/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d4/v2/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d4/v1/redux.json',
+                        'file_url' => $this->cdn . '/d4/v2/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d4/v1/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d4/v2/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/healthdomer',
-                'logo' => $this->cdn . '/d4/v1/logo.png',
-                'site_icon' => $this->cdn . '/d4/v1/site-icon.webp',
-                'listdom' => $this->cdn . '/d4/v1/listdom.json',
-                'elementor' => $this->cdn . '/d4/v1/elementor-kit.zip',
+                'logo' => $this->cdn . '/d4/v2/logo.png',
+                'site_icon' => $this->cdn . '/d4/v2/site-icon.webp',
+                'listdom' => $this->cdn . '/d4/v2/listdom.json',
+                'elementor' => $this->cdn . '/d4/v2/elementor-kit.zip',
             ],
             [
                 'key' => 'demo5',
@@ -145,21 +146,21 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('Tourism', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d5/v1/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d5/v1/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d5/v1/customizer.dat',
+                'import_file_url' => $this->cdn . '/d5/v2/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d5/v2/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d5/v2/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d5/v1/redux.json',
+                        'file_url' => $this->cdn . '/d5/v2/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d5/v1/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d5/v2/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/traveldomer',
-                'logo' => $this->cdn . '/d5/v1/logo.png',
-                'site_icon' => $this->cdn . '/d5/v1/site-icon.webp',
-                'listdom' => $this->cdn . '/d5/v1/listdom.json',
-                'elementor' => $this->cdn . '/d5/v1/elementor-kit.zip',
+                'logo' => $this->cdn . '/d5/v2/logo.png',
+                'site_icon' => $this->cdn . '/d5/v2/site-icon.webp',
+                'listdom' => $this->cdn . '/d5/v2/listdom.json',
+                'elementor' => $this->cdn . '/d5/v2/elementor-kit.zip',
             ],
             [
                 'key' => 'demo6',
@@ -167,21 +168,44 @@ class LSDRC_OCDI extends LSDRC_Base
                 'categories' => [
                     esc_html__('Service', 'listdomer-core'),
                 ],
-                'import_file_url' => $this->cdn . '/d6/v1/' . $content,
-                'import_widget_file_url' => $this->cdn . '/d6/v1/widgets.wie',
-                'import_customizer_file_url' => $this->cdn . '/d6/v1/customizer.dat',
+                'import_file_url' => $this->cdn . '/d6/v2/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d6/v2/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d6/v2/customizer.dat',
                 'import_redux' => [
                     [
-                        'file_url' => $this->cdn . '/d6/v1/redux.json',
+                        'file_url' => $this->cdn . '/d6/v2/redux.json',
                         'option_name' => 'listdomer_theme_settings',
                     ],
                 ],
-                'import_preview_image_url' => $this->cdn . '/d6/v1/preview.png',
+                'import_preview_image_url' => $this->cdn . '/d6/v2/preview.png',
                 'preview_url' => 'https://api.webilia.com/go/servidomer',
-                'logo' => $this->cdn . '/d6/v1/logo.png',
-                'site_icon' => $this->cdn . '/d6/v1/site-icon.webp',
-                'listdom' => $this->cdn . '/d6/v1/listdom.json',
-                'elementor' => $this->cdn . '/d6/v1/elementor-kit.zip',
+                'logo' => $this->cdn . '/d6/v2/logo.png',
+                'site_icon' => $this->cdn . '/d6/v2/site-icon.webp',
+                'listdom' => $this->cdn . '/d6/v2/listdom.json',
+                'elementor' => $this->cdn . '/d6/v2/elementor-kit.zip',
+            ],
+            [
+                'key' => 'demo7',
+                'import_file_name' => esc_html__('City Portal', 'listdomer-core'),
+                'categories' => [
+                    esc_html__('General', 'listdomer-core'),
+                    esc_html__('Tourism', 'listdomer-core'),
+                ],
+                'import_file_url' => $this->cdn . '/d7/v1/' . $content,
+                'import_widget_file_url' => $this->cdn . '/d7/v1/widgets.wie',
+                'import_customizer_file_url' => $this->cdn . '/d7/v1/customizer.dat',
+                'import_redux' => [
+                    [
+                        'file_url' => $this->cdn . '/d7/v1/redux.json',
+                        'option_name' => 'listdomer_theme_settings',
+                    ],
+                ],
+                'import_preview_image_url' => $this->cdn . '/d7/v1/preview.png',
+                'preview_url' => 'https://api.webilia.com/go/city-portal',
+                'logo' => $this->cdn . '/d7/v1/logo.png',
+                'site_icon' => $this->cdn . '/d7/v1/site-icon.webp',
+                'listdom' => $this->cdn . '/d7/v1/listdom.json',
+                'elementor' => $this->cdn . '/d7/v1/elementor-kit.zip',
             ],
         ];
     }
@@ -229,7 +253,7 @@ class LSDRC_OCDI extends LSDRC_Base
             }
 
             // Business Directory, Healthdomer, Traveldomer, Servidomer
-            if ((isset($_GET['import']) && in_array($_GET['import'], ['2', '3', '4', '5'])) || wp_doing_ajax())
+            if ((isset($_GET['import']) && in_array($_GET['import'], ['2', '3', '4', '5', '6'])) || wp_doing_ajax())
             {
                 $demo_plugins[] = [
                     'name' => 'Business Toolkit',
@@ -255,6 +279,18 @@ class LSDRC_OCDI extends LSDRC_Base
         update_option('sidebars_widgets', $empty_widgets);
     }
 
+    public function listdom($demo)
+    {
+        /**
+         * Import Listdom Settings
+         */
+        if (class_exists('LSD_IX_Settings') && isset($demo['listdom']) && wp_http_validate_url($demo['listdom']))
+        {
+            $listdom_path = download_url($demo['listdom'], 60);
+            if (!is_wp_error($listdom_path)) LSD_IX_Settings::import($listdom_path);
+        }
+    }
+
     public function config($demo)
     {
         // Demo Key
@@ -268,15 +304,6 @@ class LSDRC_OCDI extends LSDRC_Base
             'menu-1' => $main->term_id,
             'menu-2' => $footer->term_id,
         ]);
-
-        /**
-         * Import Listdom Settings
-         */
-        if (class_exists('LSD_IX_Settings') && isset($demo['listdom']) && wp_http_validate_url($demo['listdom']))
-        {
-            $listdom_path = download_url($demo['listdom'], 60);
-            if (!is_wp_error($listdom_path)) LSD_IX_Settings::import($listdom_path);
-        }
 
         // General Demo
         if ($key === 'demo1' && class_exists('LSD_Options'))
@@ -623,6 +650,63 @@ class LSDRC_OCDI extends LSDRC_Base
                 'Northbridge Legal Advisors' => 'Professional Services',
             ]);
         }
+        // City Portal
+        else if ($key === 'demo7' && class_exists('LSD_Options'))
+        {
+            // Assign front page and posts page (blog page)
+            $this->wp_pages('Homepage 1');
+
+            /**
+             * Search Forms
+             */
+            $this->searches([
+                'Homepages 1 Search Form' => 'Search',
+                'Menu Search Form' => 'Search',
+                'Homepage Vertical Search Form' => 'Search',
+                '"Places & Attractionss" Search Form - Categories Homepage' => 'Search',
+                '"Health & Wellness" Search Form - Categories Homepage' => 'Search',
+                '"Food & Drink" Search Form - Categories Homepage' => 'Search',
+            ]);
+
+            /**
+             * General Settings
+             */
+            $this->pages([
+                'submission_page' => 'Dashboard',
+            ]);
+
+            /**
+             * Listing Category
+             */
+            $this->listings([
+                'Tapas Lab El Born' => 'Food & Drink',
+                'Café Brisa Gràcia' => 'Food & Drink',
+                'Seafood Terrace Barceloneta' => 'Food & Drink',
+                'Night Bites Poble-sec' => 'Food & Drink',
+                'Eco Bakery Raval' => 'Food & Drink',
+                'Wellness Clinic Eixample' => 'Health & Wellness',
+                'Yoga Studio Poblenou' => 'Health & Wellness',
+                '24h Pharmacy Central' => 'Health & Wellness',
+                'Barcelona City Services Center' => 'Living in the City',
+                'Barcelona Public Transport Info Hub' => 'Living in the City',
+                'Neighborhood Community Resource Center' => 'Living in the City',
+                'BCN Bike Rentals & Tours' => 'Local Services',
+                'HomeFix Repairs Barcelona' => 'Local Services',
+                'Eco Clean Apartments' => 'Local Services',
+                'Sagrada Família Experience Center' => 'Places & Attractions',
+                'Park Güell Viewpoint Walk' => 'Places & Attractions',
+                'Gothic Quarter Hidden Plazas Tour' => 'Places & Attractions',
+                'Montjuïc Castle Panorama' => 'Places & Attractions',
+                'Picasso Museum Collection Hub' => 'Places & Attractions',
+                'Local Market Finds Santa Caterina' => 'Shopping',
+                'Boutique Streetwear Eixample' => 'Shopping',
+                'Neighborhood Grocery Gràcia' => 'Shopping',
+            ]);
+        }
+
+        // Remove Hello World! Post
+        $hello = LSDRC_Base::get_post_by_title('Hello World!');
+        if ($hello instanceof WP_Post) wp_trash_post($hello->ID);
 
         // Listings Geo-point
         if (class_exists(LSD_Main::class) && method_exists(LSD_Main::class, 'update_geopoints'))

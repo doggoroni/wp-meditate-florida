@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Listdomer\n"
-"POT-Creation-Date: 2025-05-11 18:00-0700\n"
-"PO-Revision-Date: 2025-05-11 18:00-0700\n"
+"POT-Creation-Date: 2026-02-20 10:58-0800\n"
+"PO-Revision-Date: 2026-02-23 21:15+0330\n"
 "Last-Translator: Totalery <info@totalery.com>\n"
 "Language-Team: Webilia <info@webilia.com>\n"
 "Language: en_US\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-KeywordsList: "
 "__;_e;esc_html__;esc_html_e;_x;_ex;esc_attr__;esc_attr_e;esc_attr_x;_n;_nx\n"
 "X-Poedit-Basepath: ../..\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: assets\n"
 
 #: 404.php:24
-msgid "Not Found Page"
+msgid "Page Not Found"
 msgstr ""
 
 #: 404.php:27
@@ -54,6 +54,10 @@ msgstr ""
 msgid "Preloader Icon"
 msgstr ""
 
+#: includes/breadcrumb.php:24
+msgid "Breadcrumb"
+msgstr ""
+
 #: includes/dependencies.php:54
 #, php-format
 msgid ""
@@ -69,35 +73,39 @@ msgstr ""
 msgid "Footer Type"
 msgstr ""
 
-#: includes/footers.php:28
-msgid "You need listdomer pro version to see all footer types."
-msgstr ""
-
-#: includes/footers.php:38 includes/headers.php:38
+#: includes/footers.php:37 includes/headers.php:38
 msgid "Type 1"
 msgstr ""
 
-#: includes/footers.php:39 includes/headers.php:39
+#: includes/footers.php:38 includes/headers.php:39
 msgid "Type 2"
 msgstr ""
 
-#: includes/footers.php:40 includes/headers.php:40
+#: includes/footers.php:39 includes/headers.php:40
 msgid "Type 3"
 msgstr ""
 
-#: includes/footers.php:41 includes/headers.php:41
+#: includes/footers.php:40 includes/headers.php:41
 msgid "Type 4"
 msgstr ""
 
-#: includes/footers.php:42 includes/headers.php:42
+#: includes/footers.php:41 includes/headers.php:42
 msgid "Type 5"
 msgstr ""
 
-#: includes/footers.php:43
+#: includes/footers.php:42 includes/headers.php:43
+msgid "Type 6"
+msgstr ""
+
+#: includes/footers.php:43 includes/headers.php:44
+msgid "Type 7"
+msgstr ""
+
+#: includes/footers.php:44
 msgid "Tiny"
 msgstr ""
 
-#: includes/footers.php:47 includes/headers.php:46
+#: includes/footers.php:48 includes/headers.php:48
 msgid "Disabled"
 msgstr ""
 
@@ -109,9 +117,10 @@ msgstr ""
 msgid "You need listdomer pro version to see all header types."
 msgstr ""
 
-#: includes/navs.php:13 partials/headers/header-type2.php:26
-#: partials/headers/header-type3.php:28 partials/headers/header-type4.php:26
-#: partials/headers/header-type5.php:25 partials/headers/header.php:28
+#: includes/navs.php:13 partials/headers/header-type2.php:29
+#: partials/headers/header-type3.php:31 partials/headers/header-type4.php:29
+#: partials/headers/header-type5.php:28 partials/headers/header-type6.php:36
+#: partials/headers/header-type7.php:32 partials/headers/header.php:31
 msgid "Primary"
 msgstr ""
 
@@ -485,11 +494,11 @@ msgstr ""
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: includes/theme.php:262
+#: includes/theme.php:269
 msgid "Previous"
 msgstr ""
 
-#: includes/theme.php:263
+#: includes/theme.php:270
 msgid "Next"
 msgstr ""
 
@@ -516,42 +525,45 @@ msgstr ""
 msgid "Nothing Found"
 msgstr ""
 
-#: partials/content-none.php:22
+#: partials/content-none.php:24
 #, php-format
 msgid ""
 "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: partials/content-none.php:35
+#: partials/content-none.php:38
 msgid ""
 "Sorry, but nothing matched your search terms. Please try again with some "
 "different keywords."
 msgstr ""
 
-#: partials/content-none.php:42
+#: partials/content-none.php:45
 msgid ""
 "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
 "searching can help."
 msgstr ""
 
-#: partials/headers/header-type2.php:27 partials/headers/header-type3.php:29
-#: partials/headers/header-type4.php:27 partials/headers/header-type5.php:27
-#: partials/headers/header.php:29
+#: partials/headers/header-type2.php:30 partials/headers/header-type3.php:32
+#: partials/headers/header-type4.php:30 partials/headers/header-type5.php:30
+#: partials/headers/header-type6.php:37 partials/headers/header-type7.php:33
+#: partials/headers/header.php:32
 msgid "Navigation Close"
 msgstr ""
 
-#: partials/headers/header-type2.php:28 partials/headers/header-type3.php:30
-#: partials/headers/header-type4.php:28 partials/headers/header-type5.php:28
-#: partials/headers/header.php:30
+#: partials/headers/header-type2.php:31 partials/headers/header-type3.php:33
+#: partials/headers/header-type4.php:31 partials/headers/header-type5.php:31
+#: partials/headers/header-type6.php:38 partials/headers/header-type7.php:34
+#: partials/headers/header.php:33
 msgid "Close"
 msgstr ""
 
-#: partials/headers/header-type2.php:42 partials/headers/header-type4.php:42
-#: partials/headers/header-type5.php:42 partials/headers/header.php:44
+#: partials/headers/header-type2.php:45 partials/headers/header-type4.php:45
+#: partials/headers/header-type5.php:45 partials/headers/header-type6.php:52
+#: partials/headers/header-type7.php:48 partials/headers/header.php:47
 msgid "Responsive sidebar menu"
 msgstr ""
 
-#: partials/headers/header-type3.php:44
+#: partials/headers/header-type3.php:47
 msgid "Responsive Sidebar Menu"
 msgstr ""
 
@@ -564,16 +576,16 @@ msgstr ""
 msgid "%1$s %2$s %3$s. All rights reserved."
 msgstr ""
 
-#: search.php:24
+#: search.php:35
 #, php-format
 msgid "Search Results for: %s"
 msgstr ""
 
-#: single-listdom-listing.php:28 single.php:35
+#: single.php:38
 msgid "Previous:"
 msgstr ""
 
-#: single-listdom-listing.php:29 single.php:36
+#: single.php:39
 msgid "Next:"
 msgstr ""
 

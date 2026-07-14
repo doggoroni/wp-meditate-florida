@@ -3,6 +3,18 @@
 defined('ABSPATH') || die();
 ?>
 <div class="lsd-changelog-wrap">
+    <h2>v5.3.0 <span>February 25th, 2026</span></h2>
+    <ul class="lsd-changelog">
+        <li><?php esc_html_e('Added Mobile App style integration to the search builder with filterable search styles and improved desktop tab behavior.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Added hierarchical category and location import support for CSV and Excel mapping.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Added taxonomy label overrides with locale-aware settings and improved label handling across shortcode filters and import mapping.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Added API improvements including the price classes REST endpoint and listing URL in API listing payloads.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Added WP All Import map synchronization support for listing location data.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Improved Frontend Dashboard UX with image aspect ratio controls and clearer maximum image size guidance.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Improved authentication, custom field, and Select2 UI consistency across backend and frontend forms.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Fixed payment flow issues including checkout privacy consent persistence and payments context handling in menus and exports.', 'listdom'); ?></li>
+        <li><?php esc_html_e('Fixed multiple UI and search issues across skins and widgets, including empty-state alerts and taxonomy slug sync behavior.', 'listdom'); ?></li>
+    </ul>
     <h2>v5.2.1 <span>February 1st, 2026</span></h2>
     <ul class="lsd-changelog">
         <li><?php esc_html_e('Added new options to customize Frontend Dashboard menus.', 'listdom'); ?></li>

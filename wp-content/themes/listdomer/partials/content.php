@@ -9,7 +9,7 @@
 ?>
 <article
     id="post-<?php the_ID(); ?>" <?php post_class((post_password_required() || is_attachment() || !has_post_thumbnail()) ? 'lsdr-no-image' : ''); ?>>
-    <?php LSDR_Post::thumbnail(); ?>
+    <?php LSDR_Post::thumbnail([300, 300]); ?>
 
     <div class="entry-content">
         <header role="banner" class="entry-header">
@@ -38,15 +38,15 @@
         <?php
 			if (is_singular())
 			{
-				the_content(sprintf(
-					/* translators: %s: Post Title. */
-					wp_kses(__('Continue reading<span class="screen-reader-text"> "%s"</span>', 'listdomer'), [
-						'span' => [
-							'class' => [],
-						],
-					]),
-					wp_kses_post(get_the_title())
-				));
+                                the_content(sprintf(
+                                        /* translators: %s: Post Title. */
+                                        wp_kses(__('Continue reading<span class="screen-reader-text"> "%s"</span>', 'listdomer'), [
+                                                'span' => [
+                                                        'class' => [],
+                                                ],
+                                        ]),
+                                        wp_kses_post(get_the_title())
+                                ));
 			}
 
 			wp_link_pages([

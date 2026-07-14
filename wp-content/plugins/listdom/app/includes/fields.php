@@ -28,7 +28,7 @@ class LSD_Fields extends LSD_Base
             'availability' => ['label' => esc_html__('Work Hours', 'listdom'), 'enabled' => 1],
             'phone' => ['label' => esc_html__('Phone', 'listdom'), 'enabled' => 1],
             'email' => ['label' => esc_html__('Email', 'listdom'), 'enabled' => 0],
-            'labels' => ['label' => esc_html__('Labels', 'listdom'), 'enabled' => 0],
+            'labels' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')), 'enabled' => 0],
             'website' => ['label' => esc_html__('Website', 'listdom'), 'enabled' => 0],
             'image' => ['label' => esc_html__('Featured Image', 'listdom'), 'enabled' => 0],
             'description' => ['label' => esc_html__('Listing Description', 'listdom'), 'enabled' => 0],
@@ -36,10 +36,10 @@ class LSD_Fields extends LSD_Base
             'price_class' => ['label' => esc_html__('Price Class', 'listdom'), 'enabled' => 0],
             'contact' => ['label' => esc_html__('Contact Address', 'listdom'), 'enabled' => 0],
             'cta' => ['label' => esc_html__('Call to Action', 'listdom'), 'enabled' => 0],
-            'category' => ['label' => esc_html__('Category', 'listdom'), 'enabled' => 0],
-            'tags' => ['label' => esc_html__('Tags', 'listdom'), 'enabled' => 0],
-            'locations' => ['label' => esc_html__('Locations', 'listdom'), 'enabled' => 0],
-            'features' => ['label' => esc_html__('Features', 'listdom'), 'enabled' => 0],
+            'category' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY)), 'enabled' => 0],
+            'tags' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')), 'enabled' => 0],
+            'locations' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural')), 'enabled' => 0],
+            'features' => ['label' => esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')), 'enabled' => 0],
             'map' => ['label' => esc_html__('Map', 'listdom'), 'enabled' => 0],
         ];
 
@@ -288,7 +288,29 @@ class LSD_Fields extends LSD_Base
                 break;
 
             default:
-                $output = lsd_schema()->prop($key);
+                $normalized = strtolower(trim((string) $key));
+                $normalized = preg_replace('/([a-z])([A-Z])/', '$1_$2', $normalized);
+                $normalized = preg_replace('/[\s\-]+/', '_', $normalized);
+                $normalized = preg_replace('/_+/', '_', $normalized);
+
+                $simplified = str_replace('_', '', $normalized);
+
+                $map = [
+                    'website' => 'url',
+                    'web' => 'url',
+                    'site' => 'url',
+                    'link' => 'url',
+                    'socials' => 'sameAs',
+                    'social_links' => 'sameAs',
+                    'sociallinks' => 'sameAs',
+                    'email' => 'email',
+                    'fax' => 'faxNumber',
+                    'opening_hours' => 'openingHours',
+                    'openinghours' => 'openingHours',
+                ];
+
+                if (isset($map[$normalized])) $output = lsd_schema()->prop($map[$normalized]);
+                else if (isset($map[$simplified])) $output = lsd_schema()->prop($map[$simplified]);
                 break;
         }
 
@@ -358,5 +380,4 @@ class LSD_Fields extends LSD_Base
 
         return '';
     }
-
 }

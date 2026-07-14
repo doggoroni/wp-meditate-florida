@@ -48,8 +48,8 @@ foreach ($terms as $term)
         </div>
     <?php else: ?>
         <?php if ($i == 0): ?><div class="lsd-row"><?php endif; ?>
-        <div class="lsd-col-6 lsd-flex lsd-gap-2 lsd-flex-align-items-center" <?php echo LSD_Entity_Attribute::schema($attribute->term_id); ?>>
-            <span class="lsd-attr-key lsd-fe-icon-wrapper">
+        <div class="lsd-col-6" <?php echo LSD_Entity_Attribute::schema($attribute->term_id); ?>>
+            <span class="lsd-attr-key">
                 <?php if (isset($show_icons) && $show_icons): ?><span class="lsd-attr-icon"><?php echo LSD_Kses::element($att->icon()); ?></span><?php endif; ?>
                 <?php if (isset($show_attribute_title) && $show_attribute_title): echo esc_html($attribute->name); ?>: <?php endif; ?>
             </span>

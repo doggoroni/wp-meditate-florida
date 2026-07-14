@@ -114,8 +114,11 @@ const Images = () => {
 	const { nextStep, previousStep } = useNavigateSteps();
 	const [ uploadingImagesCount, setUploadingImagesCount ] = useState( [ 0 ] );
 
-	const { setWebsiteImagesAIStep, setWebsiteTemplateKeywords } =
-		useDispatch( STORE_KEY );
+	const {
+		setWebsiteImagesAIStep,
+		setWebsiteTemplateKeywords,
+		setLoadingNextStep,
+	} = useDispatch( STORE_KEY );
 
 	const [ uploadedImages, setUploadedImages ] = useState( [] );
 
@@ -283,7 +286,7 @@ const Images = () => {
 	const scrollContainerRef = useRef( null );
 	const imageRequestCompleted = useRef( false );
 	const blackListedEngines = useRef( new Set() );
-	const previouslySelected = useRef( selectedImages );
+	// const previouslySelected = useRef( selectedImages );
 	const uploadImagesBtn = useRef( null );
 
 	const { register, handleSubmit, setValue, reset, setFocus, watch } =
@@ -670,7 +673,7 @@ const Images = () => {
 				business_name: businessName,
 				business_category: businessType,
 				site_language: siteLanguage,
-				images: skip ? [] : selImages,
+				images: ! skip || selImages.length > 0 ? selImages : [],
 				keywords,
 				business_address: businessContact?.address || '',
 				business_phone: businessContact?.phone || '',
@@ -688,24 +691,61 @@ const Images = () => {
 		( skip = false ) =>
 		async () => {
 			// Show modal if user clicks Next without selecting images
-			if ( ! skip && ! selectedImages.length ) {
+			if ( skip || ! selectedImages.length ) {
 				setOpenSkipModal( true );
 				return;
 			}
 
-			await handleSaveDetails( selectedImages, skip );
+			// Auto-select top 10 images if user is skipping and has no selections
+			let currentSelectedImages = selectedImages;
+			if ( currentSelectedImages.length === 0 ) {
+				currentSelectedImages = autoSelectTopImages();
+			}
+
+			await handleSaveDetails( currentSelectedImages, skip );
 			clearSessionStorage( USER_KEYWORD );
 			nextStep();
-			if ( skip ) {
-				setWebsiteImagesAIStep( previouslySelected.current ?? [] );
-			}
+
+			// Stores - null value on state -> Commented out.
+			// if ( skip ) {
+			// 	setWebsiteImagesAIStep( previouslySelected.current ?? [] );
+			// }
 		};
 
 	const handleConfirmSkip = async () => {
-		await handleSaveDetails( selectedImages, true );
+		// Auto-select top 10 images if no images are currently selected
+		setLoadingNextStep( true );
+		let currentSelectedImages = selectedImages;
+		if ( currentSelectedImages.length === 0 ) {
+			currentSelectedImages = autoSelectTopImages();
+		}
+
+		await handleSaveDetails( currentSelectedImages, true );
 		clearSessionStorage( USER_KEYWORD );
 		nextStep();
-		setWebsiteImagesAIStep( previouslySelected.current ?? [] );
+		setLoadingNextStep( false );
+
+		// Stores - null value on state -> Commented out.
+		// setWebsiteImagesAIStep( previouslySelected.current ?? [] );
+	};
+
+	// Auto-select top 10 images when user skips selection
+	const autoSelectTopImages = () => {
+		// Only auto-select if no images are currently selected
+		if ( selectedImages?.length > 0 ) {
+			return selectedImages; // return existing selections
+		}
+
+		const imagesToSelect = images.slice( 0, 10 );
+		imagesToSelect.slice( 0, 10 ).forEach( ( image ) => {
+			handleImageSelection( image );
+		} );
+
+		// Update the state with the selected images
+		const newSelectedImages = imagesToSelect;
+		setWebsiteImagesAIStep( newSelectedImages );
+
+		return newSelectedImages;
 	};
 
 	const handleImageSearch = ( data ) => {
@@ -1157,6 +1197,7 @@ const Images = () => {
 				open={ openSkipModal }
 				setOpen={ setOpenSkipModal }
 				onConfirmSkip={ handleConfirmSkip }
+				loadingNextStep={ loadingNextStep }
 			/>
 		</div>
 	);

@@ -51,7 +51,7 @@ if ( ! class_exists( 'Astra_Sites_Onboarding_Setup' ) ) :
 			add_action( 'st_before_sending_error_report', array( $this, 'delete_transient_for_import_process' ) );
 			add_action( 'st_before_sending_error_report', array( $this, 'temporary_cache_errors' ), 10, 1 );
 			add_action( 'wp_ajax_astra-sites-import_prepare_xml', array( $this, 'import_prepare_xml' ) );
-			add_action( 'wp_ajax_bsf_analytics_optin_status', array( $this, 'bsf_analytics_optin_status' ) );
+			add_action( 'wp_ajax_astra_sites_usage_optin_status', array( $this, 'bsf_analytics_optin_status' ) );
 			add_action( 'wp_ajax_astra_sites_track_onboarding_step', array( $this, 'track_onboarding_step' ) );
 		}
 
@@ -120,6 +120,8 @@ if ( ! class_exists( 'Astra_Sites_Onboarding_Setup' ) ) :
 		 * @return void
 		 */
 		public function import_prepare_xml() {
+			Astra_Sites_Importer_Log::add( '---' . PHP_EOL );
+			Astra_Sites_Importer_Log::add( 'Starting XML preparation process' );
 
 			// Verify Nonce.
 			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
@@ -190,7 +192,7 @@ if ( ! class_exists( 'Astra_Sites_Onboarding_Setup' ) ) :
 
 			$opt_in = filter_input( INPUT_POST, 'bsfUsageTracking', FILTER_VALIDATE_BOOLEAN ) ? 'yes' : 'no';
 
-			update_site_option( 'bsf_analytics_optin', $opt_in );
+			update_site_option( 'astra_sites_usage_optin', $opt_in );
 
 			wp_send_json_success( esc_html__( 'Usage tracking updated successfully.', 'astra-sites' ) );
 		}

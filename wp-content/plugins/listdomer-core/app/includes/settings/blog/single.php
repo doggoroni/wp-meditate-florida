@@ -125,8 +125,8 @@ class LSDRC_Settings_Blog_Single extends LSDRC_Settings
             [
                 'id' => 'listdomer_display_navigation',
                 'type' => 'switch',
-                'title' => esc_html__('Display Navigations', 'listdomer-core'),
-                'subtitle' => esc_html__('Show or hide the post navigations.', 'listdomer-core'),
+                'title' => esc_html__('Display Blog Navigation', 'listdomer-core'),
+                'subtitle' => esc_html__('Show or hide navigation links on single blog posts.', 'listdomer-core'),
                 'default' => true,
                 'on' => esc_html__('Show', 'listdomer-core'),
                 'off' => esc_html__('Hide', 'listdomer-core'),

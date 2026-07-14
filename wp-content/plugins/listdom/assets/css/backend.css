@@ -380,7 +380,6 @@
 .lsd-toast.lsd-warning {
   background-color: #fffbe6;
   color: #856404;
-  border-bottom: 2px solid #ffc107;
   --lsd-progress-color: #ffc107;
 }
 .lsd-toast.lsd-info {
@@ -1164,41 +1163,42 @@ ul.lsd-boxed-list li label .lsd-inline-checkbox {
     overflow: hidden;
   }
 }
-.lsd-box-white, .lsd-box-attribute-upsert {
+.lsd-box-white, .lsd-box-taxonomy-upsert {
   background: #fff;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.lsd-box-attribute-upsert {
+.lsd-box-taxonomy-upsert {
   width: 95%;
   padding: 1.5em;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  border-radius: 10px;
 }
-.lsd-box-attribute-upsert input[type=text], .lsd-box-attribute-upsert input[type=number], .lsd-box-attribute-upsert select {
+.lsd-box-taxonomy-upsert input[type=text], .lsd-box-taxonomy-upsert input[type=number], .lsd-box-taxonomy-upsert select {
   margin: 0;
   width: 100%;
   max-width: 100%;
 }
-.lsd-box-attribute-upsert .form-field {
+.lsd-box-taxonomy-upsert .form-field {
   margin: 0;
 }
-.lsd-box-attribute-upsert .form-field > label {
+.lsd-box-taxonomy-upsert .form-field > label {
   padding-bottom: 4px;
   display: block;
 }
-.lsd-box-attribute-upsert .form-field input[type=checkbox] + label {
+.lsd-box-taxonomy-upsert .form-field input[type=checkbox] + label {
   margin-left: 4px;
 }
-.lsd-box-attribute-upsert .description {
+.lsd-box-taxonomy-upsert .description {
   margin-bottom: 0;
   max-width: 100%;
 }
 
-.form-field-attribute-row .form-field-attribute-column {
+.form-field-taxonomy-row .form-field-taxonomy-column {
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -1233,12 +1233,27 @@ ul.lsd-boxed-list li label .lsd-inline-checkbox {
   border-radius: 4px;
 }
 
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list li img {
+  width: 100%;
+  min-height: 180px;
+}
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list:has(li:nth-child(2)) li img {
+  max-width: 180px;
+}
+
 .lsd-image-placeholder {
   border: 1px dashed #d4d7dc;
   border-radius: 8px;
   padding: 10px;
   background-color: #f8fafc;
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6090,6 +6105,10 @@ input[type='file'].lsd-admin-input::file-selector-button:hover {
   font-size: 24px;
   width: 24px;
   height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 .lsd-settings-wrap .lsd-settings-panel .lsd-nav-wrapper .lsd-nav-tab-wrapper > li > a:hover {
   background-color: #D1B9FF;
@@ -6128,6 +6147,7 @@ input[type='file'].lsd-admin-input::file-selector-button:hover {
 .lsd-settings-wrap .lsd-settings-panel .lsd-nav-wrapper .lsd-nav-tab-wrapper > li .lsd-nav-sub-tabs li {
   display: flex;
   gap: 12px;
+  align-items: center;
   padding: 8px 18px 8px 16px;
   border-radius: 8px;
   color: #000;
@@ -6535,8 +6555,7 @@ input[type='file'].lsd-admin-input::file-selector-button:hover {
   flex-wrap: wrap;
 }
 #lsd_settings_details_page_wp .lsd-elements > li .lsd-element-options .lsd-element-option-wrapper > div > :not([class*='lsd-col-']):not(.lsd-element-cta-flex) {
-  flex: 1 1 160px;
-  min-width: 80px;
+  flex: 1 1 17%;
 }
 #lsd_settings_details_page_wp .lsd-elements > li .lsd-element-options .lsd-element-option-wrapper > div .lsd-element-cta-flex > * {
   flex: 1 1 160px;
@@ -6575,6 +6594,11 @@ input[type='file'].lsd-admin-input::file-selector-button:hover {
 }
 #lsd_addons_form .lsd-home-module .lsd-module-actions .lsd-icon, #lsd_toolkits_form .lsd-home-module .lsd-module-actions .lsd-icon {
   font-size: 1rem;
+}
+
+#lsd_panel_addons_ma input[type=text], #lsd_panel_addons_ma input[type=number], #lsd_panel_addons_ma select {
+  display: block;
+  width: 100%;
 }
 
 .lsd-checkboxes-scrollable {
@@ -7680,6 +7704,24 @@ body.lsd-welcome-wizard-page #adminmenu, body.lsd-welcome-wizard-page #wpadminba
   flex-direction: column;
   gap: 24px;
 }
+.lsd-ix-mapping-wrap .lsd-admin-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.lsd-ix-options-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.lsd-ix-options-wrap .lsd-ix-option-row {
+  margin: 0;
+  padding: 0;
+}
+.lsd-ix-options-wrap .lsd-ix-option-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
 .lsd-csv-import-button, .lsd-excel-import-button {
   display: flex;
@@ -8312,6 +8354,15 @@ body.lsd-welcome-wizard-page #adminmenu, body.lsd-welcome-wizard-page #wpadminba
   margin-top: 0;
 }
 
+body.post-type-listdom-search.lsd-search-style-mobile-app #lsd_metabox_results, body.post-type-listdom-search.lsd-search-style-mobile-app #lsd_metabox_shortcode, body.post-type-listdom-search.lsd-search-style-mobile-app .lsd-search-form-criteria-row {
+  display: none;
+}
+
+.lsd-search-fields-metabox .lsd-search-style-mobile_app #lsd_search_more_options, .lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-search-device-tabs, .lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-search-device-background-box-toggle,
+.lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-search-row-params, .lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-search-field-actions-width, .lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-select-search-width,
+.lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-select-search-alignment, .lsd-search-fields-metabox .lsd-search-style-mobile_app .lsd-search-dropdown-style-param {
+  display: none !important;
+}
 .lsd-search-fields-metabox .lsd-search-top-buttons ul li {
   display: inline-block;
   margin: 0 10px 10px 0;
@@ -9137,15 +9188,25 @@ body.taxonomy-listdom-attribute .term-slug-wrap, body.taxonomy-listdom-rev-field
 body.taxonomy-listdom-attribute .lsd-attributes-category-specific label, body.taxonomy-listdom-attribute .lsd-fields-category-specific label, body.taxonomy-listdom-rev-field .lsd-attributes-category-specific label, body.taxonomy-listdom-rev-field .lsd-fields-category-specific label {
   display: inline;
 }
+body.taxonomy-listdom-attribute .lsd-attributes-category-specific input[type=checkbox], body.taxonomy-listdom-attribute .lsd-fields-category-specific input[type=checkbox], body.taxonomy-listdom-rev-field .lsd-attributes-category-specific input[type=checkbox], body.taxonomy-listdom-rev-field .lsd-fields-category-specific input[type=checkbox] {
+  margin-top: -4px !important;
+}
+body.taxonomy-listdom-attribute .lsd-attributes-category-specific label[for=lsd_all_categories], body.taxonomy-listdom-attribute .lsd-fields-category-specific label[for=lsd_all_categories], body.taxonomy-listdom-rev-field .lsd-attributes-category-specific label[for=lsd_all_categories], body.taxonomy-listdom-rev-field .lsd-fields-category-specific label[for=lsd_all_categories] {
+  margin-left: 8px;
+}
 body.taxonomy-listdom-attribute .lsd-attributes-category-specific .lsd-attributes-related-categories-label, body.taxonomy-listdom-attribute .lsd-fields-category-specific .lsd-attributes-related-categories-label, body.taxonomy-listdom-rev-field .lsd-attributes-category-specific .lsd-attributes-related-categories-label, body.taxonomy-listdom-rev-field .lsd-fields-category-specific .lsd-attributes-related-categories-label {
   display: block;
 }
 body.taxonomy-listdom-attribute .lsd-attributes-category-specific #lsd_categories_wp, body.taxonomy-listdom-attribute .lsd-fields-category-specific #lsd_categories_wp, body.taxonomy-listdom-rev-field .lsd-attributes-category-specific #lsd_categories_wp, body.taxonomy-listdom-rev-field .lsd-fields-category-specific #lsd_categories_wp {
   margin: 10px 0;
 }
+body.taxonomy-listdom-attribute .lsd-attributes-category-specific #lsd_categories_wp ul li label, body.taxonomy-listdom-attribute .lsd-fields-category-specific #lsd_categories_wp ul li label, body.taxonomy-listdom-rev-field .lsd-attributes-category-specific #lsd_categories_wp ul li label, body.taxonomy-listdom-rev-field .lsd-fields-category-specific #lsd_categories_wp ul li label {
+  padding: 0;
+  margin-left: 8px;
+}
 body.taxonomy-listdom-attribute .lsd-attributes-category-specific #lsd_categories_wp ul li ul, body.taxonomy-listdom-attribute .lsd-fields-category-specific #lsd_categories_wp ul li ul, body.taxonomy-listdom-rev-field .lsd-attributes-category-specific #lsd_categories_wp ul li ul, body.taxonomy-listdom-rev-field .lsd-fields-category-specific #lsd_categories_wp ul li ul {
-  margin-left: 15px;
-  margin-top: 6px;
+  margin-left: 16px;
+  margin-top: 8px;
 }
 body.taxonomy-listdom-attribute .wp-list-table .manage-column.column-index, body.taxonomy-listdom-rev-field .wp-list-table .manage-column.column-index {
   width: 10%;

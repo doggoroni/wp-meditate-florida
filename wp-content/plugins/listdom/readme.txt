@@ -5,7 +5,7 @@ Tags: business directory, listings, classifieds, local business directory, direc
 Requires at least: 4.2
 Requires PHP: 7.4
 Tested up to: 6.9
-Stable tag: 5.2.1
+Stable tag: 5.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -425,6 +425,17 @@ You can translate Listdom using translation plugins like Loco Translate or by cr
 14. Powerful Search Bars
 
 == Changelog ==
+
+= 5.3.0 =
+* Added Mobile App style integration to the search builder with filterable search styles and improved desktop tab behavior.
+* Added hierarchical category and location import support for CSV and Excel mapping.
+* Added taxonomy label overrides with locale-aware settings and improved label handling across shortcode filters and import mapping.
+* Added API improvements including the price classes REST endpoint and listing URL in API listing payloads.
+* Added WP All Import map synchronization support for listing location data.
+* Improved Frontend Dashboard UX with image aspect ratio controls and clearer maximum image size guidance.
+* Improved authentication, custom field, and Select2 UI consistency across backend and frontend forms.
+* Fixed payment flow issues including checkout privacy consent persistence and payments context handling in menus and exports.
+* Fixed multiple UI and search issues across skins and widgets, including empty-state alerts and taxonomy slug sync behavior.
 
 = 5.2.1 =
 * Added new options to customize Frontend Dashboard menus.

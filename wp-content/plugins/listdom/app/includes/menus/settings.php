@@ -183,6 +183,24 @@ class LSD_Menus_Settings extends LSD_Menus
         $lsd = is_array($lsd) ? LSD_Sanitize::deep($lsd) : [];
         $lsd['CSS'] = trim($CSS);
 
+        if (isset($lsd['labels']['custom_locale']))
+        {
+            $custom_locale = is_string($lsd['labels']['custom_locale']) ? trim($lsd['labels']['custom_locale']) : '';
+            $custom_labels = $lsd['labels']['custom'] ?? [];
+
+            if ($custom_locale !== '' && is_array($custom_labels) && count($custom_labels))
+            {
+                if (!isset($lsd['labels']['locales']) || !is_array($lsd['labels']['locales'])) $lsd['labels']['locales'] = [];
+                $lsd['labels']['locales'][$custom_locale] = $custom_labels;
+            }
+
+            unset($lsd['labels']['custom_locale'], $lsd['labels']['custom']);
+        }
+        else if (isset($lsd['labels']['custom']))
+        {
+            unset($lsd['labels']['custom']);
+        }
+
         // Save Styles
         LSD_Options::merge('lsd_styles', $lsd);
 

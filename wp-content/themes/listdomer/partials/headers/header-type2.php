@@ -18,7 +18,10 @@
             }
 
             $description = get_bloginfo('description');
-            if (trim($description)) echo '<div class="site-description">' . esc_html($description) . '</div>';
+            if (LSDR_Settings::get('listdomer_header_description', true) && trim($description))
+            {
+                echo '<div class="site-description">' . esc_html($description) . '</div>';
+            }
         ?>
     </div>
 

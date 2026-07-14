@@ -143,5 +143,6 @@ $horizontal_wrapper_classes = 'lsd-settings-fields-sub-wrapper' . ($horizontal_e
                 <p class="lsd-admin-description-tiny lsd-mb-0 lsd-mt-2"><?php esc_html_e('Choose how to load additional listings more than the default limit.', 'listdom'); ?></p>
             </div>
         </div>
+        <?php $this->field_listing_link('timeline', $timeline); ?>
     </div>
 </div>

@@ -442,7 +442,7 @@ class Ai_Builder_Plugin_Loader {
 			'zip_token_exists'         => Helper::get_token() !== '' ? true : false,
 			'themeStatus'              => $theme_status,
 			'firstImportStatus'        => get_option( 'astra_sites_import_complete', false ),
-			'analytics'                => get_site_option( 'bsf_analytics_optin', false ),
+			'analytics'                => get_site_option( 'astra_sites_usage_optin', false ),
 			'siteUrl'                  => site_url(),
 			'installed'                => __( 'Installed! Activating..', 'astra-sites' ),
 			'activating'               => __( 'Activating...', 'astra-sites' ),

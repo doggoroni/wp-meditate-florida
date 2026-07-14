@@ -34,7 +34,7 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
 
     <?php echo LSD_Privacy::consent_field([
         'id' => 'lsd_checkout_consent_' . uniqid(),
-        'name' => 'lsd_checkout_consent',
+        'name' => 'lsd_privacy_consent',
         'class' => 'lsd-privacy-consent-checkbox lsd-checkout-consent-input',
         'wrapper_class' => 'lsd-checkout-consent',
         'context' => 'checkout',
@@ -95,6 +95,7 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
                 const storageKeys = {
                     name: 'lsdStripeName',
                     email: 'lsdStripeEmail',
+                    consent: 'lsdStripeConsent',
                 };
 
                 const failureMessage = '<?php echo esc_js(esc_html__('We could not verify your payment. Please try again.', 'listdom')); ?>';
@@ -123,6 +124,33 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
                     }
                 };
 
+                const getStoredConsent = function ()
+                {
+                    if (!storage) return '';
+
+                    return storage.getItem(storageKeys.consent) === '1' ? '1' : '';
+                };
+
+                const saveStoredConsent = function (consent)
+                {
+                    if (!storage) return;
+
+                    try
+                    {
+                        if (consent === '1')
+                        {
+                            storage.setItem(storageKeys.consent, '1');
+                        }
+                        else
+                        {
+                            storage.removeItem(storageKeys.consent);
+                        }
+                    }
+                    catch (err)
+                    {
+                    }
+                };
+
                 const clearStoredCustomer = function ()
                 {
                     if (!storage) return;
@@ -131,6 +159,7 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
                     {
                         storage.removeItem(storageKeys.name);
                         storage.removeItem(storageKeys.email);
+                        storage.removeItem(storageKeys.consent);
                     }
                     catch (err)
                     {
@@ -178,12 +207,17 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
                     const email = details.email || '';
                     const additional = extra || {};
 
+                    const consentValue = $wrapper.find('input[name="lsd_privacy_consent"]').is(':checked')
+                        ? '1'
+                        : getStoredConsent();
+
                     const data = {
                         action: 'lsd_checkout',
                         _wpnonce: '<?php echo esc_js($nonce); ?>',
                         gateway: '<?php echo esc_js($this->key()); ?>',
                         name: name,
                         email: email,
+                        lsd_privacy_consent: consentValue,
                     };
 
                     if (intentMode === 'setup')
@@ -324,7 +358,7 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
                     $alert.removeClass('lsd-error').addClass('lsd-util-hide').text('');
                     $btn.prop('disabled', true).addClass('lsd-loading');
 
-                    const consentEl = $wrapper.find('input[name="lsd_checkout_consent"]').get(0);
+                    const consentEl = $wrapper.find('input[name="lsd_privacy_consent"]').get(0);
                     if (consentEl && consentEl.required)
                     {
                         if (!consentEl.checked)
@@ -347,8 +381,10 @@ wp_enqueue_script('stripe', 'https://js.stripe.com/v3/');
 
                     const name = $wrapper.find('.lsd-checkout-user-name').val() || '';
                     const email = $wrapper.find('.lsd-checkout-user-email').val() || '';
+                    const consentValue = $wrapper.find('input[name="lsd_privacy_consent"]').is(':checked') ? '1' : '';
 
                     saveStoredCustomer(name, email);
+                    saveStoredConsent(consentValue);
 
                     if (intentMode === 'setup')
                     {

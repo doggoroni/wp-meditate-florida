@@ -460,7 +460,7 @@ class LSD_Search_Helper extends LSD_Base
             foreach ($level_terms as $level_term) $output .= '<option class="lsd-option lsd-parent-' . esc_attr($level_term->parent) . '" value="' . esc_attr($level_term->term_id) . '" ' . (($current == $level_term->term_id || in_array($level_term->term_id, $current_parents, true)) ? 'selected="selected"' : '') . '>' . esc_html($level_term->name) . '</option>';
             $output .= '</select>';
 
-            if ($l < $max_levels) $output .= '<div class="lsd-divider"></div>';
+            if ($l < $max_levels && $level_status === 'all') $output .= '<div class="lsd-divider"></div>';
         }
 
         $output .= '</div>';

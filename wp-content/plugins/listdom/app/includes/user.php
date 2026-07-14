@@ -324,25 +324,6 @@ class LSD_User extends LSD_Base
         $url = wp_get_attachment_url($attachment_id);
         if ($url) return $url;
 
-        if (is_multisite())
-        {
-            $blog_id = (int) get_user_meta($user_id, $meta_key . '_blog_id', true);
-            if ($blog_id && $blog_id !== get_current_blog_id())
-            {
-                switch_to_blog($blog_id);
-                try
-                {
-                    $url = wp_get_attachment_url($attachment_id);
-                }
-                finally
-                {
-                    restore_current_blog();
-                }
-
-                if ($url) return $url;
-            }
-        }
-
         $url = get_user_meta($user_id, $meta_key . '_url', true);
         if ($url) return $url;
 
@@ -400,6 +381,110 @@ class LSD_User extends LSD_Base
             'first_name' => $user->first_name ?: '',
             'last_name' => $user->last_name ?: '',
         ], $user_meta);
+    }
+
+    public static function profile_edit_fields_defaults(): array
+    {
+        $social = [];
+        foreach (self::profile_social_networks() as $network) $social[$network] = 1;
+
+        return [
+            'job_title' => 1,
+            'bio' => 1,
+            'profile_image' => 1,
+            'hero_image' => 1,
+            'email' => 1,
+            'phone' => 1,
+            'mobile' => 1,
+            'website' => 1,
+            'fax' => 1,
+            'social' => $social,
+        ];
+    }
+
+    public static function profile_social_networks(): array
+    {
+        $networks = [
+            'facebook',
+            'twitter',
+            'pinterest',
+            'linkedin',
+            'instagram',
+            'whatsapp',
+            'youtube',
+            'tiktok',
+            'telegram',
+        ];
+
+        $socials = LSD_Options::socials();
+        if (is_array($socials))
+        {
+            foreach ($socials as $network => $options)
+            {
+                if (!is_string($network) || trim($network) === '') continue;
+                if (!in_array($network, $networks, true)) $networks[] = $network;
+            }
+        }
+
+        return $networks;
+    }
+
+    public static function profile_edit_fields(): array
+    {
+        $auth = LSD_Options::auth();
+        $fields = isset($auth['profile']['fields']) && is_array($auth['profile']['fields']) ? $auth['profile']['fields'] : [];
+        $defaults = self::profile_edit_fields_defaults();
+
+        $fields = self::parse_args($fields, $defaults);
+        foreach (['job_title', 'bio', 'profile_image', 'hero_image', 'email', 'phone', 'mobile', 'website', 'fax'] as $field)
+        {
+            $fields[$field] = isset($fields[$field]) && (int) $fields[$field] === 0 ? 0 : 1;
+        }
+
+        $social_defaults = $defaults['social'];
+        $legacy_socials = isset($fields['socials']) && (int) $fields['socials'] === 0 ? 0 : 1;
+        $social = isset($fields['social']) && is_array($fields['social']) ? $fields['social'] : [];
+        $social = self::parse_args($social, $social_defaults);
+
+        foreach ($social_defaults as $network => $enabled)
+        {
+            $social[$network] = ($legacy_socials === 0 || (isset($social[$network]) && (int) $social[$network] === 0)) ? 0 : 1;
+        }
+
+        $fields['social'] = $social;
+        unset($fields['socials']);
+
+        return $fields;
+    }
+
+    public static function is_profile_edit_field_enabled(string $field): bool
+    {
+        $fields = self::profile_edit_fields();
+        if (!array_key_exists($field, $fields)) return true;
+
+        return (int) $fields[$field] === 1;
+    }
+
+    public static function is_profile_social_field_enabled(string $network): bool
+    {
+        $fields = self::profile_edit_fields();
+        if (!isset($fields['social']) || !is_array($fields['social'])) return true;
+        if (!array_key_exists($network, $fields['social'])) return true;
+
+        return (int) $fields['social'][$network] === 1;
+    }
+
+    public static function has_enabled_profile_social_fields(): bool
+    {
+        $fields = self::profile_edit_fields();
+        if (!isset($fields['social']) || !is_array($fields['social'])) return true;
+
+        foreach ($fields['social'] as $enabled)
+        {
+            if ((int) $enabled === 1) return true;
+        }
+
+        return false;
     }
 
     public static function send_forgot_password_email(WP_User $user): bool

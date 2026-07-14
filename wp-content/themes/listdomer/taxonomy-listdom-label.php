@@ -21,18 +21,21 @@ $description = term_description();
 get_header('lsd');
 
 $page_title = LSDR_Settings::get('listdomer_page_title_listing_archive_display');
-$page_description = LSDR_Settings::get('listdomer_page_desc_listing_archive_display');
 $description_position = LSDR_Settings::get('listdomer_page_desc_listing_archive_position');
+$breadcrumb = LSDR_Settings::get('listdomer_listing_breadcrumb_display');
+$page_description = $description_position !== 'disable';
 
 $taxonomies = LSDR_Settings::get('listdomer_page_title_listing_taxonomies');
 $labels = is_array($taxonomies) && isset($taxonomies['labels']) && $taxonomies['labels'];
 ?>
-<?php if (($title_status || $description) && $page_title && $labels): ?>
-	<div class="listdomer-header">
-		<?php if ($title_status): ?>
-		<h1><?php echo single_term_title(); ?></h1>
-		<?php endif; ?>
-
+<?php if ($labels && ($title_status || $description) && ($page_title || $breadcrumb || ($page_description && $description_position === 'before'))): ?>
+    <div class="listdomer-header">
+        <?php if ($title_status && $page_title): ?>
+            <h1><?php echo single_term_title(); ?></h1>
+        <?php endif; ?>
+        <?php if($breadcrumb): ?>
+            <?php do_action('lsdr_breadcrumb'); ?>
+        <?php endif; ?>
         <?php if ($description && $page_description && $description_position === 'before'): ?>
             <?php do_action(LSD_Base::TAX_LABEL.'_archive_description'); ?>
         <?php endif; ?>

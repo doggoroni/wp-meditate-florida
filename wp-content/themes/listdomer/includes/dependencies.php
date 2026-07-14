@@ -51,10 +51,10 @@ class LSDR_Dependencies extends LSDR_Base
             'dismiss_msg' => '',
             'is_automatic' => true,
             /* translators: %s: Theme Name. */
-            'message' => '<p>' . sprintf(__("To use all features of %s theme. You need to install and activate following plugins.", 'listdomer'), '<strong>Listdomer</strong>') . '</p>',
+            'message' => '<p>' . sprintf(esc_html__("To use all features of %s theme. You need to install and activate following plugins.", 'listdomer'), '<strong>Listdomer</strong>') . '</p>',
             'strings' => [
-                'page_title' => __('Listdomer Plugins', 'listdomer'),
-                'menu_title' => __('Listdomer Plugins', 'listdomer'),
+                'page_title' => esc_html__('Listdomer Plugins', 'listdomer'),
+                'menu_title' => esc_html__('Listdomer Plugins', 'listdomer'),
             ],
         ];
 

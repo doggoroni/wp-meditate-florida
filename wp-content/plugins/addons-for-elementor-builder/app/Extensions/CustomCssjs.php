@@ -8,7 +8,8 @@ use AFEB\Security;
 use Elementor\Core\DynamicTags\Dynamic_CSS;
 use Elementor\Plugin;
 
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
+{
     exit;
 }
 
@@ -74,30 +75,27 @@ class CustomCssjs
         $this->assets->custom_css_js();
     }
 
-    /**
-     * Register CustomCssjs extension controls
-     *
-     * @param object $widget
-     * @param string $section_id
-     * @since 1.0.3
-     */
     public function register_controls($widget, $section_id)
     {
         // Remove Custom CSS Banner (From elementor free version)
-        if ('section_custom_css_pro' !== $section_id) {
+        if ('section_custom_css_pro' !== $section_id)
+        {
             return;
         }
 
         $this->controls = new CHelper($widget);
-        if ($widget->get_type() == 'wp-page') {
+        if ($widget->get_type() == 'wp-page')
+        {
             $this->controls->tab_advanced_section(
                 'afeb-ext-custom-css-js',
                 ['label' => esc_html__('Custom CSS/JS', 'addons-for-elementor-builder'),],
-                function () {
+                function ()
+                {
                     $this->controls->tabs('afeb_icn_tb_cntrl', [
                         'cstm_cssjs_css_tab' => [
                             'label' => esc_html__('CSS', 'addons-for-elementor-builder'),
-                            'callback' => function () {
+                            'callback' => function ()
+                            {
                                 $this->controls->code('afeb_cstm_hdr_css', [
                                     'label' => esc_html__('CSS', 'addons-for-elementor-builder'),
                                 ]);
@@ -105,7 +103,8 @@ class CustomCssjs
                         ],
                         'cstm_cssjs_js_tab' => [
                             'label' => esc_html__('JS', 'addons-for-elementor-builder'),
-                            'callback' => function () {
+                            'callback' => function ()
+                            {
                                 $this->controls->code('afeb_cstm_hdr_js', [
                                     'label' => esc_html__('Header JS', 'addons-for-elementor-builder'),
                                     'language' => 'javascript',
@@ -122,11 +121,14 @@ class CustomCssjs
                     ]);
                 }
             );
-        } else {
+        }
+        else
+        {
             $this->controls->tab_advanced_section(
                 'afeb-ext-custom-css',
                 ['label' => esc_html__('Custom CSS', 'addons-for-elementor-builder'),],
-                function () {
+                function ()
+                {
                     $this->controls->code('afeb_cstm_hdr_css', [
                         'label' => esc_html__('CSS', 'addons-for-elementor-builder'),
                     ]);
@@ -144,19 +146,22 @@ class CustomCssjs
      */
     public function add_post_css($post_css, $element)
     {
-        if ($post_css instanceof Dynamic_CSS) {
+        if ($post_css instanceof Dynamic_CSS)
+        {
             return;
         }
 
         $element_settings = $element->get_settings();
 
-        if (empty($element_settings['afeb_cstm_hdr_css'])) {
+        if (empty($element_settings['afeb_cstm_hdr_css']))
+        {
             return;
         }
 
         $css = trim($element_settings['afeb_cstm_hdr_css']);
 
-        if (empty($css)) {
+        if (empty($css))
+        {
             return;
         }
 
@@ -171,7 +176,8 @@ class CustomCssjs
         $custom_css = $document->get_settings('afeb_cstm_hdr_css') ?? '';
         $custom_css = trim($custom_css);
 
-        if (empty($custom_css)) {
+        if (empty($custom_css))
+        {
             return;
         }
 
@@ -194,8 +200,12 @@ class CustomCssjs
 
         $document = Plugin::instance()->documents->get(get_the_ID());
         if (!$document) return;
+
         $custom_js = $document->get_settings('afeb_cstm_hdr_js');
-        if (empty($custom_js)) return;
+        if (!is_string($custom_js)) return;
+
+        $custom_js = trim($custom_js);
+        if ($custom_js === '') return;
 
         $this->assets->custom_header_script();
         wp_add_inline_script('afeb-custom-header-script', $custom_js);
@@ -215,8 +225,12 @@ class CustomCssjs
 
         $document = Plugin::instance()->documents->get(get_the_ID());
         if (!$document) return;
+
         $custom_js = $document->get_settings('afeb_cstm_ftr_js');
-        if (empty($custom_js)) return;
+        if (!is_string($custom_js)) return;
+
+        $custom_js = trim($custom_js);
+        if ($custom_js === '') return;
 
         $this->assets->custom_footer_script();
         wp_add_inline_script('afeb-custom-footer-script', $custom_js);

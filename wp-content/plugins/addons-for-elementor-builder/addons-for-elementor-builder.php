@@ -3,7 +3,7 @@
  * Plugin Name: Vertex Addons for Elementor
  * Plugin URI: https://vertexaddons.com/
  * Description: Just one plugin instead of a lot!
- * Version: 1.6.3
+ * Version: 1.6.4
  * Author: Webilia
  * Author URI: https://webilia.com/
  * License: GPL v2 or later

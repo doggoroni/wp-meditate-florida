@@ -37,7 +37,7 @@ if ($items)
 
     <?php echo LSD_Privacy::consent_field([
         'id' => 'lsd_checkout_consent_' . uniqid(),
-        'name' => 'lsd_checkout_consent',
+        'name' => 'lsd_privacy_consent',
         'class' => 'lsd-privacy-consent-checkbox lsd-checkout-consent-input',
         'wrapper_class' => 'lsd-checkout-consent',
         'context' => 'checkout',
@@ -57,10 +57,55 @@ if ($items)
 
         clearInterval(lsdPaypalInterval);
 
-        const $wrapper = $('#lsd-gateway-form-paypal');
+        const $gatewayForm = $('#lsd-gateway-form-paypal');
+        const $wrapper = $gatewayForm.find('.lsd-gateway-wrapper').first();
+        if (!$wrapper.length) return;
+
+        const storage = (function ()
+        {
+            try
+            {
+                const key = 'lsdPaypalStorageTest';
+                window.sessionStorage.setItem(key, key);
+                window.sessionStorage.removeItem(key);
+                return window.sessionStorage;
+            }
+            catch (err)
+            {
+                return null;
+            }
+        })();
+
+        const consentStorageKey = 'lsdPaypalConsent';
+        const getStoredConsent = function ()
+        {
+            if (!storage) return '';
+            return storage.getItem(consentStorageKey) === '1' ? '1' : '';
+        };
+
+        const storeConsent = function (consent)
+        {
+            if (!storage) return;
+
+            try
+            {
+                if (consent === '1')
+                {
+                    storage.setItem(consentStorageKey, '1');
+                }
+                else
+                {
+                    storage.removeItem(consentStorageKey);
+                }
+            }
+            catch (err)
+            {
+            }
+        };
+
         const validateConsent = function ()
         {
-            const consentEl = $wrapper.find('input[name="lsd_checkout_consent"]').get(0);
+            const consentEl = $wrapper.find('input[name="lsd_privacy_consent"]').get(0);
             if (!consentEl || !consentEl.required) return true;
 
             if (!consentEl.checked)
@@ -78,6 +123,7 @@ if ($items)
             }
 
             consentEl.setCustomValidity('');
+            storeConsent('1');
             return true;
         };
 
@@ -115,6 +161,10 @@ if ($items)
                         const name = $wrapper.find('.lsd-checkout-user-name').val() || '';
                         const email = $wrapper.find('.lsd-checkout-user-email').val() || '';
 
+                        const consentValue = $wrapper.find('input[name="lsd_privacy_consent"]').is(':checked')
+                            ? '1'
+                            : getStoredConsent();
+
                         $.ajax({
                             url: lsd.ajaxurl,
                             type: 'post',
@@ -125,12 +175,14 @@ if ($items)
                                 gateway: '<?php echo esc_js($this->key()); ?>',
                                 paypal_order_id: orderData.id,
                                 name: name,
-                                email: email
+                                email: email,
+                                lsd_privacy_consent: consentValue
                             },
                             success: function (res)
                             {
                                 if (res && res.success)
                                 {
+                                    storeConsent('');
                                     lsdCheckoutComplete(res.key ? res.key : res.order_id);
                                 }
                                 else if (res && res.message)

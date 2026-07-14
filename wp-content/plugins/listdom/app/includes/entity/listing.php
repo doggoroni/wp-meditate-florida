@@ -295,10 +295,10 @@ class LSD_Entity_Listing extends LSD_Entity
         return $element->get($this->post->ID, $args);
     }
 
-    public function get_featured_image($size = 'full')
+    public function get_featured_image($size = 'full', string $itemprop = 'image')
     {
         $element = new LSD_Element_Image();
-        return $element->get($size, $this->post->ID);
+        return $element->get($size, $this->post->ID, $itemprop);
     }
 
     public function get_cover_image($size = [390, 260], $link_method = 'normal', string $style = '')

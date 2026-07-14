@@ -7,7 +7,7 @@ final class LSDRC
      *
      * @var string
      */
-    public $version = '4.0.1';
+    public $version = '4.1.0';
 
     /**
      * The single instance of the class.

@@ -15,6 +15,11 @@ class LSD_Plugin_Update
     private $prefix;
 
     /**
+     * @var bool
+     */
+    private $license_gate;
+
+    /**
      * Initialize a new instance of the WordPress Auto-Update class
      *
      * @param array $args
@@ -23,6 +28,7 @@ class LSD_Plugin_Update
     {
         $this->basename = $args['basename'];
         $this->prefix = $args['prefix'] ?? '';
+        $this->license_gate = $args['license_gate'] ?? true;
 
         // Webilia Update Server
         new Update(
@@ -33,12 +39,16 @@ class LSD_Plugin_Update
             $args['server'] ?? 'https://api.webilia.com/update'
         );
 
-        add_filter('upgrader_pre_download', [$this, 'block'], 10, 4);
-        add_action('in_plugin_update_message-' . $this->basename, [$this, 'message'], 10, 2);
+        if ($this->license_gate)
+        {
+            add_filter('upgrader_pre_download', [$this, 'block'], 10, 4);
+            add_action('in_plugin_update_message-' . $this->basename, [$this, 'message'], 10, 2);
+        }
     }
 
     public function block($reply, $package, $upgrader, $hook_extra = [])
     {
+        if (!$this->license_gate) return $reply;
         if (!$this->basename || !$this->prefix) return $reply;
         if (!isset($upgrader->skin) || !is_object($upgrader->skin)) return $reply;
 
@@ -72,6 +82,7 @@ class LSD_Plugin_Update
 
     public function message($plugin_data, $response): void
     {
+        if (!$this->license_gate) return;
         if (!$this->basename || !$this->prefix || !is_array($plugin_data)) return;
 
         $valid = LSD_Licensing::isValid($this->basename, $this->prefix);

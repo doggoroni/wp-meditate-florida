@@ -114,11 +114,11 @@ abstract class LSD_IX_Array extends LSD_IX
             esc_html__('Remark', 'listdom'),
             esc_html__('Image', 'listdom'),
             esc_html__('Gallery', 'listdom'),
-            esc_html__('Category', 'listdom'),
-            esc_html__('Locations', 'listdom'),
-            esc_html__('Tags', 'listdom'),
-            esc_html__('Features', 'listdom'),
-            esc_html__('Labels', 'listdom'),
+            esc_html(lsd_t_label(LSD_Base::TAX_CATEGORY, 'singular')),
+            esc_html(lsd_t_label(LSD_Base::TAX_LOCATION, 'plural')),
+            esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')),
+            esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')),
+            esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')),
         ];
 
         foreach ($this->networks as $network => $values)
@@ -286,7 +286,7 @@ abstract class LSD_IX_Array extends LSD_IX
         return '';
     }
 
-    public static function map(array $row, array $mapping): array
+    public static function map(array $row, array $mapping, array $options = []): array
     {
         // Main Library
         $main = new LSD_Main();
@@ -330,13 +330,30 @@ abstract class LSD_IX_Array extends LSD_IX
             if (in_array($key, $main->taxonomies()))
             {
                 $listing['taxonomies'][$key] = [];
-                if (is_null($value) || trim($value) === '') continue;
+                if (is_array($value)) $value = implode(',', $value);
+                if (is_null($value) || trim((string) $value) === '') continue;
 
-                $values = explode(',', $value);
-                foreach ($values as $v)
+                if (self::hierarchical_taxonomy_enabled($key, $options))
                 {
-                    if (trim($v) === '') continue;
-                    $listing['taxonomies'][$key][] = ['name' => trim($v)];
+                    $path = self::parse_hierarchy_path($value);
+                    if (!count($path)) continue;
+
+                    $leaf = end($path);
+                    if (!is_string($leaf) || trim($leaf) === '') continue;
+
+                    $listing['taxonomies'][$key][] = [
+                        'name' => trim($leaf),
+                        'path' => $path,
+                    ];
+                }
+                else
+                {
+                    $values = explode(',', (string) $value);
+                    foreach ($values as $v)
+                    {
+                        if (trim($v) === '') continue;
+                        $listing['taxonomies'][$key][] = ['name' => trim($v)];
+                    }
                 }
             }
             // Attributes
@@ -400,7 +417,7 @@ abstract class LSD_IX_Array extends LSD_IX
         return [$listing, $mapped];
     }
 
-    public static function map_term(array $row, array $mapping, string $taxonomy): array
+    public static function map_term(array $row, array $mapping, string $taxonomy, array $options = []): array
     {
         // Mapper
         $mapper = new LSD_IX_Mapping();
@@ -409,6 +426,19 @@ abstract class LSD_IX_Array extends LSD_IX
         $mapped = $mapper->map($row, $mapping);
 
         $name = isset($mapped['name']) ? trim((string) $mapped['name']) : '';
+        $path = [];
+
+        if ($name !== '' && self::hierarchical_taxonomy_enabled($taxonomy, $options))
+        {
+            $path = self::parse_hierarchy_path($name);
+
+            if (count($path))
+            {
+                $leaf = end($path);
+                $name = is_string($leaf) ? trim($leaf) : '';
+            }
+        }
+
         if ($name === '') return [];
 
         $term = [
@@ -416,6 +446,8 @@ abstract class LSD_IX_Array extends LSD_IX
             'slug' => isset($mapped['slug']) && trim((string) $mapped['slug']) !== '' ? sanitize_title($mapped['slug']) : '',
             'description' => $mapped['description'] ?? '',
         ];
+
+        if (count($path)) $term['path'] = $path;
 
         if (isset($mapped['parent_slug']) && trim((string) $mapped['parent_slug']) !== '') $term['parent_slug'] = sanitize_title($mapped['parent_slug']);
         if (isset($mapped['image']) && trim((string) $mapped['image']) !== '') $term['image'] = trim((string) $mapped['image']);
@@ -500,5 +532,30 @@ abstract class LSD_IX_Array extends LSD_IX
         if ($post instanceof WP_Post) return $post->ID;
 
         return 0;
+    }
+
+    protected static function hierarchical_taxonomy_enabled(string $taxonomy, array $options): bool
+    {
+        return !empty($options['hierarchical_terms'])
+            && is_taxonomy_hierarchical($taxonomy)
+            && in_array($taxonomy, [LSD_Base::TAX_CATEGORY, LSD_Base::TAX_LOCATION], true);
+    }
+
+    protected static function parse_hierarchy_path($value): array
+    {
+        if (!is_string($value) && !is_numeric($value)) return [];
+
+        $parts = explode(',', (string) $value);
+        $path = [];
+
+        foreach ($parts as $part)
+        {
+            $part = trim((string) $part);
+            if ($part === '') continue;
+
+            $path[] = $part;
+        }
+
+        return $path;
     }
 }

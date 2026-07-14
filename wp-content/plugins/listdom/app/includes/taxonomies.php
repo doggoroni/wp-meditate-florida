@@ -2,6 +2,8 @@
 
 class LSD_Taxonomies extends LSD_Base
 {
+    private static $slug_update_cache = [];
+
     public function init()
     {
         // Listing Attribute
@@ -36,6 +38,10 @@ class LSD_Taxonomies extends LSD_Base
 
         // Listdom Archive Content
         foreach ($this->taxonomies() as $tax) add_action($tax . '_archive_content', [$this, 'content']);
+
+        // Sync shortcode filters when term slugs change
+        add_action('pre_edit_term', [$this, 'capture_old_slug'], 10, 2);
+        add_action('edited_term', [$this, 'sync_shortcode_term_slug'], 10, 3);
     }
 
     public function redirect()
@@ -194,6 +200,80 @@ class LSD_Taxonomies extends LSD_Base
         return $term ? $term->name : '';
     }
 
+    public static function resolve_term_ids(string $taxonomy, $values): array
+    {
+        if (!is_array($values)) $values = [$values];
+
+        $ids = [];
+        foreach ($values as $value)
+        {
+            if (is_array($value)) continue;
+
+            $value = trim((string) $value);
+            if ($value === '') continue;
+
+            $term = null;
+            if (is_numeric($value))
+            {
+                $term = get_term_by('term_id', (int) $value, $taxonomy);
+            }
+
+            if (!$term || is_wp_error($term))
+            {
+                $term = get_term_by('slug', $value, $taxonomy);
+            }
+
+            if (!$term || is_wp_error($term))
+            {
+                $term = get_term_by('name', $value, $taxonomy);
+            }
+
+            if ($term && !is_wp_error($term) && isset($term->term_id)) $ids[] = $term->term_id;
+        }
+
+        return array_values(array_unique(array_filter($ids)));
+    }
+
+    public static function ids_to_slugs(string $taxonomy, $values): array
+    {
+        if (!is_array($values)) $values = [$values];
+
+        $slugs = [];
+        foreach ($values as $value)
+        {
+            if (is_array($value)) continue;
+
+            $value = trim((string) $value);
+            if ($value === '') continue;
+
+            if (is_numeric($value))
+            {
+                $term = get_term_by('term_id', (int) $value, $taxonomy);
+            }
+            else
+            {
+                $term = get_term_by('slug', $value, $taxonomy);
+                if (!$term || is_wp_error($term))
+                {
+                    $term = get_term_by('name', $value, $taxonomy);
+                }
+            }
+
+            if ($term && !is_wp_error($term) && isset($term->slug))
+            {
+                $slugs[] = $term->slug;
+                continue;
+            }
+
+            $slugs[] = $value;
+        }
+
+        $slugs = array_map('sanitize_title', $slugs);
+        $slugs = array_filter($slugs, 'strlen');
+
+        return array_values(array_unique($slugs));
+    }
+
     public static function parents($term, $current = [])
     {
         if ($term->parent)
@@ -214,5 +294,78 @@ class LSD_Taxonomies extends LSD_Base
         $HTML = trim($icon) ? '<i class="lsd-fe-icon ' . esc_attr($icon) . ' ' . esc_attr($class) . '" aria-hidden="true"></i>' : '';
 
         return apply_filters('lsd_term_icon', $HTML, $term_id, $class);
+    }
+
+    public function capture_old_slug($term_id, $taxonomy): void
+    {
+        if (!in_array($taxonomy, $this->taxonomies(), true)) return;
+
+        $term = get_term($term_id, $taxonomy);
+        if (!$term || is_wp_error($term)) return;
+
+        if (!isset(self::$slug_update_cache[$taxonomy])) self::$slug_update_cache[$taxonomy] = [];
+
+        self::$slug_update_cache[$taxonomy][$term_id] = $term->slug;
+    }
+
+    public function sync_shortcode_term_slug($term_id, $tt_id, $taxonomy): void
+    {
+        if (!in_array($taxonomy, $this->taxonomies(), true)) return;
+
+        $term = get_term($term_id, $taxonomy);
+        if (!$term || is_wp_error($term)) return;
+
+        $old_slug = self::$slug_update_cache[$taxonomy][$term_id] ?? '';
+        $new_slug = $term->slug;
+
+        if ($old_slug === '' || $old_slug === $new_slug) return;
+
+        $shortcodes = get_posts([
+            'post_type' => LSD_Base::PTYPE_SHORTCODE,
+            'posts_per_page' => -1,
+            'post_status' => 'any',
+            'fields' => 'ids',
+        ]);
+
+        foreach ($shortcodes as $shortcode_id)
+        {
+            $filter = get_post_meta($shortcode_id, 'lsd_filter', true);
+            $exclude = get_post_meta($shortcode_id, 'lsd_exclude', true);
+
+            $filter_updated = $this->replace_taxonomy_slug($filter, $taxonomy, $old_slug, $new_slug);
+            $exclude_updated = $this->replace_taxonomy_slug($exclude, $taxonomy, $old_slug, $new_slug);
+
+            if ($filter_updated !== $filter)
+            {
+                update_post_meta($shortcode_id, 'lsd_filter', $filter_updated);
+            }
+
+            if ($exclude_updated !== $exclude)
+            {
+                update_post_meta($shortcode_id, 'lsd_exclude', $exclude_updated);
+            }
+        }
+
+        unset(self::$slug_update_cache[$taxonomy][$term_id]);
+    }
+
+    private function replace_taxonomy_slug($data, string $taxonomy, string $old_slug, string $new_slug): array
+    {
+        if (!is_array($data)) return [];
+        if (!isset($data[$taxonomy]) || !is_array($data[$taxonomy])) return $data;
+
+        $old_slug = sanitize_title($old_slug);
+        $new_slug = sanitize_title($new_slug);
+
+        $values = array_map('sanitize_title', $data[$taxonomy]);
+        $values = array_values(array_filter($values, 'strlen'));
+
+        $had_old_slug = in_array($old_slug, $values, true);
+        $updated = array_values(array_diff($values, [$old_slug]));
+
+        if ($had_old_slug && $new_slug !== '' && !in_array($new_slug, $updated, true)) $updated[] = $new_slug;
+
+        $data[$taxonomy] = $updated;
+        return $data;
     }
 }

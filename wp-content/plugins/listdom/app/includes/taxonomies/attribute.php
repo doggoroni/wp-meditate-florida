@@ -18,27 +18,32 @@ class LSD_Taxonomies_Attribute extends LSD_Taxonomies
 
     public function register()
     {
+        $singular = lsd_t_label(LSD_Base::TAX_ATTRIBUTE, 'singular');
+        $plural = lsd_t_label(LSD_Base::TAX_ATTRIBUTE, 'plural');
+        $singular_lc = lsd_t_label_lc(LSD_Base::TAX_ATTRIBUTE, 'singular');
+        $plural_lc = lsd_t_label_lc(LSD_Base::TAX_ATTRIBUTE, 'plural');
+
         $args = [
-            'label' => esc_html__('Custom Fields', 'listdom'),
+            'label' => $plural,
             'labels' => [
-                'name' => esc_html__('Custom Fields', 'listdom'),
-                'singular_name' => esc_html__('Custom Field', 'listdom'),
-                'all_items' => esc_html__('All Custom Fields', 'listdom'),
-                'edit_item' => esc_html__('Edit Custom Field', 'listdom'),
-                'view_item' => esc_html__('View Custom Fields', 'listdom'),
-                'update_item' => esc_html__('Update Custom Field', 'listdom'),
-                'add_new_item' => esc_html__('Add New Field', 'listdom'),
-                'new_item_name' => esc_html__('New Field Name', 'listdom'),
-                'popular_items' => esc_html__('Popular Custom Fields', 'listdom'),
-                'search_items' => esc_html__('Search Custom Fields', 'listdom'),
-                'separate_items_with_commas' => esc_html__('Separate custom fields with commas', 'listdom'),
-                'add_or_remove_items' => esc_html__('Add or remove custom fields', 'listdom'),
-                'choose_from_most_used' => esc_html__('Choose from the most used custom fields', 'listdom'),
-                'not_found' => esc_html__('No custom fields found.', 'listdom'),
-                'back_to_items' => esc_html__('← Back to Custom Fields', 'listdom'),
-                'parent_item' => esc_html__('Parent Custom Field', 'listdom'),
-                'parent_item_colon' => esc_html__('Parent Custom Field:', 'listdom'),
-                'no_terms' => esc_html__('No Custom Fields', 'listdom'),
+                'name' => $plural,
+                'singular_name' => $singular,
+                'all_items' => sprintf(esc_html__('All %s', 'listdom'), $plural),
+                'edit_item' => sprintf(esc_html__('Edit %s', 'listdom'), $singular),
+                'view_item' => sprintf(esc_html__('View %s', 'listdom'), $plural),
+                'update_item' => sprintf(esc_html__('Update %s', 'listdom'), $singular),
+                'add_new_item' => sprintf(esc_html__('Add New %s', 'listdom'), $singular),
+                'new_item_name' => sprintf(esc_html__('New %s Name', 'listdom'), $singular),
+                'popular_items' => sprintf(esc_html__('Popular %s', 'listdom'), $plural),
+                'search_items' => sprintf(esc_html__('Search %s', 'listdom'), $plural),
+                'separate_items_with_commas' => sprintf(esc_html__('Separate %s with commas', 'listdom'), $plural_lc),
+                'add_or_remove_items' => sprintf(esc_html__('Add or remove %s', 'listdom'), $plural_lc),
+                'choose_from_most_used' => sprintf(esc_html__('Choose from the most used %s', 'listdom'), $plural_lc),
+                'not_found' => sprintf(esc_html__('No %s found.', 'listdom'), $plural_lc),
+                'back_to_items' => sprintf(esc_html__('← Back to %s', 'listdom'), $plural),
+                'parent_item' => sprintf(esc_html__('Parent %s', 'listdom'), $singular),
+                'parent_item_colon' => sprintf(esc_html__('Parent %s:', 'listdom'), $singular),
+                'no_terms' => sprintf(esc_html__('No %s', 'listdom'), $plural),
             ],
             'public' => false,
             'show_ui' => true,
@@ -65,7 +70,7 @@ class LSD_Taxonomies_Attribute extends LSD_Taxonomies
         $taxonomy = new LSD_Taxonomies_Category();
         $categories = $taxonomy->get_terms();
         ?>
-        <div class="lsd-box-attribute-upsert lsd-mb-4">
+        <div class="lsd-box-taxonomy-upsert lsd-mb-4">
             <div class="form-field">
                 <label for="lsd_field_type"><?php esc_html_e('Field Type', 'listdom'); ?></label>
                 <select name="lsd_field_type" id="lsd_field_type">
@@ -170,6 +175,7 @@ class LSD_Taxonomies_Attribute extends LSD_Taxonomies
                 ]); ?>
                 <p class="description"><?php esc_html_e("Schema Item Property (https://schema.org/)", 'listdom'); ?></p>
             </div>
+            <?php do_action('lsd_attributes_add_fields'); ?>
         </div>
         <?php
         wp_nonce_field('lsd_save_attribute_meta', 'lsd_attribute_meta_nonce');
@@ -191,10 +197,10 @@ class LSD_Taxonomies_Attribute extends LSD_Taxonomies
         $editor = get_term_meta($term->term_id, 'lsd_editor', true);
         $link_label = get_term_meta($term->term_id, 'lsd_link_label', true);
         ?>
-        <tr class="form-field form-field-attribute-row">
+        <tr class="form-field form-field-taxonomy-row">
             <td></td>
-            <td class="form-field-attribute-column">
-                <div class="lsd-box-attribute-upsert widefat">
+            <td class="form-field-taxonomy-column">
+                <div class="lsd-box-taxonomy-upsert widefat">
                     <div class="form-field">
                         <label for="lsd_field_type"><?php esc_html_e('Field Type', 'listdom'); ?></label>
                         <select name="lsd_field_type" id="lsd_field_type" class="width-95-percent">
@@ -299,6 +305,8 @@ class LSD_Taxonomies_Attribute extends LSD_Taxonomies
                         ]); ?>
                         <p class="description"><?php esc_html_e("Schema Item Property (https://schema.org/)", 'listdom'); ?></p>
                     </div>
+
+                    <?php do_action('lsd_attributes_edit_fields', $term); ?>
                 </div>
             </td>
         </tr>

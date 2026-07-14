@@ -17,16 +17,19 @@
         if (is_home() && current_user_can('publish_posts')):
 
             printf(
-                '<p>' . wp_kses(
-                    /* translators: 1: link to WP admin new post page. */
-                    __('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'listdomer'),
+                '<p>%s</p>',
+                wp_kses(
+                    sprintf(
+                        /* translators: 1: link to WP admin new post page. */
+                        __('Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'listdomer'),
+                        esc_url(admin_url('post-new.php'))
+                    ),
                     [
                         'a' => [
                             'href' => [],
                         ],
                     ]
-                ) . '</p>',
-                esc_url(admin_url('post-new.php'))
+                )
             );
 
         elseif (is_search()):

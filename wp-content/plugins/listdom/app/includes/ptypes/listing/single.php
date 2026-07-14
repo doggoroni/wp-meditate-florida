@@ -509,8 +509,20 @@ class LSD_PTypes_Listing_Single extends LSD_PTypes_Listing
         // Style Wrapper Class
         $style = (is_numeric($this->style) ? 'builder' : $this->style);
 
-        $schema = lsd_schema()->scope()->type(null, $this->entity->get_data_category());
-        $rendered = '<div class="lsd-single-page-wrapper lsd-font-m lsd-single-' . $style . '" ' . $schema . '>' . $content . $this->powered_by_message() . '</div>';
+        $schema = lsd_schema()->reset();
+        $meta = '';
+
+        // Reliability fallback for Google-required LocalBusiness fields
+        $meta .= $schema->meta('name', get_the_title($this->entity->id()));
+        $meta .= $schema->meta('url', get_permalink($this->entity->id()));
+
+        $image_id = get_post_thumbnail_id($this->entity->id());
+        $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+        if ($image_url) $meta .= $schema->meta('image', $image_url);
+
+        $rendered = '<div class="lsd-single-page-wrapper lsd-font-m lsd-single-' . $style . '" ' . lsd_schema()->scope()->type(null, $this->entity->get_data_category()) . '>'
+            . $meta . $content . $this->powered_by_message()
+        . '</div>';
 
         // Remove remained placeholders
         return preg_replace('/{.*}/', '', apply_filters('lsd_listing_single_content', $rendered, $this));
@@ -796,7 +808,7 @@ class LSD_PTypes_Listing_Single extends LSD_PTypes_Listing
         // Heading
         $heading = isset($this->details_page_options['elements']['features']['custom_title']) && trim($this->details_page_options['elements']['features']['custom_title'])
             ? $this->details_page_options['elements']['features']['custom_title']
-            : esc_html__('Features', 'listdom');
+            : esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural'));
 
         $output = '<div class="lsd-single-page-section lsd-single-page-section-features">';
         if ($this->details_page_options['elements']['features']['show_title']) $output .= '<h2 class="lsd-single-page-section-title lsd-fe-title' . $title_alignment . '">' . $heading . '</h2>';
@@ -851,7 +863,7 @@ class LSD_PTypes_Listing_Single extends LSD_PTypes_Listing
 
     public function image(): string
     {
-        $featured_image = $this->entity->get_featured_image();
+        $featured_image = $this->entity->get_featured_image('full', 'url');
 
         // Don't show anything when there is no Featured Image!
         if (!trim($featured_image)) return '';
@@ -865,7 +877,7 @@ class LSD_PTypes_Listing_Single extends LSD_PTypes_Listing
 
         $output = '';
         if ($this->details_page_options['elements']['image']['show_title']) $output .= '<h2 class="lsd-single-page-section-title lsd-fe-title' . $title_alignment . '">' . $heading . '</h2>';
-        $output .= '<div class="lsd-single-element lsd-single-featured-image" ' . lsd_schema()->scope()->type('https://schema.org/ImageObject') . '>' . $featured_image . '</div>';
+        $output .= '<div class="lsd-single-element lsd-single-featured-image" ' . lsd_schema()->scope()->type('https://schema.org/ImageObject')->prop('image') . '>' . $featured_image . '</div>';
 
         return $output;
     }

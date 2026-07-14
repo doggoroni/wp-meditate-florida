@@ -7,7 +7,7 @@ final class LSDR_Bootstrap
      *
      * @var string
      */
-    public $version = '3.2.0';
+    public $version = '4.2.0';
 
     /**
      * The single instance of the class.
@@ -77,6 +77,9 @@ final class LSDR_Bootstrap
         // Navs
         (new LSDR_Navs())->init();
 
+        // Breadcrumb
+        (new LSDR_Breadcrumb())->init();
+
         // Sidebars
         (new LSDR_Sidebars())->init();
 
@@ -124,4 +127,3 @@ final class LSDR_Bootstrap
         if (file_exists($file_path)) require_once $file_path; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
     }
 }
-

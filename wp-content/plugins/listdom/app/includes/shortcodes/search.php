@@ -118,8 +118,15 @@ class LSD_Shortcodes_Search extends LSD_Shortcodes
     {
         $value = $_REQUEST[$key] ?? $default;
 
-        if (is_array($value) || is_object($value)) array_walk_recursive($value, 'sanitize_text_field');
-        else if ($value) $value = sanitize_text_field(urldecode($value));
+        if (is_array($value) || is_object($value))
+        {
+            $value = wp_unslash($value);
+            array_walk_recursive($value, 'sanitize_text_field');
+        }
+        else if ($value)
+        {
+            $value = sanitize_text_field(urldecode(wp_unslash($value)));
+        }
 
         return $value;
     }
@@ -279,9 +286,9 @@ class LSD_Shortcodes_Search extends LSD_Shortcodes
         // Language Input
         if ($lang = $this->current('lang')) $buttons .= '<input type="hidden" name="lang" value="' . esc_attr($lang) . '">';
 
-        // Submit Button
+        // Submit / Reset Buttons
         $buttons .= '<div class="lsd-search-' . $type . '-submit">';
-        $buttons .= '<button type="submit" class="lsd-search-button ' .
+        $buttons .= '<button type="' . ($type === 'clear' ? 'button' : 'submit') . '" class="lsd-search-button ' .
             ($type === 'clear' ? 'lsd-search-clear-all' : '') . ' lsd-color-m-bg ' .
             sanitize_html_class(LSD_Main::get_text_class()) .
             '">';
@@ -849,9 +856,12 @@ class LSD_Shortcodes_Search extends LSD_Shortcodes
 
     public function field_review_rate($filter): string
     {
+        if (!class_exists(LSDADDREV::class) || !class_exists(\LSDPACREV\Base::class)) return '';
+
         $key = $filter['key'] ?? '';
         $method = $filter['method'] ?? 'dropdown-plus';
         $title = $filter['title'] ?? '';
+        $dropdown_style = $filter['dropdown_style'] ?? 'enhanced';
 
         $id = 'lsd_search_' . $this->device_key . '_' . $this->id . '_' . $this->unique . '_' . $key;
         $name = 'sf-att-' . $this->helper->standardize_key($key) . '-grq';
@@ -883,7 +893,7 @@ class LSD_Shortcodes_Search extends LSD_Shortcodes
             $current = is_numeric($current) ? (float) $current : '';
             if ($increment <= 0) $increment = 1;
 
-            $output .= '<select name="' . esc_attr($name) . '" id="' . esc_attr($id) . '" placeholder="' . esc_attr($placeholder) . '">';
+            $output .= '<select name="' . esc_attr($name) . '" id="' . esc_attr($id) . '" placeholder="' . esc_attr($placeholder) . '" data-enhanced="' . ($dropdown_style === 'enhanced' ? 1 : 0) . '">';
             if ($placeholder) $output .= '<option value="" ' . ($current === '' ? 'selected="selected"' : '') . '>' . esc_html($placeholder) . '</option>';
             if ($min > 0) $output .= '<option value="0" ' . ($current == 0.0 ? 'selected="selected"' : '') . '>' . esc_html('0+') . '</option>';
 

@@ -67,13 +67,13 @@ class LSD_API_Resources_Fields extends LSD_API_Resource
         {
             $form['tags'] = [
                 'section' => [
-                    'title' => esc_html__('Tags', 'listdom'),
+                    'title' => esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')),
                 ],
                 'fields' => [
                     'tags' => [
                         'key' => 'taxonomies[' . LSD_Base::TAX_TAG . ']',
                         'method' => 'textarea',
-                        'label' => esc_html__('Tags', 'listdom'),
+                        'label' => esc_html(lsd_t_label(LSD_Base::TAX_TAG, 'plural')),
                         'placeholder' => esc_attr__('Tag1,Tag2,Tag3', 'listdom'),
                         'values' => LSD_API_Resources_Taxonomy::collection(
                             $taxonomies->hierarchy(LSD_Base::TAX_TAG)
@@ -89,13 +89,13 @@ class LSD_API_Resources_Fields extends LSD_API_Resource
         {
             $form['features'] = [
                 'section' => [
-                    'title' => esc_html__('Features', 'listdom'),
+                    'title' => esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')),
                 ],
                 'fields' => [
                     'features' => [
                         'key' => 'taxonomies[' . LSD_Base::TAX_FEATURE . ']',
                         'method' => 'checkboxes',
-                        'label' => esc_html__('Features', 'listdom'),
+                        'label' => esc_html(lsd_t_label(LSD_Base::TAX_FEATURE, 'plural')),
                         'values' => LSD_API_Resources_Taxonomy::collection($taxonomies->hierarchy(LSD_Base::TAX_FEATURE)),
                         'required' => false,
                     ],
@@ -108,13 +108,13 @@ class LSD_API_Resources_Fields extends LSD_API_Resource
         {
             $form['labels'] = [
                 'section' => [
-                    'title' => esc_html__('Labels', 'listdom'),
+                    'title' => esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')),
                 ],
                 'fields' => [
                     'labels' => [
                         'key' => 'taxonomies[' . LSD_Base::TAX_LABEL . ']',
                         'method' => 'checkboxes',
-                        'label' => esc_html__('Labels', 'listdom'),
+                        'label' => esc_html(lsd_t_label(LSD_Base::TAX_LABEL, 'plural')),
                         'values' => LSD_API_Resources_Taxonomy::collection($taxonomies->hierarchy(LSD_Base::TAX_LABEL)),
                         'required' => false,
                     ],

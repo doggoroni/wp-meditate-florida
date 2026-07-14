@@ -55,6 +55,14 @@ $system = new System();
 
                 <div class="afeb-changelog-list-box">
                     <div class="afeb-changelog-date">
+                        <?php esc_html_e('February 27, 2026', 'addons-for-elementor-builder'); ?>
+                        <span class="afeb-changelog-version"><?php esc_html_e('Version 1.6.4', 'addons-for-elementor-builder'); ?></span>
+                    </div>
+                    <ul class="afeb-changelog-list">
+                        <li><?php esc_html_e('Fixed : Inline script type handling in the Custom CSS/JS Extension.', 'addons-for-elementor-builder'); ?></li>
+                        <li><?php esc_html_e('Fixed : Guarded Pro widgets usage in the dashboard.', 'addons-for-elementor-builder'); ?></li>
+                    </ul>
+                    <div class="afeb-changelog-date">
                         <?php esc_html_e('January 1, 2026', 'addons-for-elementor-builder'); ?>
                         <span class="afeb-changelog-version"><?php esc_html_e('Version 1.6.3', 'addons-for-elementor-builder'); ?></span>
                     </div>

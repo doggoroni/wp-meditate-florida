@@ -127,6 +127,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function backup_settings() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting backup of existing settings', 'info' );
 		Helper::backup_settings();
 	}
 
@@ -138,13 +140,10 @@ class Importer extends AjaxBase {
 	 * @since 3.0.8
 	 */
 	public function reset_posts() {
-		if ( wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Helper::verify_ajax_request( 'manage_options' );
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting reset posts operation', 'info' );
 
 		if ( class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			ST_Resetter::reset_posts();
@@ -161,13 +160,10 @@ class Importer extends AjaxBase {
 	 * @since 1.2.15
 	 */
 	public function import_success() {
-		if ( wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Helper::verify_ajax_request( 'manage_options' );
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Import completed successfully!', 'success' );
 
 		do_action( 'astra_sites_import_success' );
 
@@ -181,6 +177,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function reset_customizer_data() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting reset customizer data', 'info' );
 		Helper::reset_customizer_data();
 	}
 
@@ -191,6 +189,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function reset_site_options() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting reset site options', 'info' );
 		Helper::reset_site_options();
 	}
 
@@ -201,7 +201,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function reset_widgets_data() {
-
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting reset widgets data', 'info' );
 		Helper::reset_widgets_data();
 	}
 
@@ -213,13 +214,10 @@ class Importer extends AjaxBase {
 	 * @since 3.0.3
 	 */
 	public function reset_terms_and_forms() {
-		if ( wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Helper::verify_ajax_request( 'manage_options' );
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting reset terms and forms', 'info' );
 
 		if ( class_exists( 'STImporter\Resetter\ST_Resetter' ) ) {
 			ST_Resetter::reset_terms_and_forms();
@@ -234,13 +232,9 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function get_deleted_post_ids() {
-		if ( wp_doing_ajax() ) {
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+		Helper::verify_ajax_request( 'manage_options' );
 
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( 'Getting deleted post IDs', 'info' );
 
 		Helper::success_response( astra_sites_get_reset_post_data() );
 	}
@@ -252,19 +246,9 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function download_selected_image() {
+		Helper::verify_ajax_request( 'manage_options', __( 'You do not have permission to do this action.', 'astra-sites' ) );
 
-		check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(
-				array(
-					'data'   => 'You do not have permission to do this action.',
-					'status' => false,
-
-				)
-			);
-		}
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification is done in verify_ajax_request() called above.
 		$index  = isset( $_POST['index'] ) ? sanitize_text_field( wp_unslash( $_POST['index'] ) ) : '';
 		$images = Ai_Builder_ZipWP_Integration::get_business_details( 'images' );
 
@@ -296,11 +280,18 @@ class Importer extends AjaxBase {
 			'description' => $image['description'],
 		);
 
-		Ai_Builder_Importer_Log::add( 'Downloading Image ' . $image['url'] );
+		Ai_Builder_Importer_Log::add( 'Downloading Image ' . $image['url'], 'info', array( 'image_index' => $index ) );
 
 		if ( class_exists( 'STImporter\Importer\ST_Importer_Helper' ) ) {
 			$id = ST_Importer_Helper::download_image( $prepare_image );
-			Ai_Builder_Importer_Log::add( 'Downloaded Image attachment id: ' . $id );
+			Ai_Builder_Importer_Log::add(
+				'Downloaded Image attachment id: ' . $id,
+				'success',
+				array(
+					'attachment_id' => $id,
+					'image_url'     => $image['url'],
+				)
+			);
 
 			Helper::success_response(
 				array(
@@ -328,6 +319,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_customizer_settings() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting import customizer settings', 'info' );
 		Helper::import_customizer_settings();
 	}
 
@@ -340,20 +333,11 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_spectra_settings( $url = '' ) {
-
 		try {
-			// Nonce verification.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
+			Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+			Ai_Builder_Importer_Log::add( 'Starting import Spectra settings', 'info' );
 
-			// Permission check.
-			if ( ! current_user_can( 'edit_posts' ) ) {
-				wp_send_json_error(
-					array(
-						'error' => __( "Permission denied: You don't have sufficient permissions to import Spectra settings. Please contact your site administrator.", 'astra-sites' ),
-						'code'  => 'permission_denied',
-					)
-				);
-			}
+			Helper::verify_ajax_request( 'edit_posts', __( "Permission denied: You don't have sufficient permissions to import Spectra settings. Please contact your site administrator.", 'astra-sites' ) );
 
 			// Check if ST_Importer class exists.
 			if ( ! class_exists( 'STImporter\Importer\ST_Importer' ) ) {
@@ -457,17 +441,18 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_surecart_settings() {
-		check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( "Permission denied: You don't have sufficient permissions to import SureCart settings. Please contact your site administrator.", 'astra-sites' ) );
-		}
+		Helper::verify_ajax_request( 'manage_options', __( "Permission denied: You don't have sufficient permissions to import SureCart settings. Please contact your site administrator.", 'astra-sites' ) );
+
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting import SureCart settings', 'info' );
 
 		if ( ! class_exists( 'STImporter\Importer\ST_Importer' ) ) {
 			Helper::error_response( __( 'SureCart import failed: ST_Importer class not found. Please ensure the importer is properly loaded.', 'astra-sites' ) );
 			return;
 		}
 
-		$id = isset( $_POST['source_id'] ) ? base64_decode( sanitize_text_field( $_POST['source_id'] ) ) : ''; //phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode -- Nonce verification is done in verify_ajax_request() called above.
+		$id = isset( $_POST['source_id'] ) ? base64_decode( sanitize_text_field( $_POST['source_id'] ) ) : '';
 
 		$result = ST_Importer::import_surecart_settings( $id );
 		if ( is_wp_error( $result ) ) {
@@ -488,6 +473,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_options() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting import options', 'info' );
 		Helper::import_options();
 	}
 
@@ -500,6 +487,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_widgets() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting import widgets', 'info' );
 		Helper::import_widgets();
 	}
 
@@ -510,18 +499,15 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function page_builder_batch() {
-
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Helper::verify_ajax_request( 'customize' );
 
 		$required_plugins = (array) astra_get_site_data( 'required-plugins' );
 		$plugins_slug     = array_column( $required_plugins, 'slug' );
+
+		$page_builder = in_array( 'elementor', $plugins_slug, true ) ? 'Elementor' : 'Gutenberg';
+
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting page builder batch processing for ' . $page_builder, 'info' );
 
 		$status = array(
 			'status' => false,
@@ -549,15 +535,10 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function image_replacement_batch() {
+		Helper::verify_ajax_request( 'customize' );
 
-		if ( ! defined( 'WP_CLI' ) && wp_doing_ajax() ) {
-			// Verify Nonce.
-			check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-			if ( ! current_user_can( 'customize' ) ) {
-				wp_send_json_error( __( 'You are not allowed to perform this action', 'astra-sites' ) );
-			}
-		}
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting image replacement batch processing', 'info' );
 
 		$status = class_exists( 'STImporter\Importer\Batch\ST_Batch_Processing_Misc' ) ? ST_Batch_Processing_Misc::get_instance()->import() : array(
 			'status' => false,
@@ -579,6 +560,8 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function import_end() {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Starting import end process', 'info' );
 		Helper::import_end();
 	}
 
@@ -589,22 +572,14 @@ class Importer extends AjaxBase {
 	 * @return void
 	 */
 	public function set_site_data() {
-
 		if ( 'spectra-one' === get_option( 'stylesheet', 'astra' ) ) {
+			Ai_Builder_Importer_Log::add( 'Setting FSE site data', 'info' );
 			Ai_Builder_Fse_Importer::set_fse_site_data();
 			return;
 		}
 
-		check_ajax_referer( 'astra-sites', '_ajax_nonce' );
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(
-				array(
-					'success' => false,
-					'message' => __( 'You are not authorized to perform this action.', 'astra-sites' ),
-				)
-			);
-		}
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Nonce verification is done in verify_ajax_request().
+		Helper::verify_ajax_request( 'manage_options', __( 'You are not authorized to perform this action.', 'astra-sites' ) );
 
 		$param = isset( $_POST['param'] ) ? sanitize_text_field( $_POST['param'] ) : '';
 
@@ -617,8 +592,10 @@ class Importer extends AjaxBase {
 			return;
 		}
 
-		switch ( $param ) {
+		Ai_Builder_Importer_Log::add( '---' . PHP_EOL );
+		Ai_Builder_Importer_Log::add( 'Setting site data: ' . $param, 'info' );
 
+		switch ( $param ) {
 			case 'site-title':
 				$business_name = isset( $_POST['business-name'] ) ? sanitize_text_field( stripslashes( $_POST['business-name'] ) ) : '';
 				if ( ! empty( $business_name ) ) {
@@ -766,6 +743,6 @@ class Importer extends AjaxBase {
 		Ai_Builder_Utils::third_party_cache_plugins_clear_cache();
 
 		Helper::success_response();
+		// phpcs:enable
 	}
-
 }

@@ -162,11 +162,9 @@ class LSD_Privacy extends LSD_Base
     public static function is_consent_enabled(string $context): bool
     {
         $context = sanitize_key($context);
-
         $settings = self::privacy_settings();
 
         $enabled = !empty($settings['enabled']);
-
         if ($enabled && $context !== '')
         {
             $contexts = isset($settings['contexts']) && is_array($settings['contexts']) ? $settings['contexts'] : [];

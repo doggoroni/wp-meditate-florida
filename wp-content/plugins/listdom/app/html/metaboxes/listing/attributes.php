@@ -13,10 +13,13 @@ if (!is_array($raw)) $raw = [];
 // Dashboard context and restrictions
 $dashboard = LSD_Payload::get('dashboard');
 $max_upload_size_limit = 0;
+$image_aspect_ratio = '';
 if ($dashboard instanceof LSD_Shortcodes_Dashboard)
 {
     $max_upload_size_setting = $dashboard->settings['submission_max_image_upload_size'] ?? '';
     if (is_numeric($max_upload_size_setting)) $max_upload_size_limit = (int) $max_upload_size_setting;
+    $image_aspect_ratio = $dashboard->settings['submission_image_aspect_ratio'] ?? '';
+    $image_aspect_ratio = is_string($image_aspect_ratio) ? trim($image_aspect_ratio) : '';
 }
 ?>
 <div class="lsd-metabox lsd-metabox-attributes lsd-listing-module-attributes <?php echo LSD_Base::get_lsd_class('box-white'); ?>">
@@ -175,6 +178,20 @@ if ($dashboard instanceof LSD_Shortcodes_Dashboard)
 
                             $wrapper_attributes['data-max-upload-size'] = (string) $max_upload_size_limit;
                             $wrapper_attributes['data-size-message'] = $size_message;
+                        }
+
+                        if ($image_aspect_ratio !== '')
+                        {
+                            $field_label = wp_strip_all_tags($attribute->name);
+                            $aspect_message = sprintf(
+                                /* translators: 1: Custom field label, 2: Required aspect ratio for images. */
+                                esc_html__('The image selected for "%1$s" should have an aspect ratio close to %2$s.', 'listdom'),
+                                $field_label,
+                                $image_aspect_ratio
+                            );
+
+                            $wrapper_attributes['data-aspect-ratio'] = $image_aspect_ratio;
+                            $wrapper_attributes['data-aspect-message'] = $aspect_message;
                         }
 
                         $wrapper_attributes_str = '';

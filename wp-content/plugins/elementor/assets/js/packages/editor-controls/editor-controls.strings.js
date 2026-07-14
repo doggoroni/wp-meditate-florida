@@ -117,8 +117,10 @@ __( 'Cancel', 'elementor' );
 __( 'Enable', 'elementor' );
 __( 'Recently Used', 'elementor' );
 __( 'Transition Property', 'elementor' );
-__( 'Upgrade to customize transition properties and control effects.', 'elementor' );
-__( 'Upgrade now', 'elementor' );
+__(
+									'Upgrade to customize transition properties and control effects.',
+									'elementor'
+								);
 __( 'Type', 'elementor' );
 __( 'Duration', 'elementor' );
 __( 'Transitions', 'elementor' );
@@ -230,6 +232,7 @@ __( 'Hide', 'elementor' );
 __( 'Remove', 'elementor' );
 __( 'Open item', 'elementor' );
 __( 'Display Conditions', 'elementor' );
+__( 'Attributes', 'elementor' );
 __( 'Origin X', 'elementor' );
 __( 'Origin Y', 'elementor' );
 __( 'Origin Z', 'elementor' );

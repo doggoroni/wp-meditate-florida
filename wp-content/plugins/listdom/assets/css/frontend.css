@@ -1497,7 +1497,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection, .lsd-row:n
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection,
-form.fed_form_post .form-group .select2 .select2-selection, .lsd-fe-input + .select2-container--default .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection, input[type="text"].lsd-fe-input,
+form.fed_form_post .form-group .select2 .select2-selection, .lsd-fe-input + .select2-container--default .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection, input[type="text"].lsd-fe-input,
 input[type="email"].lsd-fe-input,
 input[type="number"].lsd-fe-input,
 input[type="password"].lsd-fe-input,
@@ -1514,7 +1514,7 @@ input[type="tel"].lsd-fe-input,
 .lsd-form-row div[class*="lsd-col-"] input[type=tel],
 .lsd-form-row div[class*="lsd-col-"] input[type=url],
 .lsd-form-row div[class*="lsd-col-"] input[type=search],
-.lsd-form-row div[class*="lsd-col-"] input[type=date], .lsd-checkout-wrapper .lsd-gateway-form input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea, .lsd-dashboard .select2-container .select2-selection, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not(.icons-search-input),
+.lsd-form-row div[class*="lsd-col-"] input[type=date], .lsd-checkout-wrapper .lsd-gateway-form input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea, .lsd-dashboard .select2-container .select2-selection, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not(.icons-search-input),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="number"],
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="email"],
@@ -1627,7 +1627,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection::placeholde
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection::placeholder,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection::placeholder,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection::placeholder,
-form.fed_form_post .form-group .select2 .select2-selection::placeholder, .lsd-fe-input + .select2-container--default .select2-selection::placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection::placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection::placeholder, input[type="text"].lsd-fe-input::placeholder,
+form.fed_form_post .form-group .select2 .select2-selection::placeholder, .lsd-fe-input + .select2-container--default .select2-selection::placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection::placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection::placeholder, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection::placeholder, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection::placeholder, input[type="text"].lsd-fe-input::placeholder,
 input[type="email"].lsd-fe-input::placeholder,
 input[type="number"].lsd-fe-input::placeholder,
 input[type="password"].lsd-fe-input::placeholder,
@@ -1644,7 +1644,7 @@ input[type="tel"].lsd-fe-input::placeholder,
 .lsd-form-row div[class*="lsd-col-"] input[type=tel]::placeholder,
 .lsd-form-row div[class*="lsd-col-"] input[type=url]::placeholder,
 .lsd-form-row div[class*="lsd-col-"] input[type=search]::placeholder,
-.lsd-form-row div[class*="lsd-col-"] input[type=date]::placeholder, .lsd-checkout-wrapper .lsd-gateway-form input::placeholder, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input::placeholder, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea::placeholder, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input::placeholder, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea::placeholder, .lsd-dashboard .select2-container .select2-selection::placeholder, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection::placeholder, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not(.icons-search-input)::placeholder,
+.lsd-form-row div[class*="lsd-col-"] input[type=date]::placeholder, .lsd-checkout-wrapper .lsd-gateway-form input::placeholder, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input::placeholder, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea::placeholder, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input::placeholder, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea::placeholder, .lsd-dashboard .select2-container .select2-selection::placeholder, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection::placeholder, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox::placeholder, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio::placeholder, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not(.icons-search-input)::placeholder,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="number"]::placeholder,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea::placeholder,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="email"]::placeholder,
@@ -1744,7 +1744,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection:focus, .lsd
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection:focus,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection:focus,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection:focus,
-form.fed_form_post .form-group .select2 .select2-selection:focus, .lsd-fe-input + .select2-container--default .select2-selection:focus, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:focus, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:focus, input[type="text"].lsd-fe-input:focus,
+form.fed_form_post .form-group .select2 .select2-selection:focus, .lsd-fe-input + .select2-container--default .select2-selection:focus, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:focus, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:focus, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection:focus, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection:focus, input[type="text"].lsd-fe-input:focus,
 input[type="email"].lsd-fe-input:focus,
 input[type="number"].lsd-fe-input:focus,
 input[type="password"].lsd-fe-input:focus,
@@ -1761,7 +1761,7 @@ input[type="tel"].lsd-fe-input:focus,
 .lsd-form-row div[class*="lsd-col-"] input[type=tel]:focus,
 .lsd-form-row div[class*="lsd-col-"] input[type=url]:focus,
 .lsd-form-row div[class*="lsd-col-"] input[type=search]:focus,
-.lsd-form-row div[class*="lsd-col-"] input[type=date]:focus, .lsd-checkout-wrapper .lsd-gateway-form input:focus, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:focus, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:focus, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:focus, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:focus, .lsd-dashboard .select2-container .select2-selection:focus, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:focus, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:focus:not(.icons-search-input),
+.lsd-form-row div[class*="lsd-col-"] input[type=date]:focus, .lsd-checkout-wrapper .lsd-gateway-form input:focus, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:focus, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:focus, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:focus, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:focus, .lsd-dashboard .select2-container .select2-selection:focus, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:focus, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox:focus, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio:focus, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:focus:not(.icons-search-input),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="number"]:focus,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea:focus,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="email"]:focus,
@@ -1864,7 +1864,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection:disabled, .
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection:disabled,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection:disabled,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection:disabled,
-form.fed_form_post .form-group .select2 .select2-selection:disabled, .lsd-fe-input + .select2-container--default .select2-selection:disabled, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:disabled, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:disabled, input[type="text"].lsd-fe-input:disabled,
+form.fed_form_post .form-group .select2 .select2-selection:disabled, .lsd-fe-input + .select2-container--default .select2-selection:disabled, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:disabled, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:disabled, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection:disabled, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection:disabled, input[type="text"].lsd-fe-input:disabled,
 input[type="email"].lsd-fe-input:disabled,
 input[type="number"].lsd-fe-input:disabled,
 input[type="password"].lsd-fe-input:disabled,
@@ -1881,7 +1881,7 @@ input[type="tel"].lsd-fe-input:disabled,
 .lsd-form-row div[class*="lsd-col-"] input[type=tel]:disabled,
 .lsd-form-row div[class*="lsd-col-"] input[type=url]:disabled,
 .lsd-form-row div[class*="lsd-col-"] input[type=search]:disabled,
-.lsd-form-row div[class*="lsd-col-"] input[type=date]:disabled, .lsd-checkout-wrapper .lsd-gateway-form input:disabled, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:disabled, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:disabled, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:disabled, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:disabled, .lsd-dashboard .select2-container .select2-selection:disabled, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:disabled, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:disabled:not(.icons-search-input),
+.lsd-form-row div[class*="lsd-col-"] input[type=date]:disabled, .lsd-checkout-wrapper .lsd-gateway-form input:disabled, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:disabled, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:disabled, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:disabled, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:disabled, .lsd-dashboard .select2-container .select2-selection:disabled, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:disabled, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox:disabled, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio:disabled, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:disabled:not(.icons-search-input),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="number"]:disabled,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea:disabled,
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="email"]:disabled,
@@ -1983,7 +1983,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 [readonly].select2-selection, 
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 [readonly].select2-selection,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 [readonly].select2-selection,
 .lsd-listing-googlemap .lsd-direction form .select2 [readonly].select2-selection,
-form.fed_form_post .form-group .select2 [readonly].select2-selection, .lsd-fe-input + .select2-container--default [readonly].select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container [readonly].select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 [readonly].select2-selection, input[readonly][type="text"].lsd-fe-input,
+form.fed_form_post .form-group .select2 [readonly].select2-selection, .lsd-fe-input + .select2-container--default [readonly].select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container [readonly].select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 [readonly].select2-selection, div.lsd-discussion form.lsdaddrev-sort .select2 [readonly].select2-selection, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 [readonly].select2-selection, input[readonly][type="text"].lsd-fe-input,
 input[readonly][type="email"].lsd-fe-input,
 input[readonly][type="number"].lsd-fe-input,
 input[readonly][type="password"].lsd-fe-input,
@@ -2000,7 +2000,7 @@ input[readonly][type="tel"].lsd-fe-input,
 .lsd-form-row div[class*="lsd-col-"] input[readonly][type=tel],
 .lsd-form-row div[class*="lsd-col-"] input[readonly][type=url],
 .lsd-form-row div[class*="lsd-col-"] input[readonly][type=search],
-.lsd-form-row div[class*="lsd-col-"] input[readonly][type=date], .lsd-checkout-wrapper .lsd-gateway-form input[readonly], .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row [readonly].lsd-form-control-input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row [readonly].lsd-form-control-textarea, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row [readonly].lsd-form-control-input, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row [readonly].lsd-form-control-textarea, .lsd-dashboard .select2-container [readonly].select2-selection, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch [readonly].select2-selection, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[readonly][type="text"]:not(.icons-search-input),
+.lsd-form-row div[class*="lsd-col-"] input[readonly][type=date], .lsd-checkout-wrapper .lsd-gateway-form input[readonly], .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row [readonly].lsd-form-control-input, .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row [readonly].lsd-form-control-textarea, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row [readonly].lsd-form-control-input, .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row [readonly].lsd-form-control-textarea, .lsd-dashboard .select2-container [readonly].select2-selection, .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch [readonly].select2-selection, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes [readonly].lsd-attribute-checkbox, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes [readonly].lsd-attribute-radio, .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[readonly][type="text"]:not(.icons-search-input),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[readonly][type="number"],
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea[readonly],
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[readonly][type="email"],
@@ -2101,7 +2101,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection:not([type="
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]),
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]),
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]),
-form.fed_form_post .form-group .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-fe-input + .select2-container--default .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), input[type="text"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
+form.fed_form_post .form-group .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-fe-input + .select2-container--default .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection:not([type="checkbox"]):not([type="radio"]), input[type="text"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
 input[type="email"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
 input[type="number"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
 input[type="password"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
@@ -2118,7 +2118,7 @@ input[type="tel"].lsd-fe-input:not([type="checkbox"]):not([type="radio"]),
 .lsd-form-row div[class*="lsd-col-"] input[type=tel]:not([type="checkbox"]):not([type="radio"]),
 .lsd-form-row div[class*="lsd-col-"] input[type=url]:not([type="checkbox"]):not([type="radio"]),
 .lsd-form-row div[class*="lsd-col-"] input[type=search]:not([type="checkbox"]):not([type="radio"]),
-.lsd-form-row div[class*="lsd-col-"] input[type=date]:not([type="checkbox"]):not([type="radio"]), .lsd-checkout-wrapper .lsd-gateway-form input:not([type="checkbox"]):not([type="radio"]), .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:not([type="checkbox"]):not([type="radio"]), .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:not([type="checkbox"]):not([type="radio"]), .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:not([type="checkbox"]):not([type="radio"]), .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .select2-container .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not([type="checkbox"]):not([type="radio"]):not(.icons-search-input),
+.lsd-form-row div[class*="lsd-col-"] input[type=date]:not([type="checkbox"]):not([type="radio"]), .lsd-checkout-wrapper .lsd-gateway-form input:not([type="checkbox"]):not([type="radio"]), .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-input:not([type="checkbox"]):not([type="radio"]), .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-right-col .lsd-single-page-abuse .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .lsd-form-control-textarea:not([type="checkbox"]):not([type="radio"]), .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-input:not([type="checkbox"]):not([type="radio"]), .lsd-single-page-wrapper .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .lsd-form-control-textarea:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .select2-container .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .lsd-dashboard-listings-list ul.lsd-dashboard-listings-list-items li .lsd-dashboard-actions div.lsd-dashboard-switch .select2-selection:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio:not([type="checkbox"]):not([type="radio"]), .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="text"]:not([type="checkbox"]):not([type="radio"]):not(.icons-search-input),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="number"]:not([type="checkbox"]):not([type="radio"]),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs textarea:not([type="checkbox"]):not([type="radio"]),
 .lsd-dashboard .lsd-dashboard-form .lsd-new-tax-wrapper .lsd-new-tax-inputs input[type="email"]:not([type="checkbox"]):not([type="radio"]),
@@ -2212,7 +2212,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2, .lsd-row:not(.lsd-grid-contai
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2,
 .lsd-listing-googlemap .lsd-direction form .select2,
-form.fed_form_post .form-group .select2, .lsd-fe-input + .select2-container--default, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 {
+form.fed_form_post .form-group .select2, .lsd-fe-input + .select2-container--default, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2, div.lsd-discussion form.lsdaddrev-sort .select2, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 {
   /* Single select */
   /* Multi select */
 }
@@ -2222,7 +2222,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection, .lsd-row:n
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection,
-form.fed_form_post .form-group .select2 .select2-selection, .lsd-fe-input + .select2-container--default .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection {
+form.fed_form_post .form-group .select2 .select2-selection, .lsd-fe-input + .select2-container--default .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection {
   box-shadow: unset !important;
   justify-content: var(--listdom-form-input-text-align);
 }
@@ -2232,7 +2232,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection .select2-se
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection .select2-selection__placeholder,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection .select2-selection__placeholder,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection .select2-selection__placeholder,
-form.fed_form_post .form-group .select2 .select2-selection .select2-selection__placeholder, .lsd-fe-input + .select2-container--default .select2-selection .select2-selection__placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection .select2-selection__placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection .select2-selection__placeholder {
+form.fed_form_post .form-group .select2 .select2-selection .select2-selection__placeholder, .lsd-fe-input + .select2-container--default .select2-selection .select2-selection__placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection .select2-selection__placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection .select2-selection__placeholder, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection .select2-selection__placeholder, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection .select2-selection__placeholder {
   color: var(--listdom-form-input-placeholder-text-color) !important;
 }
 .lsd-fe-select2-base.select2-container--focus .selection .select2-selection, form[id^="lsd"] .select2-container--focus.select2 .selection .select2-selection,
@@ -2241,7 +2241,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2-container--focus.select2 .sele
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2-container--focus.select2 .selection .select2-selection,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2-container--focus.select2 .selection .select2-selection,
 .lsd-listing-googlemap .lsd-direction form .select2-container--focus.select2 .selection .select2-selection,
-form.fed_form_post .form-group .select2-container--focus.select2 .selection .select2-selection, .lsd-fe-input + .select2-container--focus.select2-container--default .selection .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container--focus.select2-container .selection .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2-container--focus.select2 .selection .select2-selection {
+form.fed_form_post .form-group .select2-container--focus.select2 .selection .select2-selection, .lsd-fe-input + .select2-container--focus.select2-container--default .selection .select2-selection, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container--focus.select2-container .selection .select2-selection, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2-container--focus.select2 .selection .select2-selection, div.lsd-discussion form.lsdaddrev-sort .select2-container--focus.select2 .selection .select2-selection, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2-container--focus.select2 .selection .select2-selection {
   border-radius: var(--lsd-form-input-focus-radius-capped);
 }
 .lsd-fe-select2-base .select2-selection--single, form[id^="lsd"] .select2 .select2-selection--single,
@@ -2250,7 +2250,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--single, .l
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--single,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--single,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--single,
-form.fed_form_post .form-group .select2 .select2-selection--single, .lsd-fe-input + .select2-container--default .select2-selection--single, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single {
+form.fed_form_post .form-group .select2 .select2-selection--single, .lsd-fe-input + .select2-container--default .select2-selection--single, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--single, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--single {
   display: flex !important;
   align-items: center !important;
   padding: var(--listdom-form-input-padding, 10px);
@@ -2262,12 +2262,12 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--single .se
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--single .select2-selection__rendered,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--single .select2-selection__rendered,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--single .select2-selection__rendered,
-form.fed_form_post .form-group .select2 .select2-selection--single .select2-selection__rendered, .lsd-fe-input + .select2-container--default .select2-selection--single .select2-selection__rendered, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single .select2-selection__rendered, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single .select2-selection__rendered {
+form.fed_form_post .form-group .select2 .select2-selection--single .select2-selection__rendered, .lsd-fe-input + .select2-container--default .select2-selection--single .select2-selection__rendered, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single .select2-selection__rendered, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single .select2-selection__rendered, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--single .select2-selection__rendered, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--single .select2-selection__rendered {
   font-weight: var(--listdom-form-input-font-weight) !important;
   font-family: var(--listdom-form-input-font-family), serif;
   font-size: var(--listdom-form-input-font-size);
   line-height: var(--listdom-form-input-line-height);
-  color: var(--listdom-form-input-text-color);
+  color: #000;
   text-align: var(--listdom-form-input-text-align);
   padding: 0 !important;
 }
@@ -2277,7 +2277,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--single .se
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--single .select2-selection__arrow,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--single .select2-selection__arrow,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--single .select2-selection__arrow,
-form.fed_form_post .form-group .select2 .select2-selection--single .select2-selection__arrow, .lsd-fe-input + .select2-container--default .select2-selection--single .select2-selection__arrow, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single .select2-selection__arrow, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single .select2-selection__arrow {
+form.fed_form_post .form-group .select2 .select2-selection--single .select2-selection__arrow, .lsd-fe-input + .select2-container--default .select2-selection--single .select2-selection__arrow, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--single .select2-selection__arrow, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--single .select2-selection__arrow, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--single .select2-selection__arrow, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--single .select2-selection__arrow {
   top: 50% !important;
   transform: translateY(-50%);
 }
@@ -2287,7 +2287,7 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--multiple, 
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--multiple,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--multiple,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--multiple,
-form.fed_form_post .form-group .select2 .select2-selection--multiple, .lsd-fe-input + .select2-container--default .select2-selection--multiple, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple {
+form.fed_form_post .form-group .select2 .select2-selection--multiple, .lsd-fe-input + .select2-container--default .select2-selection--multiple, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--multiple, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--multiple {
   padding: var(--listdom-form-input-padding, 10px);
   min-height: var(--listdom-form-input-height, 48px);
   display: flex !important;
@@ -2300,8 +2300,25 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--multiple .
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--multiple .select2-selection__placeholder,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--multiple .select2-selection__placeholder,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--multiple .select2-selection__placeholder,
-form.fed_form_post .form-group .select2 .select2-selection--multiple .select2-selection__placeholder, .lsd-fe-input + .select2-container--default .select2-selection--multiple .select2-selection__placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple .select2-selection__placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple .select2-selection__placeholder {
+form.fed_form_post .form-group .select2 .select2-selection--multiple .select2-selection__placeholder, .lsd-fe-input + .select2-container--default .select2-selection--multiple .select2-selection__placeholder, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple .select2-selection__placeholder, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple .select2-selection__placeholder, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__placeholder, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__placeholder {
   margin: 0 !important;
+}
+.lsd-fe-select2-base .select2-selection--multiple .select2-selection__rendered, form[id^="lsd"] .select2 .select2-selection--multiple .select2-selection__rendered,
+form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--multiple .select2-selection__rendered, .lsd-row:not(.lsd-grid-container) div[class*="lsd-col-"] .select2 .select2-selection--multiple .select2-selection__rendered,
+.lsd-form-row div[class*="lsd-col-"] .select2 .select2-selection--multiple .select2-selection__rendered,
+.lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--multiple .select2-selection__rendered,
+.lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--multiple .select2-selection__rendered,
+.lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--multiple .select2-selection__rendered,
+form.fed_form_post .form-group .select2 .select2-selection--multiple .select2-selection__rendered, .lsd-fe-input + .select2-container--default .select2-selection--multiple .select2-selection__rendered, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple .select2-selection__rendered, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple .select2-selection__rendered, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__rendered, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__rendered {
+  margin: 0;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  color: #000;
+  line-height: 1rem;
+  gap: var(--listdom-gap-compact);
 }
 .lsd-fe-select2-base .select2-selection--multiple .select2-selection__choice, form[id^="lsd"] .select2 .select2-selection--multiple .select2-selection__choice,
 form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--multiple .select2-selection__choice, .lsd-row:not(.lsd-grid-container) div[class*="lsd-col-"] .select2 .select2-selection--multiple .select2-selection__choice,
@@ -2309,14 +2326,18 @@ form[class^="lsd"]:not(.lsd-search-form) .select2 .select2-selection--multiple .
 .lsd-single-page-wrapper .lsd-single-owner-box .lsd-owner-contact-form-wrapper .lsd-owner-contact-form-row .select2 .select2-selection--multiple .select2-selection__choice,
 .lsd-single-page-wrapper .lsd-single-abuse-box .lsd-report-abuse-form-wrapper .lsd-report-abuse-form-row .select2 .select2-selection--multiple .select2-selection__choice,
 .lsd-listing-googlemap .lsd-direction form .select2 .select2-selection--multiple .select2-selection__choice,
-form.fed_form_post .form-group .select2 .select2-selection--multiple .select2-selection__choice, .lsd-fe-input + .select2-container--default .select2-selection--multiple .select2-selection__choice, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple .select2-selection__choice, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple .select2-selection__choice {
-  background: var(--listdom-form-multiselect-choice-bg, #F3F3F3) !important;
-  border: 1px solid var(--listdom-form-multiselect-choice-border, #E8E8E8) !important;
-  border-radius: 4px !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: 400 !important;
-  color: var(--listdom-form-input-text-color) !important;
+form.fed_form_post .form-group .select2 .select2-selection--multiple .select2-selection__choice, .lsd-fe-input + .select2-container--default .select2-selection--multiple .select2-selection__choice, .lsd-view-sortbar-wrapper .lsd-sortbar-dropdown .select2-container .select2-selection--multiple .select2-selection__choice, .lsd-checkout-wrapper .lsd-checkout-cart .lsd-cart-item .lsd-cart-item-info .lsd-checkout-tier .select2 .select2-selection--multiple .select2-selection__choice, div.lsd-discussion form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__choice, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 .select2-selection--multiple .select2-selection__choice {
+  background-color: #ebebeb !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin: 0 !important;
+  padding: 4px 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--listdom-gap-compact);
+  align-items: center;
+  white-space: wrap;
+  flex-direction: row-reverse;
 }
 
 .lsd-fe-input-check, div[class*="lsd-"] input[type="checkbox"], .lsd-dashboard .lsd-dashboard-form .lsd-listing-module-availability .lsd-ava-off .lsd-fields-label input[type="checkbox"] {
@@ -2547,6 +2568,9 @@ body svg.lsd-fe-icon {
 
 .lsd-fe-description-tiny {
   margin: 5px 0 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 .lsd-fe-icon-wrapper {
@@ -2591,12 +2615,12 @@ body svg.lsd-fe-icon {
   padding: 16px;
 }
 
-.lsd-fe-border-box, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio, .lsd-dashboard .lsd-dashboard-form .lsd-labelize-metabox ul.lsd-labelize-available-labels, .lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fd-taxonomies-checkboxes, .lsd-dashboard .lsd-dashboard-form .lsd-listing-module-availability .lsd-ava-off, .lsd-dashboard .lsd-dashboard-form .lsd-listing-gallery-container.lsd-listing-module-gallery ul.lsd-listing-gallery {
+.lsd-fe-border-box, .lsd-dashboard .lsd-dashboard-form .lsd-labelize-metabox ul.lsd-labelize-available-labels, .lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fe-taxonomies-checkboxes, .lsd-dashboard .lsd-dashboard-form .lsd-listing-module-availability .lsd-ava-off, .lsd-dashboard .lsd-dashboard-form .lsd-listing-gallery-container.lsd-listing-module-gallery ul.lsd-listing-gallery {
   border: 1px solid var(--lsd-fe-lines, #D8D8D8);
   background: #FFFFFF;
   display: flex;
@@ -2796,7 +2820,12 @@ body table.lsd-fe-table tfoot tr td a {
 .lsd-privacy-consent-wrapper .lsd-privacy-consent-label {
   display: flex;
   align-items: center;
-  gap: var(--listdom-gap-compact);
+  gap: var(--listdom-gap);
+}
+
+.lsd-skin-wrapper .lsd-listing-wrapper > .lsd-alert {
+  width: 100%;
+  grid-column: 1 / -1;
 }
 
 :root {
@@ -3177,7 +3206,6 @@ body table.lsd-fe-table tfoot tr td a {
 .lsd-toast.lsd-warning {
   background-color: #fffbe6;
   color: #856404;
-  border-bottom: 2px solid #ffc107;
   --lsd-progress-color: #ffc107;
 }
 .lsd-toast.lsd-info {
@@ -3961,41 +3989,42 @@ ul.lsd-boxed-list li label .lsd-inline-checkbox {
     overflow: hidden;
   }
 }
-.lsd-box-white, .lsd-box-attribute-upsert {
+.lsd-box-white, .lsd-box-taxonomy-upsert {
   background: #fff;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.lsd-box-attribute-upsert {
+.lsd-box-taxonomy-upsert {
   width: 95%;
   padding: 1.5em;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  border-radius: 10px;
 }
-.lsd-box-attribute-upsert input[type=text], .lsd-box-attribute-upsert input[type=number], .lsd-box-attribute-upsert select {
+.lsd-box-taxonomy-upsert input[type=text], .lsd-box-taxonomy-upsert input[type=number], .lsd-box-taxonomy-upsert select {
   margin: 0;
   width: 100%;
   max-width: 100%;
 }
-.lsd-box-attribute-upsert .form-field {
+.lsd-box-taxonomy-upsert .form-field {
   margin: 0;
 }
-.lsd-box-attribute-upsert .form-field > label {
+.lsd-box-taxonomy-upsert .form-field > label {
   padding-bottom: 4px;
   display: block;
 }
-.lsd-box-attribute-upsert .form-field input[type=checkbox] + label {
+.lsd-box-taxonomy-upsert .form-field input[type=checkbox] + label {
   margin-left: 4px;
 }
-.lsd-box-attribute-upsert .description {
+.lsd-box-taxonomy-upsert .description {
   margin-bottom: 0;
   max-width: 100%;
 }
 
-.form-field-attribute-row .form-field-attribute-column {
+.form-field-taxonomy-row .form-field-taxonomy-column {
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -4030,12 +4059,27 @@ ul.lsd-boxed-list li label .lsd-inline-checkbox {
   border-radius: 4px;
 }
 
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list li img {
+  width: 100%;
+  min-height: 180px;
+}
+.lsd-imagepicker-wrapper ul.lsd-imagepicker-multiple-list:has(li:nth-child(2)) li img {
+  max-width: 180px;
+}
+
 .lsd-image-placeholder {
   border: 1px dashed #d4d7dc;
   border-radius: 8px;
   padding: 10px;
   background-color: #f8fafc;
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6321,19 +6365,6 @@ body.rtl .lsd-pagination ul li:last-child a {
 .lsd-dashboard-profile .lsd-form-group .lsd-form-row {
   margin-bottom: 15px;
 }
-.lsd-dashboard-profile .lsd-profile-image-container .lsd-profile-buttons .lsd-remove-image-button, .lsd-dashboard-profile .lsd-profile-hero-image-container .lsd-profile-buttons .lsd-remove-image-button {
-  background: transparent;
-  border: 2px solid black;
-  border-radius: 50%;
-  width: 20px;
-  color: black;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  cursor: pointer;
-}
 .lsd-dashboard-profile .lsd-profile-image-container #lsd_dashboard_hero_image_preview img, .lsd-dashboard-profile .lsd-profile-image-container #lsd_dashboard_profile_image_preview img, .lsd-dashboard-profile .lsd-profile-hero-image-container #lsd_dashboard_hero_image_preview img, .lsd-dashboard-profile .lsd-profile-hero-image-container #lsd_dashboard_profile_image_preview img {
   display: flex;
   align-items: center;
@@ -8156,7 +8187,6 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   display: none;
 }
 .lsd-view-sortbar-wrapper ul.lsd-sortbar-list {
-  background-color: #ffffff;
   margin: 0;
   display: flex;
   padding: 0 !important;
@@ -8164,6 +8194,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   overflow: auto;
 }
 .lsd-view-sortbar-wrapper ul.lsd-sortbar-list li {
+  background-color: #ffffff;
   font-family: var(--listdom-main-font-m), sans-serif;
   border: 1px solid #eee;
   border-inline-end-width: 0;
@@ -13059,14 +13090,15 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   border-radius: 10px 10px 0 0;
 }
 .lsd-table-view-wrapper .lsd-table-view-listings-wrapper .lsd-listing-table thead th {
-  padding: 16px;
+  padding: 10px;
   color: #fff;
   font-weight: 500;
   background-color: var(--listdom-main-gbg1);
   font-size: 14px;
   line-height: 22px;
   vertical-align: middle;
-  white-space: nowrap;
+  white-space: wrap;
+  text-wrap: wrap;
   border: none;
 }
 .lsd-table-view-wrapper .lsd-table-view-listings-wrapper .lsd-listing-table thead th:first-child {
@@ -13132,6 +13164,15 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   line-height: 1.6em;
   color: #000;
   margin: 0;
+}
+.lsd-table-view-wrapper .lsd-table-view-listings-wrapper .lsd-listing-table td.lsd-table-no-listing {
+  width: 100%;
+  border-bottom: none;
+  background: transparent;
+  padding: 0;
+}
+.lsd-table-view-wrapper .lsd-table-view-listings-wrapper .lsd-listing-table td.lsd-table-no-listing .lsd-alert {
+  margin: 6px 0 0;
 }
 .lsd-table-view-wrapper .lsd-table-view-listings-wrapper .lsd-listing-table td.lsd-listing-map {
   min-width: 450px;
@@ -13309,6 +13350,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   max-height: 762px;
   overflow-y: auto;
   padding: 16px 0;
+}
+.lsd-side-view-wrapper .lsd-side-scaffold .lsd-side-listings .lsd-listing-wrapper > .lsd-alert {
+  margin-left: 16px;
+  margin-right: 16px;
+  width: calc(100% - 32px);
 }
 .lsd-side-view-wrapper .lsd-side-scaffold .lsd-side-listings ul.page-numbers {
   flex-wrap: wrap;
@@ -15188,6 +15234,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   height: 20px;
   font-size: 1rem;
   line-height: 1.375em;
+}
+.lsd-masonry-view-wrapper .lsd-masonry-view-listings-wrapper .lsd-listing-wrapper > .lsd-alert {
+  width: 100% !important;
 }
 .lsd-masonry-view-wrapper .lsd-masonry-view-listings-wrapper .lsd-listing-wrapper > div {
   width: calc(50% - var(--listdom-gap-wide));
@@ -19225,7 +19274,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   gap: 16px;
 }
 .lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-summary {
-  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap-wide);
 }
 .lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-summary .lsd-tax-location-inner > div {
   display: flex;
@@ -19233,15 +19284,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   gap: var(--listdom-gap-compact);
   flex: 1;
 }
-.lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-gateways {
-  padding: 30px 0 0 0;
-}
 .lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-cart .lsd-cart-item {
   background: #F7F7F7;
   box-shadow: unset;
-}
-.lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-coupon {
-  padding: 16px 0;
 }
 .lsd-checkout-wrapper.lsd-checkout-style-compact .lsd-checkout-coupon > div {
   background: transparent;
@@ -19537,12 +19582,16 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 .lsd-single-title {
   color: var(--listdom-h1-color);
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-rate,
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span i.fas,
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i.fas,
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas,
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-reviews-form .lsd-rate-stars a i.fas,
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-reviews-form .lsd-rate-stars a i.fas {
+  font-size: 12px;
+  line-height: 12px;
+  color: var(--listdom-single-sc);
+}
+.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-rate {
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style1 .lsd-single-page-section-content,
@@ -19621,7 +19670,6 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   border-radius: unset;
   margin-right: 15px;
   font-size: 13px;
-  line-height: 13px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .listdom-single-top .lsd-listing-category a::before {
   display: none;
@@ -19784,12 +19832,14 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-key {
   color: #000000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value img {
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value a {
@@ -19826,9 +19876,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-acf .lsd-row .lsd-attr-key {
   color: #000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-acf .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-acf .lsd-row .lsd-attr-value a {
   color: var(--listdom-content-c);
@@ -20042,19 +20094,17 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 17px;
   margin-bottom: 10px;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > h4 {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.42);
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars {
-  margin-right: 10px;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span {
   margin-right: 0;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i {
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-date {
@@ -20068,6 +20118,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 16px;
   margin-bottom: 0;
 }
+.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap-compact);
+}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div {
   display: inline-block;
   color: var(--listdom-content-c);
@@ -20080,10 +20135,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value {
   margin: 0;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value span.lsd-stars {
-  float: none;
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas {
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li ul.lsd-review-images {
@@ -20176,11 +20230,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-page-section-stats .lsdaddsts-stats ul li i {
   width: 22px;
   height: 22px;
-  background-color: var(--listdom-icons-bg-color);
+  background-color: var(--listdom-features-icons-bg-color);
   border-radius: 22px;
   text-align: center;
   font-size: 10px;
-  color: var(--listdom-icons-text-color);
+  color: var(--listdom-features-icons-text-color);
   line-height: 22px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style2 .lsd-single-tags-wrapper {
@@ -20693,7 +20747,6 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   border-radius: unset;
   margin-right: 15px;
   font-size: 13px;
-  line-height: 13px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .listdom-single-top .lsd-listing-category a::before {
   display: none;
@@ -20858,12 +20911,14 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-key {
   color: #000000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value img {
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value a {
@@ -20900,9 +20955,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-acf .lsd-row .lsd-attr-key {
   color: #000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-acf .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-acf .lsd-row .lsd-attr-value a {
   color: var(--listdom-content-c);
@@ -21116,19 +21173,17 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 17px;
   margin-bottom: 10px;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > h4 {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.42);
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars {
-  margin-right: 10px;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span {
   margin-right: 0;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i {
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-date {
@@ -21142,6 +21197,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 16px;
   margin-bottom: 0;
 }
+.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap-compact);
+}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div {
   display: inline-block;
   color: var(--listdom-content-c);
@@ -21154,10 +21214,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value {
   margin: 0;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value span.lsd-stars {
-  float: none;
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas {
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li ul.lsd-review-images {
@@ -21245,11 +21304,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-page-section-stats .lsdaddsts-stats ul li i {
   width: 22px;
   height: 22px;
-  background-color: var(--listdom-icons-bg-color);
+  background-color: var(--listdom-features-icons-bg-color);
   border-radius: 22px;
   text-align: center;
   font-size: 10px;
-  color: var(--listdom-icons-text-color);
+  color: var(--listdom-features-icons-text-color);
   line-height: 22px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style3 .lsd-single-tags-wrapper {
@@ -21784,7 +21843,6 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   border-radius: unset;
   margin-right: 15px;
   font-size: 13px;
-  line-height: 13px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .listdom-single-top .lsd-listing-category a::before {
   display: none;
@@ -21945,12 +22003,14 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-key {
   color: #000000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value img {
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-attributes .lsd-single-attributes-box .lsd-row .lsd-attr-value a {
@@ -21987,9 +22047,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-acf .lsd-row .lsd-attr-key {
   color: #000;
   font-weight: 600;
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-acf .lsd-row .lsd-attr-value {
   color: var(--listdom-content-c);
+  font-size: 14px;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-acf .lsd-row .lsd-attr-value a {
   color: var(--listdom-content-c);
@@ -22203,19 +22265,17 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 17px;
   margin-bottom: 10px;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > h4 {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.42);
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars {
-  margin-right: 10px;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span {
   margin-right: 0;
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i {
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-date {
@@ -22229,6 +22289,11 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   font-size: 16px;
   margin-bottom: 0;
 }
+.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap-compact);
+}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div {
   display: inline-block;
   color: var(--listdom-content-c);
@@ -22241,10 +22306,9 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value {
   margin: 0;
 }
-.single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-col-6 > div.lsd-review-field-value span.lsd-stars {
-  float: none;
-}
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas {
+  font-size: 12px;
+  line-height: 12px;
   color: var(--listdom-single-sc);
 }
 .single-listdom-listing .lsd-single-page-wrapper.lsd-single-style4 .lsd-single-page-section-discussion .lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li ul.lsd-review-images {
@@ -22614,11 +22678,14 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   }
 }
 .lsd-single-page-wrapper .lsdaddsts-stats ul li i {
-  background-color: #333333;
-  color: #ffffff;
-  border-radius: 30px;
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
+  background-color: var(--listdom-features-icons-bg-color);
+  border-radius: 22px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--listdom-features-icons-text-color);
+  line-height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22709,7 +22776,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   gap: var(--listdom-gap);
 }
 .lsd-single-page-wrapper .lsd-listing-category {
-  line-height: 1.5625em;
+  line-height: 1.4em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -22717,6 +22784,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
 }
 .lsd-single-page-wrapper .lsd-listing-category a {
   text-decoration: none;
+  line-height: 16px;
 }
 .lsd-single-page-wrapper .lsd-single-price > div {
   display: inline-block;
@@ -25370,8 +25438,8 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   width: 15px;
   height: 15px;
   position: absolute;
-  top: 3px;
-  right: 26px;
+  top: 0;
+  right: -1px;
 }
 .lsd-search .lsd-search-row > .lsd-row .lsd-search-filter[class*="lsd-col-span-"] .select2-container .select2-selection .select2-selection__rendered {
   margin: 0;
@@ -25380,7 +25448,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   align-items: center;
   white-space: nowrap;
   flex-wrap: nowrap;
-  color: var(--listdom-search-form-input-text-color);
+  color: #000;
   line-height: 1rem;
   gap: var(--listdom-gap-compact);
 }
@@ -25397,7 +25465,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   flex-wrap: nowrap;
   gap: var(--listdom-gap-compact);
   align-items: center;
-  white-space: nowrap;
+  white-space: wrap;
   flex-direction: row-reverse;
 }
 .lsd-search .lsd-search-row > .lsd-row .lsd-search-filter[class*="lsd-col-span-"] .select2-container .select2-selection .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
@@ -25423,8 +25491,21 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   border: none !important;
 }
 .lsd-search .lsd-search-row > .lsd-row .lsd-search-filter[class*="lsd-col-span-"] .lsd-rate {
-  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  max-height: 100%;
+  border: none !important;
   padding: 8px;
+  font-family: var(--listdom-search-form-input-font-family), serif;
+  font-size: var(--listdom-search-form-input-font-size);
+  font-weight: var(--listdom-search-form-input-font-weight);
+  text-align: var(--listdom-search-form-input-text-align);
+  line-height: var(--listdom-search-form-input-line-height);
+  background: var(--listdom-search-form-input-bg-color);
+  border-radius: var(--lsd-search-form-input-radius-capped);
+  min-height: 45px;
+  height: max-content;
+  color: var(--listdom-search-form-input-text-color);
 }
 .lsd-search .lsd-search-row > .lsd-row .lsd-search-filter[class*="lsd-col-span-"] .lsd-rate .lsd-rate-stars {
   display: flex;
@@ -25561,8 +25642,8 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   width: 15px;
   height: 15px;
   position: absolute;
-  top: 3px;
-  right: 26px;
+  top: 0;
+  right: -1px;
 }
 .lsd-search .lsd-search-row .lsd-search-filter .select2-container .select2-selection .select2-selection__rendered {
   margin: 0;
@@ -25571,7 +25652,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   align-items: center;
   white-space: nowrap;
   flex-wrap: nowrap;
-  color: var(--listdom-search-form-input-text-color);
+  color: #000;
   line-height: 1rem;
   gap: var(--listdom-gap-compact);
 }
@@ -25703,7 +25784,7 @@ body.rtl .lsd-listing-googlemap .lsd-direction .lsd-direction-reset {
   flex-wrap: wrap;
   gap: var(--listdom-gap-compact);
 }
-.lsd-search.lsd-search-default-style .lsd-hierarchical-dropdowns .select2-container {
+.lsd-search.lsd-search-default-style .lsd-hierarchical-dropdowns .select2-container, .lsd-search.lsd-search-default-style .lsd-hierarchical-dropdowns select {
   width: 48% !important;
 }
 .lsd-search.lsd-search-default-style .lsd-hierarchical-dropdowns select:first-child:nth-last-child(2) {
@@ -25799,7 +25880,6 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   box-shadow: 0 2px 2px 0 #00000008;
   padding: 10px;
   border-radius: 10px;
-  min-width: max-content;
   z-index: 99999 !important;
 }
 .select2-container.select2-container--default.select2-container--open .select2-dropdown .select2-results ul li {
@@ -26421,9 +26501,10 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   display: flex;
   align-items: center;
   padding: 8px 10px;
+  height: auto !important;
 }
 .lsd-dashboard .select2-container .select2-selection .select2-selection__rendered {
-  color: var(--listdom-form-input-text-color);
+  color: #000;
   font-weight: var(--listdom-form-input-font-weight);
   line-height: var(--listdom-form-input-line-height);
   padding: 0;
@@ -26453,8 +26534,8 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   width: 15px;
   height: 15px;
   position: absolute;
-  top: 3px;
-  right: 26px;
+  top: 0;
+  right: -1px;
 }
 .lsd-dashboard .select2-container .select2-selection .select2-selection__rendered .select2-selection__placeholder {
   color: var(--listdom-form-input-placeholder-text-color);
@@ -26469,7 +26550,7 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   flex-wrap: nowrap;
   gap: var(--listdom-gap-compact);
   align-items: center;
-  white-space: nowrap;
+  white-space: wrap;
   flex-direction: row-reverse;
 }
 .lsd-dashboard .select2-container .select2-selection .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
@@ -26700,6 +26781,14 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
 .lsd-dashboard.lsd-dashboard-form select:focus {
   border-color: #1e83ec;
   outline: 0;
+}
+.lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap);
+  border-radius: 10px;
+  padding: 10px;
+  height: auto !important;
 }
 .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-checkbox > div, .lsd-dashboard.lsd-dashboard-form .lsd-metabox-attributes .lsd-attribute-radio > div {
   display: flex;
@@ -26990,38 +27079,40 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   background: #f7fdff;
   border-color: var(--listdom-main-gbg1);
 }
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fd-taxonomies-checkboxes,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fd-taxonomies-checkboxes {
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fe-taxonomies-checkboxes,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fe-taxonomies-checkboxes {
   min-height: 42px;
   max-height: 300px;
   overflow: auto;
 }
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fd-taxonomies-checkboxes ul.lsd-children,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fd-taxonomies-checkboxes ul.lsd-children,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fd-taxonomies-checkboxes ul.lsd-children,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fd-taxonomies-checkboxes ul.lsd-children,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fd-taxonomies-checkboxes ul.lsd-children,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fd-taxonomies-checkboxes ul.lsd-children {
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fe-taxonomies-checkboxes ul.lsd-children,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fe-taxonomies-checkboxes ul.lsd-children,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fe-taxonomies-checkboxes ul.lsd-children,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fe-taxonomies-checkboxes ul.lsd-children,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fe-taxonomies-checkboxes ul.lsd-children,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fe-taxonomies-checkboxes ul.lsd-children {
   all: unset;
+  display: block;
+  margin-top: 8px;
 }
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fd-taxonomies-checkboxes ul.lsd-children li {
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fe-taxonomies-checkboxes ul.lsd-children li {
   padding-left: 10px;
 }
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label,
-.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fd-taxonomies-checkboxes li label.lsd-fields-label {
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-category ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-locations ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-tags ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-features ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-labels ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label,
+.lsd-dashboard .lsd-dashboard-form .lsd-dashboard-featured-image ul.lsd-fe-taxonomies-checkboxes li label.lsd-fields-label {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
@@ -27770,10 +27861,11 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   width: 100%;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .lsd-auth-wrapper .lsd-auth-switcher-buttons button.lsd-auth-switch-button {
   min-width: auto;
-  max-width: 180px;
+  max-width: 100%;
   transition: all 0.3s ease !important;
   background: transparent linear-gradient(105deg, var(--listdom-auth-form-tabs-normal-bg1) 0, var(--listdom-auth-form-tabs-normal-bg2) 100%) 0 0 no-repeat padding-box;
   color: var(--listdom-auth-form-tabs-normal-text);
@@ -27835,6 +27927,11 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   width: 100%;
   max-width: 800px;
 }
+.lsd-auth-wrapper .lsd-auth-form-container .lsd-register-wrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--listdom-gap-wide);
+}
 .lsd-auth-wrapper .lsd-auth-form-content {
   display: none;
 }
@@ -27874,17 +27971,29 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   flex-wrap: wrap;
 }
 
-.lsd-register-password-rules > div {
-  font-size: 13px;
-}
-.lsd-register-password-rules ul {
-  padding: 0;
-  margin: 0 12px;
-  list-style: none;
+.lsd-register-password-rules {
   display: flex;
   flex-direction: column;
   gap: var(--listdom-gap-compact);
+}
+.lsd-register-password-rules > div {
   font-size: 13px;
+}
+.lsd-register-password-rules .lsd-register-password-rule-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  flex-wrap: wrap;
+  gap: var(--listdom-gap-compact);
+  line-height: 1.4em;
+}
+.lsd-register-password-rules .lsd-register-password-rule-list .lsd-register-password-rule {
+  opacity: 0.25;
+  transition: opacity 0.2s ease;
+}
+.lsd-register-password-rules .lsd-register-password-rule-list .lsd-register-password-rule.lsd-register-password-rule--met {
+  opacity: 0.9;
+  color: #00a806;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -27920,12 +28029,12 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
     row-gap: var(--listdom-gap-compact);
   }
 }
-.login-form-content, #lsd-registration-form, #lsd-forgot-password {
+.login-form-content, .lsd-registration-form, .lsd-forgot-password-form, .lsd-reset-password-form {
   display: flex;
   flex-direction: column;
   gap: var(--listdom-gap-wide);
 }
-.login-form-content label, #lsd-registration-form label, #lsd-forgot-password label {
+.login-form-content label, .lsd-registration-form label, .lsd-forgot-password-form label, .lsd-reset-password-form label {
   margin-bottom: 0;
   color: var(--listdom-auth-form-label-color);
   font-family: var(--listdom-auth-form-label-font-family);
@@ -27934,11 +28043,12 @@ body.rtl .lsd-search .lsd-radius-search-field .lsd-radius-search-address-wrapper
   text-align: var(--listdom-auth-form-label-text-align);
   font-weight: var(--listdom-auth-form-label-font-weight);
 }
-.login-form-content p.login-remember label, #lsd-registration-form p.login-remember label, #lsd-forgot-password p.login-remember label {
+.login-form-content p.login-remember label, .lsd-registration-form p.login-remember label, .lsd-forgot-password-form p.login-remember label, .lsd-reset-password-form p.login-remember label {
   display: flex;
   flex-direction: row;
   gap: var(--listdom-gap);
   justify-items: center;
+  line-height: 13px;
 }
 
 .lsd-auth-dropdown {
@@ -28701,14 +28811,13 @@ div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-rate, div.lsd-re
   font-weight: bold;
   line-height: 85px;
 }
-div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span, div.lsd-reviews-list-shortcode div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span {
-  margin: 0 5px;
+div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars, div.lsd-reviews-list-shortcode div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars {
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span i, div.lsd-reviews-list-shortcode div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span i {
-  color: #4a4a4a;
-  width: 13px;
-  height: 13px;
-  line-height: 13px;
+  color: #d8d8d8;
 }
 div.lsd-discussion div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span i.fas, div.lsd-reviews-list-shortcode div.lsd-reviews-summary .lsd-reviews-summary-stars > span.lsd-stars > span i.fas {
   color: #ffda72;
@@ -28721,6 +28830,16 @@ div.lsd-discussion form.lsdaddrev-sort, div.lsd-reviews-list-shortcode form.lsda
   background-color: rgba(238, 238, 238, 0.3);
   padding: 10px;
   border-radius: 5px;
+}
+div.lsd-discussion form.lsdaddrev-sort .lsd-row, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .lsd-row {
+  display: flex;
+  gap: var(--listdom-gap);
+}
+div.lsd-discussion form.lsdaddrev-sort .lsd-row > div:first-of-type, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .lsd-row > div:first-of-type {
+  flex: 1 1;
+}
+div.lsd-discussion form.lsdaddrev-sort .select2, div.lsd-reviews-list-shortcode form.lsdaddrev-sort .select2 {
+  width: 100% !important;
 }
 div.lsd-discussion div.lsd-tabs-wrapper, div.lsd-reviews-list-shortcode div.lsd-tabs-wrapper {
   border-bottom: 2px solid #eee;
@@ -28892,17 +29011,12 @@ div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fie
   margin-bottom: 17px;
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars {
-  float: left;
-  margin-right: 17px;
-}
-div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span {
-  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i {
-  color: #4a4a4a;
-  width: 13px;
-  height: 13px;
-  line-height: 13px;
+  color: #d8d8d8;
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-fields .lsd-review-field-value > span.lsd-stars > span i.fas {
   color: #ffda72;
@@ -28913,14 +29027,12 @@ div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rat
   gap: var(--listdom-gap-wide);
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars {
-  float: left;
-  line-height: 13px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i {
-  color: #4a4a4a;
-  width: 13px;
-  height: 13px;
-  line-height: 13px;
+  color: #d8d8d8;
 }
 div.lsd-discussion .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i.fas, div.lsd-reviews-list-shortcode .lsd-tab-contents .lsd-reviews-list > ul > li .lsd-review-rate-title > span.lsd-stars > span i.fas {
   color: #ffda72;
@@ -28961,26 +29073,27 @@ div.lsd-reviews-form .lsdaddrev-review-form {
   gap: var(--listdom-gap);
 }
 div.lsd-reviews-form div.lsd-review-form-overall {
-  padding-top: 13px;
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap);
+  flex-wrap: wrap;
 }
 div.lsd-reviews-form div.lsd-review-form-overall label {
-  float: left;
-  margin-right: 10px;
+  margin: 0;
 }
 div.lsd-reviews-form div.g-recaptcha {
   margin-top: 20px;
 }
-div.lsd-reviews-form .lsd-rate-stars a {
-  margin-right: 5px;
+div.lsd-reviews-form .lsd-rate-stars {
+  display: flex;
+  align-items: center;
+  gap: var(--listdom-gap-small);
 }
 div.lsd-reviews-form .lsd-rate-stars a i {
-  color: #4a4a4a;
-  width: 13px;
-  height: 13px;
-  line-height: 13px;
+  color: #d8d8d8;
 }
 div.lsd-reviews-form .lsd-rate-stars a i.fas {
-  color: #ffda72;
+  color: var(--listdom-single-sc);
 }
 
 .lsd-listing-rate {
@@ -28992,7 +29105,7 @@ div.lsd-reviews-form .lsd-rate-stars a i.fas {
 .lsd-listing-rate .lsd-stars {
   display: flex;
   align-items: center;
-  gap: var(--listdom-gap-compact);
+  gap: var(--listdom-gap-small);
 }
 .lsd-listing-rate .lsd-stars span i {
   color: #ffffff;
@@ -30627,6 +30740,22 @@ div.lsd-reviews-list-shortcode.lsd-reviews-layout-masonry .lsd-reviews-list {
 .lsdaddelm-card-availability .lsd-ava-weekday-wrapper .lsd-row {
   flex-direction: row;
   flex-wrap: initial;
+}
+
+.lsdaddelm-card-map .lsd-listing-googlemap .lsd-direction .lsd-row > div {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0;
+}
+.lsdaddelm-card-map .lsd-listing-googlemap .lsd-direction .lsd-row > div .lsd-direction-button-wrapper input[type=submit] {
+  overflow: hidden;
+  padding: 6px 20px !important;
+  font-size: 1rem;
+  position: relative;
+  border-radius: 5rem;
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
 }
 
 .lsdadddiv-card-attributes {

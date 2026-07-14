@@ -381,8 +381,13 @@ span:focus {
   outline-offset: 2px;
 }
 
+/* The parent theme paints its pale blue chip on the inner <span>, not the
+   button — neutralize it so the ghost button styling shows through. */
 .site-header .header-buttons .listdomer-responsive-sidebar-menu > span {
   display: inline-flex;
+  background: transparent !important;
+  border-radius: 0;
+  padding: 0 !important;
   color: #ffffff;
 }
 

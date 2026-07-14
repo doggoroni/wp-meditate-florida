@@ -100,6 +100,74 @@ class MFL_City_Pages
         ],
     ];
 
+    // ─── Routing ─────────────────────────────────────────────────────────────
+
+    public static function register(): void
+    {
+        add_action('init',             [self::class, 'add_rewrite']);
+        add_filter('query_vars',       [self::class, 'add_query_var']);
+        add_filter('template_include', [self::class, 'load_template']);
+        add_action('wp',               [self::class, 'maybe_flush_rules']);
+    }
+
+    public static function add_rewrite(): void
+    {
+        add_rewrite_rule(
+            '^meditation/([a-z0-9-]+)/?$',
+            'index.php?' . self::QUERY_VAR . '=$matches[1]',
+            'top'
+        );
+    }
+
+    public static function add_query_var(array $vars): array
+    {
+        $vars[] = self::QUERY_VAR;
+        return $vars;
+    }
+
+    public static function current_slug(): string
+    {
+        return (string) get_query_var(self::QUERY_VAR);
+    }
+
+    public static function is_city_page(): bool
+    {
+        $slug = self::current_slug();
+        return $slug !== '' && isset(self::CITIES[$slug]);
+    }
+
+    public static function load_template(string $template): string
+    {
+        $slug = self::current_slug();
+        if ($slug === '') {
+            return $template;
+        }
+
+        if (!isset(self::CITIES[$slug])) {
+            global $wp_query;
+            $wp_query->set_404();
+            status_header(404);
+            return get_404_template() ?: $template;
+        }
+
+        $t = locate_template('city-landing.php');
+        return $t ?: $template;
+    }
+
+    /**
+     * Self-flush rewrite rules once per RULES_VER bump — deploys rsync files
+     * and never fire activation hooks, so routes must flush themselves.
+     */
+    public static function maybe_flush_rules(): void
+    {
+        if ((int) get_option('mfl_city_rules_ver') !== self::RULES_VER) {
+            flush_rewrite_rules(false);
+            update_option('mfl_city_rules_ver', self::RULES_VER);
+        }
+    }
+
+    // ─── Registry access ─────────────────────────────────────────────────────
+
     public static function get_city(string $slug): ?array
     {
         if (!isset(self::CITIES[$slug])) {

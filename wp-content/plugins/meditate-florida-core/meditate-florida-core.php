@@ -25,6 +25,14 @@ require_once MFL_DIR . 'includes/class-places-importer.php';
 require_once MFL_DIR . 'includes/class-search-handler.php';
 require_once MFL_DIR . 'includes/class-city-pages.php';
 
+MFL_City_Pages::register();
+
+/** Canonical URL for a city landing page. */
+function mfl_city_url(string $slug): string
+{
+    return home_url('/meditation/' . $slug . '/');
+}
+
 // Register AJAX search handler
 add_action('init', function () {
     (new MFL_Search_Handler())->register();

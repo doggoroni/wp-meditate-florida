@@ -335,6 +335,10 @@ function mfl_handle_newsletter_signup(): void
         update_post_meta($sub_id, '_mfl_subscribed_at', current_time('mysql'));
     }
 
+    // 3b. Hand off to MailPoet (sends the double opt-in confirmation email).
+    //     The CPT above stays as an ESP-independent signup log.
+    mfl_mailpoet_subscribe($email);
+
     // 4. Send notification email to site owner
     $notify_to = get_option('mfl_contact_email', get_option('admin_email'));
     $subject   = '[Meditate Florida] New newsletter subscriber';
@@ -352,6 +356,39 @@ function mfl_handle_newsletter_signup(): void
     // 5. Redirect back with success flag
     wp_safe_redirect(add_query_arg('mfl_newsletter', 'sent', $redirect));
     exit;
+}
+
+/**
+ * Add an email to MailPoet's default list, if MailPoet is active.
+ * Fails silently: signup must never break because the ESP hiccuped —
+ * the mfl_subscriber CPT is the fallback record either way.
+ */
+function mfl_mailpoet_subscribe(string $email): void
+{
+    if (!class_exists(\MailPoet\API\API::class)) {
+        return;
+    }
+
+    try {
+        $mp    = \MailPoet\API\API::MP('v1');
+        $lists = $mp->getLists();
+        if (!$lists) {
+            return;
+        }
+
+        // Prefer the default list; fall back to the first one.
+        $list_id = (int) $lists[0]['id'];
+        foreach ($lists as $l) {
+            if (($l['type'] ?? '') === 'default') {
+                $list_id = (int) $l['id'];
+                break;
+            }
+        }
+
+        $mp->addSubscriber(['email' => $email], [$list_id]);
+    } catch (\Throwable $e) {
+        // "already exists" and transport errors both land here — fine.
+    }
 }
 
 // ─── Claim listing handler ────────────────────────────────────────────────────

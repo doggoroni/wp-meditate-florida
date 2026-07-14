@@ -23,18 +23,19 @@ $hero_title    = get_theme_mod('mfl_hero_title',    'Find Meditation & Wellness 
 $hero_subtitle = get_theme_mod('mfl_hero_subtitle', 'Discover studios, retreats, classes, and teachers near you');
 $hero_bg_url   = get_theme_mod('mfl_hero_bg_image', '');
 
-/** Top 10 Florida cities with their lat/lng for circle-proximity search. */
+/** Top 10 Florida cities with their lat/lng for circle-proximity search.
+ *  slug links each card to its /meditation/{slug}/ landing page. */
 $cities = [
-    ['name' => 'Miami',             'lat' => 25.7617,  'lng' => -80.1918, 'icon' => '🌴'],
-    ['name' => 'Orlando',           'lat' => 28.5383,  'lng' => -81.3792, 'icon' => '☀️'],
-    ['name' => 'Tampa',             'lat' => 27.9477,  'lng' => -82.4584, 'icon' => '🌊'],
-    ['name' => 'Sarasota',          'lat' => 27.3364,  'lng' => -82.5307, 'icon' => '🧘'],
-    ['name' => 'Naples',            'lat' => 26.1420,  'lng' => -81.7948, 'icon' => '🌺'],
-    ['name' => 'St. Petersburg',    'lat' => 27.7676,  'lng' => -82.6403, 'icon' => '🌅'],
-    ['name' => 'Fort Lauderdale',   'lat' => 26.1224,  'lng' => -80.1373, 'icon' => '🏖️'],
-    ['name' => 'Gainesville',       'lat' => 29.6516,  'lng' => -82.3248, 'icon' => '🌿'],
-    ['name' => 'Key West',          'lat' => 24.5551,  'lng' => -81.7800, 'icon' => '🐚'],
-    ['name' => 'Jacksonville',      'lat' => 30.3322,  'lng' => -81.6557, 'icon' => '🕊️'],
+    ['name' => 'Miami',             'slug' => 'miami',           'lat' => 25.7617,  'lng' => -80.1918, 'icon' => '🌴'],
+    ['name' => 'Orlando',           'slug' => 'orlando',         'lat' => 28.5383,  'lng' => -81.3792, 'icon' => '☀️'],
+    ['name' => 'Tampa',             'slug' => 'tampa',           'lat' => 27.9477,  'lng' => -82.4584, 'icon' => '🌊'],
+    ['name' => 'Sarasota',          'slug' => 'sarasota',        'lat' => 27.3364,  'lng' => -82.5307, 'icon' => '🧘'],
+    ['name' => 'Naples',            'slug' => 'naples',          'lat' => 26.1420,  'lng' => -81.7948, 'icon' => '🌺'],
+    ['name' => 'St. Petersburg',    'slug' => 'st-petersburg',   'lat' => 27.7676,  'lng' => -82.6403, 'icon' => '🌅'],
+    ['name' => 'Fort Lauderdale',   'slug' => 'fort-lauderdale', 'lat' => 26.1224,  'lng' => -80.1373, 'icon' => '🏖️'],
+    ['name' => 'Gainesville',       'slug' => 'gainesville',     'lat' => 29.6516,  'lng' => -82.3248, 'icon' => '🌿'],
+    ['name' => 'Key West',          'slug' => 'key-west',        'lat' => 24.5551,  'lng' => -81.7800, 'icon' => '🐚'],
+    ['name' => 'Jacksonville',      'slug' => 'jacksonville',    'lat' => 30.3322,  'lng' => -81.6557, 'icon' => '🕊️'],
 ];
 
 /**
@@ -340,7 +341,9 @@ get_header();
                 $count     = mfl_city_count($city['name']);
                 $lat       = $city['lat'];
                 $lng       = $city['lng'];
-                $city_url  = add_query_arg(['city' => $city['name']], $listings_url);
+                $city_url  = function_exists('mfl_city_url')
+                    ? mfl_city_url($city['slug'])
+                    : add_query_arg(['city' => $city['name']], $listings_url);
             ?>
                 <a href="<?php echo esc_url($city_url); ?>"
                    class="mfl-city-card"

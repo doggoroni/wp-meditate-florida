@@ -110,9 +110,37 @@ class MFL_City_Pages
         add_action('wp',               [self::class, 'maybe_flush_rules']);
 
         add_filter('pre_get_document_title', [self::class, 'document_title']);
-        // Priority 4: before the generic meta output (default 10), which
-        // early-returns on city pages to avoid duplicate tags.
+        // The generic meta output (priority 1) early-returns on city pages;
+        // this emits the complete city head instead.
         add_action('wp_head', [self::class, 'head_output'], 4);
+
+        add_action('template_redirect', [self::class, 'redirect_bare_city_archive']);
+    }
+
+    /**
+     * 301 bare /listings/?city={Name} (city as the only non-empty query key)
+     * to the city landing page. Archive filter submissions always carry other
+     * keys (even empty ones count only when non-empty), sort/category/paged
+     * requests keep working unchanged.
+     */
+    public static function redirect_bare_city_archive(): void
+    {
+        if (!is_post_type_archive('listdom-listing')) {
+            return;
+        }
+
+        $params = array_filter($_GET, fn($v) => $v !== '' && $v !== null);
+        if (count($params) !== 1 || !isset($params['city'])) {
+            return;
+        }
+
+        $name = sanitize_text_field(wp_unslash($params['city']));
+        foreach (self::CITIES as $slug => $c) {
+            if (strcasecmp($c['name'], $name) === 0) {
+                wp_safe_redirect(mfl_city_url($slug), 301);
+                exit;
+            }
+        }
     }
 
     // ─── SEO head ────────────────────────────────────────────────────────────

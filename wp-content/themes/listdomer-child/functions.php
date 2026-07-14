@@ -217,9 +217,11 @@ function mfl_enqueue_home_assets(): void
 }
 
 /**
- * Read GOOGLE_PLACES_API_KEY from the .env file for front-end use.
- * The key IS exposed in the page source (this is normal for JS Maps API keys).
- * Restrict it by HTTP Referrer in Google Cloud Console.
+ * Read GOOGLE_MAPS_BROWSER_KEY from the .env file for front-end use.
+ * This key IS exposed in the page source (normal for JS Maps API keys), so it
+ * must be a SEPARATE key from the server-side GOOGLE_PLACES_API_KEY:
+ * restrict this one by HTTP referrer, the server one by IP address.
+ * Returns '' (autocomplete silently disabled) until the browser key is set.
  */
 function mfl_get_maps_api_key(): string
 {
@@ -230,7 +232,7 @@ function mfl_get_maps_api_key(): string
         $line = trim($line);
         if (str_starts_with($line, '#') || !str_contains($line, '=')) continue;
         [$key, $val] = explode('=', $line, 2);
-        if (trim($key) === 'GOOGLE_PLACES_API_KEY') return trim(trim($val), '"\'');
+        if (trim($key) === 'GOOGLE_MAPS_BROWSER_KEY') return trim(trim($val), '"\'');
     }
 
     return '';

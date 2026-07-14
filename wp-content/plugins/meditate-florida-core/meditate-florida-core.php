@@ -514,6 +514,9 @@ function mfl_custom_title_parts(array $parts): array {
 
 add_action('wp_head', 'mfl_output_meta_tags', 1);
 function mfl_output_meta_tags(): void {
+    // City landing pages emit their own complete head (MFL_City_Pages).
+    if (get_query_var(MFL_City_Pages::QUERY_VAR)) return;
+
     global $post;
     $desc = '';
 
@@ -576,9 +579,10 @@ function mfl_serve_sitemap(): void {
     // Archive root
     echo "<url><loc>" . esc_url($base) . "</loc><changefreq>daily</changefreq><priority>0.9</priority></url>\n";
 
-    // City landing pages
-    foreach (MFL_Search_Handler::CITIES as $city) {
-        echo "<url><loc>" . esc_url(add_query_arg('city', urlencode($city), $base))
+    // City landing pages — real URLs at /meditation/{slug}/ (query-string
+    // city URLs 301 to these and would be canonicalized away anyway)
+    foreach (array_keys(MFL_City_Pages::CITIES) as $slug) {
+        echo "<url><loc>" . esc_url(mfl_city_url($slug))
            . "</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n";
     }
 

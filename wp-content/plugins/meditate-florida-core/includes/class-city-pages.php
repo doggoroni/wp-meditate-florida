@@ -108,6 +108,113 @@ class MFL_City_Pages
         add_filter('query_vars',       [self::class, 'add_query_var']);
         add_filter('template_include', [self::class, 'load_template']);
         add_action('wp',               [self::class, 'maybe_flush_rules']);
+
+        add_filter('pre_get_document_title', [self::class, 'document_title']);
+        // Priority 4: before the generic meta output (default 10), which
+        // early-returns on city pages to avoid duplicate tags.
+        add_action('wp_head', [self::class, 'head_output'], 4);
+    }
+
+    // ─── SEO head ────────────────────────────────────────────────────────────
+
+    public static function document_title(string $title): string
+    {
+        if (!self::is_city_page()) {
+            return $title;
+        }
+        $city = self::CITIES[self::current_slug()];
+        return sprintf('Meditation in %s, FL — Studios, Retreats & Centers | Meditate Florida', $city['name']);
+    }
+
+    public static function head_output(): void
+    {
+        if (!self::is_city_page()) {
+            return;
+        }
+
+        $slug  = self::current_slug();
+        $city  = self::CITIES[$slug];
+        $ids   = self::get_city_listing_ids($slug);
+        $count = count($ids);
+        $url   = mfl_city_url($slug);
+        $title = self::document_title('');
+
+        $desc = $count
+            ? sprintf(
+                "Find %d meditation centers, yoga studios and retreats in %s, FL. Ratings, hours, directions — Meditate Florida's free local directory.",
+                $count,
+                $city['name']
+            )
+            : sprintf(
+                "Meditation centers, yoga studios and retreats in %s, FL. Ratings, hours, directions — Meditate Florida's free local directory.",
+                $city['name']
+            );
+
+        echo '<meta name="description" content="' . esc_attr($desc) . '">' . PHP_EOL;
+        echo '<link rel="canonical" href="' . esc_url($url) . '">' . PHP_EOL;
+
+        echo '<meta property="og:type"        content="website">' . PHP_EOL;
+        echo '<meta property="og:title"       content="' . esc_attr($title) . '">' . PHP_EOL;
+        echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . PHP_EOL;
+        echo '<meta property="og:url"         content="' . esc_url($url) . '">' . PHP_EOL;
+        echo '<meta property="og:site_name"   content="Meditate Florida">' . PHP_EOL;
+
+        $og_image = '';
+        if ($ids && function_exists('mfl_listing_image_url')) {
+            $og_image = mfl_listing_image_url($ids[0], 'large');
+        }
+        if ($og_image) {
+            echo '<meta property="og:image" content="' . esc_url($og_image) . '">' . PHP_EOL;
+        }
+
+        echo '<script type="application/ld+json">' . wp_json_encode(self::schema_graph($slug), JSON_UNESCAPED_SLASHES) . '</script>' . PHP_EOL;
+    }
+
+    /** BreadcrumbList + ItemList (top 10) + FAQPage (mirrors template copy). */
+    private static function schema_graph(string $slug): array
+    {
+        $city = self::CITIES[$slug];
+        $ids  = array_slice(self::get_city_listing_ids($slug), 0, 10);
+
+        $breadcrumb = [
+            '@type'           => 'BreadcrumbList',
+            'itemListElement' => [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home',              'item' => home_url('/')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Florida Directory', 'item' => get_post_type_archive_link('listdom-listing') ?: home_url('/listings/')],
+                ['@type' => 'ListItem', 'position' => 3, 'name' => $city['name'],       'item' => mfl_city_url($slug)],
+            ],
+        ];
+
+        $items = [];
+        foreach ($ids as $i => $id) {
+            $items[] = [
+                '@type'    => 'ListItem',
+                'position' => $i + 1,
+                'name'     => get_the_title($id),
+                'url'      => get_permalink($id),
+            ];
+        }
+        $item_list = [
+            '@type'           => 'ItemList',
+            'name'            => sprintf('Meditation & Wellness in %s, FL', $city['name']),
+            'itemListElement' => $items,
+        ];
+
+        $faq_entities = [];
+        foreach (mfl_city_faqs($slug) as $faq) {
+            $faq_entities[] = [
+                '@type'          => 'Question',
+                'name'           => $faq['q'],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['a']],
+            ];
+        }
+
+        $graph = [$breadcrumb, $item_list];
+        if ($faq_entities) {
+            $graph[] = ['@type' => 'FAQPage', 'mainEntity' => $faq_entities];
+        }
+
+        return ['@context' => 'https://schema.org', '@graph' => $graph];
     }
 
     public static function add_rewrite(): void

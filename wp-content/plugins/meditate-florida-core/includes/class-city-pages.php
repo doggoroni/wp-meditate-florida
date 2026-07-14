@@ -179,6 +179,75 @@ class MFL_City_Pages
         return $city;
     }
 
+    // ─── Listing data ────────────────────────────────────────────────────────
+
+    /**
+     * Published listings within RADIUS_MILES of the city center, best-rated
+     * first. Transient-cached 12h — listings only change on the weekly import.
+     * NOTE: lsd_data keys rows by `id` (= post ID), not `post_id`.
+     */
+    public static function get_city_listing_ids(string $slug): array
+    {
+        $city = self::CITIES[$slug] ?? null;
+        if (!$city) {
+            return [];
+        }
+
+        $key = 'mfl_city_ids_' . $slug;
+        $ids = get_transient($key);
+        if (is_array($ids)) {
+            return array_map('intval', $ids);
+        }
+
+        global $wpdb;
+        $ids = $wpdb->get_col($wpdb->prepare(
+            "SELECT p.ID
+             FROM {$wpdb->posts} p
+             INNER JOIN {$wpdb->prefix}lsd_data d ON d.id = p.ID
+             LEFT  JOIN {$wpdb->postmeta} r ON r.post_id = p.ID AND r.meta_key = '_mfl_rating'
+             WHERE p.post_type = 'listdom-listing'
+               AND p.post_status = 'publish'
+               AND ( 3959 * ACOS( LEAST(1,
+                     COS(RADIANS(%f)) * COS(RADIANS(d.latitude))
+                   * COS(RADIANS(d.longitude) - RADIANS(%f))
+                   + SIN(RADIANS(%f)) * SIN(RADIANS(d.latitude)) ) ) ) <= %d
+             ORDER BY CAST(COALESCE(NULLIF(r.meta_value, ''), '0') AS DECIMAL(3,1)) DESC, p.post_date DESC",
+            $city['lat'], $city['lng'], $city['lat'], self::RADIUS_MILES
+        ));
+
+        $ids = array_map('intval', $ids ?: []);
+        set_transient($key, $ids, 12 * HOUR_IN_SECONDS);
+        return $ids;
+    }
+
+    /** listdom-category counts across the city's listings, biggest first. */
+    public static function get_city_category_counts(string $slug): array
+    {
+        $ids = self::get_city_listing_ids($slug);
+        if (!$ids) {
+            return [];
+        }
+
+        $counts = [];
+        foreach ($ids as $id) {
+            $terms = get_the_terms($id, 'listdom-category');
+            if (!is_array($terms)) {
+                continue;
+            }
+            foreach ($terms as $t) {
+                if (!$t instanceof WP_Term) {
+                    continue;
+                }
+                $counts[$t->term_id] ??= ['name' => $t->name, 'count' => 0];
+                $counts[$t->term_id]['count']++;
+            }
+        }
+        uasort($counts, fn($a, $b) => $b['count'] <=> $a['count']);
+        return $counts;
+    }
+
+    // ─── Geometry ────────────────────────────────────────────────────────────
+
     public static function haversine_miles(float $lat1, float $lng1, float $lat2, float $lng2): float
     {
         $r  = 3959;

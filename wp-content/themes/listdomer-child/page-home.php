@@ -82,18 +82,23 @@ function mfl_stars(float $rating): string
 function mfl_category_icon(string $name): string
 {
     $name  = strtolower($name);
+    // Most-specific keywords first: "Meditation Retreat" must match before
+    // "meditation", "Spa & Wellness" before "wellness" — otherwise sibling
+    // categories end up with identical icons in the homepage grid.
     $icons = [
-        'meditation'  => 'fas fa-spa',
-        'yoga'        => 'fas fa-yin-yang',
-        'retreat'     => 'fas fa-mountain',
-        'mindfulness' => 'fas fa-brain',
-        'buddhist'    => 'fas fa-dharmachakra',
-        'wellness'    => 'fas fa-heartbeat',
-        'spiritual'   => 'fas fa-place-of-worship',
-        'fitness'     => 'fas fa-dumbbell',
-        'health'      => 'fas fa-notes-medical',
-        'gym'         => 'fas fa-dumbbell',
-        'spa'         => 'fas fa-spa',
+        'meditation retreat' => 'fas fa-mountain',
+        'wellness retreat'   => 'fas fa-tree',
+        'retreat'            => 'fas fa-mountain',
+        'yoga'               => 'fas fa-yin-yang',
+        'mindfulness'        => 'fas fa-brain',
+        'buddhist'           => 'fas fa-dharmachakra',
+        'spa'                => 'fas fa-spa',
+        'meditation'         => 'fas fa-om',
+        'wellness'           => 'fas fa-heartbeat',
+        'spiritual'          => 'fas fa-place-of-worship',
+        'fitness'            => 'fas fa-dumbbell',
+        'gym'                => 'fas fa-dumbbell',
+        'health'             => 'fas fa-notes-medical',
     ];
 
     foreach ($icons as $keyword => $icon) {

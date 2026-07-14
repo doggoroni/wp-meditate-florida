@@ -97,7 +97,7 @@ $listdomer_logo_bg = LSDR_Settings::get('listdomer_logo_bg', 1);
 
         <!-- Mobile: hamburger menu -->
         <button id="listdomer-responsive-sidebar-menu" class="listdomer-responsive-sidebar-menu"
-                aria-label="<?php esc_attr__('Responsive sidebar menu', 'listdomer'); ?>">
+                aria-label="<?php esc_attr_e('Open menu', 'listdomer-child'); ?>">
             <span>
                 <i class="fas fa-align-right" aria-hidden="true"></i>
             </span>

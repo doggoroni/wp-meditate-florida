@@ -347,18 +347,49 @@ span:focus {
   border-radius: 2px;
 }
 
-/* ── Mobile hamburger ───────────────────────────────────────────────────── */
+/* ── Mobile header buttons (search toggle + hamburger) ──────────────────────
+   The parent theme gives the hamburger a pale blue chip and the search toggle
+   renders as a bare OS-default <button>. Restyle both as matching "ghost"
+   buttons: transparent on the dark header, subtle outline, white icon. */
+.site-header .header-buttons .mfl-search-toggle,
+.site-header .header-buttons .listdomer-responsive-sidebar-menu {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
 
-/* The hamburger is a FontAwesome icon (fas fa-align-right) inside a <span>.
-   Overrides: .site-header .header-buttons .listdomer-responsive-sidebar-menu { background: none; border: none; } */
-.site-header .header-buttons .listdomer-responsive-sidebar-menu,
+.site-header .header-buttons .mfl-search-toggle:hover,
+.site-header .header-buttons .listdomer-responsive-sidebar-menu:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.site-header .header-buttons .mfl-search-toggle:focus-visible,
+.site-header .header-buttons .listdomer-responsive-sidebar-menu:focus-visible {
+  outline: 2px solid var(--mfl-sage-mid, #A8C5A0);
+  outline-offset: 2px;
+}
+
 .site-header .header-buttons .listdomer-responsive-sidebar-menu > span {
-  color: #ffffff;           /* white icon on dark header */
+  display: inline-flex;
+  color: #ffffff;
 }
 
 .site-header .header-buttons .listdomer-responsive-sidebar-menu i {
   color: #ffffff;           /* FontAwesome icon colour */
-  font-size: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1;
 }
 
 /* Mobile nav panel background (slides in at ≤767px)
@@ -1065,10 +1096,21 @@ body,
     border: 1px solid rgba(220,53,69,0.4);
 }
 
-/* ── Dropdown submenu: always dark text regardless of scroll state ── */
-#masthead.is-scrolled .main-navigation ul ul a,
-#masthead.is-scrolled .main-navigation ul ul li a {
+/* ── Dropdown submenu: always dark text on the white panel ──
+   The pale header-link rules (0-2-4 specificity, !important) beat the
+   generic .main-navigation ul ul rule (0-1-4), so anchor this with the
+   #masthead ID for every scroll state — not just .is-scrolled, which left
+   the dropdown unreadable on unscrolled inner pages. The homepage
+   transparent-header state is handled separately in home.css. */
+#masthead .main-navigation ul ul a,
+#masthead .main-navigation ul ul li a {
     color: var(--mfl-sage-dark, #2C4A3E) !important;
+}
+
+#masthead .main-navigation ul ul a:hover,
+#masthead .main-navigation ul ul li a:hover {
+    background: var(--mfl-off-white, #F2F5F0);
+    color: var(--mfl-sage, #7C9E87) !important;
 }
 
 /* ── Breadcrumb colour fix ── */

@@ -24,6 +24,7 @@ require_once MFL_DIR . 'includes/class-logger.php';
 require_once MFL_DIR . 'includes/class-places-importer.php';
 require_once MFL_DIR . 'includes/class-search-handler.php';
 require_once MFL_DIR . 'includes/class-city-pages.php';
+require_once MFL_DIR . 'includes/class-email-finder.php';
 
 MFL_City_Pages::register();
 
@@ -180,6 +181,37 @@ if (defined('WP_CLI') && WP_CLI) {
             WP_CLI::success('Backfill complete.');
         }
     });
+
+    /**
+     * Find public contact emails on listing websites and store them as
+     * lsd_email, so the listing contact form routes to the business instead
+     * of falling back to the site owner. Google Places never supplies emails.
+     *
+     * ## OPTIONS
+     *
+     * [--limit=<n>]
+     * : Max number of listings to process this run (0 = all). Default 0.
+     *
+     * [--dry-run]
+     * : Report what would be found without writing any meta.
+     *
+     * ## EXAMPLES
+     *     wp mfl backfill-emails --limit=25 --dry-run
+     *     wp mfl backfill-emails
+     */
+    WP_CLI::add_command('mfl backfill-emails', function ($args, $assoc_args) {
+        $limit   = (int) ($assoc_args['limit'] ?? 0);
+        $dry_run = isset($assoc_args['dry-run']);
+        $finder  = new MFL_Email_Finder(new MFL_Logger(MFL_LOG_FILE));
+        $stats   = $finder->backfill($limit, $dry_run);
+
+        WP_CLI::log(sprintf(
+            'Processed: %d | Emails found: %d | Not found: %d | Errors: %d',
+            $stats['processed'], $stats['found'], $stats['not_found'], $stats['errors']
+        ));
+
+        WP_CLI::success($dry_run ? 'Dry run complete (nothing written).' : 'Email backfill complete.');
+    });
 }
 
 // ─── Activation / Deactivation ───────────────────────────────────────────────
@@ -265,18 +297,44 @@ function mfl_handle_listing_contact(): void
     // 5. Build email
     $listing_title = get_the_title($listing_id);
     $listing_email = sanitize_email(get_post_meta($listing_id, 'lsd_email', true));
+    $is_relay      = ($listing_email === '');
     $to            = $listing_email ?: get_option('mfl_contact_email', get_option('admin_email'));
-    $subject       = sprintf('[Meditate Florida] Message re: %s', $listing_title);
-    $body          = sprintf(
-        "New message from the Meditate Florida listing page.\n\n" .
-        "Listing: %s\nURL: %s\n\n" .
-        "From: %s\nEmail: %s\nPhone: %s\n\n" .
-        "Message:\n%s\n",
-        $listing_title,
-        get_permalink($listing_id),
-        $name, $email, $phone ?: 'Not provided',
-        $message
-    );
+    $listing_url   = get_permalink($listing_id);
+
+    if ($is_relay) {
+        // No email on file for this business — the message lands with us and
+        // has to be forwarded by hand, so lead with that instruction.
+        $subject = sprintf('[Relay — no email on file] %s', $listing_title);
+        $body    = sprintf(
+            "A visitor sent a message to a listing we have no email address for,\n" .
+            "so it came here instead. Forward it on, or use it as a reason to\n" .
+            "invite the owner to claim their listing.\n\n" .
+            "Listing: %s\nURL: %s\n\n" .
+            "From: %s\nEmail: %s\nPhone: %s\n\n" .
+            "Message:\n%s\n\n" .
+            "— Add their address to the listing's Email field to route future\n" .
+            "  messages straight to them.\n",
+            $listing_title,
+            $listing_url,
+            $name, $email, $phone ?: 'Not provided',
+            $message
+        );
+    } else {
+        $subject = sprintf('New enquiry from Meditate Florida: %s', $listing_title);
+        $body    = sprintf(
+            "You have a new message from your listing on Meditate Florida.\n\n" .
+            "Listing: %s\nURL: %s\n\n" .
+            "From: %s\nEmail: %s\nPhone: %s\n\n" .
+            "Message:\n%s\n\n" .
+            "Reply directly to this email to reach %s.\n",
+            $listing_title,
+            $listing_url,
+            $name, $email, $phone ?: 'Not provided',
+            $message,
+            $name
+        );
+    }
+
     $headers = [
         'Content-Type: text/plain; charset=UTF-8',
         'Reply-To: ' . $name . ' <' . $email . '>',

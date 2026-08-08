@@ -521,6 +521,16 @@ $claim_error     = isset($_GET['mfl_claim'])   && $_GET['mfl_claim']   === 'erro
     <div class="mfl-sl-sidebar-card">
         <h3 class="mfl-sl-sidebar-card__title">Send a Message</h3>
 
+        <?php // Be honest about where the message actually goes: straight to
+              // the business when we hold their email, otherwise relayed by us. ?>
+        <p class="mfl-sl-form-routing">
+            <?php if ($email) : ?>
+                Your message goes directly to <?php echo esc_html($title); ?>.
+            <?php else : ?>
+                We'll pass your message along to <?php echo esc_html($title); ?> on your behalf.
+            <?php endif; ?>
+        </p>
+
         <?php if ($contact_sent) : ?>
         <div class="mfl-sl-form-notice mfl-sl-form-notice--success" role="alert">
             Your message was sent successfully!

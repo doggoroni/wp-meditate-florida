@@ -87,8 +87,11 @@
                     <h4 class="mfl-footer-heading"><?php esc_html_e('Explore', 'listdomer-child'); ?></h4>
                     <ul class="mfl-footer-links">
                         <li><a href="<?php echo esc_url($footer_listings_url); ?>"><?php esc_html_e('Browse All Locations', 'listdomer-child'); ?></a></li>
-                        <?php foreach ($footer_cats as $cat): ?>
-                        <li><a href="<?php echo esc_url(add_query_arg('category', $cat, $footer_listings_url)); ?>"><?php echo esc_html($cat); ?></a></li>
+                        <?php foreach ($footer_cats as $cat):
+                            $cat_term = get_term_by('name', $cat, 'listdom-category');
+                            if (!$cat_term) continue;
+                        ?>
+                        <li><a href="<?php echo esc_url(add_query_arg('category', $cat_term->term_id, $footer_listings_url)); ?>"><?php echo esc_html($cat); ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

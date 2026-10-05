@@ -64,7 +64,7 @@ $primary_cat = (!empty($categories) && !is_wp_error($categories)) ? $categories[
 // Category archive link
 $listings_url  = get_theme_mod('mfl_listings_page_url', home_url('/listings/'));
 $cat_filter_url = $primary_cat
-    ? add_query_arg(['sf' => ['listdom-category' => $primary_cat->term_id]], $listings_url)
+    ? add_query_arg('category', $primary_cat->term_id, $listings_url)
     : $listings_url;
 
 // ── 2. Star helper ───────────────────────────────────────────────────────────

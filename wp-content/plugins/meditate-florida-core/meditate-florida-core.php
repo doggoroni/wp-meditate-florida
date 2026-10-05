@@ -25,6 +25,7 @@ require_once MFL_DIR . 'includes/class-places-importer.php';
 require_once MFL_DIR . 'includes/class-search-handler.php';
 require_once MFL_DIR . 'includes/class-city-pages.php';
 require_once MFL_DIR . 'includes/class-email-finder.php';
+require_once MFL_DIR . 'includes/seo-hygiene.php';
 
 MFL_City_Pages::register();
 
@@ -566,18 +567,13 @@ function mfl_output_canonical(): void {
     $cat = absint($_GET['category'] ?? 0);
     if ($cat) $params['category'] = $cat;
 
-    // city= and category= are the only params worth canonicalising to
+    $paged = absint($_GET['paged'] ?? 0);
+    if ($paged > 1) $params['paged'] = $paged;
+
+    // city=, category= and paged= are the only params worth canonicalising to
+    // (deep-pagination noindex lives in mfl_seo_robots())
     $canonical = $params ? add_query_arg($params, $base) : $base;
     echo '<link rel="canonical" href="' . esc_url($canonical) . '">' . PHP_EOL;
-}
-
-// Prevent deep pagination pages from being indexed (thin content)
-add_action('wp_head', 'mfl_noindex_deep_pagination', 3);
-function mfl_noindex_deep_pagination(): void {
-    if (!is_post_type_archive('listdom-listing') && !is_page('listings')) return;
-    if ((int) get_query_var('paged', 1) >= 10) {
-        echo '<meta name="robots" content="noindex, follow">' . PHP_EOL;
-    }
 }
 
 // ─── Meta Titles, Descriptions & Open Graph ──────────────────────────────────
@@ -597,8 +593,10 @@ function mfl_custom_title_parts(array $parts): array {
         $cat_id   = absint($_GET['category'] ?? 0);
         $cat_term = $cat_id ? get_term($cat_id, 'listdom-category') : null;
         $cat_name = ($cat_term && !is_wp_error($cat_term)) ? $cat_term->name : '';
-        $qualifier = array_filter([$cat_name, $city ? "in $city" : 'in Florida']);
-        $parts['title'] = 'Meditation & Wellness Locations ' . implode(' ', $qualifier) . ' | Meditate Florida';
+        $where    = $city ?: 'Florida';
+        $parts['title'] = $cat_name
+            ? mfl_category_plural($cat_name) . " in $where | Meditate Florida"
+            : "Meditation & Wellness Locations in $where | Meditate Florida";
         unset($parts['site'], $parts['tagline']);
     } elseif (is_home()) {
         $parts['title'] = 'Meditation & Wellness Blog | Meditate Florida';
@@ -622,6 +620,15 @@ function mfl_output_meta_tags(): void {
         preg_match('/,\s*([^,]+),\s*FL/i', $addr ?? '', $m);
         $city  = !empty($m[1]) ? trim($m[1]) . ', FL' : 'Florida';
         $desc  = get_the_title($post->ID) . ' — ' . $cat . ' in ' . $city . '. View hours, contact info, and directions on Meditate Florida.';
+    } elseif ((is_post_type_archive('listdom-listing') || is_page('listings'))
+              && ($cat_term = get_term(absint($_GET['category'] ?? 0), 'listdom-category'))
+              && !is_wp_error($cat_term)) {
+        $where = sanitize_text_field($_GET['city'] ?? '') ?: 'Florida';
+        $desc  = sprintf(
+            'Browse %s in %s — ratings, hours, contact details and directions. Free directory from Meditate Florida.',
+            mfl_category_plural($cat_term->name),
+            $where
+        );
     } elseif (is_post_type_archive('listdom-listing') || is_page('listings')) {
         $desc = 'Browse 800+ yoga studios, meditation centers, and retreat spaces across Florida. Filter by city, category, and rating — free directory.';
     } elseif (is_singular('post')) {
@@ -661,7 +668,8 @@ add_action('init', function () {
 });
 add_filter('query_vars', function (array $vars): array { $vars[] = 'mfl_sitemap'; return $vars; });
 
-add_action('template_redirect', 'mfl_serve_sitemap');
+// Priority 0: must run before redirect_canonical() appends a trailing slash.
+add_action('template_redirect', 'mfl_serve_sitemap', 0);
 function mfl_serve_sitemap(): void {
     if (get_query_var('mfl_sitemap') !== 'listings') return;
 

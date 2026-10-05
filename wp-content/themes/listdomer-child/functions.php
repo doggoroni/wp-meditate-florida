@@ -399,18 +399,3 @@ function mfl_register_sidebars(): void
     ]);
 }
 
-// ─── Redirect Listdom category archives to filtered browse page ────────────────
-add_action('template_redirect', function () {
-    if (is_tax('listdom-category')) {
-        $term         = get_queried_object();
-        $listings_page = get_page_by_path('listings');
-        if ($listings_page && $term) {
-            $redirect_url = add_query_arg(
-                ['sf' => ['listdom-category' => $term->term_id]],
-                get_permalink($listings_page)
-            );
-            wp_redirect($redirect_url, 301);
-            exit;
-        }
-    }
-});

@@ -67,14 +67,6 @@ function mfl_seo_redirects(): void
             exit;
         }
     }
-
-    // /listings/page/N/ renders page 1 (the archive paginates via ?paged=).
-    $paged = (int) get_query_var('paged');
-    if ($paged > 1 && !isset($args['paged']) && preg_match('#/page/\d+/?#', $_SERVER['REQUEST_URI'] ?? '')) {
-        $args['paged'] = $paged;
-        wp_safe_redirect(add_query_arg(urlencode_deep($args), $base), 301);
-        exit;
-    }
 }
 
 // Hide the users endpoint from anonymous REST requests (enumerates logins).

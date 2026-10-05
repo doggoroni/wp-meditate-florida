@@ -17,7 +17,12 @@ get_header();
 // ── 1. Sanitize incoming filters ──────────────────────────────────────────────
 
 $handler = new MFL_Search_Handler();
-$filters = $handler->sanitize_filters($_GET);
+// WP canonicalizes ?paged=N to /listings/page/N/, so honour the query var too.
+$raw_filters = $_GET;
+if (empty($raw_filters['paged']) && (int) get_query_var('paged') > 1) {
+    $raw_filters['paged'] = (int) get_query_var('paged');
+}
+$filters = $handler->sanitize_filters($raw_filters);
 
 // ── 2. Run initial (SSR) search ───────────────────────────────────────────────
 
@@ -273,12 +278,13 @@ $archive_url = get_post_type_archive_link('listdom-listing') ?: home_url('/listd
         }
 
         $window   = mfl_pagination_window($paged, $pages);
-        $prev_url = $paged > 1
-            ? add_query_arg(array_merge(array_filter($_GET), ['paged' => $paged - 1]), $archive_url)
-            : null;
-        $next_url = $paged < $pages
-            ? add_query_arg(array_merge(array_filter($_GET), ['paged' => $paged + 1]), $archive_url)
-            : null;
+        $page_args = array_diff_key(array_filter($_GET), ['paged' => 1]);
+        $page_link = fn(int $pg): string => add_query_arg(
+            $page_args,
+            $pg > 1 ? trailingslashit($archive_url) . 'page/' . $pg . '/' : $archive_url
+        );
+        $prev_url = $paged > 1      ? $page_link($paged - 1) : null;
+        $next_url = $paged < $pages ? $page_link($paged + 1) : null;
     ?>
     <nav class="mfl-arch-pagination" id="mfl-arch-pagination" aria-label="Listings pagination">
 
@@ -294,7 +300,7 @@ $archive_url = get_post_type_archive_link('listdom-listing') ?: home_url('/listd
             <?php elseif ($pg === $paged) : ?>
             <span class="mfl-page-btn mfl-page-btn--current" aria-current="page"><?php echo $pg; ?></span>
             <?php else :
-                $page_url = add_query_arg(array_merge(array_filter($_GET), ['paged' => $pg]), $archive_url);
+                $page_url = $page_link($pg);
             ?>
             <a href="<?php echo esc_url($page_url); ?>" class="mfl-page-btn" data-page="<?php echo $pg; ?>"><?php echo $pg; ?></a>
             <?php endif;

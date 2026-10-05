@@ -360,9 +360,11 @@
         if (state.open_now)    params.set('open_now', '1');
         if (state.sort && state.sort !== 'newest') params.set('sort', state.sort);
         if (state.view && state.view !== 'grid')   params.set('view', state.view);
-        if (state.paged > 1)   params.set('paged',   state.paged);
+        // Path-style pagination (/listings/page/N/) — WP's canonical form
+        var base = cfg.archiveUrl.replace(/\/?$/, '/');
+        if (state.paged > 1) base += 'page/' + state.paged + '/';
 
-        var url = cfg.archiveUrl + (params.toString() ? '?' + params.toString() : '');
+        var url = base + (params.toString() ? '?' + params.toString() : '');
         history.pushState(state, '', url);
     }
 

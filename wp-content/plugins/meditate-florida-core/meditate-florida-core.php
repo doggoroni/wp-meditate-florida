@@ -567,11 +567,12 @@ function mfl_output_canonical(): void {
     $cat = absint($_GET['category'] ?? 0);
     if ($cat) $params['category'] = $cat;
 
-    $paged = absint($_GET['paged'] ?? 0);
-    if ($paged > 1) $params['paged'] = $paged;
-
-    // city=, category= and paged= are the only params worth canonicalising to
+    // Paginated pages self-canonicalize in WP's /page/N/ form
     // (deep-pagination noindex lives in mfl_seo_robots())
+    $paged = max(absint($_GET['paged'] ?? 0), (int) get_query_var('paged'));
+    if ($paged > 1) $base = trailingslashit($base) . 'page/' . $paged . '/';
+
+    // city= and category= are the only params worth canonicalising to
     $canonical = $params ? add_query_arg($params, $base) : $base;
     echo '<link rel="canonical" href="' . esc_url($canonical) . '">' . PHP_EOL;
 }

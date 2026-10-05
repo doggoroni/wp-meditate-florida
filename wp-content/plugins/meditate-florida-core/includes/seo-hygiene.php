@@ -79,10 +79,28 @@ add_filter('rest_endpoints', function (array $endpoints): array {
 
 // ─── Robots meta ─────────────────────────────────────────────────────────────
 
+/** Listing category kept browsable but out of Google (off-core spa businesses). */
+const MFL_NOINDEX_CATEGORY = 'spa-wellness';
+
+/**
+ * Listings Google should not index: the spa category, plus thin listings
+ * (no website and fewer than 5 reviews) until they're enriched.
+ */
+function mfl_listing_is_noindexed(int $post_id): bool
+{
+    if (has_term(MFL_NOINDEX_CATEGORY, 'listdom-category', $post_id)) {
+        return true;
+    }
+    $has_site = trim((string) get_post_meta($post_id, 'lsd_website', true)) !== '';
+    $reviews  = (int) get_post_meta($post_id, '_mfl_review_count', true);
+    return !$has_site && $reviews < 5;
+}
+
 add_filter('wp_robots', 'mfl_seo_robots');
 function mfl_seo_robots(array $robots): array
 {
     $noindex = is_search()
+        || (is_singular('listdom-listing') && mfl_listing_is_noindexed(get_queried_object_id()))
         // Deep archive pagination is thin, near-duplicate content.
         || ((is_post_type_archive('listdom-listing') || is_page('listings'))
             && (int) get_query_var('paged', 1) >= 10);

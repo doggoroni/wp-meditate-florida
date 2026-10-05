@@ -21,6 +21,7 @@ define('MFL_ENV_FILE',  ABSPATH . '.env');
 // ─── Autoload ────────────────────────────────────────────────────────────────
 
 require_once MFL_DIR . 'includes/class-logger.php';
+require_once MFL_DIR . 'includes/class-category-rules.php';
 require_once MFL_DIR . 'includes/class-places-importer.php';
 require_once MFL_DIR . 'includes/class-search-handler.php';
 require_once MFL_DIR . 'includes/class-city-pages.php';
@@ -213,6 +214,103 @@ if (defined('WP_CLI') && WP_CLI) {
 
         WP_CLI::success($dry_run ? 'Dry run complete (nothing written).' : 'Email backfill complete.');
     });
+
+    /**
+     * Re-sort the Wellness Center catch-all and Spa & Wellness listings using
+     * name rules (MFL_Category_Rules). Off-topic listings are drafted.
+     *
+     * ## OPTIONS
+     *
+     * [--dry-run]
+     * : Report proposed moves without changing anything.
+     *
+     * [--csv=<path>]
+     * : Write the proposed/applied moves to this CSV file.
+     *
+     * ## EXAMPLES
+     *     wp mfl recategorize --dry-run --csv=/tmp/moves.csv
+     *     wp mfl recategorize
+     */
+    WP_CLI::add_command('mfl recategorize', function ($args, $assoc_args) {
+        $dry_run = isset($assoc_args['dry-run']);
+        $log     = new MFL_Logger(MFL_LOG_FILE);
+        $moves   = mfl_recategorize_listings(['wellness-center', 'spa-wellness'], $dry_run, $log);
+
+        if (!empty($assoc_args['csv'])) {
+            $fh = fopen($assoc_args['csv'], 'w');
+            fputcsv($fh, ['id', 'name', 'url', 'from', 'to', 'rule']);
+            foreach ($moves as $m) fputcsv($fh, $m);
+            fclose($fh);
+            WP_CLI::log('CSV written: ' . $assoc_args['csv']);
+        }
+
+        $counts = array_count_values(array_column($moves, 'to'));
+        foreach ($counts as $to => $n) WP_CLI::log(sprintf('%-20s %d', $to, $n));
+        WP_CLI::success(($dry_run ? 'Dry run: ' : 'Applied: ') . count($moves) . ' listings.');
+    });
+}
+
+/**
+ * Apply MFL_Category_Rules to published listings in the given category slugs.
+ * Returns one row per proposed/applied move. Off-topic → draft (reversible;
+ * the importer's dedup counts drafts, so they don't come back).
+ */
+function mfl_recategorize_listings(array $from_slugs, bool $dry_run, MFL_Logger $log): array
+{
+    $moves = [];
+    $ids   = get_posts([
+        'post_type'      => 'listdom-listing',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'tax_query'      => [['taxonomy' => 'listdom-category', 'field' => 'slug', 'terms' => $from_slugs]],
+    ]);
+
+    foreach ($ids as $id) {
+        $terms = get_the_terms($id, 'listdom-category');
+        $from  = (is_array($terms) && $terms) ? $terms[0]->name : '';
+        $title = get_post_field('post_title', $id);
+        $rule  = MFL_Category_Rules::match($title);
+        if (!$rule || $rule['category'] === html_entity_decode($from)) {
+            continue;
+        }
+
+        $moves[] = [
+            'id'   => $id,
+            'name' => html_entity_decode($title, ENT_QUOTES, 'UTF-8'),
+            'url'  => get_permalink($id),
+            'from' => html_entity_decode($from),
+            'to'   => $rule['category'],
+            'rule' => $rule['rule'],
+        ];
+        if ($dry_run) {
+            continue;
+        }
+
+        if ($rule['category'] === MFL_Category_Rules::OFF_TOPIC) {
+            wp_update_post(['ID' => $id, 'post_status' => 'draft']);
+            update_post_meta($id, '_mfl_drafted_reason', 'off-topic: ' . $rule['rule']);
+        } else {
+            $term = mfl_category_term($rule['category']);
+            if (!$term) {
+                $log->error("recategorize: missing term '{$rule['category']}' for listing $id");
+                continue;
+            }
+            wp_set_object_terms($id, [$term->term_id], 'listdom-category', false);
+            update_post_meta($id, 'lsd_primary_category', $term->term_id);
+        }
+        $log->info(sprintf('recategorize: #%d "%s" %s → %s (%s)', $id, $title, $from, $rule['category'], $rule['rule']));
+    }
+
+    return $moves;
+}
+
+/** listdom-category term by display name ("Spa & Wellness" is stored entity-encoded). */
+function mfl_category_term(string $name): ?WP_Term
+{
+    $term = get_term_by('name', $name, 'listdom-category')
+         ?: get_term_by('name', esc_html($name), 'listdom-category');
+    return $term instanceof WP_Term ? $term : null;
 }
 
 // ─── Activation / Deactivation ───────────────────────────────────────────────
@@ -694,6 +792,7 @@ function mfl_serve_sitemap(): void {
     $cats = get_terms(['taxonomy' => 'listdom-category', 'hide_empty' => true]);
     if (!is_wp_error($cats)) {
         foreach ($cats as $cat) {
+            if ($cat->slug === MFL_NOINDEX_CATEGORY) continue;
             echo "<url><loc>" . esc_url(add_query_arg('category', $cat->term_id, $base))
                . "</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n";
         }
@@ -710,7 +809,10 @@ function mfl_serve_sitemap(): void {
             'fields'         => 'ids',
             'no_found_rows'  => false,
         ]);
+        update_meta_cache('post', $q->posts);
+        update_object_term_cache($q->posts, 'listdom-listing');
         foreach ($q->posts as $id) {
+            if (mfl_listing_is_noindexed($id)) continue;
             echo "<url><loc>" . esc_url(get_permalink($id)) . "</loc>"
                . "<lastmod>" . esc_html(get_post_modified_time('c', true, $id)) . "</lastmod>"
                . "<changefreq>monthly</changefreq><priority>0.6</priority></url>\n";

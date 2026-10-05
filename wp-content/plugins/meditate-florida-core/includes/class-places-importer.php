@@ -336,7 +336,7 @@ class MFL_Places_Importer
             'website'      => $place['website'] ?? '',
             'lat'          => (string) ($place['geometry']['location']['lat'] ?? ''),
             'lng'          => (string) ($place['geometry']['location']['lng'] ?? ''),
-            'category'     => $this->derive_category($place['types'] ?? [], $search_term),
+            'category'     => $this->derive_category($place['types'] ?? [], $search_term, $place['name'] ?? ''),
             'rating'       => (string) ($place['rating'] ?? ''),
             'review_count' => (string) ($place['user_ratings_total'] ?? ''),
             'place_id'     => $place['place_id'] ?? '',
@@ -365,6 +365,11 @@ class MFL_Places_Importer
 
         if (in_array('lodging', $types, true) && !preg_match(self::RETREATISH_NAME_PATTERN, $name)) {
             return 'generic lodging';
+        }
+
+        $rule = MFL_Category_Rules::match($name);
+        if ($rule && $rule['category'] === MFL_Category_Rules::OFF_TOPIC) {
+            return 'off-topic name (' . $rule['rule'] . ')';
         }
 
         return null;
@@ -409,9 +414,15 @@ class MFL_Places_Importer
      * Pick the most meaningful category label, preferring the search term used
      * to discover the place, falling back to Google's types array.
      */
-    private function derive_category(array $types, string $search_term = ''): string
+    private function derive_category(array $types, string $search_term = '', string $name = ''): string
     {
-        // ── 1. Search-term based (most accurate) ────────────────────────────────
+        // ── 0. Business name (strongest signal — see MFL_Category_Rules) ────────
+        $rule = MFL_Category_Rules::match($name);
+        if ($rule && $rule['category'] !== MFL_Category_Rules::OFF_TOPIC) {
+            return $rule['category'];
+        }
+
+        // ── 1. Search-term based ─────────────────────────────────────────────────
         $term_lower = strtolower($search_term);
         if (str_contains($term_lower, 'buddhist'))          return 'Buddhist Center';
         if (str_contains($term_lower, 'mindfulness'))        return 'Mindfulness Center';
@@ -741,7 +752,7 @@ class MFL_Places_Importer
      */
     private function get_or_create_category(string $name): int
     {
-        $term = get_term_by('name', $name, self::TAX_CAT);
+        $term = mfl_category_term($name);
 
         if ($term instanceof WP_Term) {
             return $term->term_id;
